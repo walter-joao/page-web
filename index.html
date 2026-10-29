@@ -111,10 +111,11 @@ nav.main a:hover{background:rgba(255,255,255,.1);color:#fff}
 /* Portada */
 .hero{min-height:min(100svh,900px);display:grid;align-items:end;padding:0;color:#fff;isolation:isolate;overflow:hidden;background:#070d17}
 .slides{position:absolute;inset:0;z-index:-2}
-.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
-.slide.on{opacity:1}
+.slide{position:absolute;inset:0;opacity:0;z-index:0;transition:opacity 1.4s ease}
+.slide.prev{opacity:1;z-index:1;transition:none}
+.slide.on{opacity:1;z-index:2}
 .slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
-.slide.on img{animation:kb 9s ease-out forwards}
+.slide.on img,.slide.prev img{animation:kb 9s ease-out forwards}
 @keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.16)}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
   linear-gradient(180deg,rgba(7,13,23,.55) 0%,rgba(7,13,23,.25) 35%,rgba(7,13,23,.85) 100%),
@@ -210,6 +211,14 @@ table.sheet tr{border-top:1px solid var(--line)}
 @media (max-width:900px){.mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:200px}}
 @media (max-width:520px){.mosaic{grid-template-columns:1fr}.project.p1,.project.p4{grid-column:span 1;grid-row:span 1}}
 
+.lb{position:fixed;inset:0;z-index:60;background:rgba(4,8,15,.88);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);display:grid;place-items:center;padding:calc(24px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb figure{margin:0;display:grid;gap:14px;max-width:min(1000px,100%);color:#fff}
+.lb img{max-height:78vh;width:auto;max-width:100%;border-radius:18px;margin:0 auto}
+.lb figcaption{display:grid;gap:2px;text-align:center}
+.lb small{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.lb b{font-family:var(--f-display);font-size:1.6rem}
+.lb .x{position:absolute;top:calc(16px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:999px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.08);color:#fff;font-size:1.4rem;cursor:pointer}
+
 /* Nosotros */
 .about{display:grid;grid-template-columns:1.1fr .9fr;gap:24px}
 .quote{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:40px;display:grid;gap:22px;align-content:start}
@@ -241,15 +250,21 @@ table.sheet tr{border-top:1px solid var(--line)}
 .cinfo small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .cinfo b{font-weight:600;user-select:all}
 .cinfo a,.cinfo b a{color:inherit;text-decoration:none}
+.social{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.social a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:.9rem}
+.social a:hover{border-color:var(--cyan);color:var(--cyan)}
+.social svg{width:18px;height:18px}
 @media (max-width:860px){.cta-band{grid-template-columns:1fr;gap:28px}.cinfo{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}}
 
-footer{padding-block:40px;color:var(--muted);font-size:.86rem}
+footer{padding-block:8px 32px;color:var(--muted);font-size:.86rem}
 footer .wrap{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between}
 footer .wrap > *{border-top:0}
 footer a{color:var(--muted)}
 
 .wa{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:999px;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.6)}
 .wa svg{width:28px;height:28px}
+.wa{transition:opacity .3s,transform .3s}
+.wa.hide{opacity:0;transform:scale(.7);pointer-events:none}
 .wa::after{content:"";position:absolute;inset:-6px;border-radius:999px;border:2px solid #25d366;opacity:.5;animation:ping 2.4s ease-out infinite}
 @keyframes ping{from{transform:scale(.9);opacity:.6}to{transform:scale(1.25);opacity:0}}
 
@@ -429,12 +444,12 @@ footer a{color:var(--muted)}
         <h2 data-i18n-html="proj.t">La experiencia es nuestra <span class="grad">carta de presentación</span></h2>
       </div>
       <div class="mosaic">
-        <a class="project p1 rv" href="https://jocecia.com/portal/project/metro-de-quito/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/Metro-de-Quito-trenes-min-1024x683-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.transport">Transporte público</small><b data-i18n="proj.metro">Metro de Quito</b></div></a>
-        <a class="project rv" href="https://jocecia.com/portal/project/hidroelectrica-agoyan/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2021/08/SF-CELEC-2-1-1024x681-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.agoyan">Central Agoyán</b></div></a>
-        <a class="project rv" href="https://jocecia.com/portal/project/central-hidroelectrica-manduriacu/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/DESTACADA-CEL.1804-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.manduriacu">Central Manduriacu</b></div></a>
-        <a class="project rv" href="https://jocecia.com/portal/project/central-hidroelectirca-san-francisco/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/SF-CELEC-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.sanfrancisco">Central San Francisco</b></div></a>
-        <a class="project rv" href="https://jocecia.com/portal/project/galpon-industrial-cadeco/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
-        <a class="project p4 rv" href="https://jocecia.com/portal/project/proyecto-residencial-funival/" target="_blank" rel="noopener"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
+        <a class="project p1 rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/Metro-de-Quito-trenes-min-1024x683-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.transport">Transporte público</small><b data-i18n="proj.metro">Metro de Quito</b></div></a>
+        <a class="project rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2021/08/SF-CELEC-2-1-1024x681-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.agoyan">Central Agoyán</b></div></a>
+        <a class="project rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/DESTACADA-CEL.1804-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.manduriacu">Central Manduriacu</b></div></a>
+        <a class="project rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/SF-CELEC-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.sanfrancisco">Central San Francisco</b></div></a>
+        <a class="project rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
+        <a class="project p4 rv" href="#proyectos" role="button"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
       </div>
     </div>
   </section>
@@ -476,7 +491,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section id="contacto" style="padding-top:0">
+  <section id="contacto" style="padding-block:0 40px">
     <div class="wrap">
       <div class="cta-band rv">
         <div style="display:grid;gap:22px">
@@ -494,6 +509,7 @@ footer a{color:var(--muted)}
           <div><small>WhatsApp</small><b>+593 96 406 8392</b></div>
           <div><small data-i18n="ct.mail">Correo</small><b>compras@jocecia.com</b></div>
           <div><small data-i18n="ct.hours.t">Horario</small><b data-i18n="ct.hours">Lunes a viernes, 08:00 – 17:00</b></div>
+          <div><small data-i18n="ct.follow">Síganos</small><div class="social"><a href="https://www.facebook.com/jocecialtda" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.1H7.7v3.2h2.7V22H14v-10.3h2.7l.4-3.2z"/></svg><span>Facebook</span></a><a href="https://www.instagram.com/jocecialtda/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a></div></div>
         </div>
       </div>
     </div>
@@ -502,10 +518,12 @@ footer a{color:var(--muted)}
 
 <footer>
   <div class="wrap">
-    <span>© Joce Cia Ltda. · <span data-i18n="tagline">Ingeniería y Materiales</span> · <a href="https://www.facebook.com/jocecialtda" target="_blank" rel="noopener">Facebook</a> · <a href="https://www.instagram.com/jocecialtda/" target="_blank" rel="noopener">Instagram</a></span>
+    <span>© Joce Cia Ltda. · <span data-i18n="tagline">Ingeniería y Materiales</span></span>
     <span data-i18n="footer.demo">Demo de rediseño, no es el sitio oficial</span>
   </div>
 </footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Proyecto"><button type="button" class="x" id="lbx" aria-label="Cerrar">×</button><figure><img id="lbimg" alt=""><figcaption><small id="lbk"></small><b id="lbt"></b></figcaption></figure></div>
 
 <a class="wa" href="https://wa.me/593964068392" target="_blank" rel="noopener" aria-label="WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2c-1.5 0-3-.4-4.3-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2s.2-1.1.2-1.2-.2-.2-.5-.3z"/></svg>
@@ -533,7 +551,8 @@ footer a{color:var(--muted)}
     b.addEventListener('click',function(){go(i,true)});dots.appendChild(b);
   });
   function go(i,manual){
-    slides[cur].classList.remove('on');dots.children[cur].classList.remove('on');
+    slides.forEach(function(s){s.classList.remove('prev')});
+    slides[cur].classList.remove('on');slides[cur].classList.add('prev');dots.children[cur].classList.remove('on');
     cur=(i+slides.length)%slides.length;
     slides[cur].classList.add('on');
     var d=dots.children[cur];void d.offsetWidth;d.classList.add('on');
@@ -542,6 +561,26 @@ footer a{color:var(--muted)}
   }
   function start(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(cur+1)},6000)}
   dots.children[0].classList.add('on');start();
+
+  // El botón flotante de WhatsApp se oculta en Contacto, donde ya hay uno
+  var wa=document.querySelector('.wa'),ct=document.getElementById('contacto');
+  if('IntersectionObserver' in window&&wa&&ct){new IntersectionObserver(function(es){wa.classList.toggle('hide',es[0].isIntersecting)},{threshold:.2}).observe(ct)}
+
+  // Proyectos: ampliar la foto dentro de la página
+  var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
+  function closeLb(){lb.hidden=true;document.body.style.overflow=''}
+  document.querySelectorAll('.project').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();var im=a.querySelector('img');
+      lbimg.src=im?im.src:'';lbimg.hidden=!im;
+      document.getElementById('lbk').textContent=a.querySelector('small').textContent;
+      document.getElementById('lbt').textContent=a.querySelector('b').textContent;
+      lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbx').focus();
+    });
+  });
+  document.getElementById('lbx').addEventListener('click',closeLb);
+  lb.addEventListener('click',function(e){if(e.target===lb)closeLb()});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&!lb.hidden)closeLb()});
 
   // Carrusel de sectores
   var rail=document.getElementById('rail');
@@ -609,7 +648,7 @@ footer a{color:var(--muted)}
     "soc3.t":"Bakery in Esmeraldas","soc3.d":"Roof donated and installed with the AMU NGO's Sunrise+ project.",
     "soc4.t":"Pandemic support","soc4.d":"Disinfection trays and protective equipment for the 10D02 District Health Office.",
     "ct.k":"Contact","ct.t":"Shall we talk about your next project?","ct.lead":"Tell us what you need manufactured or supplied and an engineer will get back to you.",
-    "ct.wa":"Message us on WhatsApp","ct.map":"Get directions","ct.addr":"Plant","ct.phones":"Phones","ct.mail":"Email","ct.hours.t":"Hours","ct.hours":"Monday to Friday, 08:00 – 17:00",
+    "ct.wa":"Message us on WhatsApp","ct.map":"Get directions","ct.addr":"Plant","ct.phones":"Phones","ct.mail":"Email","ct.hours.t":"Hours","ct.hours":"Monday to Friday, 08:00 – 17:00","ct.follow":"Follow us",
     "tagline":"Engineering & Materials","footer.demo":"Redesign demo, not the official site"
   };
   var nodes=document.querySelectorAll('[data-i18n],[data-i18n-html]'),es={};
