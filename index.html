@@ -26,7 +26,7 @@
 :root{
   --bg:#f2f4f6; --surface:#ffffff; --surface-2:#e7ebef; --fg:#14202e; --muted:#566475; --line:#d3dae1;
   --brand:#1d3f73; --brand-ink:#ffffff; --accent:#d9661a; --accent-ink:#ffffff;
-  --steel-a:#c9d1d9; --steel-b:#eef1f4;
+  --steel-a:#c9d1d9; --steel-b:#eef1f4; --logo-filter:none;
   --f-display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
   --f-body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
@@ -34,11 +34,11 @@
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0e141b; --surface:#161f29; --surface-2:#1b2530; --fg:#e4e9ee; --muted:#9aa8b6; --line:#2a3644;
   --brand:#9dbbe6; --brand-ink:#0e141b; --accent:#f08a3c; --accent-ink:#1a0d03;
-  --steel-a:#26313d; --steel-b:#3a4756; color-scheme:dark }}
+  --steel-a:#26313d; --steel-b:#3a4756; --logo-filter:brightness(0) invert(1); color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#0e141b; --surface:#161f29; --surface-2:#1b2530; --fg:#e4e9ee; --muted:#9aa8b6; --line:#2a3644;
   --brand:#9dbbe6; --brand-ink:#0e141b; --accent:#f08a3c; --accent-ink:#1a0d03;
-  --steel-a:#26313d; --steel-b:#3a4756; color-scheme:dark }
+  --steel-a:#26313d; --steel-b:#3a4756; --logo-filter:brightness(0) invert(1); color-scheme:dark }
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:80px}
@@ -62,7 +62,7 @@ section{padding-block:72px}
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:18px;min-height:68px}
 .logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.logo img{height:40px;width:auto}
+.logo img{height:40px;width:auto;filter:var(--logo-filter)}
 .logo img + .logo-txt{display:none}
 .logo-txt{font-family:var(--f-display);font-weight:700;font-size:1.6rem;color:var(--brand);letter-spacing:.02em;line-height:1}
 .logo-txt small{display:block;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.14em;color:var(--muted);font-weight:400;margin-top:3px}
