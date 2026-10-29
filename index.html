@@ -102,6 +102,36 @@ nav.main a:hover{background:rgba(255,255,255,.1);color:#fff}
 .top.solid .round{border-color:var(--line);color:var(--fg);background:transparent}
 .round svg{width:18px;height:18px}
 .menu-btn{display:none}
+
+.dd{position:relative;display:flex;align-items:center}
+.dd-t{display:grid;place-items:center;width:26px;height:26px;margin-left:-10px;padding:0;border:0;background:none;color:inherit;cursor:pointer;opacity:.8}
+nav.main .dd-t{color:rgba(255,255,255,.85)}.top.solid nav.main .dd-t{color:var(--muted)}
+.dd-t svg{width:15px;height:15px;transition:transform .2s}
+.mega{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);width:min(860px,92vw);display:none;grid-template-columns:1.6fr 1fr;gap:0;background:var(--surface);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;z-index:40}
+.mega::before{content:"";position:absolute;inset:-12px 0 auto;height:12px}
+.dd:hover .mega,.dd:focus-within .mega,.dd.open .mega{display:grid}
+.dd:hover .dd-t svg,.dd.open .dd-t svg{transform:rotate(180deg)}
+.mega b{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:600;padding:4px 12px 10px}
+.mega-sub{padding:20px;background:linear-gradient(160deg,var(--brand),#16356c);}
+.mega-sub b{color:rgba(255,255,255,.75)}
+.mega-sub div{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+nav.main .mega a{display:block;border-radius:10px;padding:9px 12px;font-weight:600;font-size:.88rem;line-height:1.3}
+nav.main .mega-sub a,.top.solid nav.main .mega-sub a{color:#fff}
+nav.main .mega-sub a:hover,.top.solid nav.main .mega-sub a:hover{background:rgba(255,255,255,.14);color:#fff}
+.mega-cat{padding:20px;display:grid;align-content:start}
+nav.main .mega-cat a,.top.solid nav.main .mega-cat a{color:var(--fg)}
+nav.main .mega-cat a:hover,.top.solid nav.main .mega-cat a:hover{background:var(--bg-2);color:var(--fg)}
+@media (max-width:1060px){
+  nav.main{max-height:calc(100vh - 90px);overflow:auto}
+  .dd{flex-wrap:wrap}.dd > a{flex:1}
+  nav.main .dd-t,.top.solid nav.main .dd-t{color:var(--fg);width:44px;height:44px;margin:0}
+  .dd:hover .mega{display:none}
+  .mega,.dd.open .mega{position:static;transform:none;width:100%;box-shadow:none;border:0;border-radius:14px;background:var(--bg-2);grid-template-columns:1fr}
+  .dd.open .mega{display:grid}
+  .mega::before{display:none}
+  .mega-sub{display:none}
+  .mega-cat{padding:8px}
+}
 @media (max-width:1060px){
   nav.main{display:none;position:absolute;top:100%;left:12px;right:12px;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:10px;box-shadow:var(--shadow)}
   nav.main.open{display:flex}
@@ -411,7 +441,8 @@ footer a{color:var(--muted)}
     </a>
     <nav class="main" id="nav" aria-label="Secciones">
       <a href="#sectores" data-i18n="nav.sectors">Soluciones</a>
-      <a href="#productos" data-i18n="nav.products">Productos</a>
+      <div class="dd"><a href="#productos" data-i18n="nav.products">Productos</a><button type="button" class="dd-t" aria-label="Ver productos" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
+        <div class="mega"><div class="mega-sub"><b data-i18n="mm.infra">Infraestructura metálica</b><div><a href="#productos" data-prod="p4"><span data-i18n="mm.s0">Pisos metálicos</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s1">Postes</span></a><a href="#productos" data-prod="p4"><span data-i18n="mm.s2">Rejillas</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s3">Placas</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s4">Cerchas para túneles</span></a><a href="#productos" data-prod="p5"><span data-i18n="mm.s5">Encofrados</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s6">Disipadores de energía</span></a><a href="#productos" data-prod="p6"><span data-i18n="mm.s7">Accesorios para tubería</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s8">Estructuras metálicas</span></a><a href="#productos" data-prod="p2"><span data-i18n="mm.s9">Pernos de anclaje</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s10">Placas de anclaje</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s11">Galpones</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s12">Escaleras</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s13">Pasamanos y pasarelas</span></a><a href="#productos" data-prod="p1"><span data-i18n="mm.s14">Pedidos especiales</span></a></div></div><div class="mega-cat"><b data-i18n="mm.all">Todos los productos</b><a href="#productos" data-prod="p1"><span data-i18n="mm.c0">Infraestructura metálica</span></a><a href="#productos" data-prod="p2"><span data-i18n="mm.c1">Pernos especiales de alta fiabilidad</span></a><a href="#alcantarillas"><span data-i18n="mm.c2">Alcantarillas metálicas</span></a><a href="#productos" data-prod="p4"><span data-i18n="mm.c3">Grating – Tramex</span></a><a href="#productos" data-prod="p5"><span data-i18n="mm.c4">Encofrados</span></a><a href="#productos" data-prod="p6"><span data-i18n="mm.c5">Accesorios para tuberías</span></a><a href="#productos" data-prod="p7"><span data-i18n="mm.c6">Soporte en rocas</span></a><a href="#productos" data-prod="p8"><span data-i18n="mm.c7">Fabricación y reparación de piezas</span></a><a href="#productos" data-prod="p9"><span data-i18n="mm.c8">Venta de soldadoras</span></a></div></div></div>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
@@ -873,7 +904,7 @@ footer a{color:var(--muted)}
 
   // Idiomas
   var EN={
-    "nav.sectors":"Solutions","nav.products":"Products","nav.culverts":"Culverts","nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
+    "nav.sectors":"Solutions","nav.products":"Products","mm.s0":"Metal floors","mm.s1":"Poles","mm.s2":"Grates","mm.s3":"Plates","mm.s4":"Tunnel arches","mm.s5":"Formwork","mm.s6":"Energy dissipators","mm.s7":"Pipe fittings","mm.s8":"Steel structures","mm.s9":"Anchor bolts","mm.s10":"Anchor plates","mm.s11":"Industrial sheds","mm.s12":"Stairs","mm.s13":"Handrails and walkways","mm.s14":"Special orders","mm.c0":"Metal infrastructure","mm.c1":"High-reliability special bolts","mm.c2":"Metal culverts","mm.c3":"Grating \u2013 Tramex","mm.c4":"Formwork","mm.c5":"Pipe fittings","mm.c6":"Rock support","mm.c7":"Parts manufacturing and repair","mm.c8":"Welding machines","mm.infra":"Metal infrastructure","mm.all":"All products","nav.culverts":"Culverts","nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
     "hero.k":"Engineering & materials · Ecuador","hero.title":"Steel that holds <span class=\"grad\">a country up</span>",
     "hero.lead":"We manufacture, import and install steel solutions for hydropower, mining, cement, power utilities and road works. More than 20 years on Ecuador's most demanding projects.",
     "cta.start":"Start a project","cta.projects":"See our work","hero.now":"Now showing",
@@ -947,7 +978,11 @@ footer a{color:var(--muted)}
   // Menú móvil
   var menu=document.getElementById('menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
-  nav.addEventListener('click',function(e){if(e.target.tagName==='A'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}});
+  nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');dd.classList.remove('open');dd.querySelector('.dd-t').setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
+  // Productos: menú desplegable (en el celular se abre con la flecha)
+  var dd=nav.querySelector('.dd');
+  dd.querySelector('.dd-t').addEventListener('click',function(){var o=dd.classList.toggle('open');this.setAttribute('aria-expanded',o)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&dd.classList.contains('open')){dd.classList.remove('open')}});
 
   try{
     if(localStorage.getItem('joce-lang')==='en')setLang('en');
