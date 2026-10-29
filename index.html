@@ -68,6 +68,8 @@ section{padding-block:96px;position:relative}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 26px;border-radius:999px;font-weight:700;text-decoration:none;border:1px solid transparent;cursor:pointer;font-family:var(--f-body);font-size:.98rem;white-space:nowrap}
 .btn svg{width:18px;height:18px}
 .btn-accent{background:var(--accent);color:var(--accent-ink);box-shadow:0 12px 30px -10px var(--accent)}
+.btn-line{border-color:var(--line);color:var(--fg);background:var(--surface)}
+.btn-line:hover{border-color:var(--cyan);color:var(--cyan)}
 .btn-glass{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.25);color:#fff;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .icon{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;background:color-mix(in srgb,var(--cyan) 14%,transparent);color:var(--cyan);flex-shrink:0}
 .icon svg{width:24px;height:24px}
@@ -232,6 +234,9 @@ table.sheet tr{border-top:1px solid var(--line)}
 @media (max-width:860px){.about{grid-template-columns:1fr}}
 
 /* Social */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:18px;margin-bottom:18px}
+.gallery .corr{border-radius:var(--radius);aspect-ratio:4/3}
+@media (max-width:820px){.gallery{grid-template-columns:1fr 1fr}}
 .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .event{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:grid;gap:8px;align-content:start}
 .event time{font-family:var(--f-display);font-weight:800;font-size:2rem;line-height:1}
@@ -388,6 +393,7 @@ footer a{color:var(--muted)}
         <span class="kicker" data-i18n="prod.k">Productos</span>
         <h2 data-i18n-html="prod.t">Todo el acero de <span class="grad">su proyecto</span></h2>
         <p class="lead" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</p>
+        <div class="cta-row"><a class="btn btn-line" href="https://jocecia.com/portal/wp-content/uploads/2025/01/CATOLOGO-ALCANTARILLA_compressed.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="prod.pdf">Catálogo de alcantarillas (PDF)</span></a></div>
       </div>
       <div class="bento">
         <article class="tile big rv"><div class="corr"><img src="https://jocecia.com/portal/wp-content/uploads/2021/08/Galpon2.png" alt="" loading="lazy"></div><div class="body"><h3 data-i18n="p1.t">Infraestructura metálica</h3><p data-i18n="p1.d">Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.</p><div class="chips"><span data-i18n="p1.c1">Galpones</span><span data-i18n="p1.c2">Postes</span><span data-i18n="p1.c3">Cerchas</span><span data-i18n="p1.c4">Pasarelas</span></div></div></article>
@@ -409,6 +415,7 @@ footer a{color:var(--muted)}
         <span class="kicker" data-i18n="cul.k">Producto destacado</span>
         <h2 data-i18n-html="cul.t">Alcantarillas <span class="grad">TMC</span></h2>
         <p class="lead" data-i18n="cul.lead">Acero corrugado y galvanizado en caliente, armado en obra con pernos de alta resistencia y sin mano de obra especializada.</p>
+        <div class="cta-row"><a class="btn btn-accent" href="https://jocecia.com/portal/wp-content/uploads/2025/01/CATOLOGO-ALCANTARILLA_compressed.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="cul.pdf">Descargar catálogo (PDF)</span></a></div>
       </div>
       <div class="culvert">
         <article class="model rv">
@@ -465,6 +472,7 @@ footer a{color:var(--muted)}
           <span class="kicker" data-i18n="about.mk">Nuestra misión</span>
           <blockquote data-i18n="about.m">“Ofrecer soluciones innovadoras en proyectos de infraestructura, con puntualidad y responsabilidad en cada entrega.”</blockquote>
           <p data-i18n="about.v">Nuestra visión es ser una empresa indispensable en construcción y producción, con un servicio personalizado y garantizado.</p>
+          <div class="cta-row"><a class="btn btn-line" href="#social"><span data-i18n="about.more">Conozca nuestra labor social</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
         </div>
         <ol class="steps">
           <li class="rv"><div><b data-i18n="m1.t">Diagnóstico</b><span data-i18n="m1.d">Recogemos la información de todos los involucrados.</span></div></li>
@@ -481,6 +489,12 @@ footer a{color:var(--muted)}
       <div class="sec-head">
         <span class="kicker" data-i18n="soc.k">Responsabilidad social</span>
         <h2 data-i18n-html="soc.t">Comprometidos con <span class="grad">las comunidades</span></h2>
+      </div>
+      <div class="gallery">
+        <div class="corr rv"><img src="https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2025-02-13-at-12.40.33-1024x576-600x337.jpeg" alt="Panadería comunitaria en Esmeraldas" loading="lazy"></div>
+        <div class="corr rv"><img src="https://jocecia.com/portal/wp-content/uploads/2025/01/Social2-600x446.png" alt="Actividad social de Joce Cia" loading="lazy"></div>
+        <div class="corr rv"><img src="https://jocecia.com/portal/wp-content/uploads/2025/01/Social3-600x446.png" alt="Actividad social de Joce Cia" loading="lazy"></div>
+        <div class="corr rv"><img src="https://jocecia.com/portal/wp-content/uploads/2025/01/pixelcut-export-1024x1013-600x593.png" alt="Donaciones de Joce Cia" loading="lazy"></div>
       </div>
       <div class="timeline">
         <div class="event rv"><time>2023</time><h3 data-i18n="soc1.t">San Rafael de la Laguna</h3><p data-i18n="soc1.d">Capacitación en manejo de desechos y donación de biodigestores en Otavalo.</p></div>
@@ -639,7 +653,7 @@ footer a{color:var(--muted)}
     "proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funival project",
     "about.k":"About us","about.t":"A <span class=\"grad\">multidisciplinary</span> team","about.mk":"Our mission",
     "about.m":"“Deliver innovative solutions for infrastructure projects, on time and responsibly, every time.”",
-    "about.v":"Our vision is to be an indispensable partner in construction and production, with personal, guaranteed service.",
+    "about.v":"Our vision is to be an indispensable partner in construction and production, with personal, guaranteed service.","about.more":"See our social work","cul.pdf":"Download catalog (PDF)","prod.pdf":"Culvert catalog (PDF)",
     "m1.t":"Assessment","m1.d":"We gather information from everyone involved.","m2.t":"Planning","m2.d":"We define the technical solution, schedule and resources.",
     "m3.t":"Manufacture or supply","m3.d":"We produce in our plant or import to standard.","m4.t":"Delivery and support","m4.d":"We deliver on time and support the assembly.",
     "soc.k":"Social responsibility","soc.t":"Committed to <span class=\"grad\">communities</span>",
