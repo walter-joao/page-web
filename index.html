@@ -649,6 +649,43 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
+  <section id="mapa-obras" style="padding-top:40px">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker" data-i18n="mo.k">Obras en Ecuador</span>
+        <h2 data-i18n-html="mo.t">Presentes donde el país <span class="grad">se construye</span></h2>
+        <p class="lead" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</p>
+      </div>
+      <div class="mo-bar">
+        <div class="mo-left">
+          <div class="mo-seg" role="group" aria-label="Ver el mapa por"><button type="button" id="mo-m-obras" aria-pressed="true" data-i18n="mo.byWork">Por obra</button><button type="button" id="mo-m-ciud" aria-pressed="false" data-i18n="mo.byCity">Por ciudad</button></div>
+          <div class="mo-chips" id="mo-chips" role="group" aria-label="Filtrar por sector"></div>
+        </div>
+        <div class="mo-stats" id="mo-stats"></div>
+      </div>
+      <div class="mo-grid">
+        <div class="mo-map">
+          <svg id="mo-svg" viewBox="-10 -10 620 680" role="img" aria-label="Mapa del Ecuador continental con las obras de Jocecia">
+            <g id="mo-grat"></g>
+            <image href="/img/relieve-ecuador.webp" x="-10" y="-10" width="620" height="680" preserveAspectRatio="none"/>
+            <g id="mo-provs"></g>
+            <g id="mo-glab"></g>
+            <g id="mo-peaks"></g>
+            <text class="mo-coast" x="40" y="330" transform="rotate(-90 40 330)" id="mo-ocean">OCÉANO PACÍFICO</text>
+            <text class="mo-country" x="470" y="40">COLOMBIA</text>
+            <text class="mo-country" x="470" y="560" id="mo-peru">PERÚ</text>
+            <g id="mo-refs" hidden></g>
+            <g id="mo-pins"></g>
+            <g id="mo-cities" hidden></g>
+          </svg>
+          <div class="mo-legend" id="mo-legend"></div>
+        </div>
+        <article class="mo-panel" id="mo-panel" aria-live="polite"></article>
+      </div>
+      <div class="mo-list" id="mo-list"></div>
+    </div>
+  </section>
+
   <section style="padding-top:56px">
     <div class="wrap">
       <div class="pillars">
@@ -759,43 +796,6 @@ footer a{color:var(--muted)}
         <a class="project rv" href="#proyectos" role="button" data-prod="pr5"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
         <a class="project p4 rv" href="#proyectos" role="button" data-prod="pr6"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
       </div>
-    </div>
-  </section>
-
-  <section id="mapa-obras">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="kicker" data-i18n="mo.k">Obras en Ecuador</span>
-        <h2 data-i18n-html="mo.t">Presentes donde el país <span class="grad">se construye</span></h2>
-        <p class="lead" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</p>
-      </div>
-      <div class="mo-bar">
-        <div class="mo-left">
-          <div class="mo-seg" role="group" aria-label="Ver el mapa por"><button type="button" id="mo-m-obras" aria-pressed="true" data-i18n="mo.byWork">Por obra</button><button type="button" id="mo-m-ciud" aria-pressed="false" data-i18n="mo.byCity">Por ciudad</button></div>
-          <div class="mo-chips" id="mo-chips" role="group" aria-label="Filtrar por sector"></div>
-        </div>
-        <div class="mo-stats" id="mo-stats"></div>
-      </div>
-      <div class="mo-grid">
-        <div class="mo-map">
-          <svg id="mo-svg" viewBox="-10 -10 620 680" role="img" aria-label="Mapa del Ecuador continental con las obras de Jocecia">
-            <g id="mo-grat"></g>
-            <image href="/img/relieve-ecuador.webp" x="-10" y="-10" width="620" height="680" preserveAspectRatio="none"/>
-            <g id="mo-provs"></g>
-            <g id="mo-glab"></g>
-            <g id="mo-peaks"></g>
-            <text class="mo-coast" x="40" y="330" transform="rotate(-90 40 330)" id="mo-ocean">OCÉANO PACÍFICO</text>
-            <text class="mo-country" x="470" y="40">COLOMBIA</text>
-            <text class="mo-country" x="470" y="560" id="mo-peru">PERÚ</text>
-            <g id="mo-refs" hidden></g>
-            <g id="mo-pins"></g>
-            <g id="mo-cities" hidden></g>
-          </svg>
-          <div class="mo-legend" id="mo-legend"></div>
-        </div>
-        <article class="mo-panel" id="mo-panel" aria-live="polite"></article>
-      </div>
-      <div class="mo-list" id="mo-list"></div>
     </div>
   </section>
 
