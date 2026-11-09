@@ -490,6 +490,95 @@ footer a{color:var(--muted)}
   .rv.in,.slide.on img,.dots button.on::after,.wa::after{animation:none}
   .slide{transition:none}
 }
+/* Mapa de obras: relieve real del Ecuador, puntos por obra o por ciudad, ficha al lado */
+.mo-bar{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;justify-content:space-between;margin-bottom:18px}
+.mo-left{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.mo-seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;background:var(--glass);gap:2px}
+.mo-seg button{font:700 13px/1 var(--f-body);border:0;background:transparent;color:var(--muted);padding:9px 14px;border-radius:999px;cursor:pointer}
+.mo-seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.mo-chips{display:flex;flex-wrap:wrap;gap:8px}
+.mo-chip{font:600 13px/1 var(--f-body);border:1px solid var(--line);background:var(--glass);color:var(--fg);padding:9px 14px;border-radius:999px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;transition:transform .15s,border-color .15s}
+.mo-chip:hover{transform:translateY(-1px);border-color:var(--cyan)}
+.mo-chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.mo-chip i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.mo-stats{font:500 13px/1 var(--f-mono);color:var(--muted)}
+.mo-stats b{color:var(--fg);font-weight:600}
+.mo-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:880px){.mo-grid{grid-template-columns:1fr}}
+.mo-map{position:relative;background:#0b2a52;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.mo-map svg{display:block;width:100%;height:auto}
+.mo-prov{fill:transparent;stroke:rgba(255,255,255,.38);stroke-width:.8;stroke-dasharray:3 2;transition:fill .25s}
+.mo-prov.on{fill:rgba(60,200,232,.22);stroke:#fff;stroke-width:1.4;stroke-dasharray:none}
+.mo-coast{font:600 11px var(--f-mono);fill:rgba(255,255,255,.75);letter-spacing:.2em}
+.mo-country{font:700 12px var(--f-mono);fill:rgba(255,255,255,.55);letter-spacing:.32em}
+.mo-gl{font:400 10px var(--f-mono);fill:rgba(255,255,255,.7);paint-order:stroke;stroke:rgba(10,20,35,.6);stroke-width:3px}
+.mo-peak path{fill:#fff;stroke:#1b2433;stroke-width:1}
+.mo-peak text{font:600 9.5px var(--f-mono);fill:#fff;paint-order:stroke;stroke:rgba(20,26,36,.75);stroke-width:3px}
+.mo-peak tspan{font-weight:400;opacity:.8}
+.mo-lead{stroke:#fff;stroke-opacity:.7;stroke-width:1.2}
+.mo-true{fill:#fff}
+.mo-pin{cursor:pointer;outline:none}
+.mo-pin .halo{fill:var(--c);opacity:.18;transform-box:fill-box;transform-origin:center;animation:moPulse 2.4s ease-out infinite}
+.mo-pin .dot{fill:var(--c);stroke:#0b1422;stroke-width:3}
+.mo-pin .num{font:700 11px var(--f-mono);fill:#06101c;text-anchor:middle;dominant-baseline:central;pointer-events:none}
+.mo-pin .lbl{font:600 12px var(--f-body);fill:#fff;paint-order:stroke;stroke:rgba(10,20,35,.85);stroke-width:4px;opacity:0;transition:opacity .2s;pointer-events:none}
+.mo-pin:hover .lbl,.mo-pin.sel .lbl,.mo-pin:focus-visible .lbl,.mo-hq .lbl{opacity:1}
+.mo-pin.sel .dot{stroke:#fff}
+.mo-pin:focus-visible .dot{stroke:var(--accent)}
+.mo-pin.off{opacity:.15;pointer-events:none}
+.mo-hq .dot{fill:#0b1422;stroke:var(--accent);stroke-width:3}
+@keyframes moPulse{0%{transform:scale(.6);opacity:.35}100%{transform:scale(1.6);opacity:0}}
+.mo-ref circle{fill:#fff;stroke:#1b2433;stroke-width:1.2}
+.mo-ref text{font:500 10px var(--f-body);fill:#fff;paint-order:stroke;stroke:rgba(20,26,36,.8);stroke-width:3px}
+.mo-city{cursor:pointer;outline:none}
+.mo-city rect{fill:#0d1726;stroke:var(--c);stroke-width:2}
+.mo-city .cn{font:700 12px var(--f-body);fill:#fff}
+.mo-city .cc,.mo-city .tip{fill:var(--c)}
+.mo-city .ct{font:700 11px var(--f-mono);fill:#06101c;text-anchor:middle;dominant-baseline:central}
+.mo-city:hover rect,.mo-city.sel rect{fill:#1a2a44}
+.mo-city.sel rect{stroke:#fff}
+.mo-city:focus-visible rect{stroke:var(--accent);stroke-width:3}
+.mo-map [hidden]{display:none!important}
+.mo-legend{position:absolute;left:14px;bottom:14px;display:flex;flex-direction:column;gap:4px;font:500 11px/1.3 var(--f-mono);color:#dfe7f2;background:rgba(10,20,35,.62);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:10px 12px}
+.mo-legend span{display:flex;gap:8px;align-items:center}
+.mo-legend i{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+@media (max-width:600px){.mo-legend{display:none}}
+.mo-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.mo-ph{aspect-ratio:16/10;max-width:100%;position:relative;overflow:hidden;background:linear-gradient(135deg,color-mix(in srgb,var(--c,var(--brand)) 55%,#0b1422) 0%,#0b1422 100%)}
+.mo-ph.city{aspect-ratio:16/8}
+.mo-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.mo-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35),transparent 40%)}
+.mo-badge{position:absolute;top:14px;left:14px;z-index:1;font:700 12px/1 var(--f-mono);background:var(--c,var(--brand));color:#06101c;padding:7px 10px;border-radius:999px;letter-spacing:.04em}
+.mo-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:12px}
+.mo-body h3{font:800 26px/1.1 var(--f-display);margin:0;text-wrap:balance}
+.mo-where{font:500 12px/1.5 var(--f-mono);color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.mo-where b{color:var(--fg);font-weight:600}
+.mo-body p{margin:0;color:var(--muted)}
+.mo-body h4{font:600 11px/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin:6px 0 0}
+.mo-body ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px}
+.mo-body li{display:flex;gap:10px;font-size:15px;line-height:1.5}
+.mo-body li::before{content:"";flex:none;width:6px;height:6px;margin-top:9px;border-radius:2px;background:var(--accent)}
+.mo-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:4px;align-items:center}
+.mo-actions .btn{margin-top:0}
+.mo-back{background:none;border:0;color:var(--cyan);font:600 13px var(--f-body);cursor:pointer;padding:0;align-self:flex-start}
+.mo-nav{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:12px 22px;font:500 12px var(--f-mono);color:var(--muted)}
+.mo-nav button{background:none;border:0;color:var(--fg);font:600 13px var(--f-body);cursor:pointer;padding:6px}
+.mo-olist{display:flex;flex-direction:column;gap:8px}
+.mo-ocard{display:flex;gap:12px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--bg-2);border-radius:14px;padding:12px 14px;color:var(--fg);font:inherit;cursor:pointer}
+.mo-ocard:hover{border-color:var(--cyan)}
+.mo-ocard b{display:block;font-size:15px}
+.mo-ocard small{color:var(--muted);font-size:13px;line-height:1.4;display:block}
+.mo-ocard .go{margin-left:auto;color:var(--muted)}
+.mo-list{margin-top:20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.mo-row{display:flex;gap:12px;align-items:center;text-align:left;background:var(--glass);border:1px solid var(--line);border-radius:14px;padding:12px 14px;color:var(--fg);cursor:pointer;font:inherit;min-width:0}
+.mo-row:hover{border-color:var(--cyan)}
+.mo-row.sel{border-color:var(--fg)}
+.mo-row.off{opacity:.35}
+.mo-row div{min-width:0}
+.mo-row b{display:block;font-size:14px;line-height:1.25}
+.mo-row small{color:var(--muted);font:500 11px/1.45 var(--f-mono);display:block}
+.mo-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-mono);background:var(--c);color:#06101c}
+@media (prefers-reduced-motion:reduce){.mo-pin .halo{animation:none}}
 </style>
 
 </head>
@@ -670,6 +759,43 @@ footer a{color:var(--muted)}
         <a class="project rv" href="#proyectos" role="button" data-prod="pr5"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
         <a class="project p4 rv" href="#proyectos" role="button" data-prod="pr6"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
       </div>
+    </div>
+  </section>
+
+  <section id="mapa-obras">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="kicker" data-i18n="mo.k">Obras en Ecuador</span>
+        <h2 data-i18n-html="mo.t">Presentes donde el país <span class="grad">se construye</span></h2>
+        <p class="lead" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</p>
+      </div>
+      <div class="mo-bar">
+        <div class="mo-left">
+          <div class="mo-seg" role="group" aria-label="Ver el mapa por"><button type="button" id="mo-m-obras" aria-pressed="true" data-i18n="mo.byWork">Por obra</button><button type="button" id="mo-m-ciud" aria-pressed="false" data-i18n="mo.byCity">Por ciudad</button></div>
+          <div class="mo-chips" id="mo-chips" role="group" aria-label="Filtrar por sector"></div>
+        </div>
+        <div class="mo-stats" id="mo-stats"></div>
+      </div>
+      <div class="mo-grid">
+        <div class="mo-map">
+          <svg id="mo-svg" viewBox="-10 -10 620 680" role="img" aria-label="Mapa del Ecuador continental con las obras de Jocecia">
+            <g id="mo-grat"></g>
+            <image href="/img/relieve-ecuador.webp" x="-10" y="-10" width="620" height="680" preserveAspectRatio="none"/>
+            <g id="mo-provs"></g>
+            <g id="mo-glab"></g>
+            <g id="mo-peaks"></g>
+            <text class="mo-coast" x="40" y="330" transform="rotate(-90 40 330)" id="mo-ocean">OCÉANO PACÍFICO</text>
+            <text class="mo-country" x="470" y="40">COLOMBIA</text>
+            <text class="mo-country" x="470" y="560" id="mo-peru">PERÚ</text>
+            <g id="mo-refs" hidden></g>
+            <g id="mo-pins"></g>
+            <g id="mo-cities" hidden></g>
+          </svg>
+          <div class="mo-legend" id="mo-legend"></div>
+        </div>
+        <article class="mo-panel" id="mo-panel" aria-live="polite"></article>
+      </div>
+      <div class="mo-list" id="mo-list"></div>
     </div>
   </section>
 
@@ -959,6 +1085,155 @@ footer a{color:var(--muted)}
     pd.querySelector('.pd-in').scrollTop=0;document.getElementById('pdx').focus();
   }
   document.querySelectorAll('[data-prod]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();openPd(b.dataset.prod)})});
+  var MO_PROVS=[{"n":"Azuay","d":"M253.0,405.9L254.4,406.0L265.6,409.4L267.8,413.1L252.2,420.7L248.5,428.4L252.5,434.9L246.8,441.5L239.7,462.7L234.9,464.7L214.6,480.0L215.7,484.1L207.1,487.3L204.0,492.8L204.4,510.5L200.5,512.5L192.0,494.2L181.1,496.7L176.8,484.2L163.9,483.0L158.4,480.7L144.4,482.6L150.2,467.9L146.6,463.7L133.7,456.3L137.4,448.0L143.6,447.3L150.6,440.2L145.3,431.9L147.9,425.4L156.8,423.3L159.8,416.3L166.9,408.2L167.3,399.9L172.7,405.7L184.5,407.4L185.7,417.6L188.5,422.3L202.2,423.0L207.8,418.8L215.6,432.9L227.8,432.7L233.0,417.3L239.4,418.7L248.3,412.9L253.0,405.9Z"},{"n":"Bolivar","d":"M223.8,269.1L216.2,286.0L222.1,296.2L220.2,308.5L225.4,317.0L221.5,325.2L208.8,327.4L209.1,340.0L206.5,356.1L207.1,361.2L197.3,370.2L197.5,361.4L189.7,363.3L189.1,357.4L183.9,346.0L189.0,324.9L177.8,315.9L185.2,306.0L177.8,301.3L176.2,296.0L182.6,283.8L175.1,277.2L181.0,270.5L195.5,265.5L201.1,265.6L211.5,272.0L217.6,268.3L223.8,269.1Z"},{"n":"Cañar","d":"M253.0,405.9L248.3,412.9L239.4,418.7L233.0,417.3L227.8,432.7L215.6,432.9L207.8,418.8L202.2,423.0L188.5,422.3L185.7,417.6L184.5,407.4L172.7,405.7L167.3,399.9L162.0,396.7L168.1,387.8L174.1,386.3L179.7,390.2L187.3,390.9L189.1,381.3L192.5,380.4L195.9,371.3L207.2,385.9L218.8,391.9L228.6,387.7L231.8,393.5L238.3,392.6L253.0,405.9Z"},{"n":"Carchi","d":"M356.8,84.8L344.4,85.2L342.1,93.9L334.9,99.4L328.7,109.7L328.7,114.3L317.6,109.9L308.5,102.6L300.7,101.9L297.1,96.9L296.0,87.5L282.9,71.6L271.3,67.5L264.6,62.4L255.3,55.9L255.6,45.4L259.6,42.8L259.1,31.1L268.2,34.0L278.6,30.9L281.8,44.3L289.1,49.5L290.2,55.0L299.3,57.2L313.4,67.6L323.3,69.8L337.9,65.0L342.7,67.6L340.4,76.0L343.7,79.4L356.8,84.8Z"},{"n":"Cotopaxi","d":"M267.8,221.7L270.9,224.9L267.3,239.0L269.5,249.0L264.1,258.4L254.0,255.9L243.2,265.5L235.6,263.3L228.0,264.5L223.8,269.1L217.6,268.3L211.5,272.0L201.1,265.6L195.5,265.5L181.0,270.5L176.3,262.4L180.8,250.5L181.3,239.2L185.9,237.5L188.1,230.9L196.0,221.0L201.7,206.7L198.7,204.2L204.0,201.4L208.5,192.3L213.6,190.0L215.9,183.1L226.1,197.7L226.8,202.4L236.7,205.9L236.1,212.1L243.0,215.6L249.0,210.0L258.9,210.8L267.8,221.7Z"},{"n":"Chimborazo","d":"M274.2,302.2L273.6,314.4L267.0,318.5L265.9,327.1L269.6,337.8L261.1,345.9L265.8,351.3L265.1,361.6L259.6,365.7L260.0,374.1L253.9,382.6L261.6,386.7L262.7,392.7L258.8,404.2L254.4,406.0L253.0,405.9L238.3,392.6L231.8,393.5L228.6,387.7L218.8,391.9L207.2,385.9L195.9,371.3L197.3,370.2L207.1,361.2L206.5,356.1L209.1,340.0L208.8,327.4L221.5,325.2L225.4,317.0L220.2,308.5L222.1,296.2L231.9,293.2L238.9,299.1L248.0,300.6L261.8,295.3L274.2,302.2Z"},{"n":"El Oro","d":"M133.7,456.3L146.6,463.7L150.2,467.9L144.4,482.6L158.4,480.7L163.9,483.0L162.5,489.7L167.8,494.3L162.1,501.1L162.1,508.3L170.9,511.3L173.4,516.0L165.1,531.3L154.1,530.3L149.2,525.2L141.9,528.0L138.1,533.1L130.0,534.5L123.6,532.0L114.4,532.9L106.6,537.4L97.3,538.9L91.8,528.6L91.0,509.8L85.7,498.6L88.1,494.2L103.5,491.8L107.6,486.0L109.9,474.6L118.4,467.7L123.1,456.0L133.7,456.3Z"},{"n":"Esmeraldas","d":"M259.1,31.1L259.6,42.8L255.6,45.4L255.3,55.9L264.6,62.4L265.7,69.5L258.0,74.3L267.4,91.5L264.6,96.0L255.9,98.5L248.6,108.4L242.2,112.7L238.1,109.7L228.8,109.8L217.7,114.2L207.5,119.3L193.7,115.2L183.0,118.1L175.2,128.8L177.0,135.5L172.9,146.7L180.6,148.3L174.8,160.9L155.2,160.0L149.9,156.2L147.6,145.6L150.2,137.8L139.0,131.5L143.3,124.4L138.3,120.9L139.4,115.6L120.5,118.8L119.9,120.8L111.5,120.6L112.0,113.5L103.8,104.4L109.0,95.1L109.0,88.9L100.0,82.0L100.7,72.5L104.0,68.4L115.2,67.1L129.2,60.5L136.4,53.4L144.8,50.5L155.6,50.4L167.2,42.9L184.6,42.5L197.1,37.8L203.7,28.6L214.7,35.5L214.0,28.2L224.0,24.2L227.0,20.4L226.3,9.3L229.6,8.7L243.7,17.9L250.7,26.1L255.5,25.5L259.1,31.1Z"},{"n":"Guayas","d":"M109.8,418.5L119.9,424.1L116.7,429.2L110.5,430.6L107.3,435.9L96.9,433.1L94.4,437.9L100.8,445.7L97.1,452.5L89.8,453.9L83.7,450.3L84.3,433.5L89.3,423.0L106.5,417.5L109.8,418.5ZM113.1,400.8L110.7,408.9L103.6,409.5L110.4,398.9L113.1,400.8ZM124.9,379.2L123.8,390.9L117.8,386.1L118.7,379.5L124.9,379.2ZM189.7,363.3L197.5,361.4L197.3,370.2L195.9,371.3L192.5,380.4L189.1,381.3L180.9,381.6L174.1,386.3L168.1,387.8L162.0,396.7L167.3,399.9L166.9,408.2L159.8,416.3L156.8,423.3L147.9,425.4L145.3,431.9L150.6,440.2L143.6,447.3L137.4,448.0L133.7,456.3L123.1,456.0L125.4,451.3L124.5,438.9L130.0,428.9L132.3,416.3L136.7,414.3L140.7,402.6L132.8,402.0L126.7,389.6L127.1,370.9L122.9,378.3L113.8,373.5L106.6,389.3L101.8,392.7L101.8,398.9L92.7,409.7L84.2,413.9L85.6,423.7L79.5,422.0L70.5,413.6L65.0,412.9L53.8,400.6L60.5,400.0L63.9,391.4L72.6,384.6L81.7,383.5L81.7,377.3L88.2,373.3L85.4,361.8L66.0,344.3L68.1,328.6L78.7,319.0L86.6,318.8L90.5,292.2L95.3,290.6L96.3,282.4L101.3,282.0L109.4,273.6L111.8,268.3L125.6,258.3L136.9,238.4L139.5,238.3L144.3,240.1L149.3,235.3L159.5,235.4L159.3,244.5L156.2,255.4L148.5,256.4L144.8,261.8L135.5,269.3L134.7,274.5L123.2,293.5L122.9,310.3L127.6,320.8L135.1,323.8L136.9,334.0L144.4,342.3L155.9,338.2L161.1,338.4L165.4,343.5L173.1,347.2L180.9,359.7L189.7,363.3Z"},{"n":"Imbabura","d":"M328.7,114.3L321.8,130.0L313.5,134.2L307.3,131.2L300.5,131.8L294.5,135.9L285.5,137.7L271.9,125.0L259.0,127.3L238.2,128.0L226.6,125.9L215.1,129.7L208.3,122.8L217.7,114.2L228.8,109.8L238.1,109.7L242.2,112.7L248.6,108.4L255.9,98.5L264.6,96.0L267.4,91.5L258.0,74.3L265.7,69.5L264.6,62.4L271.3,67.5L282.9,71.6L296.0,87.5L297.1,96.9L300.7,101.9L308.5,102.6L317.6,109.9L328.7,114.3Z"},{"n":"Loja","d":"M200.5,512.5L190.5,522.5L197.1,538.9L193.8,561.5L199.3,568.5L198.9,590.4L193.2,597.5L182.8,597.4L177.2,601.1L176.7,610.6L167.0,624.1L161.4,612.8L161.1,602.7L155.6,602.6L145.5,593.4L134.9,598.4L128.8,599.1L123.0,591.4L114.1,589.6L100.3,579.4L92.1,580.1L87.6,587.9L76.9,596.5L71.8,597.7L65.0,594.3L64.7,588.2L77.1,572.3L66.5,569.6L61.4,558.2L65.3,549.7L73.3,548.2L80.0,551.7L85.9,545.6L97.3,538.9L106.6,537.4L114.4,532.9L123.6,532.0L130.0,534.5L138.1,533.1L141.9,528.0L149.2,525.2L154.1,530.3L165.1,531.3L173.4,516.0L170.9,511.3L162.1,508.3L162.1,501.1L167.8,494.3L162.5,489.7L163.9,483.0L176.8,484.2L181.1,496.7L192.0,494.2L200.5,512.5Z"},{"n":"Los Rios","d":"M198.7,204.2L201.7,206.7L196.0,221.0L188.1,230.9L185.9,237.5L181.3,239.2L180.8,250.5L176.3,262.4L181.0,270.5L175.1,277.2L182.6,283.8L176.2,296.0L177.8,301.3L185.2,306.0L177.8,315.9L189.0,324.9L183.9,346.0L189.1,357.4L189.7,363.3L180.9,359.7L173.1,347.2L165.4,343.5L161.1,338.4L155.9,338.2L144.4,342.3L136.9,334.0L135.1,323.8L127.6,320.8L122.9,310.3L123.2,293.5L134.7,274.5L135.5,269.3L144.8,261.8L148.5,256.4L156.2,255.4L159.3,244.5L159.5,235.4L149.3,235.3L150.3,224.0L159.4,212.9L161.7,204.3L173.8,204.0L173.7,217.6L180.7,219.9L198.7,204.2Z"},{"n":"Manabi","d":"M155.2,160.0L159.2,166.9L169.0,170.9L169.8,190.3L164.0,200.4L156.3,198.6L147.8,206.4L139.5,238.3L136.9,238.4L125.6,258.3L111.8,268.3L109.4,273.6L101.3,282.0L96.3,282.4L95.3,290.6L90.5,292.2L86.6,318.8L78.7,319.0L68.1,328.6L66.0,344.3L58.0,342.0L48.3,320.9L45.6,317.5L35.2,316.8L29.7,321.1L24.7,310.1L28.2,301.4L33.1,297.9L34.4,282.1L24.9,270.6L18.7,255.8L27.1,245.7L48.2,244.4L56.1,236.5L59.2,223.9L66.2,205.8L60.7,189.9L69.6,180.7L71.6,174.2L80.9,168.5L95.9,154.9L103.9,143.8L110.3,126.7L114.4,130.1L119.9,120.8L120.5,118.8L139.4,115.6L138.3,120.9L143.3,124.4L139.0,131.5L150.2,137.8L147.6,145.6L149.9,156.2L155.2,160.0Z"},{"n":"Morona Santiago","d":"M440.7,411.0L370.8,434.6L325.6,449.9L316.0,456.6L295.7,482.6L290.6,486.6L295.3,497.9L288.4,500.9L285.9,490.9L275.9,488.2L273.5,502.8L247.2,503.4L234.6,506.9L226.8,504.9L223.0,500.2L221.8,490.1L215.7,484.1L214.6,480.0L234.9,464.7L239.7,462.7L246.8,441.5L252.5,434.9L248.5,428.4L252.2,420.7L267.8,413.1L265.6,409.4L254.4,406.0L258.8,404.2L262.7,392.7L261.6,386.7L253.9,382.6L260.0,374.1L259.6,365.7L265.1,361.6L265.8,351.3L261.1,345.9L269.6,337.8L265.9,327.1L267.0,318.5L273.6,314.4L274.2,302.2L292.2,294.8L301.8,299.6L308.1,317.7L315.8,315.3L321.8,320.9L328.1,342.7L343.3,355.1L348.3,354.1L380.9,369.6L387.0,376.1L401.1,384.5L406.8,394.9L415.5,405.5L432.2,405.2L440.7,411.0Z"},{"n":"Napo","d":"M379.4,156.0L381.4,160.3L380.1,170.1L384.3,180.6L378.2,185.7L370.9,199.4L366.8,202.1L353.7,199.8L347.2,204.1L356.2,212.0L360.3,220.2L355.8,229.1L354.8,240.0L357.1,245.1L375.1,236.1L382.2,233.8L387.8,227.2L395.8,239.6L400.8,241.2L403.9,250.8L387.0,252.6L386.5,255.2L364.1,259.9L353.7,265.8L340.5,264.2L326.9,271.7L309.6,272.1L304.8,274.8L297.7,272.2L289.2,264.6L276.3,263.5L277.4,254.0L269.5,249.0L267.3,239.0L270.9,224.9L267.8,221.7L276.8,215.9L282.2,206.9L286.4,193.6L284.5,190.6L290.8,181.9L290.7,170.3L313.1,162.1L318.0,152.9L326.0,147.3L331.4,148.0L332.0,157.8L347.4,157.7L351.9,160.2L363.9,151.9L366.0,163.0L372.2,165.3L379.4,156.0Z"},{"n":"Pastaza","d":"M403.9,250.8L403.7,258.7L420.3,262.7L444.7,255.7L458.5,256.8L457.0,269.2L463.7,275.8L469.2,276.0L477.2,280.6L496.3,277.6L508.8,280.7L514.3,285.4L521.9,285.7L546.8,300.1L552.0,304.7L505.7,362.5L446.6,409.0L440.7,411.0L432.2,405.2L415.5,405.5L406.8,394.9L401.1,384.5L387.0,376.1L380.9,369.6L348.3,354.1L343.3,355.1L328.1,342.7L321.8,320.9L315.8,315.3L308.1,317.7L301.8,299.6L292.2,294.8L298.3,285.1L297.7,272.2L304.8,274.8L309.6,272.1L326.9,271.7L340.5,264.2L353.7,265.8L364.1,259.9L386.5,255.2L387.0,252.6L403.9,250.8Z"},{"n":"Tungurahua","d":"M269.5,249.0L277.4,254.0L276.3,263.5L289.2,264.6L297.7,272.2L298.3,285.1L292.2,294.8L274.2,302.2L261.8,295.3L248.0,300.6L238.9,299.1L231.9,293.2L222.1,296.2L216.2,286.0L223.8,269.1L228.0,264.5L235.6,263.3L243.2,265.5L254.0,255.9L264.1,258.4L269.5,249.0Z"},{"n":"Pichincha","d":"M208.3,122.8L215.1,129.7L226.6,125.9L238.2,128.0L259.0,127.3L271.9,125.0L285.5,137.7L294.5,135.9L300.5,131.8L307.3,131.2L313.5,134.2L312.3,138.8L321.0,141.7L326.0,147.3L318.0,152.9L313.1,162.1L290.7,170.3L290.8,181.9L284.5,190.6L286.4,193.6L282.2,206.9L276.8,215.9L267.8,221.7L258.9,210.8L249.0,210.0L243.0,215.6L236.1,212.1L236.7,205.9L226.8,202.4L226.1,197.7L215.9,183.1L223.9,184.7L235.4,177.7L226.8,168.8L226.2,163.5L213.3,160.2L207.6,161.7L195.2,158.5L200.2,152.6L180.6,148.3L172.9,146.7L177.0,135.5L175.2,128.8L183.0,118.1L197.2,118.0L208.3,122.8Z"},{"n":"Zamora Chinchipe","d":"M273.5,502.8L267.8,519.0L268.8,528.9L262.7,535.4L261.0,543.6L253.3,549.3L255.9,557.5L251.7,563.6L248.6,579.0L244.9,586.2L246.7,591.5L244.0,608.6L238.6,612.8L225.9,615.4L220.9,622.1L220.7,638.7L212.6,639.6L208.6,651.4L202.6,647.1L183.8,646.8L179.4,640.3L170.4,632.5L167.0,624.1L176.7,610.6L177.2,601.1L182.8,597.4L193.2,597.5L198.9,590.4L199.3,568.5L193.8,561.5L197.1,538.9L190.5,522.5L200.5,512.5L204.4,510.5L204.0,492.8L207.1,487.3L215.7,484.1L221.8,490.1L223.0,500.2L226.8,504.9L234.6,506.9L247.2,503.4L273.5,502.8Z"},{"n":"Sucumbios","d":"M583.7,215.5L571.2,210.6L563.5,204.7L554.8,204.9L550.4,198.5L536.0,192.4L527.3,193.8L522.4,191.8L512.7,206.2L504.1,200.5L502.1,194.4L483.4,194.9L471.4,202.1L463.4,198.9L459.5,194.4L441.2,187.1L433.8,176.2L424.5,166.9L419.5,158.4L413.5,156.6L407.0,160.6L389.6,159.9L379.4,156.0L372.2,165.3L366.0,163.0L363.9,151.9L351.9,160.2L347.4,157.7L332.0,157.8L331.4,148.0L326.0,147.3L321.0,141.7L312.3,138.8L313.5,134.2L321.8,130.0L328.7,114.3L328.7,109.7L334.9,99.4L342.1,93.9L344.4,85.2L356.8,84.8L362.1,85.9L357.7,98.0L358.0,107.9L367.9,107.8L381.2,113.7L398.7,112.9L402.3,121.3L409.6,120.3L418.7,125.2L425.3,126.1L436.8,121.2L447.0,123.7L451.5,128.1L468.8,125.8L468.8,112.0L476.6,111.0L478.6,106.6L492.5,112.8L496.8,112.8L508.5,119.7L516.2,130.0L528.6,142.3L535.2,146.4L543.5,145.9L552.0,148.8L567.0,158.3L580.4,160.8L577.8,166.0L568.1,166.5L558.4,161.5L549.0,161.4L549.0,169.3L556.2,167.6L561.7,173.6L562.6,179.5L571.4,193.6L578.4,196.4L585.7,202.7L587.7,212.4L583.7,215.5Z"},{"n":"Orellana","d":"M583.7,215.5L583.1,228.6L587.7,236.5L584.1,247.2L579.4,248.8L571.3,243.2L554.4,304.9L552.0,304.7L546.8,300.1L521.9,285.7L514.3,285.4L508.8,280.7L496.3,277.6L477.2,280.6L469.2,276.0L463.7,275.8L457.0,269.2L458.5,256.8L444.7,255.7L420.3,262.7L403.7,258.7L403.9,250.8L400.8,241.2L395.8,239.6L387.8,227.2L382.2,233.8L375.1,236.1L357.1,245.1L354.8,240.0L355.8,229.1L360.3,220.2L356.2,212.0L347.2,204.1L353.7,199.8L366.8,202.1L370.9,199.4L378.2,185.7L384.3,180.6L380.1,170.1L381.4,160.3L379.4,156.0L389.6,159.9L407.0,160.6L413.5,156.6L419.5,158.4L424.5,166.9L433.8,176.2L441.2,187.1L459.5,194.4L463.4,198.9L471.4,202.1L483.4,194.9L502.1,194.4L504.1,200.5L512.7,206.2L522.4,191.8L527.3,193.8L536.0,192.4L550.4,198.5L554.8,204.9L563.5,204.7L571.2,210.6L583.7,215.5Z"},{"n":"Santo Domingo","d":"M215.9,183.1L213.6,190.0L208.5,192.3L204.0,201.4L198.7,204.2L180.7,219.9L173.7,217.6L173.8,204.0L161.7,204.3L164.0,200.4L169.8,190.3L169.0,170.9L159.2,166.9L155.2,160.0L174.8,160.9L180.6,148.3L200.2,152.6L195.2,158.5L207.6,161.7L213.3,160.2L226.2,163.5L226.8,168.8L235.4,177.7L223.9,184.7L215.9,183.1Z"},{"n":"Santa Elena","d":"M66.0,344.3L85.4,361.8L88.2,373.3L81.7,377.3L81.7,383.5L72.6,384.6L63.9,391.4L60.5,400.0L53.8,400.6L43.8,391.7L31.7,388.7L22.9,382.5L18.9,372.0L33.3,363.0L36.6,353.0L33.7,347.6L37.5,342.6L33.1,326.2L29.7,321.1L35.2,316.8L45.6,317.5L48.3,320.9L58.0,342.0L66.0,344.3Z"},{"n":"Zonas No Delimitadas","d":"M189.1,381.3L187.3,390.9L179.7,390.2L174.1,386.3L180.9,381.6L189.1,381.3ZM164.0,200.4L161.7,204.3L159.4,212.9L150.3,224.0L149.3,235.3L144.3,240.1L139.5,238.3L147.8,206.4L156.3,198.6L164.0,200.4ZM217.7,114.2L208.3,122.8L197.2,118.0L183.0,118.1L193.7,115.2L207.5,119.3L217.7,114.2Z"}];
+  // Mapa de obras en Ecuador (sección #mapa-obras)
+  var MO=(function(){
+    var ACC={"Bolivar":"Bolívar","Manabi":"Manabí","Los Rios":"Los Ríos","Sucumbios":"Sucumbíos","Zonas No Delimitadas":""};
+    var SECT={hidro:{c:"#3cc8e8",es:"Hidroeléctrica",en:"Hydropower"},trans:{c:"#8fb2ff",es:"Transporte",en:"Transport"},soc:{c:"#7fd6a4",es:"Obra social",en:"Social work"}};
+    var TX={
+      es:{all:"Todas",works:"obras en el mapa",provs:"provincias",cities:"ciudades",obras:"obras",obra:"obra",done:"Trabajos realizados",photos:"Ver fotos de la obra",social:"Ver labor social",quote:"Cotizar un proyecto similar",prev:"← Anterior",next:"Siguiente →",client:"Cliente",year:"Año",here:"Nuestras obras aquí",back:"← Volver a ",hq:"Planta Sangolquí",hqL:"Planta Jocecia",ocean:"OCÉANO PACÍFICO",more:function(n){return "y "+n+" trabajos más en otras estaciones"}},
+      en:{all:"All",works:"projects on the map",provs:"provinces",cities:"cities",obras:"projects",obra:"project",done:"Work carried out",photos:"See project photos",social:"See our social work",quote:"Quote a similar project",prev:"← Previous",next:"Next →",client:"Client",year:"Year",here:"Our projects here",back:"← Back to ",hq:"Sangolquí plant",hqL:"Jocecia plant",ocean:"PACIFIC OCEAN",more:function(n){return "and "+n+" more jobs at other stations"}}
+    };
+    var OBRAS=[
+      {id:"metro",pr:"pr1",cg:"quito",s:"trans",lat:-0.2205,lon:-78.5145,lbl:"r",off:[-6,-16],city:"Quito",prov:"Pichincha",cl:"Metro de Quito",more:7,
+        es:{t:"Metro de Quito",d:"Montaje y fabricación de escaleras y perfilería metálica en estaciones, talleres y cocheras.",f:["Escaleras provisionales en la Estación San Francisco","Escaleras bajo andén en Universidad Central, El Ejido y La Alameda","Escaleras bajo andén en El Recreo, Cardenal de la Torre y Solanda","Perfilería galvanizada en la Estación Iñaquito","Estructura de plenum y montaje de tramex en Talleres y Cocheras","Pendolón para soporte de catenaria"]},
+        en:{t:"Quito Metro",d:"Manufacture and installation of stairs and steel profiles at stations, workshops and depots.",f:["Temporary stairs at San Francisco Station","Under-platform stairs at Universidad Central, El Ejido and La Alameda","Under-platform stairs at El Recreo, Cardenal de la Torre and Solanda","Galvanized profiles at Iñaquito Station","Plenum structure and grating at the workshops and depots","Catenary support hangers"]}},
+      {id:"manduriacu",pr:"pr3",cg:"pacto",s:"hidro",lat:0.3104,lon:-78.8586,lbl:"l",city:"Río Guayllabamba",prov:"Pichincha / Imbabura",cl:"CELEC EP",
+        es:{t:"Central Manduriacu",d:"Andamiaje, pintura de tubería y turbinas para la central hidroeléctrica.",f:["Andamios trepantes y deslizantes","Pintura de tubería","Turbinas para planta de aguas residuales"]},
+        en:{t:"Manduriacu plant",d:"Scaffolding, pipe painting and turbines for the hydropower plant.",f:["Climbing and sliding scaffolding","Pipe painting","Turbines for a wastewater plant"]}},
+      {id:"agoyan",pr:"pr2",cg:"banos",s:"hidro",lat:-1.3967,lon:-78.3836,lbl:"l",off:[-14,-14],city:"Baños de Agua Santa",prov:"Tungurahua",cl:"CELEC EP",
+        es:{t:"Central Agoyán",d:"Trabajos de reparación e infraestructura metálica en la central.",f:["Reparaciones en alturas con equipos especiales","Soldadura de infraestructura metálica"]},
+        en:{t:"Agoyán plant",d:"Repair and steel infrastructure work at the plant.",f:["Repairs at height with special equipment","Welding of steel infrastructure"]}},
+      {id:"sanfco",pr:"pr4",cg:"banos",s:"hidro",lat:-1.43,lon:-78.29,lbl:"r",off:[30,22],city:"Río Verde, Baños",prov:"Tungurahua",cl:"CELEC EP",
+        es:{t:"Central San Francisco",d:"Mantenimiento mecánico e hidráulico de la central.",f:["Suministros y materiales para mantenimiento mecánico","Soportería metálica para el skid del sistema de limpieza"]},
+        en:{t:"San Francisco plant",d:"Mechanical and hydraulic maintenance of the plant.",f:["Supplies and materials for mechanical maintenance","Steel supports for the cleaning system skid"]}},
+      {id:"otavalo",cg:"otavalo",s:"soc",lat:0.1995,lon:-78.229,lbl:"r",off:[22,-10],city:"San Rafael de la Laguna",prov:"Imbabura",year:"2023",img:"https://jocecia.com/portal/wp-content/uploads/2025/01/Social2.png",
+        es:{t:"Comunidad San Rafael de la Laguna",d:"Capacitación en manejo de desechos sólidos y aguas servidas, donación de biodigestores y una red para emprendimientos.",f:["Capacitación a la comunidad","Donación de biodigestores","Red para emprendimientos"]},
+        en:{t:"San Rafael de la Laguna community",d:"Training in solid waste and wastewater management, donated biodigesters and a network for small businesses.",f:["Community training","Donated biodigesters","Small business network"]}},
+      {id:"esmeraldas",cg:"esm",s:"soc",lat:0.9592,lon:-79.6539,lbl:"r",city:"Esmeraldas",prov:"Esmeraldas",year:"2021",cl:"ONG AMU · Sunrise+",
+        es:{t:"Panadería comunitaria",d:"Donación e instalación del techo de una panadería comunitaria, con el proyecto Sunrise+ de la ONG AMU.",f:["Donación de la estructura y cubierta","Instalación en sitio"]},
+        en:{t:"Community bakery",d:"Roof donated and installed for a community bakery, with the AMU NGO's Sunrise+ project.",f:["Donated structure and roofing","On-site installation"]}}
+    ];
+    var CITIES=[
+      {k:"quito",n:"Quito",prov:"Pichincha",lat:-0.2205,lon:-78.5145,side:"r",es:"Capital del país. Trabajamos en la primera línea del Metro.",en:"The capital. We worked on the first Metro line."},
+      {k:"pacto",n:"Pacto",prov:"Pichincha",lat:0.3104,lon:-78.8586,side:"l",es:"Parroquia del noroccidente de Quito, junto al río Guayllabamba.",en:"Rural parish northwest of Quito, on the Guayllabamba river."},
+      {k:"otavalo",n:"Otavalo",prov:"Imbabura",lat:0.2343,lon:-78.2611,side:"r",es:"Ciudad de la sierra norte, junto al lago San Pablo.",en:"Northern highlands town by San Pablo lake."},
+      {k:"banos",n:"Baños",prov:"Tungurahua",lat:-1.3964,lon:-78.4247,side:"r",es:"Zona de las centrales hidroeléctricas del río Pastaza.",en:"Home to the Pastaza river hydropower plants."},
+      {k:"esm",n:"Esmeraldas",prov:"Esmeraldas",lat:0.9592,lon:-79.6539,side:"r",es:"Ciudad del norte de la costa ecuatoriana.",en:"City on Ecuador's northern coast."}
+    ];
+    var REFS=[["Guayaquil",-2.19,-79.89],["Cuenca",-2.90,-79.00],["Manta",-0.95,-80.73],["Portoviejo",-1.05,-80.45],["Santo Domingo",-0.25,-79.17],["Ambato",-1.24,-78.62],["Riobamba",-1.67,-78.65],["Latacunga",-0.93,-78.62],["Loja",-3.99,-79.20],["Machala",-3.26,-79.96],["Ibarra",0.35,-78.12],["Tena",-0.99,-77.81],["Puyo",-1.49,-78.00],["Nueva Loja",0.08,-76.89],["Macas",-2.31,-78.12],["Babahoyo",-1.80,-79.53]];
+    var PEAKS=[["Chimborazo",6263,-1.469,-78.817,"l"],["Cotopaxi",5897,-0.683,-78.437,"r"],["Cayambe",5790,0.029,-77.986,"r"],["Sangay",5230,-2.005,-78.341,"r"]];
+    var HQ={lat:-0.3125,lon:-78.4475};
+    var NS="http://www.w3.org/2000/svg",$=function(id){return document.getElementById(id)};
+    function P(lon,lat){return[(lon+81.1)*100,(1.5-lat)*100]}
+    function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
+    function L(){return root.lang==='en'?'en':'es'}
+    function T(){return TX[L()]}
+    function fmt(v,a,b){return Math.abs(v).toFixed(2)+"° "+(v>=0?a:b)}
+    function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+    var filter="all",mode="obras",sel="metro";
+    if(!$('mo-svg'))return function(){};
+    // retícula
+    var grat=$('mo-grat'),glab=$('mo-glab');
+    for(var la=1;la>=-5;la--){var y=P(-81,la)[1];el("line",{x1:-10,x2:610,y1:y,y2:y,stroke:"rgba(255,255,255,.12)","stroke-dasharray":"2 6"},grat);el("text",{"class":"mo-gl",x:596,y:y-4,"text-anchor":"end"},glab).textContent=la===0?"0° Ecuador":Math.abs(la)+"° "+(la>0?"N":"S")}
+    var withObra={};OBRAS.forEach(function(o){o.prov.split(" / ").forEach(function(p){withObra[p]=1})});
+    MO_PROVS.forEach(function(p){var n=ACC.hasOwnProperty(p.n)?ACC[p.n]:p.n;var e=el("path",{d:p.d,"class":"mo-prov","data-n":n},$('mo-provs'));if(n)el("title",{},e).textContent=n});
+    PEAKS.forEach(function(k){var xy=P(k[3],k[2]);var g=el("g",{"class":"mo-peak",transform:"translate("+xy[0]+" "+xy[1]+")"},$('mo-peaks'));el("path",{d:"M0,-6L5,3H-5Z"},g);var t=el("text",{x:k[4]==="l"?-8:8,y:3,"text-anchor":k[4]==="l"?"end":"start"},g);t.textContent=k[0]+" ";var ts=el("tspan",{},t);ts.textContent=k[1].toLocaleString("es-EC")+" m"});
+    REFS.forEach(function(r){var xy=P(r[2],r[1]);var g=el("g",{"class":"mo-ref",transform:"translate("+xy[0]+" "+xy[1]+")"},$('mo-refs'));el("circle",{r:2.6},g);el("text",{x:5,y:3.5},g).textContent=r[0]});
+    // pines por obra
+    var pins=$('mo-pins'),hqxy=P(HQ.lon,HQ.lat);
+    var hq=el("g",{"class":"mo-pin mo-hq",transform:"translate("+(hqxy[0]+14)+" "+(hqxy[1]+12)+")"},pins);
+    el("line",{"class":"mo-lead",x1:-14,y1:-12,x2:0,y2:0},hq);el("circle",{"class":"mo-true",cx:-14,cy:-12,r:2},hq);
+    el("rect",{"class":"dot",x:-7,y:-7,width:14,height:14,rx:3,transform:"rotate(45)"},hq);
+    var hqLbl=el("text",{"class":"lbl",x:12,y:18},hq);
+    OBRAS.forEach(function(o,i){
+      var xy=P(o.lon,o.lat),d=o.off||[0,0];
+      if(d[0]||d[1]){el("line",{"class":"mo-lead",x1:xy[0],y1:xy[1],x2:xy[0]+d[0],y2:xy[1]+d[1]},pins);el("circle",{"class":"mo-true",cx:xy[0],cy:xy[1],r:2.2},pins)}
+      var g=el("g",{"class":"mo-pin",transform:"translate("+(xy[0]+d[0])+" "+(xy[1]+d[1])+")",tabindex:0,role:"button","data-id":o.id,style:"--c:"+SECT[o.s].c},pins);
+      el("circle",{"class":"halo",r:20},g);el("circle",{"class":"dot",r:12},g);el("text",{"class":"num"},g).textContent=i+1;
+      var r=o.lbl!=="l";o.lblEl=el("text",{"class":"lbl",x:r?18:-18,y:5,"text-anchor":r?"start":"end"},g);o.pinEl=g;
+      g.addEventListener("click",function(){showObra(o.id)});
+      g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();showObra(o.id)}});
+    });
+    var cG=$('mo-cities');
+    function vis(o){return filter==="all"||o.s===filter}
+    function obrasDe(k){return OBRAS.filter(function(o){return o.cg===k&&vis(o)})}
+    function byId(id){for(var i=0;i<OBRAS.length;i++)if(OBRAS[i].id===id)return OBRAS[i]}
+    function cityBy(k){for(var i=0;i<CITIES.length;i++)if(CITIES[i].k===k)return CITIES[i]}
+    function hiProv(list){document.querySelectorAll('.mo-prov').forEach(function(p){p.classList.toggle('on',list.indexOf(p.dataset.n)>=0)})}
+    function drawCities(){
+      cG.innerHTML="";
+      CITIES.forEach(function(c){
+        var os=obrasDe(c.k);if(!os.length)return;
+        var xy=P(c.lon,c.lat),col=SECT[os[0].s].c;
+        var g=el("g",{"class":"mo-city"+(sel==="c:"+c.k?" sel":""),transform:"translate("+xy[0]+" "+xy[1]+")",tabindex:0,role:"button","aria-label":c.n+", "+os.length+" "+(os.length===1?T().obra:T().obras),style:"--c:"+col},cG);
+        var w=c.n.length*7.2+44,bx=c.side==="l"?-w-8:8;
+        el("circle",{"class":"tip",r:4},g);el("rect",{x:bx,y:-14,width:w,height:28,rx:14},g);
+        el("text",{"class":"cn",x:bx+12,y:4.5},g).textContent=c.n;
+        el("circle",{"class":"cc",cx:bx+w-15,cy:0,r:10},g);el("text",{"class":"ct",x:bx+w-15,y:.5},g).textContent=os.length;
+        g.addEventListener("click",function(){showCity(c.k)});
+        g.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();showCity(c.k)}});
+      });
+    }
+    function photo(o,w){var u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]);return u?'<img src="'+VI(u,w||640)+'" alt="" loading="lazy" decoding="async">':''}
+    function showObra(id,fromCity){
+      var o=byId(id),i=OBRAS.indexOf(o),t=o[L()],X=T();sel=id;
+      OBRAS.forEach(function(x){x.pinEl.classList.toggle('sel',x.id===id)});
+      document.querySelectorAll('.mo-row').forEach(function(r){r.classList.toggle('sel',r.dataset.id===id)});
+      hiProv(o.prov.split(" / "));
+      var where='<span><b>'+esc(o.city)+'</b>, '+esc(o.prov)+'</span><span>'+fmt(o.lat,"N","S")+' · '+fmt(o.lon,"E",L()==='en'?"W":"O")+'</span>'+(o.cl?'<span>'+X.client+': <b>'+esc(o.cl)+'</b></span>':'')+(o.year?'<span>'+X.year+': <b>'+o.year+'</b></span>':'');
+      var list='<h4>'+X.done+'</h4><ul>'+t.f.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+(o.more?'<li>'+X.more(o.more)+'</li>':'')+'</ul>';
+      var gal=o.pr?'<button type="button" class="btn btn-accent" id="mo-gal">'+X.photos+'</button>':'<a class="btn btn-accent" href="#social">'+X.social+'</a>';
+      var nav=fromCity?'':'<div class="mo-nav"><button type="button" id="mo-prev">'+X.prev+'</button><span>'+(i+1)+' / '+OBRAS.length+'</span><button type="button" id="mo-next">'+X.next+'</button></div>';
+      $('mo-panel').innerHTML='<div class="mo-ph" style="--c:'+SECT[o.s].c+'">'+photo(o)+'<span class="mo-badge">'+('0'+(i+1)).slice(-2)+' · '+SECT[o.s][L()].toUpperCase()+'</span></div>'+
+        '<div class="mo-body">'+(fromCity?'<button type="button" class="mo-back" id="mo-back">'+X.back+esc(cityBy(fromCity).n)+'</button>':'')+'<h3>'+esc(t.t)+'</h3><div class="mo-where">'+where+'</div><p>'+esc(t.d)+'</p>'+list+
+        '<div class="mo-actions">'+gal+'<a class="btn btn-line" href="#contacto">'+X.quote+'</a></div></div>'+nav;
+      if(o.pr)$('mo-gal').onclick=function(){openPd(o.pr)};
+      if(fromCity)$('mo-back').onclick=function(){showCity(fromCity)};
+      else{var step=function(dd){var v=OBRAS.filter(vis),k=v.indexOf(o);showObra(v[(k+dd+v.length)%v.length].id)};$('mo-prev').onclick=function(){step(-1)};$('mo-next').onclick=function(){step(1)}}
+    }
+    function showCity(k){
+      var c=cityBy(k),os=obrasDe(k),X=T();sel="c:"+k;drawCities();
+      document.querySelectorAll('.mo-row').forEach(function(r){r.classList.toggle('sel',r.dataset.id==="c:"+k)});
+      hiProv([c.prov]);
+      var col=SECT[(os[0]||OBRAS[0]).s].c;
+      $('mo-panel').innerHTML='<div class="mo-ph city" style="--c:'+col+'">'+(os[0]?photo(os[0]):'')+'<span class="mo-badge">'+os.length+' '+(os.length===1?X.obra:X.obras).toUpperCase()+' · '+c.prov.toUpperCase()+'</span></div>'+
+        '<div class="mo-body"><h3>'+esc(c.n)+'</h3><div class="mo-where"><span><b>'+esc(c.prov)+'</b></span><span>'+fmt(c.lat,"N","S")+' · '+fmt(c.lon,"E",L()==='en'?"W":"O")+'</span></div><p>'+esc(c[L()])+'</p><h4>'+X.here+'</h4>'+
+        '<div class="mo-olist">'+os.map(function(o){return '<button type="button" class="mo-ocard" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(OBRAS.indexOf(o)+1)+'</span><span><b>'+esc(o[L()].t)+'</b><small>'+SECT[o.s][L()]+' · '+esc(o[L()].d)+'</small></span><span class="go">→</span></button>'}).join('')+'</div></div>';
+      document.querySelectorAll('.mo-ocard').forEach(function(b){b.onclick=function(){showObra(b.dataset.id,k)}});
+    }
+    function used(){var u=[];OBRAS.forEach(function(o){if(u.indexOf(o.s)<0)u.push(o.s)});return u}
+    function render(){
+      var X=T(),l=L();
+      hqLbl.textContent=X.hq;$('mo-ocean').textContent=X.ocean;$('mo-peru').textContent=l==='en'?'PERU':'PERÚ';
+      OBRAS.forEach(function(o){o.lblEl.textContent=o[l].t;o.pinEl.setAttribute('aria-label',o[l].t)});
+      $('mo-chips').innerHTML=[["all",X.all,null]].concat(used().map(function(k){return[k,SECT[k][l],SECT[k].c]})).map(function(a){return '<button type="button" class="mo-chip" aria-pressed="'+(filter===a[0])+'" data-k="'+a[0]+'">'+(a[2]?'<i style="background:'+a[2]+'"></i>':'')+a[1]+'</button>'}).join('');
+      $('mo-legend').innerHTML=used().map(function(k){return '<span><i style="background:'+SECT[k].c+'"></i>'+SECT[k][l]+'</span>'}).join('')+'<span><i style="border:2px solid var(--accent);border-radius:2px;transform:rotate(45deg);width:9px;height:9px"></i>'+X.hqL+'</span>';
+      $('mo-m-obras').setAttribute('aria-pressed',mode==="obras");$('mo-m-ciud').setAttribute('aria-pressed',mode==="ciud");
+      pins.toggleAttribute('hidden',mode!=="obras");cG.toggleAttribute('hidden',mode==="obras");$('mo-refs').toggleAttribute('hidden',mode==="obras");
+      var list=$('mo-list');
+      if(mode==="obras"){
+        OBRAS.forEach(function(o){o.pinEl.classList.toggle('off',!vis(o))});
+        var v=OBRAS.filter(vis),pv={};v.forEach(function(o){o.prov.split(" / ").forEach(function(p){pv[p]=1})});
+        $('mo-stats').innerHTML='<b>'+v.length+'</b> '+X.works+' · <b>'+Object.keys(pv).length+'</b> '+X.provs;
+        list.innerHTML=OBRAS.map(function(o,i){return '<button type="button" class="mo-row'+(vis(o)?'':' off')+'" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(i+1)+'</span><div><b>'+esc(o[l].t)+'</b><small>'+esc(o.city)+' · '+esc(o.prov)+'</small></div></button>'}).join('');
+        list.querySelectorAll('.mo-row').forEach(function(r){r.onclick=function(){showObra(r.dataset.id)}});
+        var cur=byId(sel);showObra(cur&&vis(cur)?cur.id:(v[0]||OBRAS[0]).id);
+      }else{
+        var vc=CITIES.filter(function(c){return obrasDe(c.k).length});
+        $('mo-stats').innerHTML='<b>'+vc.length+'</b> '+X.cities+' · <b>'+vc.reduce(function(a,c){return a+obrasDe(c.k).length},0)+'</b> '+X.obras;
+        list.innerHTML=CITIES.map(function(c){var os=obrasDe(c.k),all=OBRAS.filter(function(o){return o.cg===c.k});return '<button type="button" class="mo-row'+(os.length?'':' off')+'" data-id="c:'+c.k+'"><span class="mo-n" style="--c:'+SECT[all[0].s].c+'">'+all.length+'</span><div><b>'+c.n+'</b><small>'+c.prov+' · '+all.length+' '+(all.length===1?X.obra:X.obras)+'</small></div></button>'}).join('');
+        list.querySelectorAll('.mo-row').forEach(function(r){r.onclick=function(){showCity(r.dataset.id.slice(2))}});
+        var ck=sel.indexOf("c:")===0?sel.slice(2):null;
+        showCity(ck&&obrasDe(ck).length?ck:(vc[0]||CITIES[0]).k);
+      }
+    }
+    $('mo-chips').addEventListener('click',function(e){var b=e.target.closest('.mo-chip');if(!b)return;filter=b.dataset.k;render()});
+    $('mo-m-obras').addEventListener('click',function(){mode="obras";render()});
+    $('mo-m-ciud').addEventListener('click',function(){mode="ciud";render()});
+    render();
+    return render;
+  })();
   document.getElementById('pdx').addEventListener('click',closePd);
   document.getElementById('pdsub').addEventListener('click',function(e){
     var b=e.target.closest('[data-pdf],[data-go]');if(!b)return;
@@ -1116,6 +1391,7 @@ footer a{color:var(--muted)}
     "cul.t":"TMC <span class=\"grad\">culverts</span>","cul.lead":"Corrugated hot-dip galvanized steel, bolted together on site with no specialized labor.",
     "t.corr":"Corrugation","t.diam":"Diameters","t.thick":"Thickness","t.shape":"Shapes","t.load":"Loads","t.std":"Standards","t.span":"Long span (152.S)","t.use":"Uses",
     "t.shape68":"Circular · arched","t.shape152":"Circular · vault · ellipse · underpass · arch","t.span152":"High and low profile arch · ellipse · egg shape","t.use152":"Pedestrian and vehicle underpasses · drainage",
+    "mo.k":"Projects in Ecuador","mo.t":"Wherever the country <span class=\"grad\">is being built</span>","mo.lead":"From the coast to the Amazon, across the Andes. Tap a point on the map to see the project, where it is and the work we did.","mo.byWork":"By project","mo.byCity":"By city",
     "proj.k":"Projects","proj.t":"Our track record is <span class=\"grad\">our calling card</span>",
     "proj.transport":"Public transport","proj.hydro":"Hydropower","proj.steel":"Steel structure","proj.res":"Residential",
     "proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funival project",
@@ -1149,6 +1425,7 @@ footer a{color:var(--muted)}
     });
     cap.textContent=l==='en'?slides[cur].dataset.capEn:slides[cur].dataset.cap;
     root.lang=l;
+    if(typeof MO==='function')MO();
     document.getElementById('lang-es').setAttribute('aria-pressed',l==='es');
     document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
     try{localStorage.setItem('joce-lang',l)}catch(e){}
