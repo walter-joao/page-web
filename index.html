@@ -231,6 +231,10 @@
 .sat.used .sat-hint{opacity:0}
 .sat-credit{position:absolute;z-index:3;right:12px;bottom:8px;margin:0;font:500 .56rem var(--f-mono);color:rgba(220,230,242,.22);transition:color .3s}.sat-credit:hover{color:rgba(220,230,242,.6)}
 .sat-pins{position:absolute;inset:0;z-index:2}
+.sat-provs{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s .3s}.sat.in .sat-provs{opacity:1}
+.sat-prov{position:absolute;left:0;top:0;white-space:nowrap;font:600 .62rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 10px rgba(0,0,0,.6)}
+.sat-prov.has{color:#fff;font-weight:700;font-size:.7rem}
+.sat-prov.has::before{content:"";display:inline-block;width:5px;height:5px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(255,138,61,.9);vertical-align:middle}
 .sat.lt{background:var(--bg);color:var(--fg)}
 .sat.lt .sat-shade{background:linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 86%,var(--bg) 100%)}
 .sat.lt .sat-copy h2{color:var(--fg)}
@@ -274,6 +278,7 @@
 .sat-card .go svg{width:16px;height:16px}
 .sat-card .x{display:none}
 @media (max-width:760px){
+  .sat-provs{z-index:3}.sat-prov{font-size:.5rem;letter-spacing:.08em}.sat-prov.has{font-size:.56rem;padding:2px 5px;border-radius:4px;background:rgba(6,14,26,.62);text-shadow:none}
   .sat{height:auto;overflow:visible;background:var(--bg);display:flex;flex-direction:column}
   .sat-copy{position:relative;order:-1;left:auto;right:auto;top:auto;width:auto;padding:24px 20px 14px;gap:10px}
   .sat-copy h2{font-size:2rem}
@@ -1011,6 +1016,7 @@ footer a{color:var(--muted)}
         <img id="sat-img" src="/img/paisaje-ecuador-1600.webp" srcset="/img/paisaje-ecuador-1600.webp 1600w, /img/paisaje-ecuador-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Imagen satelital del Ecuador continental con el relieve de los Andes, la costa del Pacífico y la Amazonía" decoding="async">
       </picture>
       <div class="sat-shade" aria-hidden="true"></div>
+      <div class="sat-provs" id="sat-provs" aria-hidden="true"></div>
       <div class="sat-pins" id="sat-pins"></div>
       <svg class="sat-wire" id="sat-wire" aria-hidden="true"><line/><circle r="3.5"/></svg>
       <p class="sat-hint" id="sat-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 7v3"/></svg><span data-i18n="sat.hint">Pasa el cursor por un punto para explorar</span></p>
@@ -1444,6 +1450,10 @@ footer a{color:var(--muted)}
       var box=$('sat'),pinsEl=$('sat-pins'),card=$('sat-card'),wire=$('sat-wire'),chips=$('sat-chips');
       var PT={desk:{w:2560,h:1440,ox:.62,oy:.25,p:{metro:[.61157,.2305],manduriacu:[.58144,.18239],agoyan:[.62834,.37104],sanfco:[.63677,.37247],otavalo:[.63202,.18626],esmeraldas:[.51864,.12301],vistavalle:[0.61654,0.23843],colegio:[0.62383,0.22327],bauhaus:[0.61379,0.22579],carls:[0.61314,0.22729]}},
               mob:{w:1080,h:1350,ox:.5,oy:.5,p:{metro:[.51264,.29998],manduriacu:[.46258,.24881],agoyan:[.53285,.43262],sanfco:[.54722,.43516],otavalo:[.55419,.25587],esmeraldas:[.35075,.18647],vistavalle:[0.52106,0.30789],colegio:[0.53551,0.29384],bauhaus:[0.51705,0.29561],carls:[0.51575,0.29700]}}};
+      // nombres de provincia (misma cámara que el paisaje); las que tienen obras se resaltan
+      var PV=[["Azuay",0.5666,0.5805,0.407,0.627],["Bolívar",0.5623,0.4136,0.4116,0.4725],["Cañar",0.5729,0.5116,0.4234,0.5635],["Carchi",0.6572,0.1261,0.677,0.1696],["Cotopaxi",0.5876,0.3186,0.3829,0.3844],["Chimborazo",0.6008,0.4435,0.4763,0.5035],["El Oro",0.5075,0.6648,0.3044,0.6931],["Esmeraldas",0.5424,0.1441,0.3433,0.2086],["Guayas",0.4903,0.4462,0.2841,0.4985],["Imbabura",0.6162,0.1456,0.5489,0.214],["Loja",0.5398,0.7539,0.3542,0.7703],["Los Ríos",0.5252,0.3933,0.3485,0.4497],["Manabí",0.4893,0.2751,0.2892,0.3378],["Morona Santiago",0.6751,0.513,0.6041,0.5615],["Napo",0.6608,0.299,0.657,0.3756],["Pastaza",0.7742,0.4326,0.7885,0.4866],["Tungurahua",0.6015,0.356,0.4851,0.42],["Pichincha",0.5816,0.2644,0.4561,0.3321],["Zamora Chinchipe",0.602,0.7096,0.4622,0.7329],["Sucumbíos",0.7928,0.2273,0.8486,0.2913],["Orellana",0.8363,0.3243,0.9144,0.3851],["Santo Domingo",0.5418,0.2359,0.3362,0.3023],["Santa Elena",0.4446,0.476,0.2021,0.5259]];
+      var provsEl=$('sat-provs'),conObra={};OBRAS.forEach(function(o){o.prov.split(' / ').forEach(function(p){conObra[p]=1})});
+      PV.forEach(function(p){var e=document.createElement('span');e.className='sat-prov'+(conObra[p[0]]?' has':'');e.textContent=p[0];provsEl.appendChild(e);p.el=e});
       var mq=matchMedia('(max-width:760px)'),flt='all',cur=0,shown=-1;
       OBRAS.forEach(function(o,i){var b=document.createElement('button');b.type='button';b.className='sat-pin';b.dataset.i=i;b.innerHTML='<span class="g"></span><span class="h"></span>';
         b.setAttribute('aria-label',o.es.t+' · '+o.city);pinsEl.appendChild(b);o.satEl=b;
@@ -1456,7 +1466,8 @@ footer a{color:var(--muted)}
         // obras casi en el mismo sitio (Quito, centrales de Baños): se apartan lo justo para poder tocarlas
         for(var it=0;it<40;it++)for(var i=0;i<pos.length;i++)for(var j=i+1;j<pos.length;j++){var a=pos[j][0]-pos[i][0],b=pos[j][1]-pos[i][1],dd=Math.hypot(a,b);
           if(dd<M){if(dd<.01){a=Math.cos(i+j);b=Math.sin(i+j);dd=1}var k=(M-dd)/2/dd;pos[i][0]-=a*k;pos[i][1]-=b*k;pos[j][0]+=a*k;pos[j][1]+=b*k}}
-        OBRAS.forEach(function(o,i){o.satXY=[pos[i][0],pos[i][1]];o.satEl.style.transform='translate('+o.satXY[0]+'px,'+o.satXY[1]+'px)'});place()}
+        OBRAS.forEach(function(o,i){o.satXY=[pos[i][0],pos[i][1]];o.satEl.style.transform='translate('+o.satXY[0]+'px,'+o.satXY[1]+'px)'});
+        var mob=c===PT.mob;PV.forEach(function(p){var x=x0+(mob?p[3]:p[1])*c.w*s,y=y0+(mob?p[4]:p[2])*c.h*s;p.el.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)'});place()}
       function fill(i){var o=OBRAS[i],t=o[L()],u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]),lbl=L()==='en'?'View project':'Ver proyecto';
         var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
         card.style.setProperty('--c',SECT[o.s].c);
