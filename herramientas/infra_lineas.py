@@ -8,7 +8,7 @@ def vi(u, w=640):
     return "/_vercel/image?url=%s&amp;w=%d&amp;q=75" % (urllib.parse.quote(u, safe=""), w)
 # (título, descripción, foto, enlace)
 LINEAS = [
-    ("Galpones", "Diseño, fabricación y montaje de galpones industriales y comerciales.", WP+"2021/08/Galpon2.png", None),
+    ("Galpones", "Diseño, fabricación y montaje de galpones industriales y comerciales.", WP+"2021/08/Galpon2.png", "https://wa.me/593964068392?text=Hola%2C%20quisiera%20una%20cotizaci%C3%B3n%20de%20un%20galp%C3%B3n."),
     ("Estructuras metálicas", "Estructuras y volados para edificios, centros comerciales y obra civil.", "/img/obras/vista-valle-coral-volados.webp", "/proyectos/vista-valle-coral-center"),
     ("Cerchas para túneles", "Cerchas curvas de perfil de acero para sostenimiento de túneles.", "/img/obras/metro-cercha.webp", "/proyectos/metro-de-quito"),
     ("Escaleras", "Escaleras metálicas fijas y provisionales para estaciones y plantas.", "/img/obras/metro-rampa.webp", "/proyectos/metro-de-quito"),
@@ -41,6 +41,9 @@ CSS = """
 def card(t, d, img, href):
     tag, attr = ("a", ' href="%s"' % href) if href else ("div", "")
     mas = '<span>Ver más ›</span>' if href else ""
+    if href and href.startswith("https://wa.me/"):  # sin página propia todavía: lleva a cotizar
+        attr += ' target="_blank" rel="noopener"'
+        mas = '<span>Cotizar por WhatsApp ›</span>'
     return ('<%s class="il-card"%s><figure><img decoding="async" loading="lazy" src="%s" alt="%s – Joce Cia Ltda."></figure>'
             '<div><b>%s</b><p>%s</p>%s</div></%s>') % (tag, attr, vi(img), html.escape(t), html.escape(t), html.escape(d), mas, tag)
 cuerpo = ('<div class="wrap"><div class="il-grid">%s</div><div class="il-mas"><small>También fabricamos</small>%s</div></div>'
