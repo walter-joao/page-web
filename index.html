@@ -202,7 +202,94 @@
  ]
 }
 </script>
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Mapa de obras sobre paisaje satelital (render fijo + marcadores HTML calibrados con la misma cámara) */
+.sat{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:clamp(620px,min(92vh,56.25vw),1240px);overflow:hidden;isolation:isolate;background:#04101f;color:#e8eef6}
+.sat-stage{position:absolute;inset:0}
+.sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sat-bg img{object-fit:cover;object-position:62% 25%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.sat.in .sat-bg img{transform:none}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,12,24,.92) 0%,rgba(4,12,24,.72) 26%,rgba(4,12,24,.18) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 84%,var(--bg) 100%)}
+.sat-copy .kicker{justify-self:start}
+.sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
+.sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.sat-lead{margin:0;color:#c3cfdd;font-size:1.06rem;max-width:40ch}
+.sat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sat-chips button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(225,240,255,.28);background:rgba(6,14,26,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font:600 .9rem var(--f-body);cursor:pointer;transition:background .25s,border-color .25s,color .25s,transform .15s}
+.sat-chips button:hover{border-color:rgba(255,255,255,.55)}
+.sat-chips button:active{transform:scale(.97)}
+.sat-chips button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#1b0c02)}
+.sat-chips button[aria-pressed="true"] i{background:currentColor}
+.sat-hint{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);margin:0;display:flex;align-items:center;gap:10px;color:#dfe7f1;font-size:.95rem;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .4s}
+.sat-hint svg{width:20px;height:20px}
+.sat.used .sat-hint{opacity:0}
+.sat-credit{position:absolute;z-index:3;right:16px;bottom:10px;margin:0;font:500 .66rem var(--f-mono);color:rgba(220,230,242,.45)}
+.sat-pins{position:absolute;inset:0;z-index:2}
+.sat.lt{background:var(--bg);color:var(--fg)}
+.sat.lt .sat-shade{background:linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 86%,var(--bg) 100%)}
+.sat.lt .sat-copy h2{color:var(--fg)}
+.sat.lt .sat-lead{color:var(--muted)}
+.sat.lt .sat-chips button{background:rgba(255,255,255,.75);border-color:rgba(13,23,38,.16);color:var(--fg)}
+.sat.lt .sat-chips button:hover{border-color:rgba(13,23,38,.4)}
+.sat.lt .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.sat.lt .sat-hint{color:var(--fg);text-shadow:0 1px 8px rgba(255,255,255,.9)}
+.sat.lt .sat-credit{color:rgba(13,23,38,.45)}
+.sat.lt .sat-wire line{stroke:rgba(31,79,160,.7)}.sat.lt .sat-wire circle{fill:#1f4fa0}
+.sat.lt .sat-pin .h{box-shadow:0 0 0 2px #fff,0 6px 16px rgba(13,23,38,.35),0 0 18px 4px rgba(238,122,43,.45)}
+.sat.lt .sat-card{box-shadow:0 24px 60px -18px rgba(13,23,38,.35);border:1px solid rgba(13,23,38,.08)}
+.sector .map-link{justify-self:start;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);color:#fff;font:600 .8rem var(--f-body);cursor:pointer}
+.sector .map-link:hover{background:rgba(255,255,255,.2)}
+.sector .map-link svg{width:14px;height:14px}
+.sat-pin{position:absolute;left:0;top:0;width:0;height:0;border:0;padding:0;background:none;cursor:pointer;transition:opacity .35s}
+.sat-pin .h{position:absolute;left:0;bottom:2px;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg) scale(var(--s,1));background:radial-gradient(circle,#fff 0 24%,var(--accent) 28%);box-shadow:0 0 0 2px rgba(255,255,255,.2),0 0 26px 6px rgba(255,138,61,.65);transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.sat-pin .h::before{content:"";position:absolute;inset:-9px;border-radius:50%}
+.sat-pin .g{position:absolute;left:0;top:0;width:26px;height:10px;margin:-5px 0 0 -13px;border-radius:50%;background:radial-gradient(rgba(255,138,61,.8),transparent 70%);animation:satglow 2.4s ease-out infinite}
+@keyframes satglow{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+.sat-pin:hover .h,.sat-pin.on .h{--s:1.22;box-shadow:0 0 0 2px #fff,0 0 34px 10px rgba(255,138,61,.85)}
+.sat-pin.off{opacity:.15;pointer-events:none}
+.sat-pin:focus-visible{outline:none}.sat-pin:focus-visible .h{box-shadow:0 0 0 3px var(--cyan)}
+.sat-wire{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .2s}
+.sat-wire.on{opacity:1}
+.sat-wire line{stroke:rgba(255,255,255,.75);stroke-width:1.5}
+.sat-wire circle{fill:#fff}
+.sat-card{position:absolute;z-index:4;left:0;top:0;width:min(330px,26vw);border-radius:20px;overflow:hidden;background:#fff;color:#0d1726;box-shadow:0 30px 70px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(8px) scale(.97);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1),left .35s cubic-bezier(.2,.8,.2,1),top .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.sat-card.open{opacity:1;transform:none;pointer-events:auto}
+.sat-card .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#1f4fa0,#0d1726);overflow:hidden}
+.sat-card .ph img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .35s}
+.sat-card .ph img.ok{opacity:1}
+.sat-card .badge{position:absolute;top:12px;left:12px;display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(6,14,26,.7);color:#fff;font:600 .7rem var(--f-mono);letter-spacing:.04em}
+.sat-card .badge i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.sat-card .bd{padding:16px 20px 20px;display:grid;gap:4px}
+.sat-card h3{margin:0;font:700 1.35rem/1.15 var(--f-display);letter-spacing:-.02em;color:#0d1726}
+.sat-card .loc{color:#5a6a7e;font-size:.92rem}
+.sat-card .go{justify-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;border:0;background:var(--accent);color:#fff;font:700 .95rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.sat-card .go:hover{box-shadow:0 10px 26px -8px rgba(238,122,43,.8)}
+.sat-card .go:active{transform:scale(.97)}
+.sat-card .go svg{width:16px;height:16px}
+.sat-card .x{display:none}
+@media (max-width:760px){
+  .sat{height:auto;overflow:visible;background:var(--bg);display:flex;flex-direction:column}
+  .sat-copy{position:relative;order:-1;left:auto;right:auto;top:auto;width:auto;padding:24px 20px 14px;gap:10px}
+  .sat-copy h2{font-size:2rem}
+  .sat-lead{font-size:.95rem}
+  .sat-chips{flex-wrap:nowrap;overflow-x:auto;margin:4px -20px 0;padding:0 20px 4px;scrollbar-width:none}
+  .sat-chips button{flex:none;height:38px}
+  .sat-stage{position:relative;inset:auto;aspect-ratio:1080/1350}
+  .sat-bg img{object-position:50% 50%}
+  .sat-shade,.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 12%,transparent 85%,var(--bg) 100%)}
+  .sat-hint{bottom:34px;font-size:.88rem}
+  .sat-hint svg{display:none}
+  .sat-credit{position:static;padding:8px 20px 0;text-align:right}
+  .sat-card{position:relative;left:auto!important;top:auto!important;width:auto;margin:-24px 16px 0;opacity:1;transform:none;pointer-events:auto;display:grid;grid-template-columns:130px 1fr}
+  .sat-card .ph{aspect-ratio:auto;height:100%;min-height:150px}
+  .sat-card .badge{display:none}
+  .sat-card .bd{padding:14px 16px}
+  .sat-card h3{font-size:1.12rem}
+  .sat-card .go{padding:9px 14px;font-size:.88rem;margin-top:8px}
+  .sat-pin .h{width:30px;height:30px}
+}
+@media (prefers-reduced-motion:reduce){.sat-pin .g{animation:none}.sat-bg img,.sat-card{transition:none}}
+</style>
 <script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
 document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
@@ -763,6 +850,79 @@ footer a{color:var(--muted)}
 .mo-row small{color:var(--muted);font:500 11px/1.45 var(--f-mono);display:block}
 .mo-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-mono);background:var(--c);color:#06101c}
 @media (prefers-reduced-motion:reduce){.mo-pin .halo{animation:none}}
+
+/* ===== Muestra de estilo (referencia Framer / Design+Code): portada, cifras y productos ===== */
+/* Portada: resplandor azul detrás del título y cuadrícula técnica muy tenue */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(170,205,255,.07) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.07) 1px,transparent 1px) 0 0/64px 64px;
+  -webkit-mask-image:radial-gradient(70% 60% at 30% 70%,#000 20%,transparent 75%);mask-image:radial-gradient(70% 60% at 30% 70%,#000 20%,transparent 75%)}
+.hero::after{background:
+  radial-gradient(42% 38% at 26% 62%,rgba(52,120,255,.42),transparent 70%),
+  linear-gradient(180deg,rgba(4,8,15,.62) 0%,rgba(4,8,15,.4) 35%,rgba(4,8,15,.92) 100%)}
+.hero .kicker.pill{justify-self:start;padding:7px 14px 7px 10px;border-radius:999px;color:rgba(255,255,255,.88);letter-spacing:.12em;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(225,240,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hero .kicker.pill::before{width:7px;height:7px;border-radius:50%;background:#5fdcf5;box-shadow:0 0 0 0 rgba(95,220,245,.6);animation:fxpulse 2.4s ease-out infinite}
+@keyframes fxpulse{to{box-shadow:0 0 0 9px rgba(95,220,245,0)}}
+.hero h1{font-weight:600;font-stretch:100%;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(180deg,#fff 30%,#a4b1c4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .grad{background:linear-gradient(100deg,#8fb8ff,#5fdcf5 55%,#ffa057);-webkit-background-clip:text;background-clip:text}
+.hero .btn-glass,.fx-dark .btn-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border-color:rgba(225,240,255,.24);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 30px -12px rgba(0,0,0,.6)}
+.btn-accent{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 30px -10px var(--accent)}
+.hero-foot{border-top-color:rgba(225,240,255,.14)}
+
+/* Cifras: vidrio con brillo interior y números en degradado */
+.values .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015)),var(--glass);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 30px 40px -30px rgba(255,255,255,.08),var(--shadow)}
+.val b{font-weight:600;font-stretch:100%;letter-spacing:-.03em;font-size:3.1rem;
+  background:linear-gradient(180deg,var(--fg) 35%,color-mix(in srgb,var(--fg) 45%,transparent));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Productos: isla oscura (también en tema claro) con resplandor y cuadrícula */
+.fx-dark{--bg:#05090f;--bg-2:#05090f;--surface:#0c1522;--glass:rgba(16,29,48,.55);--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.11);
+  --cyan:#3cc8e8;--accent:#ff8a3d;--accent-ink:#1b0c02;--grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --steel-a:#152235;--steel-b:#1d2d44;color-scheme:dark;background:#05090f!important;color:var(--fg);overflow:clip;isolation:isolate}
+.fx-dark::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.28),transparent 75%),
+    linear-gradient(rgba(170,205,255,.06) 1px,transparent 1px) 50% 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.06) 1px,transparent 1px) 50% 0/64px 64px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 520px,transparent 900px);mask-image:linear-gradient(180deg,#000 0,#000 520px,transparent 900px)}
+.fx-dark .sec-head{justify-items:center;text-align:center;margin-inline:auto;max-width:860px}
+.fx-dark .subcat .sec-head{justify-items:start;text-align:left;margin-inline:0}
+.fx-dark h2{font-weight:600;font-stretch:100%;letter-spacing:-.04em;font-size:clamp(2.2rem,5.4vw,4.2rem);
+  background:linear-gradient(180deg,#fff 35%,#8d9bb0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fx-dark h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.fx-dark .kicker{padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.fx-dark .kicker::before{display:none}
+.fx-dark .tile{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015));border-color:rgba(225,240,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 30px 30px -20px rgba(255,255,255,.04),0 30px 60px -30px rgba(0,0,0,.8);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s}
+.fx-dark .tile .corr{margin:8px 8px 0;border-radius:calc(var(--radius) - 8px);-webkit-mask-image:linear-gradient(180deg,#000 55%,rgba(0,0,0,.35));mask-image:linear-gradient(180deg,#000 55%,rgba(0,0,0,.35))}
+.fx-dark .tile .corr img{transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s;filter:saturate(.85) brightness(.9)}
+.fx-dark .tile h3{font-weight:600;letter-spacing:-.02em}
+.fx-dark .tile::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(120,175,255,.16),transparent 60%)}
+@media (hover:hover){
+  .fx-dark .tile:hover{transform:translateY(-4px);border-color:rgba(160,200,255,.32)}
+  .fx-dark .tile:hover::after{opacity:1}
+  .fx-dark .tile:hover .corr img{transform:scale(1.05);filter:none}
+}
+.fx-dark .fichas a{background:rgba(255,255,255,.04)}
+.values.fx-dark{background:#05090f!important;overflow:visible}.values.fx-dark::before{display:none}
+#proyectos.fx-dark::before{background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.22),transparent 75%),linear-gradient(rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px}
+.fx-dark .mo-map{border-color:rgba(160,200,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.4),0 40px 90px -30px rgba(40,110,255,.35)}
+.fx-dark .mo-panel{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)),#0a121d;border-color:rgba(225,240,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 30px 60px -30px rgba(0,0,0,.8)}
+.fx-dark .mo-chip:not([aria-pressed="true"]),.fx-dark .mo-seg,.fx-dark .mo-row{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-color:rgba(225,240,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.fx-dark .mo-ocard{background:rgba(255,255,255,.03)}
+.mo-more{margin-top:44px;display:grid;gap:16px}.fx-dark .mo-more .kicker{justify-self:start}
+.mo-mosaic{grid-template-columns:repeat(2,1fr);grid-auto-rows:240px}
+.fx-dark .project{border:1px solid rgba(225,240,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 60px -30px rgba(0,0,0,.8)}
+@media (max-width:520px){.mo-mosaic{grid-template-columns:1fr}}
+
+/* Texto que se ilumina palabra por palabra al hacer scroll */
+.lit{--p:0%;background:linear-gradient(90deg,var(--fg) var(--p),color-mix(in srgb,var(--fg) 28%,transparent) calc(var(--p) + 6%));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice}
+.fx-dark .lead.lit-wrap{font-size:clamp(1.1rem,2vw,1.4rem);max-width:46ch;line-height:1.45}
+@media (prefers-reduced-motion:reduce){.hero .kicker.pill::before{animation:none}.lit{--p:100%!important}.fx-dark .tile,.fx-dark .tile .corr img{transition:none}}
 </style>
 
 </head>
@@ -775,8 +935,7 @@ footer a{color:var(--muted)}
     </a>
     <nav class="main" id="nav" aria-label="Secciones">
       <a href="#sectores" data-i18n="nav.sectors">Soluciones</a>
-      <div class="dd"><a href="#productos" data-i18n="nav.products">Productos</a><button type="button" class="dd-t" aria-label="Ver productos" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="mega"><div class="mega-sub"><b data-i18n="mm.infra">Infraestructura metálica</b><div><a href="/productos/grating-tramex"><span data-i18n="mm.s0">Pisos metálicos</span></a><a href="/productos/postes-metalicos"><span data-i18n="mm.s1">Postes</span></a><a href="/productos/grating-tramex"><span data-i18n="mm.s2">Rejillas</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s3">Placas</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s4">Cerchas para túneles</span></a><a href="/productos/encofrados"><span data-i18n="mm.s5">Encofrados</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s6">Disipadores de energía</span></a><a href="/productos/accesorios-para-tuberias"><span data-i18n="mm.s7">Accesorios para tubería</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s8">Estructuras metálicas</span></a><a href="/productos/pernos-de-alta-fiabilidad"><span data-i18n="mm.s9">Pernos de anclaje</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s10">Placas de anclaje</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s11">Galpones</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s12">Escaleras</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s13">Pasamanos y pasarelas</span></a><a href="/productos/partes-y-piezas-especiales"><span data-i18n="mm.s14">Pedidos especiales</span></a></div></div><div class="mega-cat"><b data-i18n="mm.all">Todos los productos</b><a href="/productos/infraestructura-metalica"><span data-i18n="mm.c0">Infraestructura metálica</span></a><a href="/productos/pernos-de-alta-fiabilidad"><span data-i18n="mm.c1">Pernos especiales de alta fiabilidad</span></a><a href="/productos/alcantarillas-metalicas"><span data-i18n="mm.c2">Alcantarillas metálicas</span></a><a href="/productos/grating-tramex"><span data-i18n="mm.c3">Grating – Tramex</span></a><a href="/productos/encofrados"><span data-i18n="mm.c4">Encofrados</span></a><a href="/productos/accesorios-para-tuberias"><span data-i18n="mm.c5">Accesorios para tuberías</span></a><a href="/productos/soporte-en-roca"><span data-i18n="mm.c6">Soporte en rocas</span></a><a href="/productos/partes-y-piezas-especiales"><span data-i18n="mm.c7">Fabricación y reparación de piezas</span></a><a href="/productos/venta-de-soldadoras"><span data-i18n="mm.c8">Venta de soldadoras</span></a></div></div></div>
+      <a href="#productos" data-i18n="nav.products">Productos</a>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
       <a href="#empleo" data-i18n="nav.jobs">Trabaja con nosotros</a>
@@ -808,7 +967,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="wrap">
       <div class="copy">
-        <span class="kicker" data-i18n="hero.k">Ingeniería y materiales · Ecuador</span>
+        <span class="kicker pill" data-i18n="hero.k">Ingeniería y materiales · Ecuador</span>
         <h1 data-i18n-html="hero.title">Experiencia y <span class="grad">calidad</span><span class="vh">: infraestructura metálica, pernos y alcantarillas en Ecuador</span></h1>
         <p class="lead" data-i18n="hero.lead">Fabricamos e importamos estructuras metálicas, pernos, alcantarillas y grating para hidroeléctricas, minería, cementeras, sector eléctrico y obra vial. Con más de 20 años de experiencia participando en los proyectos emblemáticos de ingeniería en el país.</p>
         <div class="cta-row">
@@ -823,7 +982,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <div class="values">
+  <div class="values fx-dark">
     <div class="wrap">
       <div class="card rv">
         <div class="val"><b><span class="count" data-to="20">20</span>+</b><span data-i18n="v.years">años de experiencia</span></div>
@@ -834,40 +993,33 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
-  <section id="mapa-obras" style="padding-top:40px">
+  <section id="proyectos" class="fx-dark" style="padding-top:0">
+    <span id="mapa-obras" aria-hidden="true"></span>
     <div class="wrap">
-      <div class="sec-head">
-        <span class="kicker" data-i18n="mo.k">Obras en Ecuador</span>
-        <h2 data-i18n-html="mo.t">Presentes donde el país <span class="grad">se construye</span></h2>
-        <p class="lead" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</p>
+    <div class="sat" id="sat">
+      <div class="sat-stage" id="sat-stage">
+      <picture class="sat-bg">
+        <source id="sat-src" media="(max-width: 760px)" srcset="/img/paisaje-ecuador-movil.webp" width="1080" height="1350">
+        <img id="sat-img" src="/img/paisaje-ecuador-1600.webp" srcset="/img/paisaje-ecuador-1600.webp 1600w, /img/paisaje-ecuador-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Imagen satelital del Ecuador continental con el relieve de los Andes, la costa del Pacífico y la Amazonía" decoding="async">
+      </picture>
+      <div class="sat-shade" aria-hidden="true"></div>
+      <div class="sat-pins" id="sat-pins"></div>
+      <svg class="sat-wire" id="sat-wire" aria-hidden="true"><line/><circle r="3.5"/></svg>
+      <p class="sat-hint" id="sat-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 7v3"/></svg><span data-i18n="sat.hint">Pasa el cursor por un punto para explorar</span></p>
       </div>
-      <div class="mo-bar">
-        <div class="mo-left">
-          <div class="mo-seg" role="group" aria-label="Ver el mapa por"><button type="button" id="mo-m-obras" aria-pressed="true" data-i18n="mo.byWork">Por obra</button><button type="button" id="mo-m-ciud" aria-pressed="false" data-i18n="mo.byCity">Por ciudad</button></div>
-          <div class="mo-chips" id="mo-chips" role="group" aria-label="Filtrar por sector"></div>
-        </div>
-        <div class="mo-stats" id="mo-stats"></div>
+      <div class="sat-copy">
+        <span class="kicker" data-i18n="proj.k">Proyectos</span>
+        <h2 data-i18n-html="proj.t">La experiencia es nuestra <span class="grad">carta de presentación</span></h2>
+        <p class="sat-lead" data-i18n="sat.lead">Explora nuestras obras en el Ecuador: de la costa a la Amazonía, pasando por los Andes.</p>
+        <div class="sat-chips" id="sat-chips" role="group" aria-label="Filtrar por sector"></div>
       </div>
-      <div class="mo-grid">
-        <div class="mo-map">
-          <svg id="mo-svg" viewBox="-10 -10 620 680" role="img" aria-label="Mapa del Ecuador continental con las obras de Jocecia">
-            <g id="mo-grat"></g>
-            <image href="/img/relieve-ecuador.webp" x="-10" y="-10" width="620" height="680" preserveAspectRatio="none"/>
-            <g id="mo-provs"></g>
-            <g id="mo-glab"></g>
-            <g id="mo-peaks"></g>
-            <text class="mo-coast" x="40" y="330" transform="rotate(-90 40 330)" id="mo-ocean">OCÉANO PACÍFICO</text>
-            <text class="mo-country" x="470" y="40">COLOMBIA</text>
-            <text class="mo-country" x="470" y="560" id="mo-peru">PERÚ</text>
-            <g id="mo-refs" hidden></g>
-            <g id="mo-pins"></g>
-            <g id="mo-cities" hidden></g>
-          </svg>
-          <div class="mo-legend" id="mo-legend"></div>
-        </div>
-        <article class="mo-panel" id="mo-panel" aria-live="polite"></article>
-      </div>
-      <div class="mo-list" id="mo-list"></div>
+            <article class="sat-card" id="sat-card" aria-live="polite"></article>
+      <p class="sat-credit" data-i18n="sat.credit">Imagen: Copernicus Sentinel-2 (2019–2024) · relieve: Terrain Tiles</p>
+    </div>
+      <div class="mo-more"><span class="kicker" data-i18n="mo.other">Otras obras</span><div class="mosaic mo-mosaic">
+        <a class="project rv" href="#mapa-obras" role="button" data-prod="pr5"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="Galpón Cadeco: estructura metálica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
+        <a class="project rv" href="#mapa-obras" role="button" data-prod="pr6"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="Proyecto Funival: residencial, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
+      </div></div>
     </div>
   </section>
 
@@ -895,11 +1047,11 @@ footer a{color:var(--muted)}
         </div>
       </div>
       <div class="rail" id="rail" tabindex="0" aria-label="Sectores">
-        <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/DESTACADA-CEL.1804.jpg" alt="Centrales hidroeléctricas: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">01</span><h3 data-i18n="s1.t">Centrales hidroeléctricas</h3><p data-i18n="s1.d">Encofrados trepantes, cerchas para túneles, anclaje en roca y tubería en plano inclinado.</p><button type="button" class="more" data-prod="sec1"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
+        <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FDESTACADA-CEL.1804.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/DESTACADA-CEL.1804.jpg" alt="Centrales hidroeléctricas: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">01</span><h3 data-i18n="s1.t">Centrales hidroeléctricas</h3><p data-i18n="s1.d">Encofrados trepantes, cerchas para túneles, anclaje en roca y tubería en plano inclinado.</p><button type="button" class="map-link" data-s="hidro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i18n="map.hidro">Ver las 3 obras en el mapa</span></button><button type="button" class="more" data-prod="sec1"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2Fmining-856022_1920.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2Fmining-856022_1920.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2Fmining-856022_1920.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2Fmining-856022_1920.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/mining-856022_1920.jpg" alt="Industria minera: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">02</span><h3 data-i18n="s2.t">Industria minera</h3><p data-i18n="s2.d">Pernos de anclaje, cerchas para túneles y zarandas metálicas.</p><button type="button" class="more" data-prod="sec2"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINDUSTRIA-CEMENTERA.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINDUSTRIA-CEMENTERA.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINDUSTRIA-CEMENTERA.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINDUSTRIA-CEMENTERA.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/INDUSTRIA-CEMENTERA.jpg" alt="Industria cementera: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">03</span><h3 data-i18n="s3.t">Industria cementera</h3><p data-i18n="s3.d">Plataformas de perforación, bolardos y encofrados circulares, cónicos y deslizantes.</p><button type="button" class="more" data-prod="sec3"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FWhatsApp-Image-2022-05-18-at-8.23.05-AM.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FWhatsApp-Image-2022-05-18-at-8.23.05-AM.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FWhatsApp-Image-2022-05-18-at-8.23.05-AM.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FWhatsApp-Image-2022-05-18-at-8.23.05-AM.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-18-at-8.23.05-AM.jpeg" alt="Industria eléctrica: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">04</span><h3 data-i18n="s4.t">Industria eléctrica</h3><p data-i18n="s4.d">Torres, herrajes de alta y baja tensión, fibra óptica y grating para subestaciones.</p><button type="button" class="more" data-prod="sec4"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
-        <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2025/01/IMG_20241229_142505.jpg" alt="Proyectos viales: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">05</span><h3 data-i18n="s5.t">Proyectos viales</h3><p data-i18n="s5.d">Cerchas para túneles, andenes de metro, escaleras y pasamanos.</p><button type="button" class="more" data-prod="sec5"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
+        <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FIMG_20241229_142505.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2025/01/IMG_20241229_142505.jpg" alt="Proyectos viales: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">05</span><h3 data-i18n="s5.t">Proyectos viales</h3><p data-i18n="s5.d">Cerchas para túneles, andenes de metro, escaleras y pasamanos.</p><button type="button" class="map-link" data-s="trans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i18n="map.trans">Ver la obra en el mapa</span></button><button type="button" class="more" data-prod="sec5"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINMOBILIARIO-scaled.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINMOBILIARIO-scaled.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINMOBILIARIO-scaled.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FINMOBILIARIO-scaled.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/INMOBILIARIO-scaled.jpg" alt="Estructuras metálicas: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">06</span><h3 data-i18n="s6.t">Estructuras metálicas</h3><p data-i18n="s6.d">Galpones, cerchas y estructuras industriales para edificios.</p><button type="button" class="more" data-prod="sec6"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FWhatsApp-Image-2025-01-22-at-15.52.19.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FWhatsApp-Image-2025-01-22-at-15.52.19.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FWhatsApp-Image-2025-01-22-at-15.52.19.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F01%2FWhatsApp-Image-2025-01-22-at-15.52.19.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2025/01/WhatsApp-Image-2025-01-22-at-15.52.19.jpeg" alt="Mobiliario público: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">07</span><h3 data-i18n="s7.t">Mobiliario público</h3><p data-i18n="s7.d">Juegos infantiles, esculturas, bebederos de acero inoxidable, bancas y basureros.</p><button type="button" class="more" data-prod="sec7"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
         <article class="sector"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2Flam-e1739981950225-231x300.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2Flam-e1739981950225-231x300.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2Flam-e1739981950225-231x300.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2Flam-e1739981950225-231x300.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2025/02/lam-e1739981950225-231x300.jpg" alt="Pedidos especiales: trabajos de Joce Cia en Ecuador" loading="lazy"></div><div class="in"><span class="num">08</span><h3 data-i18n="s8.t">Pedidos especiales</h3><p data-i18n="s8.d">Piezas a medida, como escaleras de acceso para aviones.</p><button type="button" class="more" data-prod="sec8"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
@@ -907,12 +1059,12 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section id="productos" style="background:var(--bg-2)">
+  <section id="productos" class="fx-dark">
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker" data-i18n="prod.k">Productos</span>
         <h2 data-i18n-html="prod.t">Todo el acero de <span class="grad">su proyecto</span></h2>
-        <p class="lead" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</p>
+        <p class="lead lit-wrap"><span class="lit" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</span></p>
       </div>
       <div class="bento">
         <a class="tile big rv" href="/productos/infraestructura-metalica"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/Galpon2.png" alt="Infraestructura metálica: postes, galpones y cerchas fabricados por Joce Cia" loading="lazy"></div><div class="body"><h3 data-i18n="p1.t">Infraestructura metálica</h3><p data-i18n="p1.d">Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.</p><div class="chips"><span data-i18n="p1.c1">Galpones</span><span data-i18n="p1.c2">Postes</span><span data-i18n="p1.c3">Cerchas</span><span data-i18n="p1.c4">Pasarelas</span></div><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
@@ -929,23 +1081,6 @@ footer a{color:var(--muted)}
       <nav class="fichas" aria-label="Fichas de producto"><span class="kicker" data-i18n="fichas.k">Fichas de producto</span><div><a href="/productos/pernos-bronce-silicio">Pernos bronce-silicio</a><a href="/productos/pernos-a-la-forja">Pernos a la forja</a><a href="/productos/pernos-de-alta-fiabilidad">Pernos especiales de alta fiabilidad</a><a href="/productos/alcantarillas-metalicas">Alcantarillas metálicas</a><a href="/productos/alcantarilla-mp-68">Alcantarilla TMC Minimultiplate SP MP 68</a><a href="/productos/alcantarilla-mp-152">Alcantarilla Multiplate SP MP 152 – MP 152.S</a><a href="/productos/grating-tramex">Grating y tramex</a><a href="/productos/postes-metalicos">Postes metálicos</a><a href="/productos/encofrados">Encofrados</a><a href="/productos/accesorios-para-tuberias">Accesorios para tuberías</a><a href="/productos/soporte-en-roca">Resina y pernos para soporte de rocas</a><a href="/productos/resina-de-anclaje">Cartucho de anclaje en roca con resina</a><a href="/productos/pernos-de-barra-helicoidal">Pernos de barra helicoidal</a><a href="/productos/infraestructura-metalica">Infraestructura metálica</a><a href="/productos/partes-y-piezas-especiales">Fabricación y reparación de partes y piezas especiales</a><a href="/productos/venta-de-soldadoras">Venta de soldadoras</a></div></nav>
 
       <div class="cta-row" style="justify-content:center;margin-top:20px"><button type="button" class="btn btn-line" data-page="1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1v14c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6v14"/></svg><span data-i18n="cul.view2">Catálogo interactivo de alcantarillas</span></button></div>
-    </div>
-  </section>
-
-  <section id="proyectos" style="background:var(--bg-2)">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="kicker" data-i18n="proj.k">Proyectos</span>
-        <h2 data-i18n-html="proj.t">La experiencia es nuestra <span class="grad">carta de presentación</span></h2>
-      </div>
-      <div class="mosaic">
-        <a class="project p1 rv" href="#proyectos" role="button" data-prod="pr1"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FMetro-de-Quito-trenes-min-1024x683-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FMetro-de-Quito-trenes-min-1024x683-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FMetro-de-Quito-trenes-min-1024x683-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FMetro-de-Quito-trenes-min-1024x683-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/Metro-de-Quito-trenes-min-1024x683-700x800.jpg" alt="Metro de Quito: transporte público, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.transport">Transporte público</small><b data-i18n="proj.metro">Metro de Quito</b></div></a>
-        <a class="project rv" href="#proyectos" role="button" data-prod="pr2"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FSF-CELEC-2-1-1024x681-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FSF-CELEC-2-1-1024x681-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FSF-CELEC-2-1-1024x681-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FSF-CELEC-2-1-1024x681-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/SF-CELEC-2-1-1024x681-700x800.jpg" alt="Central Agoyán: hidroeléctrica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.agoyan">Central Agoyán</b></div></a>
-        <a class="project rv" href="#proyectos" role="button" data-prod="pr3"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FDESTACADA-CEL.1804-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FDESTACADA-CEL.1804-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FDESTACADA-CEL.1804-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FDESTACADA-CEL.1804-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/DESTACADA-CEL.1804-700x800.jpg" alt="Central Manduriacu: hidroeléctrica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.manduriacu">Central Manduriacu</b></div></a>
-        <a class="project rv" href="#proyectos" role="button" data-prod="pr4"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FSF-CELEC-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FSF-CELEC-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FSF-CELEC-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2FSF-CELEC-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/SF-CELEC-1024x768-700x800.jpg" alt="Central San Francisco: hidroeléctrica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.hydro">Hidroeléctrica</small><b data-i18n="proj.sanfrancisco">Central San Francisco</b></div></a>
-        <a class="project rv" href="#proyectos" role="button" data-prod="pr5"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="Galpón Cadeco: estructura metálica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
-        <a class="project p4 rv" href="#proyectos" role="button" data-prod="pr6"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="Proyecto Funival: residencial, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
-      </div>
     </div>
   </section>
 
@@ -1283,7 +1418,64 @@ footer a{color:var(--muted)}
     function fmt(v,a,b){return Math.abs(v).toFixed(2)+"° "+(v>=0?a:b)}
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
     var filter="all",mode="obras",sel="metro";
-    if(!$('mo-svg'))return function(){};
+    // ---- Mapa sobre paisaje satelital: fondo fijo + marcadores calibrados con la misma cámara del render ----
+    function SAT(){
+      var box=$('sat'),pinsEl=$('sat-pins'),card=$('sat-card'),wire=$('sat-wire'),chips=$('sat-chips');
+      var PT={desk:{w:2560,h:1440,ox:.62,oy:.25,p:{metro:[.61157,.2305],manduriacu:[.58144,.18239],agoyan:[.62834,.37104],sanfco:[.63677,.37247],otavalo:[.63202,.18626],esmeraldas:[.51864,.12301]}},
+              mob:{w:1080,h:1350,ox:.5,oy:.5,p:{metro:[.51264,.29998],manduriacu:[.46258,.24881],agoyan:[.53285,.43262],sanfco:[.54722,.43516],otavalo:[.55419,.25587],esmeraldas:[.35075,.18647]}}};
+      var mq=matchMedia('(max-width:760px)'),flt='all',cur=0,shown=-1;
+      OBRAS.forEach(function(o,i){var b=document.createElement('button');b.type='button';b.className='sat-pin';b.dataset.i=i;b.innerHTML='<span class="g"></span><span class="h"></span>';
+        b.setAttribute('aria-label',o.es.t+' · '+o.city);pinsEl.appendChild(b);o.satEl=b;
+        b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){show(i);box.classList.add('used')}});
+        b.addEventListener('focus',function(){show(i)});
+        b.addEventListener('click',function(e){e.preventDefault();show(i);box.classList.add('used')})});
+      function vis(o){return flt==='all'||o.s===flt}
+      function layout(){var c=mq.matches?PT.mob:PT.desk,W=pinsEl.clientWidth,H=pinsEl.clientHeight,s=Math.max(W/c.w,H/c.h),x0=(W-c.w*s)*c.ox,y0=(H-c.h*s)*c.oy;
+        var pos=OBRAS.map(function(o){var p=c.p[o.id];return[x0+p[0]*c.w*s,y0+p[1]*c.h*s]}),dx=pos.map(function(){return 0}),M=26;
+        // dos obras casi en el mismo sitio (centrales de Baños): se separan unos píxeles para poder tocarlas
+        for(var i=0;i<pos.length;i++)for(var j=i+1;j<pos.length;j++){var a=pos[j][0]-pos[i][0],b=pos[j][1]-pos[i][1];if(Math.abs(a)<M&&Math.abs(b)<M){var k=(M-Math.abs(a))/2,sg=a>=0?1:-1;dx[i]-=sg*k;dx[j]+=sg*k}}
+        OBRAS.forEach(function(o,i){o.satXY=[pos[i][0]+dx[i],pos[i][1]];o.satEl.style.transform='translate('+o.satXY[0]+'px,'+o.satXY[1]+'px)'});place()}
+      function fill(i){var o=OBRAS[i],t=o[L()],u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]),lbl=L()==='en'?'View project':'Ver proyecto';
+        var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+        card.style.setProperty('--c',SECT[o.s].c);
+        card.innerHTML='<div class="ph">'+(u?'<img src="'+VI(u,640)+'" alt="'+esc(t.t)+'" decoding="async" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+SECT[o.s][L()]+'</span></div>'+
+          '<div class="bd"><h3>'+esc(t.t)+'</h3><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+'</span>'+(o.pr?'<button type="button" class="go">'+lbl+arrow+'</button>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
+        if(o.pr)card.querySelector('.go').onclick=function(){openPd(o.pr)};
+        var im=card.querySelector('img');if(im&&im.complete&&im.naturalWidth)im.classList.add('ok')}
+      function show(i){cur=i;if(i!==shown){fill(i);shown=i}OBRAS.forEach(function(o,k){o.satEl.classList.toggle('on',k===i)});card.classList.add('open');place()}
+      function place(){var o=OBRAS[cur];if(!o||!o.satXY)return;
+        if(mq.matches){wire.classList.remove('on');card.style.left='';card.style.top='';return}
+        var W=pinsEl.clientWidth,H=pinsEl.clientHeight,cw=card.offsetWidth,ch=card.offsetHeight,x=o.satXY[0],y=o.satXY[1]-14,side=1;
+        // la tarjeta va a la derecha de todos los marcadores para no tapar ninguno
+        var mx=Math.max.apply(null,OBRAS.map(function(q){return q.satXY[0]})),L0=Math.max(x+72,mx+56);
+        if(L0+cw>W-24){var mn=Math.min.apply(null,OBRAS.map(function(q){return q.satXY[0]}));L0=Math.min(x-72,mn-56)-cw;side=-1}
+        var T0=Math.max(84,Math.min(H-ch-70,y-ch*.38));card.style.left=L0+'px';card.style.top=T0+'px';
+        var ex=side>0?L0:L0+cw,ey=Math.max(T0+30,Math.min(T0+ch-30,y)),ln=wire.querySelector('line'),ci=wire.querySelector('circle');
+        ln.setAttribute('x1',x+side*12);ln.setAttribute('y1',y);ln.setAttribute('x2',ex);ln.setAttribute('y2',ey);ci.setAttribute('cx',ex);ci.setAttribute('cy',ey);wire.classList.add('on')}
+      function chipsRender(){var X=T(),l=L(),u=[];OBRAS.forEach(function(o){if(u.indexOf(o.s)<0)u.push(o.s)});
+        chips.innerHTML=[["all",X.all,null]].concat(u.map(function(k){return[k,SECT[k][l],SECT[k].c]})).map(function(a){return '<button type="button" aria-pressed="'+(flt===a[0])+'" data-k="'+a[0]+'"'+(a[2]?' style="--c:'+a[2]+'"><i></i>':'>')+a[1]+'</button>'}).join('')}
+      chips.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;flt=b.dataset.k;chipsRender();
+        OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});if(!vis(OBRAS[cur])){for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}}});
+      var hint=document.querySelector('#sat-hint span'),fineP=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fineP)hint.removeAttribute('data-i18n');
+      function hintTx(){if(!fineP)hint.textContent=L()==='en'?'Tap a point to see the project':'Toca un punto para ver la obra'}hintTx();
+      chipsRender();addEventListener('resize',layout);if(mq.addEventListener)mq.addEventListener('change',layout);
+      var im=$('sat-img');if(!im.complete)im.addEventListener('load',layout);
+      // versión clara: paisaje con el entorno en papel claro para que Ecuador resalte sobre fondo blanco
+      var sec=$('proyectos'),src=$('sat-src'),img=$('sat-img');
+      function light(){var t=document.documentElement.dataset.theme;return t?t==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
+      function theme(){var lt=light(),sf=lt?'-claro':'';box.classList.toggle('lt',lt);sec.classList.toggle('fx-dark',!lt);
+        src.srcset='/img/paisaje-ecuador-movil'+sf+'.webp';img.srcset='/img/paisaje-ecuador-1600'+sf+'.webp 1600w, /img/paisaje-ecuador-2560'+sf+'.webp 2560w';img.src='/img/paisaje-ecuador-1600'+sf+'.webp'}
+      theme();new MutationObserver(theme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+      var dm=matchMedia('(prefers-color-scheme: dark)');if(dm.addEventListener)dm.addEventListener('change',theme);
+      // los sectores con obras ubicadas abren el mapa ya filtrado
+      window.satFilter=function(k){flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});
+        for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}box.scrollIntoView({behavior:'smooth',block:'start'})};
+      document.querySelectorAll('.sector .map-link').forEach(function(b){b.addEventListener('click',function(){satFilter(b.dataset.s)})});
+      layout();show(0);
+      if('IntersectionObserver' in window){new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){box.classList.add('in');ob.disconnect()}})},{threshold:.2}).observe(box)}else box.classList.add('in');
+      return function(){chipsRender();hintTx();shown=-1;show(cur)};
+    }
+    if(!$('mo-svg'))return $('sat')?SAT():function(){};
     // retícula
     var grat=$('mo-grat'),glab=$('mo-glab');
     for(var la=1;la>=-5;la--){var y=P(-81,la)[1];el("line",{x1:-10,x2:610,y1:y,y2:y,stroke:"rgba(255,255,255,.12)","stroke-dasharray":"2 6"},grat);el("text",{"class":"mo-gl",x:596,y:y-4,"text-anchor":"end"},glab).textContent=la===0?"0° Ecuador":Math.abs(la)+"° "+(la>0?"N":"S")}
@@ -1543,9 +1735,9 @@ footer a{color:var(--muted)}
     "t.corr":"Corrugation","t.diam":"Diameters","t.thick":"Thickness","t.shape":"Shapes","t.load":"Loads","t.std":"Standards","t.span":"Long span (152.S)","t.use":"Uses",
     "t.shape68":"Circular · arched","t.shape152":"Circular · vault · ellipse · underpass · arch","t.span152":"High and low profile arch · ellipse · egg shape","t.use152":"Pedestrian and vehicle underpasses · drainage",
     "mo.k":"Projects in Ecuador","mo.t":"Wherever the country <span class=\"grad\">is being built</span>","mo.lead":"From the coast to the Amazon, across the Andes. Tap a point on the map to see the project, where it is and the work we did.","mo.byWork":"By project","mo.byCity":"By city",
-    "proj.k":"Projects","proj.t":"Our track record is <span class=\"grad\">our calling card</span>",
+    "proj.k":"Projects","sat.lead":"Explore our projects across Ecuador: from the coast to the Amazon, across the Andes.","sat.hint":"Hover over a point to explore","map.hidro":"See the 3 projects on the map","map.trans":"See the project on the map","sat.credit":"Imagery: Copernicus Sentinel-2 (2019–2024) · relief: Terrain Tiles","proj.t":"Our track record is <span class=\"grad\">our calling card</span>",
     "proj.transport":"Public transport","proj.hydro":"Hydropower","proj.steel":"Steel structure","proj.res":"Residential",
-    "proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funival project",
+    "mo.other":"Other projects","proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funival project",
     "about.k":"About us","about.t":"A <span class=\"grad\">multidisciplinary</span> team","about.mk":"Our mission",
     "about.m":"“To provide our clients with innovative solutions for infrastructure projects, with punctuality and responsibility in delivery, allowing us to be the best option in the market through the full commitment of our team.”",
     "about.v":"<b>Vision:</b> to be an indispensable company in every area of construction and production, focused on meeting our clients' needs through personalized, guaranteed service.","about.more":"See our social work","crumb.p":"Products","pd.page":"Full product page","fichas.k":"Product pages (Spanish)","cul.ficha":"Full technical sheet","cul.k":"Metal culverts","more":"Learn more","more.all":"See all","pd.h":"Ask for a quote","pd.wa":"Quote on WhatsApp","pd.cat":"View catalog","pd.subs":"Product line","pd.adv":"Benefits","t.tables":"Technical tables","cul.view":"Open interactive catalog","cul.view2":"Interactive culvert catalog","cul.pdf":"Download PDF","cat.k":"Technical catalog","cat.t":"Metal culvert TMC","cat.meta":"13 pages · PDF · Spanish","cat.g":"What you will find","cat.hint":"Pick a chapter and the catalog opens right on that page.","cv.t":"Metal culvert catalog","cv.open":"Open in a new tab","cv.dl":"Download","about.lead":"Experience and quality in every project.","ab1.k":"Our services","ab1.d":"We distribute high-reliability fasteners for industry. We manufacture metal parts and components for each business area and set a strategy to fully satisfy all parties.","ab2.k":"Our method","ab2.d":"We run a diagnosis gathering information from everyone involved, then plan to achieve the highest productivity and satisfaction for all parties.","ab3.k":"Our engine","ab3.d":"We believe in continuous improvement and a clear purpose. We develop the talent of the whole team, which makes us stronger for new projects.","vid.k":"Videos","vid.t":"Joce Cia <span class=\"grad\">in video</span>","vid.lead":"See our work in the plant and on site.","v0.k":"Introduction","v1.k":"Plant and site","v2.k":"Plant and site","v3.k":"Plant and site","v1.t":"Multiple jobs and services","v2.t":"Jobs and services · part 1","v3.t":"Jobs and services · part 2","g0":"Community bakery in Esmeraldas","g1":"Joce Cia social work","g2":"Working with the community","g3":"Joce Cia donations","ch0":"Cover","ch1":"What is a CSP culvert?","ch2":"MP 68: material and properties","ch3":"MP 68: structures and loads","ch4":"MP 68: bolts and nuts","ch5":"MP 152 & 152.S: material","ch6":"MP 152: starter channels","ch7":"MP 152: ASTM A761 bolts",
@@ -1596,11 +1788,7 @@ footer a{color:var(--muted)}
   // Menú móvil
   var menu=document.getElementById('menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
-  nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');dd.classList.remove('open');dd.querySelector('.dd-t').setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
-  // Productos: menú desplegable (en el celular se abre con la flecha)
-  var dd=nav.querySelector('.dd');
-  dd.querySelector('.dd-t').addEventListener('click',function(){var o=dd.classList.toggle('open');this.setAttribute('aria-expanded',o)});
-  addEventListener('keydown',function(e){if(e.key==='Escape'&&dd.classList.contains('open')){dd.classList.remove('open')}});
+  nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
 
   try{
     if(localStorage.getItem('joce-lang')==='en')setLang('en');
@@ -1649,6 +1837,16 @@ footer a{color:var(--muted)}
   });
   document.getElementById('lang-es').addEventListener('click',function(){setTimeout(showFile)});
   document.getElementById('lang-en').addEventListener('click',function(){setTimeout(showFile)});
+})();
+</script>
+<script>
+/* Muestra de estilo: luz que sigue al cursor en las tarjetas y texto que se ilumina con el scroll */
+(function(){
+  if(matchMedia('(hover:hover)').matches){document.querySelectorAll('.fx-dark .tile').forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px')})})}
+  var lit=[].slice.call(document.querySelectorAll('.lit'));if(!lit.length)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){lit.forEach(function(el){el.style.setProperty('--p','100%')});return}
+  var q=false;function upd(){q=false;var h=innerHeight;lit.forEach(function(el){var r=el.getBoundingClientRect();var v=(h*.9-r.top)/(h*.55);v=Math.max(0,Math.min(1,v));el.style.setProperty('--p',(v*106-6).toFixed(1)+'%')})}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
 })();
 </script>
 </body>
