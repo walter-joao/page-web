@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Medidor de velocidad · Jocecia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b14;--bg2:#0d1522;--card:rgba(255,255,255,.035);--line:rgba(255,255,255,.09);--fg:#eef3fa;--muted:#8d9bb0;--old:#7d8aa0;--new:#ff8a3d;--ok:#5fd39a}
+:root:not([data-theme="light"]){color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#f5f7fb;--bg2:#fff;--card:#fff;--line:rgba(10,30,60,.1);--fg:#0f1b2d;--muted:#5b6a80;--old:#9aa6b8;--new:#ee7a2b;--ok:#1f9d63;color-scheme:light}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.55 Manrope,system-ui,sans-serif;min-height:100vh;background-image:radial-gradient(60% 40% at 50% -5%,rgba(60,120,220,.18),transparent 70%)}
+.wrap{max-width:820px;margin:0 auto;padding:48px 16px 64px}
+.pill{display:inline-flex;gap:8px;align-items:center;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font:500 .72rem/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pill i{width:6px;height:6px;border-radius:50%;background:var(--new);box-shadow:0 0 8px var(--new)}
+h1{font:800 clamp(2rem,6vw,3.2rem)/1.05 Archivo,sans-serif;letter-spacing:-.02em;margin:18px 0 12px}
+h1 b{color:var(--new)}
+.lead{color:var(--muted);max-width:60ch;margin:0 0 28px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;backdrop-filter:blur(8px)}
+button{font:700 1rem Manrope,sans-serif;border:0;border-radius:12px;padding:14px 22px;background:var(--new);color:#fff;cursor:pointer;box-shadow:0 8px 24px -8px var(--new);transition:transform .15s,opacity .2s}
+button:hover{transform:translateY(-1px)}button:active{transform:scale(.98)}
+button[disabled]{opacity:.55;cursor:progress;transform:none}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+#estado{font:500 .85rem "JetBrains Mono",monospace;color:var(--muted)}
+.test{margin-top:22px}
+.test h3{margin:0 0 4px;font:700 1.02rem Manrope}
+.test p{margin:0 0 12px;color:var(--muted);font-size:.9rem}
+.bar{display:grid;grid-template-columns:150px 1fr 86px;gap:12px;align-items:center;margin:8px 0}
+.bar span{font-size:.88rem}
+.bar .t{height:14px;border-radius:99px;background:rgba(127,140,160,.14);overflow:hidden}
+.bar .f{height:100%;width:0;border-radius:99px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.bar.old .f{background:var(--old)}.bar.new .f{background:linear-gradient(90deg,#ffb27a,var(--new))}
+.bar b{font:500 .9rem "JetBrains Mono",monospace;text-align:right}
+.verdict{margin-top:24px;padding:18px 20px;border-radius:14px;border:1px solid var(--line);display:none}
+.verdict.show{display:block}
+.verdict strong{font:800 1.6rem Archivo;color:var(--new)}
+.small{margin-top:28px;color:var(--muted);font-size:.82rem}
+@media (max-width:560px){.bar{grid-template-columns:1fr 74px}.bar span{grid-column:1/-1;margin-bottom:-4px}}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <span class="pill"><i></i>Prueba en vivo · desde su conexión</span>
+  <h1>¿Qué tan rápido carga <b>su web</b>?</h1>
+  <p class="lead">Esta prueba descarga los mismos archivos de la nueva web desde dos servidores, usando <strong>su propio internet</strong>, y mide cuánto tarda cada uno. Los dos tienen exactamente la misma página.</p>
+
+  <div class="card">
+    <div class="row">
+      <button id="go">Medir ahora</button>
+      <span id="estado">Tarda unos 20 segundos.</span>
+    </div>
+
+    <div class="test" data-k="ping">
+      <h3>Tiempo de respuesta</h3>
+      <p>Lo que tarda el servidor en contestar. Influye en cada clic.</p>
+      <div class="bar old"><span>Servidor actual (cPanel)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+      <div class="bar new"><span>Servidor nuevo (CDN)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+    </div>
+    <div class="test" data-k="foto">
+      <h3>Cargar una foto de portada</h3>
+      <p>Foto de 100 KB, como las del carrusel y la galería de obras.</p>
+      <div class="bar old"><span>Servidor actual (cPanel)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+      <div class="bar new"><span>Servidor nuevo (CDN)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+    </div>
+    <div class="test" data-k="pdf">
+      <h3>Abrir un catálogo PDF</h3>
+      <p>Catálogo de postes metálicos, 760 KB.</p>
+      <div class="bar old"><span>Servidor actual (cPanel)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+      <div class="bar new"><span>Servidor nuevo (CDN)</span><div class="t"><div class="f"></div></div><b>–</b></div>
+    </div>
+
+    <div class="verdict" id="veredicto"></div>
+  </div>
+
+  <p class="small">Cada prueba se repite 5 veces sin caché, alternando servidores, y se muestra la mediana. Servidor actual: prueba.jocecia.com (hosting compartido de Jocecia). Servidor nuevo: red de distribución (CDN) con nodos cerca de Ecuador.</p>
+</main>
+<script>
+(function(){
+  var OLD='https://prueba.jocecia.com', NEW=location.origin;
+  var TESTS=[
+    {k:'ping', path:'/robots.txt', n:7},
+    {k:'foto', path:'/img/portada/bauhaus-1280.webp', n:5},
+    {k:'pdf',  path:'/catalogos/postes.pdf', n:5}
+  ];
+  var go=document.getElementById('go'), est=document.getElementById('estado'), ver=document.getElementById('veredicto');
+  function med(a){var s=a.slice().sort(function(x,y){return x-y});return s[Math.floor(s.length/2)]}
+  async function once(base,path){
+    var t=performance.now();
+    var r=await fetch(base+path+'?m='+Date.now()+Math.random(),{cache:'no-store',mode:'cors'});
+    await r.arrayBuffer();
+    return performance.now()-t;
+  }
+  function fmt(ms){return ms<1000?Math.round(ms)+' ms':(ms/1000).toFixed(2).replace('.',',')+' s'}
+  function paint(k,o,n){
+    var box=document.querySelector('.test[data-k="'+k+'"]'), mx=Math.max(o,n);
+    var bo=box.querySelector('.old'), bn=box.querySelector('.new');
+    bo.querySelector('.f').style.width=(o/mx*100)+'%'; bo.querySelector('b').textContent=fmt(o);
+    bn.querySelector('.f').style.width=(n/mx*100)+'%'; bn.querySelector('b').textContent=fmt(n);
+  }
+  go.addEventListener('click',async function(){
+    go.disabled=true; ver.className='verdict'; var res={};
+    document.querySelectorAll('.f').forEach(function(f){f.style.width='0'});
+    document.querySelectorAll('.bar b').forEach(function(b){b.textContent='…'});
+    try{
+      for(var i=0;i<TESTS.length;i++){
+        var T=TESTS[i], a=[], b=[];
+        await once(OLD,T.path).catch(function(){}); await once(NEW,T.path).catch(function(){});
+        for(var j=0;j<T.n;j++){
+          est.textContent='Midiendo '+(i+1)+' de '+TESTS.length+'… ('+(j+1)+'/'+T.n+')';
+          a.push(await once(OLD,T.path)); b.push(await once(NEW,T.path));
+        }
+        res[T.k]=[med(a),med(b)]; paint(T.k,res[T.k][0],res[T.k][1]);
+      }
+      var x=res.pdf[0]/res.pdf[1];
+      ver.innerHTML=x>=1.2
+        ? '<strong>'+x.toFixed(1).replace('.',',')+'× más rápido</strong><br>El servidor nuevo entrega el catálogo en '+fmt(res.pdf[1])+' frente a '+fmt(res.pdf[0])+' en el servidor actual, medido con su conexión.'
+        : '<strong>Resultado parejo</strong><br>Con su conexión de ahora los dos servidores rinden parecido. Puede repetir la prueba en otro momento o desde el celular.';
+      ver.className='verdict show'; est.textContent='Listo. Puede repetir la prueba.';
+    }catch(e){
+      est.textContent='No se pudo completar la prueba (¿sin conexión?). Intente de nuevo.';
+    }
+    go.disabled=false;
+  });
+})();
+</script>
+</body>
+</html>
