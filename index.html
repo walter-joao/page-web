@@ -763,6 +763,69 @@ footer a{color:var(--muted)}
 .mo-row small{color:var(--muted);font:500 11px/1.45 var(--f-mono);display:block}
 .mo-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-mono);background:var(--c);color:#06101c}
 @media (prefers-reduced-motion:reduce){.mo-pin .halo{animation:none}}
+
+/* ===== Muestra de estilo (referencia Framer / Design+Code): portada, cifras y productos ===== */
+/* Portada: resplandor azul detrás del título y cuadrícula técnica muy tenue */
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(rgba(170,205,255,.07) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.07) 1px,transparent 1px) 0 0/64px 64px;
+  -webkit-mask-image:radial-gradient(70% 60% at 30% 70%,#000 20%,transparent 75%);mask-image:radial-gradient(70% 60% at 30% 70%,#000 20%,transparent 75%)}
+.hero::after{background:
+  radial-gradient(42% 38% at 26% 62%,rgba(52,120,255,.42),transparent 70%),
+  linear-gradient(180deg,rgba(4,8,15,.62) 0%,rgba(4,8,15,.4) 35%,rgba(4,8,15,.92) 100%)}
+.hero .kicker.pill{justify-self:start;padding:7px 14px 7px 10px;border-radius:999px;color:rgba(255,255,255,.88);letter-spacing:.12em;
+  background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));border:1px solid rgba(225,240,255,.22);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.18);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.hero .kicker.pill::before{width:7px;height:7px;border-radius:50%;background:#5fdcf5;box-shadow:0 0 0 0 rgba(95,220,245,.6);animation:fxpulse 2.4s ease-out infinite}
+@keyframes fxpulse{to{box-shadow:0 0 0 9px rgba(95,220,245,0)}}
+.hero h1{font-weight:600;font-stretch:100%;letter-spacing:-.04em;line-height:1;
+  background:linear-gradient(180deg,#fff 30%,#a4b1c4);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h1 .grad{background:linear-gradient(100deg,#8fb8ff,#5fdcf5 55%,#ffa057);-webkit-background-clip:text;background-clip:text}
+.hero .btn-glass,.fx-dark .btn-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border-color:rgba(225,240,255,.24);color:#fff;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 30px -12px rgba(0,0,0,.6)}
+.btn-accent{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 30px -10px var(--accent)}
+.hero-foot{border-top-color:rgba(225,240,255,.14)}
+
+/* Cifras: vidrio con brillo interior y números en degradado */
+.values .card{background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.015)),var(--glass);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14),inset 0 30px 40px -30px rgba(255,255,255,.08),var(--shadow)}
+.val b{font-weight:600;font-stretch:100%;letter-spacing:-.03em;font-size:3.1rem;
+  background:linear-gradient(180deg,var(--fg) 35%,color-mix(in srgb,var(--fg) 45%,transparent));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* Productos: isla oscura (también en tema claro) con resplandor y cuadrícula */
+.fx-dark{--bg:#05090f;--bg-2:#05090f;--surface:#0c1522;--glass:rgba(16,29,48,.55);--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.11);
+  --cyan:#3cc8e8;--accent:#ff8a3d;--accent-ink:#1b0c02;--grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --steel-a:#152235;--steel-b:#1d2d44;color-scheme:dark;background:#05090f!important;color:var(--fg);overflow:clip;isolation:isolate}
+.fx-dark::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.28),transparent 75%),
+    linear-gradient(rgba(170,205,255,.06) 1px,transparent 1px) 50% 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.06) 1px,transparent 1px) 50% 0/64px 64px;
+  -webkit-mask-image:linear-gradient(180deg,#000 0,#000 520px,transparent 900px);mask-image:linear-gradient(180deg,#000 0,#000 520px,transparent 900px)}
+.fx-dark .sec-head{justify-items:center;text-align:center;margin-inline:auto;max-width:860px}
+.fx-dark .subcat .sec-head{justify-items:start;text-align:left;margin-inline:0}
+.fx-dark h2{font-weight:600;font-stretch:100%;letter-spacing:-.04em;font-size:clamp(2.2rem,5.4vw,4.2rem);
+  background:linear-gradient(180deg,#fff 35%,#8d9bb0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.fx-dark h2 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text}
+.fx-dark .kicker{padding:6px 14px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.04);box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.fx-dark .kicker::before{display:none}
+.fx-dark .tile{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015));border-color:rgba(225,240,255,.12);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.1),inset 0 30px 30px -20px rgba(255,255,255,.04),0 30px 60px -30px rgba(0,0,0,.8);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .35s}
+.fx-dark .tile .corr{margin:8px 8px 0;border-radius:calc(var(--radius) - 8px);-webkit-mask-image:linear-gradient(180deg,#000 55%,rgba(0,0,0,.35));mask-image:linear-gradient(180deg,#000 55%,rgba(0,0,0,.35))}
+.fx-dark .tile .corr img{transition:transform .6s cubic-bezier(.2,.8,.2,1),filter .4s;filter:saturate(.85) brightness(.9)}
+.fx-dark .tile h3{font-weight:600;letter-spacing:-.02em}
+.fx-dark .tile::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;
+  background:radial-gradient(380px circle at var(--mx,50%) var(--my,0%),rgba(120,175,255,.16),transparent 60%)}
+@media (hover:hover){
+  .fx-dark .tile:hover{transform:translateY(-4px);border-color:rgba(160,200,255,.32)}
+  .fx-dark .tile:hover::after{opacity:1}
+  .fx-dark .tile:hover .corr img{transform:scale(1.05);filter:none}
+}
+.fx-dark .fichas a{background:rgba(255,255,255,.04)}
+
+/* Texto que se ilumina palabra por palabra al hacer scroll */
+.lit{--p:0%;background:linear-gradient(90deg,var(--fg) var(--p),color-mix(in srgb,var(--fg) 28%,transparent) calc(var(--p) + 6%));
+  -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice}
+.fx-dark .lead.lit-wrap{font-size:clamp(1.1rem,2vw,1.4rem);max-width:46ch;line-height:1.45}
+@media (prefers-reduced-motion:reduce){.hero .kicker.pill::before{animation:none}.lit{--p:100%!important}.fx-dark .tile,.fx-dark .tile .corr img{transition:none}}
 </style>
 
 </head>
@@ -808,7 +871,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="wrap">
       <div class="copy">
-        <span class="kicker" data-i18n="hero.k">Ingeniería y materiales · Ecuador</span>
+        <span class="kicker pill" data-i18n="hero.k">Ingeniería y materiales · Ecuador</span>
         <h1 data-i18n-html="hero.title">Experiencia y <span class="grad">calidad</span><span class="vh">: infraestructura metálica, pernos y alcantarillas en Ecuador</span></h1>
         <p class="lead" data-i18n="hero.lead">Fabricamos e importamos estructuras metálicas, pernos, alcantarillas y grating para hidroeléctricas, minería, cementeras, sector eléctrico y obra vial. Con más de 20 años de experiencia participando en los proyectos emblemáticos de ingeniería en el país.</p>
         <div class="cta-row">
@@ -907,12 +970,12 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section id="productos" style="background:var(--bg-2)">
+  <section id="productos" class="fx-dark">
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker" data-i18n="prod.k">Productos</span>
         <h2 data-i18n-html="prod.t">Todo el acero de <span class="grad">su proyecto</span></h2>
-        <p class="lead" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</p>
+        <p class="lead lit-wrap"><span class="lit" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</span></p>
       </div>
       <div class="bento">
         <a class="tile big rv" href="/productos/infraestructura-metalica"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F08%2FGalpon2.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/08/Galpon2.png" alt="Infraestructura metálica: postes, galpones y cerchas fabricados por Joce Cia" loading="lazy"></div><div class="body"><h3 data-i18n="p1.t">Infraestructura metálica</h3><p data-i18n="p1.d">Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.</p><div class="chips"><span data-i18n="p1.c1">Galpones</span><span data-i18n="p1.c2">Postes</span><span data-i18n="p1.c3">Cerchas</span><span data-i18n="p1.c4">Pasarelas</span></div><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
@@ -1686,6 +1749,16 @@ footer a{color:var(--muted)}
   });
   document.getElementById('lang-es').addEventListener('click',function(){setTimeout(showFile)});
   document.getElementById('lang-en').addEventListener('click',function(){setTimeout(showFile)});
+})();
+</script>
+<script>
+/* Muestra de estilo: luz que sigue al cursor en las tarjetas y texto que se ilumina con el scroll */
+(function(){
+  if(matchMedia('(hover:hover)').matches){document.querySelectorAll('.fx-dark .tile').forEach(function(t){t.addEventListener('pointermove',function(e){var r=t.getBoundingClientRect();t.style.setProperty('--mx',(e.clientX-r.left)+'px');t.style.setProperty('--my',(e.clientY-r.top)+'px')})})}
+  var lit=[].slice.call(document.querySelectorAll('.lit'));if(!lit.length)return;
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches){lit.forEach(function(el){el.style.setProperty('--p','100%')});return}
+  var q=false;function upd(){q=false;var h=innerHeight;lit.forEach(function(el){var r=el.getBoundingClientRect();var v=(h*.9-r.top)/(h*.55);v=Math.max(0,Math.min(1,v));el.style.setProperty('--p',(v*106-6).toFixed(1)+'%')})}
+  addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
 })();
 </script>
 </body>
