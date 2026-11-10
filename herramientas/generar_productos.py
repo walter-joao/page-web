@@ -276,6 +276,7 @@ CSS_EXTRA = """
 .pp-hero .crumb{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .pp-hero .crumb a{color:var(--cyan);text-decoration:none}
 .pp-hero h1{font-size:clamp(2.2rem,5.6vw,4rem);font-weight:800;font-stretch:110%;margin:14px 0 10px;max-width:22ch}
+.pp-hero .pp-lead{font-size:clamp(1.08rem,1.6vw,1.28rem);line-height:1.55;max-width:62ch;margin:0 0 14px;color:var(--fg)}
 .pp-hero .grupo{color:var(--muted);margin:0 0 22px}
 .pp-gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:34px 0 0}
 .pp-gal figure{margin:0;border-radius:16px;overflow:hidden;background:var(--surface);aspect-ratio:4/3}
@@ -378,7 +379,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
     <div class="wrap">
       <nav class="crumb" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/#productos">Productos</a> / <span>{grupo}</span></nav>
       <h1>{nombre_e}</h1>
-      <p class="grupo">{grupo} · Joce Cia Ltda., Sangolquí, Ecuador</p>
+      {intro}<p class="grupo">{grupo} · Joce Cia Ltda., Sangolquí, Ecuador</p>
       <div class="cta-row">{botones}</div>
       {galeria}
     </div>
@@ -406,6 +407,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
            head_comun=head_comun, ld=json.dumps(ld, ensure_ascii=False, indent=1), css_base=css_base,
            css_extra=CSS_EXTRA, logo=img_opt("https://jocecia.com/portal/wp-content/uploads/2025/02/LOGO-JOCECIA-1024x530.png", 384),
            grupo=html.escape(p["grupo"]), botones="".join(botones), galeria=gal_html,
+           intro=('<p class="pp-lead">%s</p>\n      ' % html.escape(p["intro"])) if p.get("intro") else "",
            cuerpo=cuerpo_html(bloques, nombre), rel=rel_html, script=SCRIPT)
 
 
