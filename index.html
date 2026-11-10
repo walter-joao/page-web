@@ -820,6 +820,12 @@ footer a{color:var(--muted)}
   .fx-dark .tile:hover .corr img{transform:scale(1.05);filter:none}
 }
 .fx-dark .fichas a{background:rgba(255,255,255,.04)}
+.values.fx-dark{background:#05090f!important;overflow:visible}.values.fx-dark::before{display:none}
+#mapa-obras.fx-dark::before{background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.22),transparent 75%),linear-gradient(rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px}
+.fx-dark .mo-map{border-color:rgba(160,200,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.4),0 40px 90px -30px rgba(40,110,255,.35)}
+.fx-dark .mo-panel{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)),#0a121d;border-color:rgba(225,240,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 30px 60px -30px rgba(0,0,0,.8)}
+.fx-dark .mo-chip:not([aria-pressed="true"]),.fx-dark .mo-seg,.fx-dark .mo-row{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-color:rgba(225,240,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.fx-dark .mo-ocard{background:rgba(255,255,255,.03)}
 
 /* Texto que se ilumina palabra por palabra al hacer scroll */
 .lit{--p:0%;background:linear-gradient(90deg,var(--fg) var(--p),color-mix(in srgb,var(--fg) 28%,transparent) calc(var(--p) + 6%));
@@ -886,7 +892,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <div class="values">
+  <div class="values fx-dark">
     <div class="wrap">
       <div class="card rv">
         <div class="val"><b><span class="count" data-to="20">20</span>+</b><span data-i18n="v.years">años de experiencia</span></div>
@@ -897,12 +903,12 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
-  <section id="mapa-obras" style="padding-top:40px">
+  <section id="mapa-obras" class="fx-dark" style="padding-top:72px">
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker" data-i18n="mo.k">Obras en Ecuador</span>
         <h2 data-i18n-html="mo.t">Presentes donde el país <span class="grad">se construye</span></h2>
-        <p class="lead" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</p>
+        <p class="lead lit-wrap"><span class="lit" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</span></p>
       </div>
       <div class="mo-bar">
         <div class="mo-left">
