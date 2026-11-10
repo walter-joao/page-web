@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Productos Jocecia · recorrido 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: la sección Productos como un recorrido a pantalla completa por aplicación. Capítulos con objeto 3D girable sobre fondo continuo JOCE o con foto de obra grande; texto en panel de vidrio; carril de capítulos abajo. */
+:root{
+  --bg:#05090f;--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.13);
+  --glass:rgba(8,14,24,.62);--glass2:rgba(255,255,255,.08);
+  --stage-a:#1b3561;--stage-b:#070d17;--floor:rgba(60,200,232,.16);
+  --veil:rgba(5,10,20,.58);--cyan:#3cc8e8;--accent:#ff8a3d;--onacc:#1a0d03;
+  --f-d:"Archivo","Arial Narrow",Arial,sans-serif;--f-b:"Manrope",system-ui,sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:dark}
+@media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
+  --bg:#f3f5f9;--fg:#0e1726;--muted:#55657a;--line:rgba(14,30,55,.13);
+  --glass:rgba(255,255,255,.72);--glass2:rgba(14,30,55,.06);
+  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#1a8fb0;--accent:#e2681f;--onacc:#fff;color-scheme:light}}
+:root[data-theme="light"]{
+  --bg:#f3f5f9;--fg:#0e1726;--muted:#55657a;--line:rgba(14,30,55,.13);
+  --glass:rgba(255,255,255,.72);--glass2:rgba(14,30,55,.06);
+  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#1a8fb0;--accent:#e2681f;--onacc:#fff;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0}
+html,body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.kicker{font:500 .74rem var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+h1,h2,h3{font-family:var(--f-d);text-wrap:balance;margin:0}
+.grad{background:linear-gradient(90deg,#4f86ff,var(--cyan) 55%,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.head{padding-block:56px 26px;display:grid;gap:10px}
+.head h2{font-weight:700;font-size:clamp(2rem,5.2vw,3.6rem);line-height:1;letter-spacing:-.035em}
+.head p{margin:0;color:var(--muted);max-width:62ch;font-size:1.06rem}
+
+/* Escenario */
+.tour{position:relative;height:min(86svh,820px);min-height:560px;overflow:hidden;isolation:isolate;border-block:1px solid var(--line);
+  background:radial-gradient(70% 80% at 62% 38%,var(--stage-a),var(--stage-b) 75%)}
+.tour::after{content:"";position:absolute;left:30%;right:-5%;bottom:9%;height:22%;z-index:0;background:radial-gradient(50% 50% at 50% 50%,var(--floor),transparent 70%);pointer-events:none}
+.bgph{position:absolute;inset:-30px;z-index:0;opacity:0;transition:opacity .8s ease}
+.bgph.on{opacity:1}
+.bgph img{width:100%;height:100%;object-fit:cover;filter:blur(9px) saturate(.75)}
+.bgph::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 65% 45%,transparent,var(--veil) 80%),var(--veil)}
+.bg-cap{position:absolute;z-index:3;right:max(18px,env(safe-area-inset-right,0px));bottom:84px;font:500 .7rem var(--f-m);letter-spacing:.08em;color:var(--muted)}
+.photo{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .8s ease;overflow:hidden;cursor:zoom-in}
+.photo.on{opacity:1}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s ease-out,transform-origin 0s}
+.photo.on img{transform:scale(1)}
+.photo.zoom{cursor:zoom-out}
+.photo.zoom img{transform:scale(2);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,6,11,.82),rgba(3,6,11,.25) 55%,rgba(3,6,11,.05)),linear-gradient(transparent 60%,rgba(3,6,11,.7));pointer-events:none}
+#gl{position:absolute;inset:0;z-index:2;width:100%;height:100%;touch-action:pan-y;cursor:grab;opacity:0;transition:opacity .6s}
+#gl.on{opacity:1}
+#gl.drag{cursor:grabbing}
+.panel{position:absolute;z-index:3;left:max(18px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-55%);width:min(440px,calc(100% - 36px));
+  padding:24px 24px 22px;border-radius:22px;background:var(--glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);display:grid;gap:12px}
+@media (min-width:1280px){.panel{left:calc((100vw - 1240px)/2 + 18px)}}
+.panel > *{transition:opacity .45s ease,transform .45s ease}
+.panel.out > *{opacity:0;transform:translateY(14px)}
+.panel .app{display:flex;gap:10px;align-items:center}
+.panel .app b{font:500 .7rem var(--f-m);letter-spacing:.12em;color:var(--muted)}
+.panel h3{font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.02;letter-spacing:-.03em}
+.panel p{margin:0;color:var(--muted)}
+.vars{display:flex;flex-wrap:wrap;gap:6px}
+.vars button{border:1px solid var(--line);background:var(--glass2);border-radius:999px;padding:7px 13px;font-size:.86rem;font-weight:600;cursor:pointer;color:var(--fg)}
+.vars button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:transparent}
+.vars span{border:1px solid var(--line);border-radius:999px;padding:6px 12px;font-size:.84rem;color:var(--muted)}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0;font-size:.9rem}
+.facts dt{font:500 .7rem/1.9 var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.facts dd{margin:0;min-width:0}
+.ctas{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:.92rem;text-decoration:none;border:1px solid var(--line);background:var(--glass2)}
+.btn.acc{background:var(--accent);color:var(--onacc);border-color:transparent}
+.hint{position:absolute;z-index:3;right:max(18px,env(safe-area-inset-right,0px));top:18px;font:500 .72rem var(--f-m);letter-spacing:.06em;color:var(--muted);padding:7px 12px;border-radius:999px;background:var(--glass);border:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.hint i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,138,61,.2)}
+.photo-cap{position:absolute;z-index:3;right:max(18px,env(safe-area-inset-right,0px));bottom:92px;color:#fff;text-align:right;font:500 .74rem var(--f-m);letter-spacing:.06em;opacity:.85}
+
+/* Carril de capítulos */
+.rail{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:0 max(18px,env(safe-area-inset-right,0px)) 16px max(18px,env(safe-area-inset-left,0px));
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;justify-content:safe center}
+.rail::-webkit-scrollbar{display:none}
+.rail button{flex:0 0 auto;border:0;background:none;cursor:pointer;padding:12px 10px 6px;min-width:120px;text-align:left;color:var(--muted);display:grid;gap:6px}
+.rail button small{font:500 .66rem var(--f-m);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.rail button span{font-weight:700;font-size:.9rem;color:inherit}
+.rail button i{display:block;height:2px;border-radius:2px;background:var(--line);overflow:hidden}
+.rail button i::after{content:"";display:block;height:100%;width:0;background:var(--accent)}
+.rail button[aria-selected="true"]{color:var(--fg)}
+.rail button[aria-selected="true"] i::after{width:var(--p,100%)}
+.tour.photo-on .rail button{color:rgba(255,255,255,.7)}
+.tour.photo-on .rail button[aria-selected="true"]{color:#fff}
+.tour.photo-on .rail button i{background:rgba(255,255,255,.25)}
+.arrows{position:absolute;z-index:4;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:grid;gap:8px}
+.arrows button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--glass);cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px)}
+
+.more{padding-block:22px 10px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;color:var(--muted)}
+.more a{font-weight:700;color:var(--fg);text-decoration:none;border-bottom:1px solid var(--line)}
+.note{padding-block:18px 60px;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px 28px;color:var(--muted);font-size:.93rem}
+.note div{border-top:1px solid var(--line);padding-top:12px;min-width:0}
+.note b{color:var(--fg);display:block;margin-bottom:2px}
+
+@media (max-width:760px){
+  .tour{height:auto;min-height:0;display:flex;flex-direction:column}
+  .stagebox{position:relative;height:58svh;min-height:340px}
+  .tour::after{left:0;right:0;bottom:auto;top:40svh;height:16svh}
+  .panel{position:relative;left:auto;top:auto;transform:none;width:auto;margin:-36px 12px 0;}
+  .rail{position:relative;justify-content:flex-start;padding-top:8px}
+  .arrows{top:29svh}
+  .hint{top:12px}
+  .photo-cap{bottom:auto;top:52svh}
+  .bg-cap{bottom:46px;left:max(18px,env(safe-area-inset-left,0px));right:auto}
+  .tour.photo-on .rail button{color:var(--muted)}
+  .tour.photo-on .rail button[aria-selected="true"]{color:var(--fg)}
+  .tour.photo-on .rail button i{background:var(--line)}
+}
+.stagebox{overflow:hidden}
+@media (min-width:761px){.stagebox{position:absolute;inset:0}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<p class="wrap" style="padding-block:14px 0;margin:0"><a href="/" style="color:var(--muted);font-size:.9rem">‹ Volver a la web</a></p>
+
+<div class="wrap head">
+  <span class="kicker">Productos · página de prueba</span>
+  <h2>Todo el acero de <span class="grad">su proyecto</span></h2>
+  <p>Fabricación propia en Sangolquí e importación bajo normas internacionales. Recorra por aplicación: gire los productos con el dedo o el ratón y acérquese con la rueda o con dos dedos.</p>
+</div>
+
+<section class="tour" id="tour" aria-label="Recorrido de productos">
+  <div class="stagebox">
+    <div class="bgph" id="bg-tunel"><img alt="" src="/img/obras/tunel-banos-1.webp"></div>
+    <div class="bgph" id="bg-alc"><img alt="" src="/img/productos-3d/fondo-alcantarilla.webp"></div>
+    <div class="bgph" id="bg-metro"><img alt="" src="/img/obras/metro-rejillas.webp"></div>
+    <div class="bgph" id="bg-postes"><img alt="" src="/img/productos-3d/fondo-postes.webp"></div>
+    <div class="photo" id="ph-vial"><img alt="Pasarela peatonal metálica sobre una vía de Quito" src="/img/portada/vial-2400.webp"></div>
+    <div class="photo" id="ph-soporte"><img alt="Equipo de perforación instalando soporte en roca dentro de un túnel" src="/img/productos-3d/soporte-roca-1916.webp"></div>
+    <div class="photo" id="ph-sanfco"><img alt="Casa de máquinas de una central hidroeléctrica" src="/img/portada/sanfco-2400.webp"></div>
+    <canvas id="gl" aria-label="Modelo 3D del producto. Arrastre para girar."></canvas>
+    <div class="bg-cap" id="bgcap"></div>
+    <div class="hint" id="hint"><i></i><span id="hintt">Arrastre para girar · rueda para acercar</span></div>
+    <div class="arrows"><button type="button" id="prev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button><button type="button" id="next" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
+  </div>
+  <div class="panel" id="panel" aria-live="polite">
+    <div class="app"><span class="kicker" id="pk"></span><b id="pn"></b></div>
+    <h3 id="pt"></h3>
+    <p id="pd"></p>
+    <div class="vars" id="pv"></div>
+    <dl class="facts" id="pf"></dl>
+    <div class="ctas"><a class="btn acc" href="https://wa.me/593964068392" id="pw" target="_blank" rel="noopener">Cotizar por WhatsApp</a><a class="btn" href="/productos/" id="pl">Ver ficha ›</a></div>
+  </div>
+  <div class="rail" id="rail" role="tablist" aria-label="Aplicaciones"></div>
+</section>
+
+<div class="wrap">
+  <div class="more"><span class="kicker">También</span><a href="/productos/encofrados">Encofrados</a><a href="/productos/accesorios-para-tuberias">Accesorios para tuberías</a><a href="/productos/venta-de-soldadoras">Venta de soldadoras</a><a href="/productos/alcantarillas-metalicas">Alcantarillas MP 68 y MP 152</a></div>
+  <div class="note">
+    <div><b>Cómo funciona</b>Siete capítulos por aplicación. Cuatro llevan el producto en 3D, que se puede girar y acercar. Los otros tres usan una foto de obra a pantalla completa: un clic acerca la foto al punto donde se toca. El recorrido avanza solo cada 9 segundos hasta que el visitante lo toca.</div>
+    <div><b>Las variantes cambian el modelo</b>En pernos, el botón Bronce-silicio cambia el metal a bronce. En alcantarillas, MP 68 muestra un tubo y MP 152 una bóveda grande. En grating se ve el borde antideslizante y en postes, el brazo de alumbrado o la cruceta para cables.</div>
+    <div><b>Qué falta para la versión final</b>Los modelos 3D están hechos por código, sin escaneo, y pesan casi nada. Habría que revisar con Jocecia que las medidas y formas coincidan con lo que venden. Las fotos se cambian por las de cámara cuando las entreguen.</div>
+  </div>
+</div>
+
+<script src="/vendor/three/three.min.js"></script>
+<script>
+(function(){
+const C=[
+ {k:'Fijación y anclaje',t:'Pernos de alta fiabilidad',d:'Pernos a la forja, pernos bronce-silicio y pernos de anclaje para molinos, minería, construcción y vía férrea.',m:'pernos',bg:'tunel',bc:'Fondo: Túnel de Baños, pernos de anclaje de Jocecia',v:['Todos','A la forja','Bronce-silicio','De anclaje'],f:[['A la forja','9 tipos'],['Bronce-silicio','1 % a 5 % de silicio, resiste agua dulce y salada'],['Catálogo','PDF bronce-silicio']]},
+ {k:'Drenaje vial',t:'Alcantarillas metálicas',d:'Alcantarillas TMC de acero corrugado galvanizado, en tubo o en bóveda para pasos de mayor luz.',m:'alc',bg:'alc',bc:'Fondo: alcantarilla instalada en obra',v:['MP 68','MP 152'],f:[['Modelos','MP 68 · MP 152 · MP 152.S'],['Material','Acero corrugado galvanizado'],['Extra','Catálogo interactivo y PDF']]},
+ {k:'Pisos industriales',t:'Grating y tramex',d:'Rejillas de acero galvanizado o inoxidable para pisos industriales, almacenes y plataformas de trabajo.',m:'grat',bg:'metro',bc:'Fondo: rejillas en el Metro de Quito',v:['De barra','Antideslizante'],f:[['De barra','Para alta carga'],['Antideslizante','Zonas con humedad y aceite'],['Ya lo usó','Metro de Quito']]},
+ {k:'Alumbrado y redes',t:'Postes metálicos',d:'Postes para alumbrado público, sujeción de cables y anclaje de estructuras.',m:'poste',bg:'postes',bc:'Fondo: postes galvanizados en patio',v:['Alumbrado','Sujeción de cables'],f:[['Acabado','Galvanizado'],['Catálogo','PDF postes']]},
+ {k:'Estructura',t:'Infraestructura metálica',d:'Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.',ph:'vial',tags:['Galpones','Pasarelas','Escaleras','Cerchas','Placas'],f:[['Taller','Sangolquí'],['Ya lo usó','Metro de Quito']]},
+ {k:'Túneles y roca',t:'Soporte en roca',d:'Barra helicoidal y cartuchos de resina para sostener túneles y galerías, reforzar pilares en minería y consolidar taludes.',ph:'soporte',tags:['Barra helicoidal','Cartucho de resina'],f:[['Ya lo usó','Túnel de Baños'],['Catálogo','PDF resina de anclaje']]},
+ {k:'Sectores estratégicos',t:'Piezas especiales',d:'Fabricación y reparación de partes y piezas para sectores estratégicos, hechas a medida en el taller.',ph:'sanfco',tags:['Fabricación','Reparación','A medida'],f:[['Taller','Sangolquí']]}
+];
+const $=s=>document.querySelector(s);
+const SL=["pernos-de-alta-fiabilidad", "alcantarillas-metalicas", "grating-tramex", "postes-metalicos", "infraestructura-metalica", "soporte-en-roca", "partes-y-piezas-especiales"];
+const tour=$('#tour'),panel=$('#panel'),gl=$('#gl'),rail=$('#rail');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}"><small>${c.m?'3D · ':'Foto · '}${c.k}</small><span>${c.t}</span><i></i></button>`).join('');
+
+/* ---------- 3D ---------- */
+let R=null,S,cam,root,env,mats={},cur=-1,vari=0;
+const st={ry:.6,rx:.18,vry:0,dist:1,tdist:1,auto:!reduce,lastUser:0,base:6,ty:0};
+function initGL(){
+  if(!window.THREE)return false;
+  try{R=new THREE.WebGLRenderer({canvas:gl,antialias:true,alpha:true});}catch(e){return false}
+  R.setPixelRatio(Math.min(devicePixelRatio,2));
+  R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
+  R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+  S=new THREE.Scene();cam=new THREE.PerspectiveCamera(32,1,.05,200);
+  // Entorno de estudio para reflejos del metal
+  const es=new THREE.Scene();
+  const sg=new THREE.SphereGeometry(20,32,16);const col=[];const p=sg.attributes.position;
+  for(let i=0;i<p.count;i++){const y=p.getY(i)/20;const c=new THREE.Color().lerpColors(new THREE.Color(0x0a1424),new THREE.Color(0x9fb6d6),Math.max(0,y*.5+.5));col.push(c.r,c.g,c.b)}
+  sg.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
+  es.add(new THREE.Mesh(sg,new THREE.MeshBasicMaterial({side:THREE.BackSide,vertexColors:true})));
+  const box=(x,y,z,w,h,c)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m)};
+  box(-8,9,6,9,5,0xffffff);box(9,4,-4,3,10,0xffb27a);box(4,-2,9,10,2,0x9ad8ff);
+  const pm=new THREE.PMREMGenerator(R);env=pm.fromScene(es,.04).texture;S.environment=env;
+  S.add(new THREE.HemisphereLight(0xdbe8ff,0x0b1320,.5));
+  const key=new THREE.DirectionalLight(0xffffff,1.6);key.position.set(-4,8,6);key.castShadow=true;
+  key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-6,right:6,top:6,bottom:-6,near:.5,far:30});key.shadow.radius=6;S.add(key);
+  const rim=new THREE.DirectionalLight(0xff8a3d,1.4);rim.position.set(5,3,-6);S.add(rim);
+  const fill=new THREE.DirectionalLight(0x3cc8e8,.35);fill.position.set(6,1,5);S.add(fill);
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.ShadowMaterial({opacity:.35}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.name='floor';S.add(floor);
+  const M=(c,me,ro)=>new THREE.MeshStandardMaterial({color:c,metalness:me,roughness:ro,envMapIntensity:1.1});
+  mats.steel=M(0x2b2f35,.85,.42);mats.steelL=M(0x3a3f46,.8,.5);mats.bronze=M(0xb07a45,1,.32);
+  mats.galv=M(0xc9d0d8,.9,.36);mats.galvD=M(0xa7b0ba,.9,.45);mats.inox=M(0xe3e7ec,1,.2);
+  mats.lamp=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xfff1d6,emissiveIntensity:1.6});
+  mats.ins=M(0x7a4a2a,.1,.35);
+  root=new THREE.Group();S.add(root);
+  return true;
+}
+const sh=m=>{m.castShadow=true;m.receiveShadow=true;return m};
+function threadOn(g,r,y0,y1,mat){
+  const pitch=r*.42,turns=(y1-y0)/pitch,pts=[];const n=Math.ceil(turns*24);
+  for(let i=0;i<=n;i++){const a=i/24*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,y0+i/n*(y1-y0),Math.sin(a)*r))}
+  g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),n*2,r*.11,6,false),mat)));
+}
+function boltHex(mat,len){const g=new THREE.Group(),r=.11;
+  {const sk=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));sk.position.y=len/2;g.add(sk);}
+  const h=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.3,6),mat));h.position.y=r*.65;g.add(h);
+  const ch=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.6,r*1.9,r*.25,24),mat));ch.position.y=r*1.4;g.add(ch);
+  threadOn(g,r*.97,len*.45,len-.02,mat);
+  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.85,r*1.85,r*1.4,6),mat));nut.position.y=len*.62;g.add(nut);
+  const w=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*2.3,r*2.3,r*.2,32),mat));w.position.y=len*.62-r*.8;g.add(w);
+  return g}
+function boltForged(mat,len){const g=new THREE.Group(),r=.12;
+  const head=sh(new THREE.Mesh(new THREE.BoxGeometry(r*3.6,r*1.2,r*1.9),mat));head.position.y=r*.6;g.add(head);
+  const neck=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r*1.5,r*1.6,24),mat));neck.position.y=r*2;g.add(neck);
+  const s=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));s.position.y=len/2+r*1.2;g.add(s);
+  threadOn(g,r*.97,len*.5,len+r*1.1,mat);return g}
+function boltAnchor(mat){const g=new THREE.Group(),r=.09;
+  const path=new THREE.CurvePath();
+  path.add(new THREE.LineCurve3(new THREE.Vector3(0,2.1,0),new THREE.Vector3(0,.45,0)));
+  path.add(new THREE.QuadraticBezierCurve3(new THREE.Vector3(0,.45,0),new THREE.Vector3(0,0,0),new THREE.Vector3(.4,0,0)));
+  path.add(new THREE.LineCurve3(new THREE.Vector3(.4,0,0),new THREE.Vector3(.62,0,0)));
+  g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(path,80,r,20,false),mat)));
+  threadOn(g,r*.97,1.5,2.08,mat);
+  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.4,6),mat));nut.position.y=1.72;g.add(nut);
+  const pl=sh(new THREE.Mesh(new THREE.BoxGeometry(.42,.04,.42),mats.steelL));pl.position.y=1.62;g.add(pl);
+  g.position.y=r;return g}
+function buildPernos(v){const g=new THREE.Group();const m=v===2?mats.bronze:mats.steel;
+  const lay=(o,x,rz)=>{o.position.x=x;o.rotation.y=rz||0;g.add(o)};
+  if(v===0){lay(boltForged(mats.steel,1.9),-1.05,.3);lay(boltHex(mats.bronze,1.7),0,-.2);lay(boltAnchor(mats.steel),.9,-.6)}
+  else if(v===1){lay(boltForged(m,2.1),-.45,.3);lay(boltForged(m,1.5),.45,-.4)}
+  else if(v===2){lay(boltHex(m,1.9),-.4,.2);lay(boltHex(m,1.35),.45,-.3)}
+  else{lay(boltAnchor(m),-.3,.2);lay(boltAnchor(m),.45,-1)}
+  return {g,size:2.6,y:1}}
+function corr(R0,L,P,A,phi){const pts=[],n=Math.round(L/P*14);
+  for(let i=0;i<=n;i++){const y=-L/2+L*i/n;pts.push(new THREE.Vector2(R0+A*Math.sin(y/P*Math.PI*2),y))}
+  const geo=new THREE.LatheGeometry(pts,phi?72:96,0,phi||Math.PI*2);geo.computeVertexNormals();
+  const m=sh(new THREE.Mesh(geo,mats.galv.clone()));m.material.side=THREE.DoubleSide;return m}
+function buildAlc(v){const g=new THREE.Group();
+  if(v===0){const t=corr(.62,3.2,.12,.022);t.rotation.z=Math.PI/2;t.position.y=.64;g.add(t);
+    [-1.6,1.6].forEach(x=>{const ring=sh(new THREE.Mesh(new THREE.TorusGeometry(.62,.025,10,64),mats.galvD));ring.rotation.y=Math.PI/2;ring.position.set(x,.64,0);g.add(ring)});
+    return {g,size:3.4,y:.64}}
+  const a=corr(1.25,3,.22,.05,Math.PI);a.rotation.z=Math.PI/2;a.rotation.y=0;g.add(a);
+  [-1.5,1.5].forEach(x=>{const ring=sh(new THREE.Mesh(new THREE.TorusGeometry(1.25,.04,10,64,Math.PI),mats.galvD));ring.rotation.y=Math.PI/2;ring.position.x=x;g.add(ring)});
+  [-1,1].forEach(z=>{const f=sh(new THREE.Mesh(new THREE.BoxGeometry(3.1,.12,.3),mats.galvD));f.position.set(0,.06,z*1.27);g.add(f)});
+  return {g,size:3.6,y:.7}}
+function buildGrat(v){const g=new THREE.Group(),W=2.6,D=1.7,H=.12,sp=.08,t=.014;const mat=mats.galv;
+  const nb=Math.floor(W/sp);const bar=new THREE.BoxGeometry(t,H,D);
+  const ib=new THREE.InstancedMesh(bar,mat,nb+1);const o=new THREE.Object3D();
+  for(let i=0;i<=nb;i++){o.position.set(-W/2+i*sp,H/2,0);o.updateMatrix();ib.setMatrixAt(i,o.matrix)}ib.castShadow=ib.receiveShadow=true;g.add(ib);
+  const nc=Math.floor(D/.1);const cr=new THREE.CylinderGeometry(.009,.009,W,8);cr.rotateZ(Math.PI/2);
+  const ic=new THREE.InstancedMesh(cr,mat,nc+1);for(let i=0;i<=nc;i++){o.position.set(0,H-.012,-D/2+i*.1);o.updateMatrix();ic.setMatrixAt(i,o.matrix)}ic.castShadow=true;g.add(ic);
+  if(v===1){const nt=Math.floor(D/.035);const tooth=new THREE.ConeGeometry(.012,.022,4);const it=new THREE.InstancedMesh(tooth,mat,(nb+1)*nt);let k=0;
+    for(let i=0;i<=nb;i++)for(let j=0;j<nt;j++){o.position.set(-W/2+i*sp,H+.01,-D/2+j*.035+.017);o.updateMatrix();it.setMatrixAt(k++,o.matrix)}g.add(it)}
+  [[W+.03,H,t*2,0,-D/2],[W+.03,H,t*2,0,D/2]].forEach(([a,b,c,x,z])=>{const f=sh(new THREE.Mesh(new THREE.BoxGeometry(a,b,c),mats.galvD));f.position.set(x,H/2,z);g.add(f)});
+  g.rotation.x=-.0;g.position.y=.02;
+  // Segundo panel apoyado, para leer el espesor
+  const g2=new THREE.Group();g2.add(g);const c2=g.clone();c2.position.set(.5,.62,-.35);c2.rotation.set(-1.05,0,.0);g2.add(c2);
+  return {g:g2,size:2.9,y:.45}}
+function buildPoste(v){const g=new THREE.Group(),Hh=4.6;
+  const p=sh(new THREE.Mesh(new THREE.CylinderGeometry(.07,.14,Hh,8),mats.galv));p.position.y=Hh/2+.05;g.add(p);
+  const base=sh(new THREE.Mesh(new THREE.BoxGeometry(.6,.05,.6),mats.galvD));base.position.y=.025;g.add(base);
+  for(let i=0;i<4;i++){const a=i*Math.PI/2+Math.PI/4;
+    const gu=sh(new THREE.Mesh(new THREE.BoxGeometry(.012,.22,.16),mats.galvD));gu.position.set(Math.cos(a)*.2,.15,Math.sin(a)*.2);gu.rotation.y=-a;g.add(gu);
+    const b=sh(new THREE.Mesh(new THREE.CylinderGeometry(.02,.02,.14,10),mats.steel));b.position.set(Math.cos(a+Math.PI/4)*.24,.1,Math.sin(a+Math.PI/4)*.24);g.add(b);
+    const n=sh(new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.03,6),mats.steel));n.position.copy(b.position);n.position.y=.07;g.add(n)}
+  if(v===0){const arm=new THREE.QuadraticBezierCurve3(new THREE.Vector3(0,Hh-.25,0),new THREE.Vector3(0,Hh+.3,0),new THREE.Vector3(1.2,Hh+.35,0));
+    g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(arm,40,.035,10,false),mats.galv)));
+    const lum=sh(new THREE.Mesh(new THREE.BoxGeometry(.55,.08,.22),mats.galvD));lum.position.set(1.35,Hh+.33,0);g.add(lum);
+    const led=new THREE.Mesh(new THREE.BoxGeometry(.42,.01,.15),mats.lamp);led.position.set(1.35,Hh+.285,0);g.add(led);}
+  else{const cr=sh(new THREE.Mesh(new THREE.BoxGeometry(1.4,.07,.07),mats.galvD));cr.position.y=Hh-.15;g.add(cr);
+    [-.6,-.2,.2,.6].forEach(x=>{const ins=sh(new THREE.Mesh(new THREE.CylinderGeometry(.04,.055,.16,12),mats.ins));ins.position.set(x,Hh-.03,0);g.add(ins)})}
+  g.rotation.y=-.5;return {g,size:5.2,y:2.5}}
+const BUILD={pernos:buildPernos,alc:buildAlc,grat:buildGrat,poste:buildPoste};
+let built=null;
+function setModel(m,v){if(!R)return;
+  while(root.children.length){const c=root.children.pop();c.traverse(o=>{if(o.geometry)o.geometry.dispose()})}
+  built=BUILD[m](v);root.add(built.g);root.scale.setScalar(.001);st.grow=0;st.ty=built.y;st.tdist=1;st.dist=1.25;
+  resize()}
+function resize(){if(!R)return;const w=gl.clientWidth,h=gl.clientHeight;if(!w||!h)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',resize);
+let run=false,visible=true;
+function loop(t){if(!run)return;requestAnimationFrame(loop);
+  if(st.auto&&performance.now()-st.lastUser>2500)st.ry+=.004;
+  st.ry+=st.vry;st.vry*=.92;st.dist+=(st.tdist-st.dist)*.08;
+  if(st.grow<1){st.grow=Math.min(1,st.grow+.04);const e=1-Math.pow(1-st.grow,3);root.scale.setScalar(.6+.4*e)}
+  root.rotation.y=st.ry;
+  const narrow=innerWidth<761;const asp=narrow?cam.aspect:cam.aspect*.5;const tn=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
+  const fit=Math.max(built.size/(2*tn)*1.05,built.size/(2*tn*asp)*1.02);const d=fit*st.dist;
+  const off=narrow?0:-fit*tn*cam.aspect*.42; // objeto a la derecha del panel
+  cam.position.set(Math.sin(.0)*d+off,st.ty+d*Math.sin(st.rx)+.2,d*Math.cos(st.rx));
+  cam.lookAt(off,st.ty,0);
+  R.render(S,cam)}
+function start3D(){if(!R||run||!visible)return;run=true;requestAnimationFrame(loop)}
+function stop3D(){run=false}
+// Gestos
+const ptr=new Map();let pd0=0;
+gl.addEventListener('pointerdown',e=>{gl.setPointerCapture(e.pointerId);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});gl.classList.add('drag');touched();
+  if(ptr.size===2){const [a,b]=[...ptr.values()];pd0=Math.hypot(a.x-b.x,a.y-b.y)}});
+gl.addEventListener('pointermove',e=>{const p=ptr.get(e.pointerId);if(!p)return;
+  if(ptr.size===2){p.x=e.clientX;p.y=e.clientY;const [a,b]=[...ptr.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);if(pd0){st.tdist=Math.min(1.5,Math.max(.45,st.tdist*pd0/d))}pd0=d;return}
+  const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;st.vry=dx*.006;st.ry+=dx*.004;st.rx=Math.min(.9,Math.max(-.05,st.rx+dy*.004));st.lastUser=performance.now()});
+const up=e=>{ptr.delete(e.pointerId);if(!ptr.size)gl.classList.remove('drag');pd0=0};
+gl.addEventListener('pointerup',up);gl.addEventListener('pointercancel',up);
+gl.addEventListener('wheel',e=>{e.preventDefault();touched();st.tdist=Math.min(1.5,Math.max(.45,st.tdist*(1+e.deltaY*.0012)))},{passive:false});
+
+/* ---------- Capítulos ---------- */
+let idx=0,timer=null,t0=0,paused=false;
+const esc=s=>s.replace(/[&<]/g,c=>({'&':'&amp;','<':'&lt;'}[c]));
+function fill(i){const c=C[i];
+  $('#pk').textContent=c.k;$('#pn').textContent=String(i+1)+' / '+C.length;$('#pt').textContent=c.t;$('#pd').textContent=c.d;
+  $('#pv').innerHTML=c.v?c.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join(''):c.tags.map(t=>`<span>${esc(t)}</span>`).join('');
+  $('#pl').href='/productos/'+SL[i];$('#pw').href='https://wa.me/593964068392?text='+encodeURIComponent('Hola, quisiera cotizar: '+c.t);
+  $('#pf').innerHTML=c.f.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}
+function go(i,user){i=(i+C.length)%C.length;if(user)touched();
+  const c=C[i];idx=i;vari=0;
+  rail.querySelectorAll('button').forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.style.removeProperty('--p')});
+  const sel=rail.children[i];if(sel&&rail.scrollWidth>rail.clientWidth)rail.scrollTo({left:sel.offsetLeft-rail.clientWidth/2+sel.offsetWidth/2,behavior:reduce?'auto':'smooth'});
+  panel.classList.add('out');
+  setTimeout(()=>{fill(i);panel.classList.remove('out')},reduce?0:260);
+  document.querySelectorAll('.photo').forEach(p=>{p.classList.toggle('on',!!c.ph&&p.id==='ph-'+c.ph);p.classList.remove('zoom')});
+  tour.classList.toggle('photo-on',!!c.ph);
+  document.querySelectorAll('.bgph').forEach(p=>p.classList.toggle('on',!c.ph&&!!c.bg&&p.id==='bg-'+c.bg));
+  $('#bgcap').textContent=!c.ph&&c.bc?c.bc:'';
+  $('#hintt').textContent=c.m?(innerWidth<761?'Arrastre para girar':'Arrastre para girar · rueda o dos dedos para acercar'):'Toque la foto para acercarse';
+  if(c.m&&R){gl.classList.add('on');setModel(c.m,0);start3D()}else{gl.classList.remove('on');setTimeout(()=>{if(!C[idx].m)stop3D()},600)}
+  t0=performance.now()}
+function touched(){paused=true;st.lastUser=performance.now();rail.querySelectorAll('button i').forEach(x=>x.parentNode.style.removeProperty('--p'))}
+function tick(){const el=rail.children[idx];
+  if(!paused&&!reduce){const p=Math.min(1,(performance.now()-t0)/9000);el&&el.style.setProperty('--p',(p*100)+'%');if(p>=1)go(idx+1)}
+  requestAnimationFrame(tick)}
+rail.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(+b.dataset.i,true)});
+$('#prev').onclick=()=>go(idx-1,true);$('#next').onclick=()=>go(idx+1,true);
+$('#pv').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;touched();vari=+b.dataset.v;
+  $('#pv').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));setModel(C[idx].m,vari)});
+document.querySelectorAll('.photo').forEach(p=>p.addEventListener('click',e=>{touched();const r=p.getBoundingClientRect();
+  const img=p.querySelector('img');if(!p.classList.contains('zoom')){img.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%'}p.classList.toggle('zoom')}));
+tour.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(idx+1,true);if(e.key==='ArrowLeft')go(idx-1,true)});
+document.querySelectorAll('a[href="#tour"]').forEach(a=>a.addEventListener('click',e=>e.preventDefault()));
+if('IntersectionObserver' in window)new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&C[idx].m)start3D();else stop3D()}).observe(tour);
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop3D();else if(C[idx].m)start3D()});
+const ok=initGL();
+if(!ok){C.forEach(c=>{if(c.m){c.ph='vial'}})}
+go(0);fill(0);requestAnimationFrame(tick);
+})();
+</script>
+
+</body>
+</html>
