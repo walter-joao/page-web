@@ -50,8 +50,18 @@
   "redirects": [
     {
       "source": "/proyectos/proyecto-funival",
-      "destination": "/proyectos/funvivalt-monserrat",
-      "permanent": true
+      "destination": "/#proyectos",
+      "permanent": false
+    },
+    {
+      "source": "/proyectos/funvivalt-monserrat",
+      "destination": "/#proyectos",
+      "permanent": false
+    },
+    {
+      "source": "/proyectos/galpon-cadeco",
+      "destination": "/#proyectos",
+      "permanent": false
     }
   ]
 }

@@ -211,7 +211,7 @@ nav.main .mega-cat a:hover,.top.solid nav.main .mega-cat a:hover{background:var(
 .hero{min-height:min(100svh,900px);display:grid;align-items:end;padding:0;color:#fff;isolation:isolate;overflow:hidden;background:#070d17}
 .slides{position:absolute;inset:0;z-index:-2}
 /* grano fino: disimula que las fotos de obra (1000-1700 px) se estiran en pantallas grandes */
-.slides::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.22;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px}
+.slides::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;opacity:.12;mix-blend-mode:overlay;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .5 0 0 0 0 .5 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");background-size:160px}
 .slide img{filter:contrast(1.06) saturate(1.05)}
 .slide{position:absolute;inset:0;opacity:0;z-index:0;transition:opacity 1.4s ease}
 .slide.prev{opacity:1;z-index:1;transition:none}

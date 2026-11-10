@@ -31,6 +31,11 @@ PROYECTOS = [
     {"pr": "pr2", "slug": "central-agoyan", "lugar": "Baños de Agua Santa, Tungurahua", "cliente": "CELEC EP", "mapa": "agoyan"},
     {"pr": "pr4", "slug": "central-san-francisco", "lugar": "Río Verde, Baños, Tungurahua", "cliente": "CELEC EP", "mapa": "sanfco"},
     {"pr": "pr11", "slug": "tunel-banos", "lugar": "Baños de Agua Santa, Tungurahua", "apx": True, "mapa": "tunel"},
+]
+
+# Fuera de la web por ahora (2026-11-10): falta que Jocecia confirme ubicación, año y fotos.
+# Para volver a publicarlas, devolverlas a PROYECTOS y restaurar las tarjetas en index.html.
+PENDIENTES = [
     {"pr": "pr5", "slug": "galpon-cadeco"},
     {"pr": "pr6", "slug": "funvivalt-monserrat", "cliente": "Funvivalt"},
 ]
