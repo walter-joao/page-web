@@ -2,6 +2,7 @@
 Options -Indexes
 Header set X-Robots-Tag "noindex, nofollow"
 RewriteEngine On
+RewriteRule (^|/)\.git - [F,L]
 RewriteRule ^proyectos/(proyecto-funival|funvivalt-monserrat)/?$ /#proyectos [R=302,NE,L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
