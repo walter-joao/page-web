@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mapa de obras · propuestas</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Tres propuestas del mapa de obras sobre el relieve real del Ecuador. Oscuro, vidrio, acento naranja Jocecia. */
+:root{--bg:#05090f;--bg2:#0a121d;--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.12);--glass:rgba(12,20,32,.72);
+  --cyan:#3cc8e8;--accent:#ff8a3d;--f-d:"Archivo","Arial Narrow",Arial,sans-serif;--f-b:"Manrope",system-ui,sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b)}
+body{padding-top:env(safe-area-inset-top,0px)}
+button{font:inherit;color:inherit}
+.top{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:end;justify-content:space-between;padding:28px max(18px,env(safe-area-inset-right,0px)) 22px max(18px,env(safe-area-inset-left,0px));max-width:1320px;margin:0 auto}
+.top small{font:500 .74rem var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+.top h1{margin:6px 0 0;font:600 clamp(1.8rem,4vw,2.8rem)/1.02 var(--f-d);letter-spacing:-.035em;background:linear-gradient(180deg,#fff 35%,#8d9bb0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.top p{margin:8px 0 0;color:var(--muted);max-width:58ch}
+.tabs{display:inline-flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.tabs button{border:0;background:none;padding:10px 16px;border-radius:999px;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--muted);display:flex;gap:8px;align-items:center}
+.tabs button b{font:600 .72rem var(--f-m);opacity:.7}
+.tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.tabs button:focus-visible,.pin:focus-visible,.ib:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.view{position:relative;height:min(84svh,860px);min-height:520px;overflow:hidden;isolation:isolate;border-block:1px solid var(--line)}
+.view::before{content:"";position:absolute;inset:0;z-index:-2;background:radial-gradient(60% 50% at 50% 30%,rgba(52,120,255,.22),transparent 70%),linear-gradient(rgba(170,205,255,.05) 1px,transparent 1px) 0 0/56px 56px,linear-gradient(90deg,rgba(170,205,255,.05) 1px,transparent 1px) 0 0/56px 56px}
+.hint{position:absolute;left:max(18px,env(safe-area-inset-left,0px));bottom:18px;z-index:5;font:500 .74rem var(--f-m);letter-spacing:.06em;color:var(--muted);display:flex;gap:14px;flex-wrap:wrap;pointer-events:none}
+.legend{display:flex;gap:12px;flex-wrap:wrap}.legend span{display:inline-flex;gap:6px;align-items:center}.legend i{width:9px;height:9px;border-radius:50%;background:var(--c)}
+.about{max-width:1320px;margin:0 auto;padding:22px max(18px,env(safe-area-inset-right,0px)) 40px max(18px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;color:var(--muted);font-size:.95rem}
+.about div{border-top:1px solid var(--line);padding-top:14px}.about b{color:var(--fg);display:block;margin-bottom:4px}
+
+/* Pines compartidos */
+.pin{position:absolute;left:0;top:0;width:0;height:0;border:0;padding:0;background:none;cursor:pointer;z-index:3}
+.pin .stake{position:absolute;left:0;bottom:0;width:2px;height:var(--h,34px);margin-left:-1px;background:linear-gradient(var(--c),rgba(255,255,255,.15));transform-origin:bottom}
+.pin .head{position:absolute;left:0;bottom:var(--h,34px);transform:translate(-50%,50%);width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-m);color:#06101c;background:var(--c);box-shadow:0 0 0 3px rgba(5,9,15,.55),0 0 18px var(--c);transition:transform .25s cubic-bezier(.2,.8,.2,1)}
+.pin .base{position:absolute;left:0;top:0;width:14px;height:6px;margin:-3px 0 0 -7px;border-radius:50%;background:rgba(0,0,0,.55);filter:blur(1px)}
+.pin .tag{position:absolute;left:18px;bottom:calc(var(--h,34px) - 10px);white-space:nowrap;font:600 12px var(--f-b);padding:4px 9px;border-radius:999px;background:rgba(5,9,15,.72);border:1px solid var(--line);opacity:0;transform:translateX(-4px);transition:.2s;pointer-events:none}
+.pin:hover .head,.pin.on .head{transform:translate(-50%,50%) scale(1.22)}
+.pin:hover .tag,.pin.on .tag,.show-tags .pin .tag{opacity:1;transform:none}
+
+/* Ficha */
+.card{position:fixed;z-index:40;width:min(380px,calc(100vw - 32px));max-height:min(78svh,640px);overflow:auto;border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02)),var(--glass);border:1px solid rgba(225,240,255,.16);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 40px 80px -20px rgba(0,0,0,.85);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);opacity:0;transform:translateY(10px) scale(.97);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.card.open{opacity:1;transform:none;pointer-events:auto}
+.card .ph{position:relative;aspect-ratio:16/10;max-width:100%;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 55%,#0b1422),#0b1422);overflow:hidden;border-radius:21px 21px 0 0}
+.card .ph img{width:100%;height:100%;object-fit:cover;display:block;transition:opacity .3s}
+.card .badge{position:absolute;top:12px;left:12px;font:700 11px var(--f-m);letter-spacing:.05em;background:var(--c);color:#06101c;padding:6px 10px;border-radius:999px}
+.ib{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(5,9,15,.6);cursor:pointer;font-size:18px;line-height:1;display:grid;place-items:center;z-index:2}
+.thumbs{display:flex;gap:6px;padding:10px 14px 0;overflow-x:auto}
+.thumbs button{flex:none;width:58px;height:42px;border-radius:8px;overflow:hidden;border:1px solid var(--line);padding:0;cursor:pointer;background:#0b1422;opacity:.6}
+.thumbs button.on{opacity:1;border-color:var(--cyan)}.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.card .bd{padding:16px 18px 18px;display:grid;gap:10px}
+.card h3{margin:0;font:600 1.45rem/1.1 var(--f-d);letter-spacing:-.02em}
+.where{font:500 .74rem/1.5 var(--f-m);color:var(--muted);display:flex;flex-wrap:wrap;gap:2px 12px}
+.card p{margin:0;color:var(--muted);font-size:.94rem}
+.card ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;font-size:.9rem}
+.card li{display:flex;gap:9px}.card li::before{content:"";flex:none;width:6px;height:6px;margin-top:.55em;border-radius:2px;background:var(--accent)}
+.card .nav{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding:10px 18px;font:500 .76rem var(--f-m);color:var(--muted)}
+.card .nav button{border:0;background:none;cursor:pointer;color:var(--fg);font:600 .85rem var(--f-b);padding:6px 0}
+.scrim{position:fixed;inset:0;z-index:39;background:rgba(2,5,10,.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
+.scrim.open{opacity:1;pointer-events:auto}
+/* Ficha grande (propuesta C) */
+.card.big{width:min(980px,calc(100vw - 32px));left:50%!important;top:50%!important;transform:translate(-50%,-46%) scale(.97);display:grid;grid-template-columns:1.25fr 1fr;max-height:min(88svh,680px)}
+.card.big.open{transform:translate(-50%,-50%)}
+.card.big .ph{aspect-ratio:auto;height:100%;min-height:320px;border-radius:21px 0 0 21px}
+.card.big .side{display:flex;flex-direction:column;min-width:0;overflow:auto}
+.card.big h3{font-size:2rem}
+@media (max-width:760px){
+  .card,.card.big{left:0!important;right:0;top:auto!important;bottom:0;width:100%;max-height:82svh;border-radius:22px 22px 0 0;transform:translateY(30px);padding-bottom:env(safe-area-inset-bottom,0px);display:block}
+  .card.open,.card.big.open{transform:none}
+  .card .ph,.card.big .ph{border-radius:21px 21px 0 0;aspect-ratio:16/10;height:auto;min-height:0}
+}
+
+/* A: relieve inclinado */
+#va .stage{position:absolute;inset:0;display:grid;place-items:center;perspective:1700px;cursor:grab;touch-action:pan-y}
+#va .stage.drag{cursor:grabbing}
+#va .plane{position:relative;width:min(560px,74vw);aspect-ratio:620/680;max-width:100%;transform-style:preserve-3d;transform:rotateX(var(--rx,50deg)) rotateZ(var(--rz,-10deg));transition:transform .5s cubic-bezier(.2,.8,.2,1);border-radius:6px;
+  box-shadow:0 60px 80px -30px rgba(0,0,0,.9),0 0 0 1px rgba(160,200,255,.25),0 0 120px -20px rgba(52,120,255,.45)}
+#va .stage.drag .plane{transition:none}
+#va .plane img,#va .plane svg{position:absolute;inset:0;width:100%;height:100%;display:block;border-radius:6px}
+#va .plane::after{content:"";position:absolute;left:0;right:0;top:100%;height:14px;background:linear-gradient(#1a2a40,#0a121d);transform-origin:top;transform:rotateX(-90deg);border-radius:0 0 4px 4px}
+#va .pin{transform-style:preserve-3d}
+#va .pin .up{position:absolute;left:0;top:0;transform-style:preserve-3d;transform:rotateZ(calc(-1 * var(--rz,-10deg))) rotateX(calc(-1 * var(--rx,50deg)));transform-origin:0 0}
+.prov{fill:transparent;stroke:rgba(255,255,255,.4);stroke-width:.8;stroke-dasharray:3 2}
+
+/* B: maqueta 3D */
+#vb canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+#vb .pins{position:absolute;inset:0;pointer-events:none}
+#vb .pin{pointer-events:auto}
+#vb .ctrl{position:absolute;right:max(18px,env(safe-area-inset-right,0px));bottom:16px;z-index:5;display:flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:rgba(5,9,15,.7)}
+#vb .ctrl button{border:0;background:none;padding:7px 12px;border-radius:999px;cursor:pointer;font:600 .78rem var(--f-m);color:var(--muted)}
+#vb .ctrl button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+#vb .msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:500 .85rem var(--f-m)}
+
+/* C: pantalla completa */
+#vc .stage{position:absolute;inset:0}
+#vc .mapwrap{position:absolute;left:50%;top:50%;height:132%;aspect-ratio:620/680;transform:translate(-50%,-47%)}
+#vc .mapwrap img,#vc .mapwrap svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+#vc .stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(75% 70% at 50% 45%,transparent 45%,rgba(5,9,15,.92) 100%),linear-gradient(180deg,rgba(5,9,15,.75),transparent 22%,transparent 80%,rgba(5,9,15,.85))}
+#vc .pin .head{width:34px;height:34px;font-size:13px}
+#vc .pin .head::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--c);opacity:.6;animation:ping 2.4s ease-out infinite}
+@keyframes ping{from{transform:scale(.8);opacity:.7}to{transform:scale(1.7);opacity:0}}
+#vc .title{position:absolute;z-index:4;left:max(18px,env(safe-area-inset-left,0px));top:22px;max-width:30ch}
+#vc .title b{display:block;font:600 clamp(1.4rem,3vw,2.2rem)/1.05 var(--f-d);letter-spacing:-.03em}
+#vc .title span{color:var(--muted);font-size:.92rem}
+@media (prefers-reduced-motion:reduce){#vc .pin .head::after{animation:none}.card,.pin .head,#va .plane{transition:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div>
+    <small>Jocecia · Mapa de obras</small>
+    <h1>Tres formas de recorrer las obras</h1>
+    <p>Sin panel al costado: toca un punto y se abre la ficha de la obra con sus fotos y trabajos. Las tres usan el relieve real del Ecuador.</p>
+  </div>
+  <div class="tabs" role="tablist" aria-label="Propuestas">
+    <button role="tab" id="t-a" aria-selected="true" aria-controls="va"><b>A</b>Relieve inclinado</button>
+    <button role="tab" id="t-b" aria-selected="false" aria-controls="vb"><b>B</b>Maqueta 3D</button>
+    <button role="tab" id="t-c" aria-selected="false" aria-controls="vc"><b>C</b>Pantalla completa</button>
+  </div>
+</header>
+
+<section class="view" id="va" role="tabpanel" aria-labelledby="t-a">
+  <div class="stage" id="a-stage"><div class="plane" id="a-plane">
+    <img src="/img/relieve-ecuador.webp" alt="Relieve del Ecuador continental">
+    <svg viewBox="-10 -10 620 680" preserveAspectRatio="none" aria-hidden="true"><g id="a-provs"></g></svg>
+  </div></div>
+  <div class="hint"><span>Arrastra para girar el mapa</span><span class="legend"></span></div>
+</section>
+
+<section class="view" id="vb" role="tabpanel" aria-labelledby="t-b" hidden>
+  <canvas id="b-cv" aria-label="Maqueta 3D del Ecuador con las obras de Jocecia"></canvas>
+  <div class="pins" id="b-pins"></div>
+  <p class="msg" id="b-msg">Cargando maqueta…</p>
+  <div class="hint"><span>Arrastra para girar · rueda o pellizco para acercar</span><span class="legend"></span></div>
+  <div class="ctrl" role="group" aria-label="Exageración del relieve"><button type="button" data-k="4" aria-pressed="false">Relieve ×4</button><button type="button" data-k="8" aria-pressed="true">×8</button><button type="button" data-k="14" aria-pressed="false">×14</button></div>
+</section>
+
+<section class="view" id="vc" role="tabpanel" aria-labelledby="t-c" hidden>
+  <div class="stage show-tags"><div class="mapwrap" id="c-map">
+    <img src="/img/relieve-ecuador.webp" alt="Relieve del Ecuador continental">
+    <svg viewBox="-10 -10 620 680" preserveAspectRatio="none" aria-hidden="true"><g id="c-provs"></g></svg>
+  </div></div>
+  <div class="title"><b>Presentes donde el país se construye</b><span>Toca una obra para ver fotos y trabajos.</span></div>
+  <div class="hint"><span class="legend"></span></div>
+</section>
+
+<div class="about">
+  <div><b>A · Relieve inclinado</b>El mapa actual inclinado como una maqueta sobre la mesa, con los puntos parados como banderas. Liviano, carga rápido y funciona en cualquier celular.</div>
+  <div><b>B · Maqueta 3D</b>Terreno real en 3D: los Andes y los volcanes tienen altura de verdad y se puede girar y acercar. Es la más impresionante y la más pesada.</div>
+  <div><b>C · Pantalla completa</b>El mapa ocupa toda la sección, con los nombres siempre visibles, y la ficha se abre grande en el centro con la galería de fotos.</div>
+</div>
+
+<div class="scrim" id="scrim"></div>
+<article class="card" id="card" aria-live="polite" role="dialog" aria-label="Detalle de la obra"></article>
+
+<script src="/vendor/three/three.min.js"></script>
+<script src="/vendor/three/OrbitControls.js"></script>
+<script>
+var PROVS=[{"n":"Azuay","d":"M253.0,405.9L254.4,406.0L265.6,409.4L267.8,413.1L252.2,420.7L248.5,428.4L252.5,434.9L246.8,441.5L239.7,462.7L234.9,464.7L214.6,480.0L215.7,484.1L207.1,487.3L204.0,492.8L204.4,510.5L200.5,512.5L192.0,494.2L181.1,496.7L176.8,484.2L163.9,483.0L158.4,480.7L144.4,482.6L150.2,467.9L146.6,463.7L133.7,456.3L137.4,448.0L143.6,447.3L150.6,440.2L145.3,431.9L147.9,425.4L156.8,423.3L159.8,416.3L166.9,408.2L167.3,399.9L172.7,405.7L184.5,407.4L185.7,417.6L188.5,422.3L202.2,423.0L207.8,418.8L215.6,432.9L227.8,432.7L233.0,417.3L239.4,418.7L248.3,412.9L253.0,405.9Z"},{"n":"Bolivar","d":"M223.8,269.1L216.2,286.0L222.1,296.2L220.2,308.5L225.4,317.0L221.5,325.2L208.8,327.4L209.1,340.0L206.5,356.1L207.1,361.2L197.3,370.2L197.5,361.4L189.7,363.3L189.1,357.4L183.9,346.0L189.0,324.9L177.8,315.9L185.2,306.0L177.8,301.3L176.2,296.0L182.6,283.8L175.1,277.2L181.0,270.5L195.5,265.5L201.1,265.6L211.5,272.0L217.6,268.3L223.8,269.1Z"},{"n":"Cañar","d":"M253.0,405.9L248.3,412.9L239.4,418.7L233.0,417.3L227.8,432.7L215.6,432.9L207.8,418.8L202.2,423.0L188.5,422.3L185.7,417.6L184.5,407.4L172.7,405.7L167.3,399.9L162.0,396.7L168.1,387.8L174.1,386.3L179.7,390.2L187.3,390.9L189.1,381.3L192.5,380.4L195.9,371.3L207.2,385.9L218.8,391.9L228.6,387.7L231.8,393.5L238.3,392.6L253.0,405.9Z"},{"n":"Carchi","d":"M356.8,84.8L344.4,85.2L342.1,93.9L334.9,99.4L328.7,109.7L328.7,114.3L317.6,109.9L308.5,102.6L300.7,101.9L297.1,96.9L296.0,87.5L282.9,71.6L271.3,67.5L264.6,62.4L255.3,55.9L255.6,45.4L259.6,42.8L259.1,31.1L268.2,34.0L278.6,30.9L281.8,44.3L289.1,49.5L290.2,55.0L299.3,57.2L313.4,67.6L323.3,69.8L337.9,65.0L342.7,67.6L340.4,76.0L343.7,79.4L356.8,84.8Z"},{"n":"Cotopaxi","d":"M267.8,221.7L270.9,224.9L267.3,239.0L269.5,249.0L264.1,258.4L254.0,255.9L243.2,265.5L235.6,263.3L228.0,264.5L223.8,269.1L217.6,268.3L211.5,272.0L201.1,265.6L195.5,265.5L181.0,270.5L176.3,262.4L180.8,250.5L181.3,239.2L185.9,237.5L188.1,230.9L196.0,221.0L201.7,206.7L198.7,204.2L204.0,201.4L208.5,192.3L213.6,190.0L215.9,183.1L226.1,197.7L226.8,202.4L236.7,205.9L236.1,212.1L243.0,215.6L249.0,210.0L258.9,210.8L267.8,221.7Z"},{"n":"Chimborazo","d":"M274.2,302.2L273.6,314.4L267.0,318.5L265.9,327.1L269.6,337.8L261.1,345.9L265.8,351.3L265.1,361.6L259.6,365.7L260.0,374.1L253.9,382.6L261.6,386.7L262.7,392.7L258.8,404.2L254.4,406.0L253.0,405.9L238.3,392.6L231.8,393.5L228.6,387.7L218.8,391.9L207.2,385.9L195.9,371.3L197.3,370.2L207.1,361.2L206.5,356.1L209.1,340.0L208.8,327.4L221.5,325.2L225.4,317.0L220.2,308.5L222.1,296.2L231.9,293.2L238.9,299.1L248.0,300.6L261.8,295.3L274.2,302.2Z"},{"n":"El Oro","d":"M133.7,456.3L146.6,463.7L150.2,467.9L144.4,482.6L158.4,480.7L163.9,483.0L162.5,489.7L167.8,494.3L162.1,501.1L162.1,508.3L170.9,511.3L173.4,516.0L165.1,531.3L154.1,530.3L149.2,525.2L141.9,528.0L138.1,533.1L130.0,534.5L123.6,532.0L114.4,532.9L106.6,537.4L97.3,538.9L91.8,528.6L91.0,509.8L85.7,498.6L88.1,494.2L103.5,491.8L107.6,486.0L109.9,474.6L118.4,467.7L123.1,456.0L133.7,456.3Z"},{"n":"Esmeraldas","d":"M259.1,31.1L259.6,42.8L255.6,45.4L255.3,55.9L264.6,62.4L265.7,69.5L258.0,74.3L267.4,91.5L264.6,96.0L255.9,98.5L248.6,108.4L242.2,112.7L238.1,109.7L228.8,109.8L217.7,114.2L207.5,119.3L193.7,115.2L183.0,118.1L175.2,128.8L177.0,135.5L172.9,146.7L180.6,148.3L174.8,160.9L155.2,160.0L149.9,156.2L147.6,145.6L150.2,137.8L139.0,131.5L143.3,124.4L138.3,120.9L139.4,115.6L120.5,118.8L119.9,120.8L111.5,120.6L112.0,113.5L103.8,104.4L109.0,95.1L109.0,88.9L100.0,82.0L100.7,72.5L104.0,68.4L115.2,67.1L129.2,60.5L136.4,53.4L144.8,50.5L155.6,50.4L167.2,42.9L184.6,42.5L197.1,37.8L203.7,28.6L214.7,35.5L214.0,28.2L224.0,24.2L227.0,20.4L226.3,9.3L229.6,8.7L243.7,17.9L250.7,26.1L255.5,25.5L259.1,31.1Z"},{"n":"Guayas","d":"M109.8,418.5L119.9,424.1L116.7,429.2L110.5,430.6L107.3,435.9L96.9,433.1L94.4,437.9L100.8,445.7L97.1,452.5L89.8,453.9L83.7,450.3L84.3,433.5L89.3,423.0L106.5,417.5L109.8,418.5ZM113.1,400.8L110.7,408.9L103.6,409.5L110.4,398.9L113.1,400.8ZM124.9,379.2L123.8,390.9L117.8,386.1L118.7,379.5L124.9,379.2ZM189.7,363.3L197.5,361.4L197.3,370.2L195.9,371.3L192.5,380.4L189.1,381.3L180.9,381.6L174.1,386.3L168.1,387.8L162.0,396.7L167.3,399.9L166.9,408.2L159.8,416.3L156.8,423.3L147.9,425.4L145.3,431.9L150.6,440.2L143.6,447.3L137.4,448.0L133.7,456.3L123.1,456.0L125.4,451.3L124.5,438.9L130.0,428.9L132.3,416.3L136.7,414.3L140.7,402.6L132.8,402.0L126.7,389.6L127.1,370.9L122.9,378.3L113.8,373.5L106.6,389.3L101.8,392.7L101.8,398.9L92.7,409.7L84.2,413.9L85.6,423.7L79.5,422.0L70.5,413.6L65.0,412.9L53.8,400.6L60.5,400.0L63.9,391.4L72.6,384.6L81.7,383.5L81.7,377.3L88.2,373.3L85.4,361.8L66.0,344.3L68.1,328.6L78.7,319.0L86.6,318.8L90.5,292.2L95.3,290.6L96.3,282.4L101.3,282.0L109.4,273.6L111.8,268.3L125.6,258.3L136.9,238.4L139.5,238.3L144.3,240.1L149.3,235.3L159.5,235.4L159.3,244.5L156.2,255.4L148.5,256.4L144.8,261.8L135.5,269.3L134.7,274.5L123.2,293.5L122.9,310.3L127.6,320.8L135.1,323.8L136.9,334.0L144.4,342.3L155.9,338.2L161.1,338.4L165.4,343.5L173.1,347.2L180.9,359.7L189.7,363.3Z"},{"n":"Imbabura","d":"M328.7,114.3L321.8,130.0L313.5,134.2L307.3,131.2L300.5,131.8L294.5,135.9L285.5,137.7L271.9,125.0L259.0,127.3L238.2,128.0L226.6,125.9L215.1,129.7L208.3,122.8L217.7,114.2L228.8,109.8L238.1,109.7L242.2,112.7L248.6,108.4L255.9,98.5L264.6,96.0L267.4,91.5L258.0,74.3L265.7,69.5L264.6,62.4L271.3,67.5L282.9,71.6L296.0,87.5L297.1,96.9L300.7,101.9L308.5,102.6L317.6,109.9L328.7,114.3Z"},{"n":"Loja","d":"M200.5,512.5L190.5,522.5L197.1,538.9L193.8,561.5L199.3,568.5L198.9,590.4L193.2,597.5L182.8,597.4L177.2,601.1L176.7,610.6L167.0,624.1L161.4,612.8L161.1,602.7L155.6,602.6L145.5,593.4L134.9,598.4L128.8,599.1L123.0,591.4L114.1,589.6L100.3,579.4L92.1,580.1L87.6,587.9L76.9,596.5L71.8,597.7L65.0,594.3L64.7,588.2L77.1,572.3L66.5,569.6L61.4,558.2L65.3,549.7L73.3,548.2L80.0,551.7L85.9,545.6L97.3,538.9L106.6,537.4L114.4,532.9L123.6,532.0L130.0,534.5L138.1,533.1L141.9,528.0L149.2,525.2L154.1,530.3L165.1,531.3L173.4,516.0L170.9,511.3L162.1,508.3L162.1,501.1L167.8,494.3L162.5,489.7L163.9,483.0L176.8,484.2L181.1,496.7L192.0,494.2L200.5,512.5Z"},{"n":"Los Rios","d":"M198.7,204.2L201.7,206.7L196.0,221.0L188.1,230.9L185.9,237.5L181.3,239.2L180.8,250.5L176.3,262.4L181.0,270.5L175.1,277.2L182.6,283.8L176.2,296.0L177.8,301.3L185.2,306.0L177.8,315.9L189.0,324.9L183.9,346.0L189.1,357.4L189.7,363.3L180.9,359.7L173.1,347.2L165.4,343.5L161.1,338.4L155.9,338.2L144.4,342.3L136.9,334.0L135.1,323.8L127.6,320.8L122.9,310.3L123.2,293.5L134.7,274.5L135.5,269.3L144.8,261.8L148.5,256.4L156.2,255.4L159.3,244.5L159.5,235.4L149.3,235.3L150.3,224.0L159.4,212.9L161.7,204.3L173.8,204.0L173.7,217.6L180.7,219.9L198.7,204.2Z"},{"n":"Manabi","d":"M155.2,160.0L159.2,166.9L169.0,170.9L169.8,190.3L164.0,200.4L156.3,198.6L147.8,206.4L139.5,238.3L136.9,238.4L125.6,258.3L111.8,268.3L109.4,273.6L101.3,282.0L96.3,282.4L95.3,290.6L90.5,292.2L86.6,318.8L78.7,319.0L68.1,328.6L66.0,344.3L58.0,342.0L48.3,320.9L45.6,317.5L35.2,316.8L29.7,321.1L24.7,310.1L28.2,301.4L33.1,297.9L34.4,282.1L24.9,270.6L18.7,255.8L27.1,245.7L48.2,244.4L56.1,236.5L59.2,223.9L66.2,205.8L60.7,189.9L69.6,180.7L71.6,174.2L80.9,168.5L95.9,154.9L103.9,143.8L110.3,126.7L114.4,130.1L119.9,120.8L120.5,118.8L139.4,115.6L138.3,120.9L143.3,124.4L139.0,131.5L150.2,137.8L147.6,145.6L149.9,156.2L155.2,160.0Z"},{"n":"Morona Santiago","d":"M440.7,411.0L370.8,434.6L325.6,449.9L316.0,456.6L295.7,482.6L290.6,486.6L295.3,497.9L288.4,500.9L285.9,490.9L275.9,488.2L273.5,502.8L247.2,503.4L234.6,506.9L226.8,504.9L223.0,500.2L221.8,490.1L215.7,484.1L214.6,480.0L234.9,464.7L239.7,462.7L246.8,441.5L252.5,434.9L248.5,428.4L252.2,420.7L267.8,413.1L265.6,409.4L254.4,406.0L258.8,404.2L262.7,392.7L261.6,386.7L253.9,382.6L260.0,374.1L259.6,365.7L265.1,361.6L265.8,351.3L261.1,345.9L269.6,337.8L265.9,327.1L267.0,318.5L273.6,314.4L274.2,302.2L292.2,294.8L301.8,299.6L308.1,317.7L315.8,315.3L321.8,320.9L328.1,342.7L343.3,355.1L348.3,354.1L380.9,369.6L387.0,376.1L401.1,384.5L406.8,394.9L415.5,405.5L432.2,405.2L440.7,411.0Z"},{"n":"Napo","d":"M379.4,156.0L381.4,160.3L380.1,170.1L384.3,180.6L378.2,185.7L370.9,199.4L366.8,202.1L353.7,199.8L347.2,204.1L356.2,212.0L360.3,220.2L355.8,229.1L354.8,240.0L357.1,245.1L375.1,236.1L382.2,233.8L387.8,227.2L395.8,239.6L400.8,241.2L403.9,250.8L387.0,252.6L386.5,255.2L364.1,259.9L353.7,265.8L340.5,264.2L326.9,271.7L309.6,272.1L304.8,274.8L297.7,272.2L289.2,264.6L276.3,263.5L277.4,254.0L269.5,249.0L267.3,239.0L270.9,224.9L267.8,221.7L276.8,215.9L282.2,206.9L286.4,193.6L284.5,190.6L290.8,181.9L290.7,170.3L313.1,162.1L318.0,152.9L326.0,147.3L331.4,148.0L332.0,157.8L347.4,157.7L351.9,160.2L363.9,151.9L366.0,163.0L372.2,165.3L379.4,156.0Z"},{"n":"Pastaza","d":"M403.9,250.8L403.7,258.7L420.3,262.7L444.7,255.7L458.5,256.8L457.0,269.2L463.7,275.8L469.2,276.0L477.2,280.6L496.3,277.6L508.8,280.7L514.3,285.4L521.9,285.7L546.8,300.1L552.0,304.7L505.7,362.5L446.6,409.0L440.7,411.0L432.2,405.2L415.5,405.5L406.8,394.9L401.1,384.5L387.0,376.1L380.9,369.6L348.3,354.1L343.3,355.1L328.1,342.7L321.8,320.9L315.8,315.3L308.1,317.7L301.8,299.6L292.2,294.8L298.3,285.1L297.7,272.2L304.8,274.8L309.6,272.1L326.9,271.7L340.5,264.2L353.7,265.8L364.1,259.9L386.5,255.2L387.0,252.6L403.9,250.8Z"},{"n":"Tungurahua","d":"M269.5,249.0L277.4,254.0L276.3,263.5L289.2,264.6L297.7,272.2L298.3,285.1L292.2,294.8L274.2,302.2L261.8,295.3L248.0,300.6L238.9,299.1L231.9,293.2L222.1,296.2L216.2,286.0L223.8,269.1L228.0,264.5L235.6,263.3L243.2,265.5L254.0,255.9L264.1,258.4L269.5,249.0Z"},{"n":"Pichincha","d":"M208.3,122.8L215.1,129.7L226.6,125.9L238.2,128.0L259.0,127.3L271.9,125.0L285.5,137.7L294.5,135.9L300.5,131.8L307.3,131.2L313.5,134.2L312.3,138.8L321.0,141.7L326.0,147.3L318.0,152.9L313.1,162.1L290.7,170.3L290.8,181.9L284.5,190.6L286.4,193.6L282.2,206.9L276.8,215.9L267.8,221.7L258.9,210.8L249.0,210.0L243.0,215.6L236.1,212.1L236.7,205.9L226.8,202.4L226.1,197.7L215.9,183.1L223.9,184.7L235.4,177.7L226.8,168.8L226.2,163.5L213.3,160.2L207.6,161.7L195.2,158.5L200.2,152.6L180.6,148.3L172.9,146.7L177.0,135.5L175.2,128.8L183.0,118.1L197.2,118.0L208.3,122.8Z"},{"n":"Zamora Chinchipe","d":"M273.5,502.8L267.8,519.0L268.8,528.9L262.7,535.4L261.0,543.6L253.3,549.3L255.9,557.5L251.7,563.6L248.6,579.0L244.9,586.2L246.7,591.5L244.0,608.6L238.6,612.8L225.9,615.4L220.9,622.1L220.7,638.7L212.6,639.6L208.6,651.4L202.6,647.1L183.8,646.8L179.4,640.3L170.4,632.5L167.0,624.1L176.7,610.6L177.2,601.1L182.8,597.4L193.2,597.5L198.9,590.4L199.3,568.5L193.8,561.5L197.1,538.9L190.5,522.5L200.5,512.5L204.4,510.5L204.0,492.8L207.1,487.3L215.7,484.1L221.8,490.1L223.0,500.2L226.8,504.9L234.6,506.9L247.2,503.4L273.5,502.8Z"},{"n":"Sucumbios","d":"M583.7,215.5L571.2,210.6L563.5,204.7L554.8,204.9L550.4,198.5L536.0,192.4L527.3,193.8L522.4,191.8L512.7,206.2L504.1,200.5L502.1,194.4L483.4,194.9L471.4,202.1L463.4,198.9L459.5,194.4L441.2,187.1L433.8,176.2L424.5,166.9L419.5,158.4L413.5,156.6L407.0,160.6L389.6,159.9L379.4,156.0L372.2,165.3L366.0,163.0L363.9,151.9L351.9,160.2L347.4,157.7L332.0,157.8L331.4,148.0L326.0,147.3L321.0,141.7L312.3,138.8L313.5,134.2L321.8,130.0L328.7,114.3L328.7,109.7L334.9,99.4L342.1,93.9L344.4,85.2L356.8,84.8L362.1,85.9L357.7,98.0L358.0,107.9L367.9,107.8L381.2,113.7L398.7,112.9L402.3,121.3L409.6,120.3L418.7,125.2L425.3,126.1L436.8,121.2L447.0,123.7L451.5,128.1L468.8,125.8L468.8,112.0L476.6,111.0L478.6,106.6L492.5,112.8L496.8,112.8L508.5,119.7L516.2,130.0L528.6,142.3L535.2,146.4L543.5,145.9L552.0,148.8L567.0,158.3L580.4,160.8L577.8,166.0L568.1,166.5L558.4,161.5L549.0,161.4L549.0,169.3L556.2,167.6L561.7,173.6L562.6,179.5L571.4,193.6L578.4,196.4L585.7,202.7L587.7,212.4L583.7,215.5Z"},{"n":"Orellana","d":"M583.7,215.5L583.1,228.6L587.7,236.5L584.1,247.2L579.4,248.8L571.3,243.2L554.4,304.9L552.0,304.7L546.8,300.1L521.9,285.7L514.3,285.4L508.8,280.7L496.3,277.6L477.2,280.6L469.2,276.0L463.7,275.8L457.0,269.2L458.5,256.8L444.7,255.7L420.3,262.7L403.7,258.7L403.9,250.8L400.8,241.2L395.8,239.6L387.8,227.2L382.2,233.8L375.1,236.1L357.1,245.1L354.8,240.0L355.8,229.1L360.3,220.2L356.2,212.0L347.2,204.1L353.7,199.8L366.8,202.1L370.9,199.4L378.2,185.7L384.3,180.6L380.1,170.1L381.4,160.3L379.4,156.0L389.6,159.9L407.0,160.6L413.5,156.6L419.5,158.4L424.5,166.9L433.8,176.2L441.2,187.1L459.5,194.4L463.4,198.9L471.4,202.1L483.4,194.9L502.1,194.4L504.1,200.5L512.7,206.2L522.4,191.8L527.3,193.8L536.0,192.4L550.4,198.5L554.8,204.9L563.5,204.7L571.2,210.6L583.7,215.5Z"},{"n":"Santo Domingo","d":"M215.9,183.1L213.6,190.0L208.5,192.3L204.0,201.4L198.7,204.2L180.7,219.9L173.7,217.6L173.8,204.0L161.7,204.3L164.0,200.4L169.8,190.3L169.0,170.9L159.2,166.9L155.2,160.0L174.8,160.9L180.6,148.3L200.2,152.6L195.2,158.5L207.6,161.7L213.3,160.2L226.2,163.5L226.8,168.8L235.4,177.7L223.9,184.7L215.9,183.1Z"},{"n":"Santa Elena","d":"M66.0,344.3L85.4,361.8L88.2,373.3L81.7,377.3L81.7,383.5L72.6,384.6L63.9,391.4L60.5,400.0L53.8,400.6L43.8,391.7L31.7,388.7L22.9,382.5L18.9,372.0L33.3,363.0L36.6,353.0L33.7,347.6L37.5,342.6L33.1,326.2L29.7,321.1L35.2,316.8L45.6,317.5L48.3,320.9L58.0,342.0L66.0,344.3Z"},{"n":"Zonas No Delimitadas","d":"M189.1,381.3L187.3,390.9L179.7,390.2L174.1,386.3L180.9,381.6L189.1,381.3ZM164.0,200.4L161.7,204.3L159.4,212.9L150.3,224.0L149.3,235.3L144.3,240.1L139.5,238.3L147.8,206.4L156.3,198.6L164.0,200.4ZM217.7,114.2L208.3,122.8L197.2,118.0L183.0,118.1L193.7,115.2L207.5,119.3L217.7,114.2Z"}];
+var OBRAS=[
+      {id:"metro",pr:"pr1",cg:"quito",s:"trans",lat:-0.2205,lon:-78.5145,lbl:"r",off:[-6,-16],city:"Quito",prov:"Pichincha",cl:"Metro de Quito",more:7,
+        es:{t:"Metro de Quito",d:"Montaje y fabricación de escaleras y perfilería metálica en estaciones, talleres y cocheras.",f:["Escaleras provisionales en la Estación San Francisco","Escaleras bajo andén en Universidad Central, El Ejido y La Alameda","Escaleras bajo andén en El Recreo, Cardenal de la Torre y Solanda","Perfilería galvanizada en la Estación Iñaquito","Estructura de plenum y montaje de tramex en Talleres y Cocheras","Pendolón para soporte de catenaria"]},
+        en:{t:"Quito Metro",d:"Manufacture and installation of stairs and steel profiles at stations, workshops and depots.",f:["Temporary stairs at San Francisco Station","Under-platform stairs at Universidad Central, El Ejido and La Alameda","Under-platform stairs at El Recreo, Cardenal de la Torre and Solanda","Galvanized profiles at Iñaquito Station","Plenum structure and grating at the workshops and depots","Catenary support hangers"]}},
+      {id:"manduriacu",pr:"pr3",cg:"pacto",s:"hidro",lat:0.3104,lon:-78.8586,lbl:"l",city:"Río Guayllabamba",prov:"Pichincha / Imbabura",cl:"CELEC EP",
+        es:{t:"Central Manduriacu",d:"Andamiaje, pintura de tubería y turbinas para la central hidroeléctrica.",f:["Andamios trepantes y deslizantes","Pintura de tubería","Turbinas para planta de aguas residuales"]},
+        en:{t:"Manduriacu plant",d:"Scaffolding, pipe painting and turbines for the hydropower plant.",f:["Climbing and sliding scaffolding","Pipe painting","Turbines for a wastewater plant"]}},
+      {id:"agoyan",pr:"pr2",cg:"banos",s:"hidro",lat:-1.3967,lon:-78.3836,lbl:"l",off:[-14,-14],city:"Baños de Agua Santa",prov:"Tungurahua",cl:"CELEC EP",
+        es:{t:"Central Agoyán",d:"Trabajos de reparación e infraestructura metálica en la central.",f:["Reparaciones en alturas con equipos especiales","Soldadura de infraestructura metálica"]},
+        en:{t:"Agoyán plant",d:"Repair and steel infrastructure work at the plant.",f:["Repairs at height with special equipment","Welding of steel infrastructure"]}},
+      {id:"sanfco",pr:"pr4",cg:"banos",s:"hidro",lat:-1.43,lon:-78.29,lbl:"r",off:[30,22],city:"Río Verde, Baños",prov:"Tungurahua",cl:"CELEC EP",
+        es:{t:"Central San Francisco",d:"Mantenimiento mecánico e hidráulico de la central.",f:["Suministros y materiales para mantenimiento mecánico","Soportería metálica para el skid del sistema de limpieza"]},
+        en:{t:"San Francisco plant",d:"Mechanical and hydraulic maintenance of the plant.",f:["Supplies and materials for mechanical maintenance","Steel supports for the cleaning system skid"]}},
+      {id:"otavalo",cg:"otavalo",s:"soc",lat:0.1995,lon:-78.229,lbl:"r",off:[22,-10],city:"San Rafael de la Laguna",prov:"Imbabura",year:"2023",img:"https://jocecia.com/portal/wp-content/uploads/2025/01/Social2.png",
+        es:{t:"Comunidad San Rafael de la Laguna",d:"Capacitación en manejo de desechos sólidos y aguas servidas, donación de biodigestores y una red para emprendimientos.",f:["Capacitación a la comunidad","Donación de biodigestores","Red para emprendimientos"]},
+        en:{t:"San Rafael de la Laguna community",d:"Training in solid waste and wastewater management, donated biodigesters and a network for small businesses.",f:["Community training","Donated biodigesters","Small business network"]}},
+      {id:"esmeraldas",cg:"esm",s:"soc",lat:0.9592,lon:-79.6539,lbl:"r",city:"Esmeraldas",prov:"Esmeraldas",year:"2021",cl:"ONG AMU · Sunrise+",
+        es:{t:"Panadería comunitaria",d:"Donación e instalación del techo de una panadería comunitaria, con el proyecto Sunrise+ de la ONG AMU.",f:["Donación de la estructura y cubierta","Instalación en sitio"]},
+        en:{t:"Community bakery",d:"Roof donated and installed for a community bakery, with the AMU NGO's Sunrise+ project.",f:["Donated structure and roofing","On-site installation"]}}
+    ];
+var FOTOS={"pr1": ["https://jocecia.com/portal/wp-content/uploads/2019/11/Metro-de-Quito-trenes-min-1024x683-770x513.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-2-1024x768-500x1000.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-3-768x1024-310x400.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-03-at-10.23.10-AM-1024x491-310x400.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/IMG_20220309_1103281-1024x461-310x400.jpg"], "pr2": ["https://jocecia.com/portal/wp-content/uploads/2021/08/SF-CELEC-2-1-1024x681-770x512.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC05907-768x1024-600x800.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC07603-1024x768-310x400.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC05928-1024x768-310x400.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC05691-1024x768-310x400.jpg"], "pr3": ["https://jocecia.com/portal/wp-content/uploads/2019/11/DESTACADA-CEL.1804-770x433.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-10-at-8.36.55-AM-2-576x1024-600x600.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-10-at-8.36.55-AM-1-1024x576-310x400.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-10-at-8.34.46-AM-1-576x1024-310x400.jpeg", "https://jocecia.com/portal/wp-content/uploads/2025/02/WhatsApp-Image-2022-05-10-at-8.34.45-AM-576x1024-310x400.jpeg"], "pr4": ["https://jocecia.com/portal/wp-content/uploads/2019/11/SF-CELEC-1024x768-770x577.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/01/IMG_20240816_092927-769x1024-600x700.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC00204-1024x768-310x400.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/P1000605-1024x768-310x400.jpg", "https://jocecia.com/portal/wp-content/uploads/2025/02/DSC01168-1024x768-310x400.jpg"]};
+
+var SECT={hidro:{c:"#3cc8e8",t:"Hidroeléctrica"},trans:{c:"#8fb2ff",t:"Transporte"},soc:{c:"#7fd6a4",t:"Obra social"}};
+function P(lon,lat){return[(lon+81.1)*100,(1.5-lat)*100]}
+function pct(x,y){return[(x+10)/620*100,(y+10)/680*100]}
+function vimg(u,w){return '/_vercel/image?url='+encodeURIComponent(u)+'&w='+(w||640)+'&q=75'}
+function fotos(o){return o.pr?FOTOS[o.pr]:(o.img?[o.img]:[])}
+var $=function(id){return document.getElementById(id)};
+document.querySelectorAll('.legend').forEach(function(l){l.innerHTML=Object.keys(SECT).map(function(k){return '<span style="--c:'+SECT[k].c+'"><i></i>'+SECT[k].t+'</span>'}).join('')});
+['a-provs','c-provs'].forEach(function(g){var h='';PROVS.forEach(function(p){h+='<path class="prov" d="'+p.d+'"/>'});$(g).innerHTML=h});
+
+function pinEl(o,i,h){var b=document.createElement('button');b.type='button';b.className='pin';b.style.setProperty('--c',SECT[o.s].c);if(h)b.style.setProperty('--h',h+'px');
+  b.setAttribute('aria-label',o.es.t);b.innerHTML='<span class="base"></span><span class="up"><span class="stake"></span><span class="head">'+(i+1)+'</span><span class="tag">'+o.es.t+'</span></span>';
+  b.addEventListener('click',function(e){e.stopPropagation();openCard(i,b)});return b}
+
+/* ---------- Ficha ---------- */
+var card=$('card'),scrim=$('scrim'),cur=-1,anchor=null,mode='pop';
+function render(i){var o=OBRAS[i],f=fotos(o),c=SECT[o.s].c;card.style.setProperty('--c',c);
+  var ph='<div class="ph">'+(f.length?'<img id="c-img" src="'+vimg(f[0],mode==='big'?1080:640)+'" alt="'+o.es.t+'" onerror="this.style.opacity=0">':'')+'<span class="badge">'+String(i+1).padStart(2,'0')+' · '+SECT[o.s].t.toUpperCase()+'</span><button type="button" class="ib" id="c-x" aria-label="Cerrar">×</button></div>';
+  var th=f.length>1?'<div class="thumbs">'+f.map(function(u,k){return '<button type="button" data-k="'+k+'"'+(k?'':' class="on"')+' aria-label="Foto '+(k+1)+'"><img loading="lazy" src="'+vimg(u,256)+'" alt="" onerror="this.style.opacity=0"></button>'}).join('')+'</div>':'';
+  var bd='<div class="bd"><h3>'+o.es.t+'</h3><div class="where"><span>'+o.city+' · '+o.prov+'</span>'+(o.cl?'<span>Cliente: '+o.cl+'</span>':'')+(o.year?'<span>'+o.year+'</span>':'')+'</div><p>'+o.es.d+'</p><ul>'+o.es.f.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul></div>';
+  var nav='<div class="nav"><button type="button" id="c-p">← Anterior</button><span>'+(i+1)+' / '+OBRAS.length+'</span><button type="button" id="c-n">Siguiente →</button></div>';
+  card.innerHTML=mode==='big'?ph+'<div class="side">'+th+bd+nav+'</div>':ph+th+bd+nav;
+  $('c-x').onclick=closeCard;$('c-p').onclick=function(){go(-1)};$('c-n').onclick=function(){go(1)};
+  card.querySelectorAll('.thumbs button').forEach(function(b){b.onclick=function(){card.querySelectorAll('.thumbs button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');$('c-img').style.opacity=1;$('c-img').src=vimg(f[+b.dataset.k],mode==='big'?1080:640)}});
+}
+function place(){if(mode!=='pop'||!anchor||innerWidth<=760){card.style.left='';card.style.top='';return}
+  var r=anchor.querySelector('.head').getBoundingClientRect(),w=card.offsetWidth,h=card.offsetHeight,x=r.right+18,y=r.top-40;
+  if(x+w>innerWidth-16)x=r.left-w-18;if(x<16)x=16;if(y+h>innerHeight-16)y=innerHeight-h-16;if(y<16)y=16;card.style.left=x+'px';card.style.top=y+'px'}
+function openCard(i,el){cur=i;anchor=el;document.querySelectorAll('.pin.on').forEach(function(p){p.classList.remove('on')});
+  document.querySelectorAll('.pin[data-i="'+i+'"]').forEach(function(p){p.classList.add('on')});
+  card.classList.toggle('big',mode==='big');render(i);card.classList.add('open');scrim.classList.toggle('open',mode==='big'||innerWidth<=760);place();if(onOpen)onOpen(i)}
+function closeCard(){card.classList.remove('open');scrim.classList.remove('open');document.querySelectorAll('.pin.on').forEach(function(p){p.classList.remove('on')});cur=-1;anchor=null}
+function go(d){var i=(cur+d+OBRAS.length)%OBRAS.length;var el=document.querySelector('.view:not([hidden]) .pin[data-i="'+i+'"]');openCard(i,el)}
+scrim.onclick=closeCard;addEventListener('keydown',function(e){if(e.key==='Escape')closeCard()});
+document.addEventListener('click',function(e){if(cur>=0&&mode==='pop'&&e.target.isConnected&&!card.contains(e.target))closeCard()});
+var onOpen=null;
+
+/* ---------- A: relieve inclinado ---------- */
+(function(){var plane=$('a-plane'),st=$('a-stage'),rx=50,rz=-10;
+  OBRAS.forEach(function(o,i){var p=P(o.lon,o.lat),q=pct(p[0],p[1]),b=pinEl(o,i,40);b.dataset.i=i;b.style.left=q[0]+'%';b.style.top=q[1]+'%';plane.appendChild(b)});
+  function set(){plane.style.setProperty('--rx',rx+'deg');plane.style.setProperty('--rz',rz+'deg');if(cur>=0)requestAnimationFrame(place)}
+  var dn=null;st.addEventListener('pointerdown',function(e){if(e.target.closest('.pin'))return;dn={x:e.clientX,y:e.clientY,rx:rx,rz:rz};st.classList.add('drag')});
+  addEventListener('pointermove',function(e){if(!dn)return;rz=Math.max(-40,Math.min(30,dn.rz+(e.clientX-dn.x)*.15));rx=Math.max(20,Math.min(62,dn.rx-(e.clientY-dn.y)*.12));set()});
+  addEventListener('pointerup',function(){dn=null;st.classList.remove('drag')});set();
+})();
+
+/* ---------- C: pantalla completa ---------- */
+(function(){var m=$('c-map');OBRAS.forEach(function(o,i){var p=P(o.lon,o.lat),q=pct(p[0],p[1]),b=pinEl(o,i,30);b.dataset.i=i;b.style.left=q[0]+'%';b.style.top=q[1]+'%';m.appendChild(b)})})();
+
+/* ---------- B: maqueta 3D ---------- */
+var B={ready:false};
+function initB(){if(B.ready)return;B.ready=true;
+  if(!window.THREE){$('b-msg').textContent='No se pudo cargar el motor 3D.';return}
+  var cv=$('b-cv'),wrap=$('vb'),pins=$('b-pins');
+  var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
+  var S=new THREE.Scene();S.fog=new THREE.Fog(0x05090f,120,220);
+  var C=new THREE.PerspectiveCamera(34,1,1,600);C.position.set(-8,62,74);
+  var O=new THREE.OrbitControls(C,cv);O.target.set(0,0,4);O.enableDamping=true;O.maxPolarAngle=1.3;O.minDistance=35;O.maxDistance=160;O.autoRotate=true;O.autoRotateSpeed=.35;O.enablePan=false;
+  cv.addEventListener('pointerdown',function(){O.autoRotate=false});
+  S.add(new THREE.HemisphereLight(0xcfe2ff,0x1a2433,.75));var sun=new THREE.DirectionalLight(0xffffff,.95);sun.position.set(-60,70,-30);S.add(sun);
+  var hm=new Image(),tx=new Image(),n=0;hm.src='/img/altura-ecuador.png';tx.src='/img/relieve-ecuador.webp';hm.onload=tx.onload=function(){if(++n===2)build()};
+  hm.onerror=tx.onerror=function(){$('b-msg').textContent='No se pudo cargar el relieve.'};
+  var H=null,HW=0,HH=0,K=8,geo,mesh;
+  function hAt(u,v){var x=Math.min(HW-1,Math.max(0,Math.round(u*(HW-1)))),y=Math.min(HH-1,Math.max(0,Math.round(v*(HH-1))));return H[(y*HW+x)*4]/255*6.3}
+  function build(){
+    var c=document.createElement('canvas');HW=c.width=hm.width;HH=c.height=hm.height;var g=c.getContext('2d');g.drawImage(hm,0,0);H=g.getImageData(0,0,HW,HH).data;
+    var t=document.createElement('canvas');t.width=tx.width;t.height=tx.height;var tg=t.getContext('2d');tg.drawImage(tx,0,0);
+    tg.save();tg.scale(t.width/620,t.height/680);tg.translate(10,10);tg.strokeStyle='rgba(255,255,255,.55)';tg.lineWidth=.9;tg.setLineDash([3,2]);PROVS.forEach(function(p){tg.stroke(new Path2D(p.d))});tg.restore();
+    var tex=new THREE.CanvasTexture(t);tex.encoding=THREE.sRGBEncoding;tex.anisotropy=R.capabilities.getMaxAnisotropy();
+    geo=new THREE.PlaneGeometry(62,68,310,340);geo.rotateX(-Math.PI/2);
+    mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:tex,roughness:.95,metalness:0}));S.add(mesh);
+    var base=new THREE.Mesh(new THREE.BoxGeometry(62,3,68),new THREE.MeshStandardMaterial({color:0x101b2b,roughness:1}));base.position.y=-1.52;S.add(base);
+    relief(8);
+    OBRAS.forEach(function(o,i){var b=pinEl(o,i,38);b.dataset.i=i;pins.appendChild(b);o._b=b});
+    $('b-msg').hidden=true;size();loop();
+  }
+  function relief(k){K=k;var p=geo.attributes.position,uv=geo.attributes.uv;for(var i=0;i<p.count;i++){p.setY(i,hAt(uv.getX(i),1-uv.getY(i))*k*.09)}p.needsUpdate=true;geo.computeVertexNormals()}
+  function wpos(o){var q=P(o.lon,o.lat),u=(q[0]+10)/620,v=(q[1]+10)/680;return new THREE.Vector3(u*62-31,hAt(u,v)*K*.09+.15,v*68-34)}
+  function size(){var w=wrap.clientWidth,h=wrap.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+  addEventListener('resize',size);
+  var fly=null;onOpenB=function(i){var t=wpos(OBRAS[i]);fly={from:O.target.clone(),to:t,t:0};O.autoRotate=false};
+  function loop(){requestAnimationFrame(loop);if($('vb').hidden)return;
+    if(fly){fly.t=Math.min(1,fly.t+.03);var e=1-Math.pow(1-fly.t,3);O.target.lerpVectors(fly.from,fly.to,e);if(fly.t>=1)fly=null}
+    O.update();R.render(S,C);var w=wrap.clientWidth,h=wrap.clientHeight;
+    OBRAS.forEach(function(o){var v=wpos(o).project(C);var b=o._b;b.style.transform='translate('+((v.x+1)/2*w)+'px,'+((1-v.y)/2*h)+'px)';b.style.visibility=v.z<1?'visible':'hidden'});
+    if(cur>=0&&mode==='pop')place();
+  }
+  document.querySelectorAll('#vb .ctrl button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#vb .ctrl button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');relief(+b.dataset.k)}});
+}
+var onOpenB=null;
+
+/* ---------- Pestañas ---------- */
+var VIEWS={a:'va',b:'vb',c:'vc'};
+function show(k){closeCard();Object.keys(VIEWS).forEach(function(x){$(VIEWS[x]).hidden=x!==k;$('t-'+x).setAttribute('aria-selected',x===k)});
+  mode=k==='c'?'big':'pop';onOpen=k==='b'?function(i){onOpenB&&onOpenB(i)}:null;if(k==='b')initB();
+  try{history.replaceState(null,'','#'+k)}catch(e){}}
+Object.keys(VIEWS).forEach(function(k){$('t-'+k).onclick=function(){show(k)}});
+show(({'#b':'b','#c':'c'})[location.hash]||'a');
+addEventListener('hashchange',function(){var k=({'#a':'a','#b':'b','#c':'c'})[location.hash];if(k&&$(VIEWS[k]).hidden)show(k)});
+</script>
+</body>
+</html>
