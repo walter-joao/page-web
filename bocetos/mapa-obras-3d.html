@@ -241,7 +241,7 @@ html[data-theme="light"] .scrim{background:rgba(13,23,38,.35)}
 
 <section class="view" id="vb" role="tabpanel" aria-labelledby="t-b" hidden>
   <header class="bar">
-    <a class="brand" href="/" aria-label="Joce Cia Ltda. · Inicio"><img src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=256&amp;q=75 256w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75 384w" sizes="160px" width="1024" height="530" alt="Joce Cia Ltda."></a>
+    <a class="brand" href="/" aria-label="Joce Cia Ltda. · Inicio"><img src="/_img/2025-02-LOGO-JOCECIA-1024x530-384.webp" srcset="/_img/2025-02-LOGO-JOCECIA-1024x530-256.webp 256w, /_img/2025-02-LOGO-JOCECIA-1024x530-384.webp 384w" sizes="160px" width="1024" height="530" alt="Joce Cia Ltda."></a>
     <div class="bar-r">
       <a class="glassb back" href="/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>Volver a la web</span></a>
       <nav class="glassb mt" aria-label="Otras propuestas"><span>Propuestas</span><a href="#a">A</a><a href="#b" aria-current="page">B</a><a href="#c">C</a></nav>
@@ -308,7 +308,7 @@ var FOTOS={"pr1": ["/img/wp/2019/11/Metro-de-Quito-trenes-min-1024x683-770x513.j
 var SECT={hidro:{c:"#3cc8e8",t:"Hidroeléctrica"},trans:{c:"#8fb2ff",t:"Transporte"},soc:{c:"#7fd6a4",t:"Obra social"}};
 function P(lon,lat){return[(lon+81.1)*100,(1.5-lat)*100]}
 function pct(x,y){return[(x+10)/620*100,(y+10)/680*100]}
-function vimg(u,w){return '/_vercel/image?url='+encodeURIComponent(u)+'&w='+(w||640)+'&q=75'}
+function vimg(u,w){return VI2(u,w||640)}function VI2(u,w){if(!/^\/img\/wp\//.test(u))return u;var s=[256,384,640,1080,1920].filter(function(x){return x>=w})[0]||1920;return '/_img/'+u.slice(8).replace(/\//g,'-').replace(/\.[^.]+$/,'')+'-'+s+'.webp'}
 function fotos(o){return o.pr?FOTOS[o.pr]:(o.img?[o.img]:[])}
 var $=function(id){return document.getElementById(id)};
 document.querySelectorAll('.legend').forEach(function(l){l.innerHTML=Object.keys(SECT).map(function(k){return '<span style="--c:'+SECT[k].c+'"><i></i>'+SECT[k].t+'</span>'}).join('')});
