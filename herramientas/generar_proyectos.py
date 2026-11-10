@@ -30,8 +30,9 @@ PROYECTOS = [
     {"pr": "pr3", "slug": "central-manduriacu", "lugar": "Río Guayllabamba, Pichincha / Imbabura", "cliente": "CELEC EP", "mapa": "manduriacu"},
     {"pr": "pr2", "slug": "central-agoyan", "lugar": "Baños de Agua Santa, Tungurahua", "cliente": "CELEC EP", "mapa": "agoyan"},
     {"pr": "pr4", "slug": "central-san-francisco", "lugar": "Río Verde, Baños, Tungurahua", "cliente": "CELEC EP", "mapa": "sanfco"},
+    {"pr": "pr11", "slug": "tunel-banos", "lugar": "Baños de Agua Santa, Tungurahua", "apx": True, "mapa": "tunel"},
     {"pr": "pr5", "slug": "galpon-cadeco"},
-    {"pr": "pr6", "slug": "proyecto-funival"},
+    {"pr": "pr6", "slug": "funvivalt-monserrat", "cliente": "Funvivalt"},
 ]
 
 CSS_PROY = """

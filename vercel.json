@@ -1,26 +1,57 @@
 {
   "cleanUrls": true,
   "images": {
-    "sizes": [256, 384, 640, 1080, 1920],
-    "formats": ["image/avif", "image/webp"],
+    "sizes": [
+      256,
+      384,
+      640,
+      1080,
+      1920
+    ],
+    "formats": [
+      "image/avif",
+      "image/webp"
+    ],
     "minimumCacheTTL": 2678400,
     "remotePatterns": [
-      { "protocol": "https", "hostname": "jocecia.com", "pathname": "/portal/wp-content/uploads/**" }
+      {
+        "protocol": "https",
+        "hostname": "jocecia.com",
+        "pathname": "/portal/wp-content/uploads/**"
+      }
     ]
   },
   "headers": [
     {
       "source": "/(.*)",
-      "has": [{ "type": "host", "value": ".*\\.vercel\\.app" }],
+      "has": [
+        {
+          "type": "host",
+          "value": ".*\\.vercel\\.app"
+        }
+      ],
       "headers": [
-        { "key": "X-Robots-Tag", "value": "noindex" }
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
       ]
     },
     {
       "source": "/catalogos/(.*)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400, stale-while-revalidate=604800" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400, stale-while-revalidate=604800"
+        }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/proyectos/proyecto-funival",
+      "destination": "/proyectos/funvivalt-monserrat",
+      "permanent": true
     }
   ]
 }
