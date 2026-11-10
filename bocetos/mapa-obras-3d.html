@@ -12,6 +12,7 @@
 :root{--bg:#05090f;--bg2:#0a121d;--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.12);--glass:rgba(12,20,32,.72);
   --cyan:#3cc8e8;--accent:#ff8a3d;--f-d:"Archivo","Arial Narrow",Arial,sans-serif;--f-b:"Manrope",system-ui,sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;color-scheme:dark}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b)}
 body{padding-top:env(safe-area-inset-top,0px)}
 button{font:inherit;color:inherit}
@@ -84,14 +85,45 @@ button{font:inherit;color:inherit}
 #va .pin .up{position:absolute;left:0;top:0;transform-style:preserve-3d;transform:rotateZ(calc(-1 * var(--rz,-10deg))) rotateX(calc(-1 * var(--rx,50deg)));transform-origin:0 0}
 .prov{fill:transparent;stroke:rgba(255,255,255,.4);stroke-width:.8;stroke-dasharray:3 2}
 
-/* B: maqueta 3D */
+/* B: maqueta 3D (Ecuador recortado) */
+#vb{height:min(90svh,900px)}
 #vb canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
-#vb .pins{position:absolute;inset:0;pointer-events:none}
+#vb .pins{position:absolute;inset:0;pointer-events:none;overflow:hidden}
 #vb .pin{pointer-events:auto}
+#vb .pin .stake{display:none}
+#vb .pin .head{width:22px;height:22px;bottom:2px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg);background:radial-gradient(circle at 50% 50%,#fff 0 26%,var(--accent) 30%);color:transparent;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 0 22px 4px rgba(255,138,61,.75)}
+#vb .pin:hover .head,#vb .pin.on .head{transform:translate(-50%,-3px) rotate(-45deg) scale(1.2)}
+#vb .pin .base{width:22px;height:9px;margin:-4px 0 0 -11px;background:radial-gradient(rgba(255,138,61,.7),transparent 70%);filter:none;animation:glow 2.2s ease-out infinite}
+@keyframes glow{from{transform:scale(.6);opacity:1}to{transform:scale(2.2);opacity:0}}
+#vb .pin .tag{display:none}
+#vb .pin.dim{opacity:.18;pointer-events:none}
+#vb .ovl{position:absolute;z-index:4;left:max(18px,env(safe-area-inset-left,0px));top:26px;display:grid;gap:14px;max-width:min(420px,calc(100% - 36px));pointer-events:none}
+#vb .ovl small{font:500 .74rem var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
+#vb .ovl h2{margin:0;font:600 clamp(1.7rem,3.6vw,2.9rem)/1.02 var(--f-d);letter-spacing:-.04em;background:linear-gradient(180deg,#fff 35%,#8d9bb0);-webkit-background-clip:text;background-clip:text;color:transparent}
+#vb .ovl h2 span{background:linear-gradient(100deg,#6fa0f2,#3cc8e8 55%,#ff8a3d);-webkit-background-clip:text;background-clip:text}
+#vb .ovl p{margin:0;color:var(--muted);font-size:.95rem}
+#vb .chips{display:flex;flex-wrap:wrap;gap:8px;pointer-events:auto}
+#vb .chips button{border:1px solid rgba(225,240,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 14px;border-radius:999px;cursor:pointer;font:600 .84rem var(--f-b);display:inline-flex;gap:7px;align-items:center}
+#vb .chips button i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
+#vb .chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b0c02}
+#vb .chips button[aria-pressed="true"] i{background:#1b0c02}
+#vb .hint{left:50%;transform:translateX(-50%);bottom:18px;white-space:nowrap}
+#vb .msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:500 .85rem var(--f-m)}
 #vb .ctrl{position:absolute;right:max(18px,env(safe-area-inset-right,0px));bottom:16px;z-index:5;display:flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:rgba(5,9,15,.7)}
 #vb .ctrl button{border:0;background:none;padding:7px 12px;border-radius:999px;cursor:pointer;font:600 .78rem var(--f-m);color:var(--muted)}
 #vb .ctrl button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
-#vb .msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:500 .85rem var(--f-m)}
+.mini{position:fixed;z-index:30;width:300px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03)),rgba(12,20,32,.82);border:1px solid rgba(225,240,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 30px 60px -20px rgba(0,0,0,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transform:translateY(6px) scale(.97);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.mini.open{opacity:1;transform:none;pointer-events:auto}
+.mini .ph{aspect-ratio:16/9;max-width:100%;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 55%,#0b1422),#0b1422)}
+.mini .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.mini .bd{padding:12px 16px 14px;display:grid;gap:4px}
+.mini b{font:600 1.15rem/1.15 var(--f-d);letter-spacing:-.02em}
+.mini span{color:var(--muted);font-size:.86rem}
+.mini button{justify-self:start;margin-top:6px;border:0;border-radius:999px;background:var(--accent);color:#1b0c02;font:700 .86rem var(--f-b);padding:8px 14px;cursor:pointer}
+.wire{position:fixed;inset:0;z-index:29;pointer-events:none;width:100%;height:100%}
+.wire line{stroke:rgba(255,138,61,.85);stroke-width:1.5}
+.wire circle{fill:var(--accent)}
+@media (max-width:760px){.mini,.wire{display:none}#vb .ovl h2{font-size:1.6rem}#vb .ovl p{display:none}}
 
 /* C: pantalla completa */
 #vc .stage{position:absolute;inset:0}
@@ -115,7 +147,7 @@ button{font:inherit;color:inherit}
     <p>Sin panel al costado: toca un punto y se abre la ficha de la obra con sus fotos y trabajos. Las tres usan el relieve real del Ecuador.</p>
   </div>
   <div class="tabs" role="tablist" aria-label="Propuestas">
-    <button role="tab" id="t-a" aria-selected="true" aria-controls="va"><b>A</b>Relieve inclinado</button>
+    <button role="tab" id="t-a" aria-selected="false" aria-controls="va"><b>A</b>Relieve inclinado</button>
     <button role="tab" id="t-b" aria-selected="false" aria-controls="vb"><b>B</b>Maqueta 3D</button>
     <button role="tab" id="t-c" aria-selected="false" aria-controls="vc"><b>C</b>Pantalla completa</button>
   </div>
@@ -133,8 +165,14 @@ button{font:inherit;color:inherit}
   <canvas id="b-cv" aria-label="Maqueta 3D del Ecuador con las obras de Jocecia"></canvas>
   <div class="pins" id="b-pins"></div>
   <p class="msg" id="b-msg">Cargando maqueta…</p>
-  <div class="hint"><span>Arrastra para girar · rueda o pellizco para acercar</span><span class="legend"></span></div>
-  <div class="ctrl" role="group" aria-label="Exageración del relieve"><button type="button" data-k="4" aria-pressed="false">Relieve ×4</button><button type="button" data-k="8" aria-pressed="true">×8</button><button type="button" data-k="14" aria-pressed="false">×14</button></div>
+  <div class="ovl">
+    <small>Proyectos · Obras en Ecuador</small>
+    <h2>La experiencia es nuestra <span>carta de presentación</span></h2>
+    <p>De la costa a la Amazonía, pasando por los Andes.</p>
+    <div class="chips" id="b-chips" role="group" aria-label="Filtrar por sector"></div>
+  </div>
+  <div class="hint"><span>Pasa el cursor por un punto para explorar · arrastra para girar</span></div>
+  <div class="ctrl" role="group" aria-label="Exageración del relieve"><button type="button" data-k="5" aria-pressed="false">Relieve ×5</button><button type="button" data-k="10" aria-pressed="true">×10</button><button type="button" data-k="16" aria-pressed="false">×16</button></div>
 </section>
 
 <section class="view" id="vc" role="tabpanel" aria-labelledby="t-c" hidden>
@@ -148,7 +186,7 @@ button{font:inherit;color:inherit}
 
 <div class="about">
   <div><b>A · Relieve inclinado</b>El mapa actual inclinado como una maqueta sobre la mesa, con los puntos parados como banderas. Liviano, carga rápido y funciona en cualquier celular.</div>
-  <div><b>B · Maqueta 3D</b>Terreno real en 3D: los Andes y los volcanes tienen altura de verdad y se puede girar y acercar. Es la más impresionante y la más pesada.</div>
+  <div><b>B · Maqueta 3D (recomendada)</b>Solo el Ecuador, recortado como una maqueta con alturas reales: los Andes y los volcanes tienen relieve de verdad. Al pasar el cursor por una obra aparece su ficha corta, y al tocarla se abre el detalle con fotos.</div>
   <div><b>C · Pantalla completa</b>El mapa ocupa toda la sección, con los nombres siempre visibles, y la ficha se abre grande en el centro con la galería de fotos.</div>
 </div>
 
@@ -192,7 +230,7 @@ document.querySelectorAll('.legend').forEach(function(l){l.innerHTML=Object.keys
 
 function pinEl(o,i,h){var b=document.createElement('button');b.type='button';b.className='pin';b.style.setProperty('--c',SECT[o.s].c);if(h)b.style.setProperty('--h',h+'px');
   b.setAttribute('aria-label',o.es.t);b.innerHTML='<span class="base"></span><span class="up"><span class="stake"></span><span class="head">'+(i+1)+'</span><span class="tag">'+o.es.t+'</span></span>';
-  b.addEventListener('click',function(e){e.stopPropagation();openCard(i,b)});return b}
+  b.addEventListener('click',function(e){e.stopPropagation();if(b.closest('#vb')&&B.openBig){B.openBig(i)}else openCard(i,b)});return b}
 
 /* ---------- Ficha ---------- */
 var card=$('card'),scrim=$('scrim'),cur=-1,anchor=null,mode='pop';
@@ -229,43 +267,78 @@ var onOpen=null;
 /* ---------- C: pantalla completa ---------- */
 (function(){var m=$('c-map');OBRAS.forEach(function(o,i){var p=P(o.lon,o.lat),q=pct(p[0],p[1]),b=pinEl(o,i,30);b.dataset.i=i;b.style.left=q[0]+'%';b.style.top=q[1]+'%';m.appendChild(b)})})();
 
-/* ---------- B: maqueta 3D ---------- */
+/* ---------- B: maqueta 3D (Ecuador recortado) ---------- */
 var B={ready:false};
 function initB(){if(B.ready)return;B.ready=true;
   if(!window.THREE){$('b-msg').textContent='No se pudo cargar el motor 3D.';return}
   var cv=$('b-cv'),wrap=$('vb'),pins=$('b-pins');
   var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
-  var S=new THREE.Scene();S.fog=new THREE.Fog(0x05090f,120,220);
-  var C=new THREE.PerspectiveCamera(34,1,1,600);C.position.set(-8,62,74);
-  var O=new THREE.OrbitControls(C,cv);O.target.set(0,0,4);O.enableDamping=true;O.maxPolarAngle=1.3;O.minDistance=35;O.maxDistance=160;O.autoRotate=true;O.autoRotateSpeed=.35;O.enablePan=false;
-  cv.addEventListener('pointerdown',function(){O.autoRotate=false});
-  S.add(new THREE.HemisphereLight(0xcfe2ff,0x1a2433,.75));var sun=new THREE.DirectionalLight(0xffffff,.95);sun.position.set(-60,70,-30);S.add(sun);
-  var hm=new Image(),tx=new Image(),n=0;hm.src='/img/altura-ecuador.png';tx.src='/img/relieve-ecuador.webp';hm.onload=tx.onload=function(){if(++n===2)build()};
-  hm.onerror=tx.onerror=function(){$('b-msg').textContent='No se pudo cargar el relieve.'};
-  var H=null,HW=0,HH=0,K=8,geo,mesh;
-  function hAt(u,v){var x=Math.min(HW-1,Math.max(0,Math.round(u*(HW-1)))),y=Math.min(HH-1,Math.max(0,Math.round(v*(HH-1))));return H[(y*HW+x)*4]/255*6.3}
+  var S=new THREE.Scene();
+  var C=new THREE.PerspectiveCamera(30,1,1,800);
+  var O=new THREE.OrbitControls(C,cv);O.target.set(-9,0,7);O.enableDamping=true;O.enablePan=false;O.minDistance=50;O.maxDistance=190;
+  O.minPolarAngle=.35;O.maxPolarAngle=1.05;O.minAzimuthAngle=-.7;O.maxAzimuthAngle=.7;
+  S.add(new THREE.AmbientLight(0xffffff,.55));var sun=new THREE.DirectionalLight(0xfff1e0,.8);sun.position.set(-50,60,-20);S.add(sun);
+  var K=10,UNIT=.045,DEPTH=3.2,FLOOR=-DEPTH;
+  var imgs={h:'/img/altura-ecuador.png',p:'/img/ecuador-3d-pais.webp',e:'/img/ecuador-3d-entorno.webp',s:'/img/ecuador-3d-sombra.png'},I={},n=0,N=4;
+  Object.keys(imgs).forEach(function(k){var im=new Image();im.onload=function(){if(++n===N)build()};im.onerror=function(){$('b-msg').textContent='No se pudo cargar el relieve.'};im.src=imgs[k];I[k]=im});
+  var H,HW,HH,geo,walls=[],wallMat;
+  function hAt(u,v){var x=Math.min(HW-1,Math.max(0,Math.round(u*(HW-1)))),y=Math.min(HH-1,Math.max(0,Math.round(v*(HH-1))));return H[(y*HW+x)*4]/255*6300}
+  function yAt(u,v){return hAt(u,v)/1000*K*UNIT*2}
+  function W(x,y){return[(x+10)/620*62-31,(y+10)/680*68-34]}
+  function tex(im){var t=new THREE.Texture(im);t.needsUpdate=true;t.encoding=THREE.sRGBEncoding;t.anisotropy=R.capabilities.getMaxAnisotropy();return t}
   function build(){
-    var c=document.createElement('canvas');HW=c.width=hm.width;HH=c.height=hm.height;var g=c.getContext('2d');g.drawImage(hm,0,0);H=g.getImageData(0,0,HW,HH).data;
-    var t=document.createElement('canvas');t.width=tx.width;t.height=tx.height;var tg=t.getContext('2d');tg.drawImage(tx,0,0);
-    tg.save();tg.scale(t.width/620,t.height/680);tg.translate(10,10);tg.strokeStyle='rgba(255,255,255,.55)';tg.lineWidth=.9;tg.setLineDash([3,2]);PROVS.forEach(function(p){tg.stroke(new Path2D(p.d))});tg.restore();
-    var tex=new THREE.CanvasTexture(t);tex.encoding=THREE.sRGBEncoding;tex.anisotropy=R.capabilities.getMaxAnisotropy();
-    geo=new THREE.PlaneGeometry(62,68,310,340);geo.rotateX(-Math.PI/2);
-    mesh=new THREE.Mesh(geo,new THREE.MeshStandardMaterial({map:tex,roughness:.95,metalness:0}));S.add(mesh);
-    var base=new THREE.Mesh(new THREE.BoxGeometry(62,3,68),new THREE.MeshStandardMaterial({color:0x101b2b,roughness:1}));base.position.y=-1.52;S.add(base);
-    relief(8);
-    OBRAS.forEach(function(o,i){var b=pinEl(o,i,38);b.dataset.i=i;pins.appendChild(b);o._b=b});
-    $('b-msg').hidden=true;size();loop();
+    var c=document.createElement('canvas');HW=c.width=I.h.width;HH=c.height=I.h.height;var g=c.getContext('2d');g.drawImage(I.h,0,0);H=g.getImageData(0,0,HW,HH).data;
+    // entorno oscuro (mar y vecinos) al nivel del piso de la maqueta
+    var env=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.e),transparent:true,depthWrite:false}));env.rotation.x=-Math.PI/2;env.position.y=FLOOR-.02;
+    env.material.map.wrapS=env.material.map.wrapT=THREE.ClampToEdgeWrapping;S.add(env);
+    var envMap=env.material.map;envMap.repeat.set(1,1);
+    var sh=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.s),transparent:true,depthWrite:false}));sh.rotation.x=-Math.PI/2;sh.position.set(2.2,FLOOR+.01,2.6);sh.scale.set(1.08,1,1.08);S.add(sh);
+    // terreno del país
+    geo=new THREE.PlaneGeometry(62,68,372,408);geo.rotateX(-Math.PI/2);
+    var mat=new THREE.MeshBasicMaterial({map:tex(I.p),alphaTest:.5,side:THREE.DoubleSide});
+    S.add(new THREE.Mesh(geo,mat));
+    // acantilados: paredes por el contorno de cada provincia, del piso hasta el terreno
+    wallMat=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
+    PROVS.forEach(function(p){p.d.split('M').forEach(function(sub){var nums=sub.match(/-?\d+\.?\d*/g);if(!nums||nums.length<6)return;var pts=[];for(var i=0;i<nums.length;i+=2)pts.push([+nums[i],+nums[i+1]]);pts.push(pts[0]);
+      var wg=new THREE.BufferGeometry(),pos=new Float32Array(pts.length*2*3),col=new Float32Array(pts.length*2*3),idx=[];
+      for(var i=0;i<pts.length;i++){var w=W(pts[i][0],pts[i][1]);pos.set([w[0],0,w[1]],i*6);pos.set([w[0],FLOOR,w[1]],i*6+3);col.set([.46,.36,.26],i*6);col.set([.12,.09,.07],i*6+3);if(i)idx.push((i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1)}
+      wg.setAttribute('position',new THREE.BufferAttribute(pos,3));wg.setAttribute('color',new THREE.BufferAttribute(col,3));wg.setIndex(idx);wg.userData.pts=pts;walls.push(wg);S.add(new THREE.Mesh(wg,wallMat))})});
+    relief(K);
+    // nubes suaves alrededor
+    var cc=document.createElement('canvas');cc.width=cc.height=128;var cg=cc.getContext('2d');for(var i=0;i<26;i++){var x=24+Math.random()*80,y=40+Math.random()*48,r=14+Math.random()*22,gr=cg.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.55)');gr.addColorStop(1,'rgba(255,255,255,0)');cg.fillStyle=gr;cg.beginPath();cg.arc(x,y,r,0,7);cg.fill()}
+    var ct=new THREE.CanvasTexture(cc);B.clouds=[];[[-44,10,-20,26],[40,9,-30,22],[-40,8,30,30],[46,10,24,26],[-10,11,-46,20],[12,9,48,24]].forEach(function(a){var s=new THREE.Sprite(new THREE.SpriteMaterial({map:ct,transparent:true,opacity:0,depthWrite:false,visible:false}));s.position.set(a[0],a[1],a[2]);s.scale.set(a[3],a[3]*.55,1);s.userData.x=a[0];S.add(s);B.clouds.push(s)});
+    OBRAS.forEach(function(o,i){var b=pinEl(o,i,0);b.dataset.i=i;pins.appendChild(b);o._b=b;b.addEventListener('mouseenter',function(){showMini(i)});b.addEventListener('focus',function(){showMini(i)})});
+    $('b-msg').hidden=true;size();C.position.set(-13,82,110);loop();
   }
-  function relief(k){K=k;var p=geo.attributes.position,uv=geo.attributes.uv;for(var i=0;i<p.count;i++){p.setY(i,hAt(uv.getX(i),1-uv.getY(i))*k*.09)}p.needsUpdate=true;geo.computeVertexNormals()}
-  function wpos(o){var q=P(o.lon,o.lat),u=(q[0]+10)/620,v=(q[1]+10)/680;return new THREE.Vector3(u*62-31,hAt(u,v)*K*.09+.15,v*68-34)}
-  function size(){var w=wrap.clientWidth,h=wrap.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.updateProjectionMatrix()}
+  function relief(k){K=k;var p=geo.attributes.position,uv=geo.attributes.uv;for(var i=0;i<p.count;i++)p.setY(i,yAt(uv.getX(i),1-uv.getY(i)));p.needsUpdate=true;
+    walls.forEach(function(wg){var pa=wg.attributes.position,pts=wg.userData.pts;for(var i=0;i<pts.length;i++){var u=(pts[i][0]+10)/620,v=(pts[i][1]+10)/680;pa.setY(i*2,yAt(u,v)+.02)}pa.needsUpdate=true;wg.computeVertexNormals()})}
+  function wpos(o){var q=P(o.lon,o.lat),u=(q[0]+10)/620,v=(q[1]+10)/680;return new THREE.Vector3(u*62-31,yAt(u,v)+.1,v*68-34)}
+  function size(){var w=wrap.clientWidth,h=wrap.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.fov=w<700?44:30;C.updateProjectionMatrix()}
   addEventListener('resize',size);
-  var fly=null;onOpenB=function(i){var t=wpos(OBRAS[i]);fly={from:O.target.clone(),to:t,t:0};O.autoRotate=false};
-  function loop(){requestAnimationFrame(loop);if($('vb').hidden)return;
-    if(fly){fly.t=Math.min(1,fly.t+.03);var e=1-Math.pow(1-fly.t,3);O.target.lerpVectors(fly.from,fly.to,e);if(fly.t>=1)fly=null}
+  // filtros
+  var chips=$('b-chips'),flt='all';chips.innerHTML='<button type="button" data-s="all" aria-pressed="true">Todas</button>'+Object.keys(SECT).map(function(k){return '<button type="button" data-s="'+k+'" aria-pressed="false" style="--c:'+SECT[k].c+'"><i></i>'+SECT[k].t+'</button>'}).join('');
+  chips.querySelectorAll('button').forEach(function(b){b.onclick=function(){flt=b.dataset.s;chips.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});OBRAS.forEach(function(o){o._b&&o._b.classList.toggle('dim',flt!=='all'&&o.s!==flt)});hideMini()}});
+  // ficha corta al pasar el cursor
+  var mini=document.createElement('div');mini.className='mini';document.body.appendChild(mini);
+  var wire=document.createElementNS('http://www.w3.org/2000/svg','svg');wire.setAttribute('class','wire');wire.innerHTML='<line/><circle r="3"/>';document.body.appendChild(wire);wire.style.display='none';
+  var mi=-1,hideT=0;
+  function showMini(i){if(innerWidth<=760)return;clearTimeout(hideT);mi=i;var o=OBRAS[i],f=fotos(o);mini.style.setProperty('--c',SECT[o.s].c);
+    mini.innerHTML='<div class="ph">'+(f.length?'<img src="'+vimg(f[0],640)+'" alt="" onerror="this.style.opacity=0">':'')+'</div><div class="bd"><b>'+o.es.t+'</b><span>'+SECT[o.s].t+' · '+o.city+'</span><button type="button">Ver obra ↗</button></div>';
+    mini.querySelector('button').onclick=function(e){e.stopPropagation();var k=mi;hideMini();openBig(k)};mini.classList.add('open');wire.style.display='';document.querySelectorAll('#vb .pin').forEach(function(p){p.classList.toggle('on',+p.dataset.i===i)})}
+  function hideMini(){mi=-1;mini.classList.remove('open');wire.style.display='none';document.querySelectorAll('#vb .pin.on').forEach(function(p){p.classList.remove('on')})}
+  function later(){clearTimeout(hideT);hideT=setTimeout(hideMini,350)}
+  mini.addEventListener('mouseenter',function(){clearTimeout(hideT)});mini.addEventListener('mouseleave',later);
+  pins.addEventListener('mouseleave',later,true);
+  function openBig(i){openCard(i,null)}
+  B.openBig=openBig;
+  function placeMini(){if(mi<0)return;var r=OBRAS[mi]._b.querySelector('.head').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
+    var w=300,h=mini.offsetHeight,x=cx+70,y=cy-h/2;if(x+w>innerWidth-16)x=cx-70-w;if(y<16)y=16;if(y+h>innerHeight-16)y=innerHeight-16-h;mini.style.left=x+'px';mini.style.top=y+'px';
+    var l=wire.querySelector('line'),ex=x>cx?x:x+w;l.setAttribute('x1',cx);l.setAttribute('y1',cy);l.setAttribute('x2',ex);l.setAttribute('y2',y+h*.42);var ci=wire.querySelector('circle');ci.setAttribute('cx',ex);ci.setAttribute('cy',y+h*.42)}
+  var t0=performance.now();
+  function loop(){requestAnimationFrame(loop);if($('vb').hidden)return;var t=(performance.now()-t0)/1000;
+    B.clouds.forEach(function(s,i){s.position.x=s.userData.x+Math.sin(t*.05+i)*3});
     O.update();R.render(S,C);var w=wrap.clientWidth,h=wrap.clientHeight;
-    OBRAS.forEach(function(o){var v=wpos(o).project(C);var b=o._b;b.style.transform='translate('+((v.x+1)/2*w)+'px,'+((1-v.y)/2*h)+'px)';b.style.visibility=v.z<1?'visible':'hidden'});
-    if(cur>=0&&mode==='pop')place();
+    OBRAS.forEach(function(o){var v=wpos(o).project(C);o._b.style.transform='translate('+((v.x+1)/2*w)+'px,'+((1-v.y)/2*h)+'px)'});placeMini();
   }
   document.querySelectorAll('#vb .ctrl button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#vb .ctrl button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');relief(+b.dataset.k)}});
 }
@@ -274,10 +347,10 @@ var onOpenB=null;
 /* ---------- Pestañas ---------- */
 var VIEWS={a:'va',b:'vb',c:'vc'};
 function show(k){closeCard();Object.keys(VIEWS).forEach(function(x){$(VIEWS[x]).hidden=x!==k;$('t-'+x).setAttribute('aria-selected',x===k)});
-  mode=k==='c'?'big':'pop';onOpen=k==='b'?function(i){onOpenB&&onOpenB(i)}:null;if(k==='b')initB();
+  mode=k==='a'?'pop':'big';onOpen=null;if(k==='b')initB();
   try{history.replaceState(null,'','#'+k)}catch(e){}}
 Object.keys(VIEWS).forEach(function(k){$('t-'+k).onclick=function(){show(k)}});
-show(({'#b':'b','#c':'c'})[location.hash]||'a');
+show(({'#a':'a','#c':'c'})[location.hash]||'b');
 addEventListener('hashchange',function(){var k=({'#a':'a','#b':'b','#c':'c'})[location.hash];if(k&&$(VIEWS[k]).hidden)show(k)});
 </script>
 </body>
