@@ -379,7 +379,7 @@ function initB(){if(B.ready)return;B.ready=true;
     var c=document.createElement('canvas');HW=c.width=I.h.width;HH=c.height=I.h.height;var g=c.getContext('2d');g.drawImage(I.h,0,0);H=g.getImageData(0,0,HW,HH).data;
     // entorno (mar y países vecinos) al nivel del piso de la maqueta
     env=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.e),transparent:true,depthWrite:false}));env.rotation.x=-Math.PI/2;env.position.y=FLOOR-.02;S.add(env);
-    var sh=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.s),transparent:true,depthWrite:false}));sh.rotation.x=-Math.PI/2;sh.position.set(2.2,FLOOR+.01,2.6);sh.scale.set(1.08,1,1.08);S.add(sh);
+    var sh=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.s),transparent:true,depthWrite:false}));sh.rotation.x=-Math.PI/2;sh.position.set(2.2,FLOOR+.01,2.6);sh.scale.set(1.08,1,1.08);S.add(sh);B.sh=sh;
     // terreno real (Terrarium/SRTM) con textura de relieve
     geo=new THREE.PlaneGeometry(62,68,372,408);geo.rotateX(-Math.PI/2);
     S.add(new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:tex(I.p),alphaTest:.5,side:THREE.DoubleSide})));
@@ -411,7 +411,7 @@ function initB(){if(B.ready)return;B.ready=true;
 
   // tema claro / oscuro (tokens de la web)
   function theme(t){THEME=t;document.documentElement.dataset.theme=t;try{localStorage.setItem('mo-theme',t)}catch(e){}
-    S.fog.color.set(t==='light'?0xf3f5f8:0x070d17);if(env)env.visible=t!=='light';
+    S.fog.color.set(t==='light'?0xf3f5f8:0x070d17);if(env){env.visible=t!=='light';B.sh.visible=t!=='light'}
     $('b-thm').setAttribute('aria-label',t==='light'?'Cambiar a modo oscuro':'Cambiar a modo claro')}
   $('b-thm').onclick=function(){theme(THEME==='light'?'dark':'light')};
 
@@ -427,7 +427,7 @@ function initB(){if(B.ready)return;B.ready=true;
     var vis=[];OBRAS.forEach(function(o,i){var off=flt!=='all'&&o.s!==flt;o._b.classList.toggle('off',off);if(!off)vis.push(o)});
     var w=want();if(w>=0&&OBRAS[w]._b.classList.contains('off')){pn=hv=-1;sync()}
     var m=new THREE.Vector3();vis.forEach(function(o){m.add(o._w)});m.divideScalar(vis.length||1);m.y=0;
-    goal=flt==='all'?T0.clone():T0.clone().lerp(m,.65)}});
+    goal=flt==='all'?T0.clone():T0.clone().lerp(m,.35)}});
 
   // tarjeta flotante: abierta mientras el cursor esté encima, fija con clic, toque en celular
   var tip=document.createElement('div');tip.className='tip';tip.setAttribute('role','dialog');tip.setAttribute('aria-label','Obra');document.body.appendChild(tip);
