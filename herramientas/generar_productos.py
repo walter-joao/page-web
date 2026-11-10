@@ -19,7 +19,7 @@ import json
 import os
 import re
 import sys
-from html.parser import HTMLParser
+from bs4 import BeautifulSoup, Comment, NavigableString
 from urllib.parse import quote
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,108 +27,146 @@ DOMINIO = "https://www.jocecia.com"
 WA = "593964068392"
 HOY = "2026-11-09"
 
-# Bloques de contacto y botones que en WordPress se repiten en cada página
+# Textos de botones y del bloque de contacto que WordPress repite en cada página
 OMITIR = re.compile(r"^(visítanos|llámanos|contáctanos|contactar|ver catálogo|ver catalogo|especiales)$", re.I)
+CONTACTO = re.compile(r"^(visítanos|llámanos|contáctanos)$", re.I)
+BLOQUES = {"p", "ul", "ol", "table", "h1", "h2", "h3", "h4", "h5", "h6", "div", "section", "article",
+           "figure", "li", "blockquote", "details", "summary", "header", "footer", "nav", "form"}
 
 
-class Extractor(HTMLParser):
-    """Convierte el HTML de WordPress/Elementor en bloques sencillos sin tocar el texto."""
+def norm(t):
+    return re.sub(r"\s+", " ", t).strip()
 
-    def __init__(self):
-        super().__init__(convert_charrefs=True)
-        self.bloques = []  # (tipo, contenido)
-        self.imgs = []
-        self.pdfs = []
-        self.pila = []
-        self.buf = None
-        self.tipo = None
-        self.lista = None
-        self.saltar = 0
-        self.fin = False  # True al llegar al bloque de contacto del pie
 
-    def handle_starttag(self, tag, attrs):
-        a = dict(attrs)
-        if tag in ("script", "style", "noscript", "svg"):
-            self.saltar += 1
-            return
-        if tag == "img":
-            src = a.get("data-src") or a.get("src") or ""
-            if "wp-content/uploads" in src and src not in self.imgs:
-                self.imgs.append(src)
-            return
-        if tag == "a" and (a.get("href") or "").lower().endswith(".pdf"):
-            self.pdfs.append(a["href"])
-        clase = a.get("class") or ""
-        if tag in ("h1", "h2", "h3", "h4", "h5", "h6", "p", "li", "td", "th", "figcaption"):
-            self._cerrar()
-            self.tipo, self.buf = tag, []
-        elif self.buf is None and re.search(r"(tab|accordion|toggle)-title", clase):
-            # títulos de los acordeones de Elementor: se muestran como subtítulos
-            self._cerrar()
-            self.tipo, self.buf = "h2", []
-            self.cierre_titulo = tag
-        elif tag in ("ul", "ol"):
-            self._cerrar()
-            self.lista = {"tipo": tag, "items": []}
-        elif tag == "br" and self.buf is not None:
-            self.buf.append("\n")
-        elif tag in ("strong", "b") and self.buf is not None:
-            self.buf.append("\x01")
-        self.pila.append(tag)
-
-    def handle_endtag(self, tag):
-        if tag in ("script", "style", "noscript", "svg"):
-            self.saltar = max(0, self.saltar - 1)
-            return
-        if tag in ("strong", "b") and self.buf is not None:
-            self.buf.append("\x02")
-        if tag == self.tipo or (self.tipo == "h2" and getattr(self, "cierre_titulo", None) == tag):
-            self._cerrar()
-        if tag in ("ul", "ol") and self.lista is not None:
-            self._cerrar()
-            if self.lista["items"]:
-                self.bloques.append(("lista", self.lista))
-            self.lista = None
-        if self.pila and self.pila[-1] == tag:
-            self.pila.pop()
-
-    def handle_data(self, data):
-        if self.saltar:
-            return
-        if self.buf is not None:
-            self.buf.append(data)
-        elif data.strip() and not self.fin and not OMITIR.match(data.strip()):
-            # texto suelto dentro de un div (Elementor lo hace a veces)
-            self.bloques.append(("p", data.strip()))
-
-    def _cerrar(self):
-        if self.buf is None:
-            return
-        t = re.sub(r"[ \t\r\f\v]+", " ", "".join(self.buf)).strip()
-        t = re.sub(r"\x01\s*\x02", "", t)
-        tipo, self.buf, self.tipo = self.tipo, None, None
-        limpio = t.replace("\x01", "").replace("\x02", "").strip()
-        if re.match(r"^(visítanos|llámanos|contáctanos)$", limpio, re.I):
-            self.fin = True
-        if self.fin or not t or OMITIR.match(limpio):
-            return
-        if tipo == "li" and self.lista is not None:
-            self.lista["items"].append(t)
+def inline(nodos, arriba=True):
+    """HTML en línea con el texto tal cual: solo conserva negritas, cursivas y saltos de línea."""
+    out = []
+    for n in nodos:
+        if isinstance(n, NavigableString):
+            if isinstance(n, Comment):
+                continue
+            out.append(html.escape(str(n), quote=False))
+        elif n.name == "br":
+            out.append("<br>")
+        elif n.name in ("strong", "b"):
+            dentro = inline(n.children, False)
+            out.append("<strong>%s</strong>" % dentro if norm(re.sub("<[^>]+>", "", dentro)) else dentro)
+        elif n.name in ("em", "i"):
+            out.append("<em>%s</em>" % inline(n.children, False))
+        elif n.name == "img":
+            continue
+        elif n.name in ("p", "div", "li"):
+            out.append(inline(n.children, False) + "<br>")
         else:
-            self.bloques.append((tipo, t))
+            out.append(inline(n.children, False))
+    t = re.sub(r"\s+", " ", "".join(out))
+    if not arriba:
+        return t
+    t = re.sub(r"(\s*<br>\s*)+$", "", re.sub(r"^(\s*<br>\s*)+", "", t))
+    t = re.sub(r"(\s*<br>\s*){2,}", "<br>", t)
+    return t.strip()
 
 
-def en_linea(t):
-    """Escapa el texto y convierte las marcas de negrita en <strong>."""
-    t = html.escape(t, quote=False)
-    t = t.replace("\x01", "<strong>").replace("\x02", "</strong>").replace("\n", "<br>")
-    # cierra negritas que WordPress dejó abiertas
-    abiertas = t.count("<strong>") - t.count("</strong>")
-    return t + "</strong>" * max(0, abiertas)
+def texto(h):
+    return norm(html.unescape(re.sub("<[^>]+>", "", h)))
+
+
+def extraer(fuente):
+    """Convierte el HTML de WordPress (Themify Builder) en bloques, sin tocar el texto."""
+    sopa = BeautifulSoup(fuente, "html.parser")
+    for t in sopa(["script", "style", "noscript", "svg", "iframe"]):
+        t.decompose()
+    imgs, pdfs = [], []
+    for a in sopa.find_all("a", href=True):
+        if a["href"].lower().endswith(".pdf"):
+            pdfs.append(a["href"])
+    for b in sopa.select(".module-buttons"):
+        b.decompose()
+    # acordeones: el título pasa a subtítulo y el contenido queda debajo
+    for t in sopa.select(".accordion-title"):
+        h = sopa.new_tag("h2")
+        h.string = norm(t.get_text())
+        t.replace_with(h)
+    for ul in sopa.select("ul.module-accordion"):
+        for li in ul.find_all("li", recursive=False):
+            li.unwrap()
+        ul.unwrap()
+
+    bloques = []
+    estado = {"fin": False}
+
+    def emitir(tipo, contenido):
+        if estado["fin"]:
+            return
+        if tipo != "lista":
+            t = texto(contenido)
+            if not t:
+                return
+            if CONTACTO.match(t):
+                estado["fin"] = True
+                return
+            if OMITIR.match(t):
+                return
+        bloques.append((tipo, contenido))
+
+    def recorrer(nodo):
+        buf = []
+
+        def vaciar():
+            if buf:
+                emitir("p", inline(buf))
+                buf.clear()
+
+        for n in list(nodo.children):
+            if isinstance(n, Comment):
+                continue
+            if isinstance(n, NavigableString) or n.name not in BLOQUES and n.name != "img":
+                if n.name is not None and n.find("img"):
+                    for im in n.find_all("img"):
+                        src = im.get("data-src") or im.get("src") or ""
+                        if "wp-content/uploads" in src and src not in imgs:
+                            imgs.append(src)
+                buf.append(n)
+                continue
+            vaciar()
+            if n.name == "img":
+                src = n.get("data-src") or n.get("src") or ""
+                if "wp-content/uploads" in src:
+                    if n.find_parent(class_="tb_text_wrap"):
+                        # tablas y figuras dentro del texto: van en su sitio
+                        if not estado["fin"]:
+                            bloques.append(("img", {"src": src, "alt": n.get("alt") or ""}))
+                    elif src not in imgs:
+                        imgs.append(src)
+            elif n.name in ("h1", "h2", "h3", "h4", "h5", "h6", "summary"):
+                emitir("h2" if n.name == "summary" else n.name, inline(n.children))
+            elif n.name == "p":
+                emitir("p", inline(n.children))
+                for im in n.find_all("img"):
+                    src = im.get("src") or ""
+                    if "wp-content/uploads" in src and not estado["fin"]:
+                        bloques.append(("img", {"src": src, "alt": im.get("alt") or ""}))
+            elif n.name in ("ul", "ol"):
+                items = [inline(li.children) for li in n.find_all("li", recursive=False)]
+                items = [i for i in items if texto(i)]
+                if items and not estado["fin"]:
+                    bloques.append(("lista", {"tipo": n.name, "items": items}))
+            elif n.name == "table":
+                filas = []
+                for tr in n.find_all("tr"):
+                    filas.append([(c.name, inline(c.children)) for c in tr.find_all(["td", "th"])])
+                if filas and not estado["fin"]:
+                    bloques.append(("tabla", filas))
+            else:
+                recorrer(n)
+        vaciar()
+
+    recorrer(sopa)
+    return bloques, imgs, pdfs
 
 
 def plano(t):
-    return re.sub(r"\s+", " ", t.replace("\x01", "").replace("\x02", "")).strip()
+    return texto(t)
 
 
 def img_opt(url, w):
@@ -142,7 +180,19 @@ def foto(url, alt, sizes="(max-width: 700px) 100vw, 33vw", eager=False):
                html.escape(url), html.escape(alt)))
 
 
+def unir_listas(bloques):
+    """WordPress a veces pone cada punto en su propia lista: se juntan las seguidas."""
+    out = []
+    for b in bloques:
+        if b[0] == "lista" and out and out[-1][0] == "lista" and out[-1][1]["tipo"] == b[1]["tipo"]:
+            out[-1] = ("lista", {"tipo": b[1]["tipo"], "items": out[-1][1]["items"] + b[1]["items"]})
+        else:
+            out.append(b)
+    return out
+
+
 def cuerpo_html(bloques, nombre):
+    bloques = unir_listas(bloques)
     out = []
     primero_h1 = True
     for tipo, c in bloques:
@@ -150,16 +200,23 @@ def cuerpo_html(bloques, nombre):
             primero_h1 = False  # el H1 de la plantilla ya lo muestra
             continue
         if tipo in ("h1", "h2"):
-            out.append("<h2>%s</h2>" % en_linea(c))
+            out.append("<h2>%s</h2>" % c)
         elif tipo == "h3":
-            out.append("<h3>%s</h3>" % en_linea(c))
+            out.append("<h3>%s</h3>" % c)
         elif tipo in ("h4", "h5", "h6"):
-            out.append("<h4>%s</h4>" % en_linea(c))
+            out.append("<h4>%s</h4>" % c)
         elif tipo == "lista":
             tag = c["tipo"]
-            out.append("<%s>%s</%s>" % (tag, "".join("<li>%s</li>" % en_linea(i) for i in c["items"]), tag))
+            out.append("<%s>%s</%s>" % (tag, "".join("<li>%s</li>" % i for i in c["items"]), tag))
+        elif tipo == "img":
+            alt = c["alt"] if c["alt"] and not re.match(r"^(IMG|WhatsApp|th\b|\d)", c["alt"]) else nombre
+            out.append('<figure class="pp-fig"><a href="%s" target="_blank" rel="noopener">%s</a></figure>' % (
+                html.escape(c["src"]), foto(c["src"], alt, sizes="(max-width: 800px) 100vw, 760px")))
+        elif tipo == "tabla":
+            out.append('<div class="pp-tabla"><table>%s</table></div>' % "".join(
+                "<tr>%s</tr>" % "".join("<%s>%s</%s>" % (t, v, t) for t, v in fila) for fila in c))
         else:
-            out.append("<p>%s</p>" % en_linea(c))
+            out.append("<p>%s</p>" % c)
     return "\n".join(out)
 
 
@@ -196,6 +253,8 @@ CSS_EXTRA = """
 .pp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
 .pp-cards a{display:block;padding:20px 22px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-weight:700}
 .pp-cards a small{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:6px}
+.pp-fig{margin:16px 0}.pp-fig img{border-radius:10px;background:#fff;max-width:100%;height:auto}
+.pp-tabla{overflow-x:auto;margin:16px 0}.pp-tabla table{border-collapse:collapse;font-size:.92rem}.pp-tabla td,.pp-tabla th{border:1px solid var(--line);padding:6px 10px;text-align:left}
 .pp-cards a:hover{border-color:var(--cyan)}
 .top .wrap{min-height:76px}
 """
@@ -210,7 +269,7 @@ document.getElementById('theme').addEventListener('click',function(){var d=r.dat
 def pagina(p, todos, bloques, imgs, css_base, head_comun):
     nombre = p["nombre"]
     url = "%s/productos/%s" % (DOMINIO, p["slug"])
-    desc = descripcion(bloques, nombre)
+    desc = p.get("desc") or descripcion(bloques, nombre)
     galeria = imgs or p.get("imgs", [])
     wa_txt = quote("Hola, quisiera una cotización de %s." % nombre)
     pdf = p.get("pdf")
@@ -333,12 +392,9 @@ def main():
         if not pg:
             faltan.append(p["wp"])
             continue
-        ex = Extractor()
-        ex.feed(pg["content"]["rendered"])
-        ex._cerrar()
-        imgs = ex.imgs
+        bloques, imgs, _ = extraer(pg["content"]["rendered"])
         open(os.path.join(RAIZ, "productos", p["slug"] + ".html"), "w", encoding="utf-8").write(
-            pagina(p, todos, ex.bloques, imgs, css_base, head_comun))
+            pagina(p, todos, bloques, imgs, css_base, head_comun))
         hechos.append(p["slug"])
 
     # sitemap
