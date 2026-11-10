@@ -165,6 +165,47 @@ def extraer(fuente):
     return bloques, imgs, pdfs
 
 
+
+def corregir(slug, bloques, cfg):
+    """Aplica las correcciones aprobadas (herramientas/correcciones.json) sobre el texto original."""
+    usados = set()
+
+    def fx(t):
+        for i, (pag, viejo, nuevo) in enumerate(cfg.get("reemplazos", [])):
+            if pag in ("*", slug) and viejo in t:
+                t = t.replace(viejo, nuevo)
+                usados.add(i)
+        if cfg.get("unir_lineas_cortadas"):
+            # saltos de línea pegados desde Word a mitad de frase
+            t = re.sub(r"\s*<br>\s*(?=[a-záéíóúñü])", " ", t)
+        return t
+
+    out = []
+    for tipo, c in bloques:
+        if tipo == "lista":
+            c = {"tipo": c["tipo"], "items": [fx(i) for i in c["items"]]}
+        elif tipo == "tabla":
+            c = [[(t, fx(v)) for t, v in fila] for fila in c]
+        elif tipo != "img":
+            c = fx(c)
+        out.append((tipo, c))
+    if cfg.get("quitar_secciones_repetidas"):
+        # un título seguido de la misma lista que el título anterior igual: se deja una sola vez
+        limpio, vistos = [], set()
+        i = 0
+        while i < len(out):
+            t, c = out[i]
+            if t in ("h2", "h3") and i + 1 < len(out) and out[i + 1][0] == "lista":
+                clave = (texto(c).upper(), tuple(out[i + 1][1]["items"]))
+                if clave in vistos:
+                    i += 2
+                    continue
+                vistos.add(clave)
+            limpio.append(out[i])
+            i += 1
+        out = limpio
+    return out, usados
+
 def plano(t):
     return texto(t)
 
@@ -385,6 +426,9 @@ def main():
         sys.exit("Falta herramientas/fuente-wp.json (export de wp-json/wp/v2/pages). No se genera nada para no inventar texto.")
     wp = {pg["slug"]: pg for pg in json.load(open(ruta_fuente, encoding="utf-8"))}
 
+    ruta_corr = os.path.join(RAIZ, "herramientas", "correcciones.json")
+    cfg = json.load(open(ruta_corr, encoding="utf-8")) if os.path.exists(ruta_corr) else {}
+    usados_total = set()
     os.makedirs(os.path.join(RAIZ, "productos"), exist_ok=True)
     hechos, faltan = [], []
     for p in productos:
@@ -393,6 +437,8 @@ def main():
             faltan.append(p["wp"])
             continue
         bloques, imgs, _ = extraer(pg["content"]["rendered"])
+        bloques, usados = corregir(p["slug"], bloques, cfg)
+        usados_total |= usados
         open(os.path.join(RAIZ, "productos", p["slug"] + ".html"), "w", encoding="utf-8").write(
             pagina(p, todos, bloques, imgs, css_base, head_comun))
         hechos.append(p["slug"])
@@ -404,6 +450,9 @@ def main():
     xml += ["  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (u, HOY, pr) for u, pr in urls]
     open(os.path.join(RAIZ, "sitemap.xml"), "w").write("\n".join(xml + ["</urlset>", ""]))
     print("Generadas:", ", ".join(hechos))
+    sin_uso = [r for i, r in enumerate(cfg.get("reemplazos", [])) if i not in usados_total]
+    if sin_uso:
+        print("Correcciones que ya no encuentran su texto:", sin_uso)
     if faltan:
         print("Sin texto en la fuente (no generadas):", ", ".join(faltan))
 
