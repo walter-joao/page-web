@@ -982,7 +982,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <div class="values fx-dark">
+  <div class="values fx-dark" data-fx>
     <div class="wrap">
       <div class="card rv">
         <div class="val"><b><span class="count" data-to="20">20</span>+</b><span data-i18n="v.years">años de experiencia</span></div>
@@ -993,7 +993,7 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
-  <section id="proyectos" class="fx-dark" style="padding-top:0">
+  <section id="proyectos" class="fx-dark" data-fx style="padding-top:0">
     <span id="mapa-obras" aria-hidden="true"></span>
     <div class="wrap">
     <div class="sat" id="sat">
@@ -1059,7 +1059,7 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section id="productos" class="fx-dark">
+  <section id="productos" class="fx-dark" data-fx>
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker" data-i18n="prod.k">Productos</span>
@@ -1463,7 +1463,7 @@ footer a{color:var(--muted)}
       // versión clara: paisaje con el entorno en papel claro para que Ecuador resalte sobre fondo blanco
       var sec=$('proyectos'),src=$('sat-src'),img=$('sat-img');
       function light(){var t=document.documentElement.dataset.theme;return t?t==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
-      function theme(){var lt=light(),sf=lt?'-claro':'';box.classList.toggle('lt',lt);sec.classList.toggle('fx-dark',!lt);
+      function theme(){var lt=light(),sf=lt?'-claro':'';box.classList.toggle('lt',lt);
         src.srcset='/img/paisaje-ecuador-movil'+sf+'.webp';img.srcset='/img/paisaje-ecuador-1600'+sf+'.webp 1600w, /img/paisaje-ecuador-2560'+sf+'.webp 2560w';img.src='/img/paisaje-ecuador-1600'+sf+'.webp'}
       theme();new MutationObserver(theme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
       var dm=matchMedia('(prefers-color-scheme: dark)');if(dm.addEventListener)dm.addEventListener('change',theme);
@@ -1786,6 +1786,10 @@ footer a{color:var(--muted)}
   });
 
   // Menú móvil
+  // Secciones oscuras (vidrio) solo en modo oscuro; en modo claro siguen el tema
+  (function(){var R=document.documentElement,dm=matchMedia('(prefers-color-scheme: dark)');
+    function fx(){var t=R.dataset.theme,dark=t?t==='dark':dm.matches;document.querySelectorAll('[data-fx]').forEach(function(e){e.classList.toggle('fx-dark',dark)})}
+    fx();new MutationObserver(fx).observe(R,{attributes:true,attributeFilter:['data-theme']});if(dm.addEventListener)dm.addEventListener('change',fx)})();
   var menu=document.getElementById('menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
   nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
