@@ -202,7 +202,79 @@
  ]
 }
 </script>
-<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Mapa de obras sobre paisaje satelital (render fijo + marcadores HTML calibrados con la misma cámara) */
+.sat{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:clamp(620px,90vh,920px);overflow:hidden;isolation:isolate;background:#04101f;color:#e8eef6}
+.sat-stage{position:absolute;inset:0}
+.sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sat-bg img{object-fit:cover;object-position:62% 50%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.sat.in .sat-bg img{transform:none}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,12,24,.92) 0%,rgba(4,12,24,.72) 26%,rgba(4,12,24,.18) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 84%,var(--bg) 100%)}
+.sat-copy .kicker{justify-self:start}
+.sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
+.sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.sat-lead{margin:0;color:#c3cfdd;font-size:1.06rem;max-width:40ch}
+.sat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sat-chips button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(225,240,255,.28);background:rgba(6,14,26,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font:600 .9rem var(--f-body);cursor:pointer;transition:background .25s,border-color .25s,color .25s,transform .15s}
+.sat-chips button:hover{border-color:rgba(255,255,255,.55)}
+.sat-chips button:active{transform:scale(.97)}
+.sat-chips button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#1b0c02)}
+.sat-chips button[aria-pressed="true"] i{background:currentColor}
+.sat-hint{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);margin:0;display:flex;align-items:center;gap:10px;color:#dfe7f1;font-size:.95rem;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .4s}
+.sat-hint svg{width:20px;height:20px}
+.sat.used .sat-hint{opacity:0}
+.sat-credit{position:absolute;z-index:3;right:16px;bottom:10px;margin:0;font:500 .66rem var(--f-mono);color:rgba(220,230,242,.45)}
+.sat-pins{position:absolute;inset:0;z-index:2}
+.sat-pin{position:absolute;left:0;top:0;width:0;height:0;border:0;padding:0;background:none;cursor:pointer;transition:opacity .35s}
+.sat-pin .h{position:absolute;left:0;bottom:2px;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg) scale(var(--s,1));background:radial-gradient(circle,#fff 0 24%,var(--accent) 28%);box-shadow:0 0 0 2px rgba(255,255,255,.2),0 0 26px 6px rgba(255,138,61,.65);transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.sat-pin .h::before{content:"";position:absolute;inset:-9px;border-radius:50%}
+.sat-pin .g{position:absolute;left:0;top:0;width:26px;height:10px;margin:-5px 0 0 -13px;border-radius:50%;background:radial-gradient(rgba(255,138,61,.8),transparent 70%);animation:satglow 2.4s ease-out infinite}
+@keyframes satglow{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+.sat-pin:hover .h,.sat-pin.on .h{--s:1.22;box-shadow:0 0 0 2px #fff,0 0 34px 10px rgba(255,138,61,.85)}
+.sat-pin.off{opacity:.15;pointer-events:none}
+.sat-pin:focus-visible{outline:none}.sat-pin:focus-visible .h{box-shadow:0 0 0 3px var(--cyan)}
+.sat-wire{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .2s}
+.sat-wire.on{opacity:1}
+.sat-wire line{stroke:rgba(255,255,255,.75);stroke-width:1.5}
+.sat-wire circle{fill:#fff}
+.sat-card{position:absolute;z-index:4;left:0;top:0;width:min(330px,26vw);border-radius:20px;overflow:hidden;background:#fff;color:#0d1726;box-shadow:0 30px 70px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(8px) scale(.97);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1),left .35s cubic-bezier(.2,.8,.2,1),top .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.sat-card.open{opacity:1;transform:none;pointer-events:auto}
+.sat-card .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#1f4fa0,#0d1726);overflow:hidden}
+.sat-card .ph img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .35s}
+.sat-card .ph img.ok{opacity:1}
+.sat-card .badge{position:absolute;top:12px;left:12px;display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(6,14,26,.7);color:#fff;font:600 .7rem var(--f-mono);letter-spacing:.04em}
+.sat-card .badge i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.sat-card .bd{padding:16px 20px 20px;display:grid;gap:4px}
+.sat-card h3{margin:0;font:700 1.35rem/1.15 var(--f-display);letter-spacing:-.02em;color:#0d1726}
+.sat-card .loc{color:#5a6a7e;font-size:.92rem}
+.sat-card .go{justify-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;border:0;background:var(--accent);color:#fff;font:700 .95rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.sat-card .go:hover{box-shadow:0 10px 26px -8px rgba(238,122,43,.8)}
+.sat-card .go:active{transform:scale(.97)}
+.sat-card .go svg{width:16px;height:16px}
+.sat-card .x{display:none}
+@media (max-width:760px){
+  .sat{height:auto;overflow:visible;background:var(--bg);display:flex;flex-direction:column}
+  .sat-copy{position:relative;order:-1;left:auto;right:auto;top:auto;width:auto;padding:24px 20px 14px;gap:10px}
+  .sat-copy h2{font-size:2rem}
+  .sat-lead{font-size:.95rem}
+  .sat-chips{flex-wrap:nowrap;overflow-x:auto;margin:4px -20px 0;padding:0 20px 4px;scrollbar-width:none}
+  .sat-chips button{flex:none;height:38px}
+  .sat-stage{position:relative;inset:auto;aspect-ratio:1080/1350}
+  .sat-bg img{object-position:50% 50%}
+  .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 12%,transparent 85%,var(--bg) 100%)}
+  .sat-hint{bottom:34px;font-size:.88rem}
+  .sat-hint svg{display:none}
+  .sat-credit{position:static;padding:8px 20px 0;text-align:right}
+  .sat-card{position:relative;left:auto!important;top:auto!important;width:auto;margin:-24px 16px 0;opacity:1;transform:none;pointer-events:auto;display:grid;grid-template-columns:130px 1fr}
+  .sat-card .ph{aspect-ratio:auto;height:100%;min-height:150px}
+  .sat-card .badge{display:none}
+  .sat-card .bd{padding:14px 16px}
+  .sat-card h3{font-size:1.12rem}
+  .sat-card .go{padding:9px 14px;font-size:.88rem;margin-top:8px}
+  .sat-pin .h{width:30px;height:30px}
+}
+@media (prefers-reduced-motion:reduce){.sat-pin .g{animation:none}.sat-bg img,.sat-card{transition:none}}
+</style>
 <script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
 document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
@@ -907,41 +979,29 @@ footer a{color:var(--muted)}
     </div>
   </div>
 
-  <section id="proyectos" class="fx-dark" style="padding-top:72px">
+  <section id="proyectos" class="fx-dark" style="padding-top:0">
     <span id="mapa-obras" aria-hidden="true"></span>
     <div class="wrap">
-      <div class="sec-head">
+    <div class="sat" id="sat">
+      <div class="sat-stage" id="sat-stage">
+      <picture class="sat-bg">
+        <source media="(max-width: 760px)" srcset="/img/paisaje-ecuador-movil.webp" width="1080" height="1350">
+        <img id="sat-img" src="/img/paisaje-ecuador-1600.webp" srcset="/img/paisaje-ecuador-1600.webp 1600w, /img/paisaje-ecuador-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Imagen satelital del Ecuador continental con el relieve de los Andes, la costa del Pacífico y la Amazonía" decoding="async">
+      </picture>
+      <div class="sat-shade" aria-hidden="true"></div>
+      <div class="sat-pins" id="sat-pins"></div>
+      <svg class="sat-wire" id="sat-wire" aria-hidden="true"><line/><circle r="3.5"/></svg>
+      <p class="sat-hint" id="sat-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="3" width="10" height="18" rx="5"/><path d="M12 7v3"/></svg><span data-i18n="sat.hint">Pasa el cursor por un punto para explorar</span></p>
+      </div>
+      <div class="sat-copy">
         <span class="kicker" data-i18n="proj.k">Proyectos</span>
         <h2 data-i18n-html="proj.t">La experiencia es nuestra <span class="grad">carta de presentación</span></h2>
-        <p class="lead lit-wrap"><span class="lit" data-i18n="mo.lead">De la costa a la Amazonía, pasando por los Andes. Toque un punto del mapa para ver la obra, dónde está y qué trabajos hicimos.</span></p>
+        <p class="sat-lead" data-i18n="sat.lead">Explora nuestras obras en el Ecuador: de la costa a la Amazonía, pasando por los Andes.</p>
+        <div class="sat-chips" id="sat-chips" role="group" aria-label="Filtrar por sector"></div>
       </div>
-      <div class="mo-bar">
-        <div class="mo-left">
-          <div class="mo-seg" role="group" aria-label="Ver el mapa por"><button type="button" id="mo-m-obras" aria-pressed="true" data-i18n="mo.byWork">Por obra</button><button type="button" id="mo-m-ciud" aria-pressed="false" data-i18n="mo.byCity">Por ciudad</button></div>
-          <div class="mo-chips" id="mo-chips" role="group" aria-label="Filtrar por sector"></div>
-        </div>
-        <div class="mo-stats" id="mo-stats"></div>
-      </div>
-      <div class="mo-grid">
-        <div class="mo-map">
-          <svg id="mo-svg" viewBox="-10 -10 620 680" role="img" aria-label="Mapa del Ecuador continental con las obras de Jocecia">
-            <g id="mo-grat"></g>
-            <image href="/img/relieve-ecuador.webp" x="-10" y="-10" width="620" height="680" preserveAspectRatio="none"/>
-            <g id="mo-provs"></g>
-            <g id="mo-glab"></g>
-            <g id="mo-peaks"></g>
-            <text class="mo-coast" x="40" y="330" transform="rotate(-90 40 330)" id="mo-ocean">OCÉANO PACÍFICO</text>
-            <text class="mo-country" x="470" y="40">COLOMBIA</text>
-            <text class="mo-country" x="470" y="560" id="mo-peru">PERÚ</text>
-            <g id="mo-refs" hidden></g>
-            <g id="mo-pins"></g>
-            <g id="mo-cities" hidden></g>
-          </svg>
-          <div class="mo-legend" id="mo-legend"></div>
-        </div>
-        <article class="mo-panel" id="mo-panel" aria-live="polite"></article>
-      </div>
-      <div class="mo-list" id="mo-list"></div>
+            <article class="sat-card" id="sat-card" aria-live="polite"></article>
+      <p class="sat-credit" data-i18n="sat.credit">Imagen: Copernicus Sentinel-2 (2019–2024) · relieve: Terrain Tiles</p>
+    </div>
       <div class="mo-more"><span class="kicker" data-i18n="mo.other">Otras obras</span><div class="mosaic mo-mosaic">
         <a class="project rv" href="#mapa-obras" role="button" data-prod="pr5"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2019%2F11%2Fimagen_2021-08-04_112159-700x800.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2019/11/imagen_2021-08-04_112159-700x800.png" alt="Galpón Cadeco: estructura metálica, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.steel">Estructura metálica</small><b data-i18n="proj.cadeco">Galpón Cadeco</b></div></a>
         <a class="project rv" href="#mapa-obras" role="button" data-prod="pr6"><div class="corr"><img decoding="async" src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2021%2F02%2FPrimera-etapa-2-1024x768-700x800.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="https://jocecia.com/portal/wp-content/uploads/2021/02/Primera-etapa-2-1024x768-700x800.jpg" alt="Proyecto Funival: residencial, obra de Joce Cia" loading="lazy"></div><div class="cap"><small data-i18n="proj.res">Residencial</small><b data-i18n="proj.funival">Proyecto Funival</b></div></a>
@@ -1381,7 +1441,51 @@ footer a{color:var(--muted)}
     function fmt(v,a,b){return Math.abs(v).toFixed(2)+"° "+(v>=0?a:b)}
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
     var filter="all",mode="obras",sel="metro";
-    if(!$('mo-svg'))return function(){};
+    // ---- Mapa sobre paisaje satelital: fondo fijo + marcadores calibrados con la misma cámara del render ----
+    function SAT(){
+      var box=$('sat'),pinsEl=$('sat-pins'),card=$('sat-card'),wire=$('sat-wire'),chips=$('sat-chips');
+      var PT={desk:{w:2560,h:1440,ox:.62,p:{metro:[.61157,.2305],manduriacu:[.58144,.18239],agoyan:[.62834,.37104],sanfco:[.63677,.37247],otavalo:[.63202,.18626],esmeraldas:[.51864,.12301]}},
+              mob:{w:1080,h:1350,ox:.5,p:{metro:[.51264,.29998],manduriacu:[.46258,.24881],agoyan:[.53285,.43262],sanfco:[.54722,.43516],otavalo:[.55419,.25587],esmeraldas:[.35075,.18647]}}};
+      var mq=matchMedia('(max-width:760px)'),flt='all',cur=0,shown=-1;
+      OBRAS.forEach(function(o,i){var b=document.createElement('button');b.type='button';b.className='sat-pin';b.dataset.i=i;b.innerHTML='<span class="g"></span><span class="h"></span>';
+        b.setAttribute('aria-label',o.es.t+' · '+o.city);pinsEl.appendChild(b);o.satEl=b;
+        b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){show(i);box.classList.add('used')}});
+        b.addEventListener('focus',function(){show(i)});
+        b.addEventListener('click',function(e){e.preventDefault();show(i);box.classList.add('used')})});
+      function vis(o){return flt==='all'||o.s===flt}
+      function layout(){var c=mq.matches?PT.mob:PT.desk,W=pinsEl.clientWidth,H=pinsEl.clientHeight,s=Math.max(W/c.w,H/c.h),x0=(W-c.w*s)*c.ox,y0=(H-c.h*s)*.5;
+        var pos=OBRAS.map(function(o){var p=c.p[o.id];return[x0+p[0]*c.w*s,y0+p[1]*c.h*s]}),dx=pos.map(function(){return 0}),M=26;
+        // dos obras casi en el mismo sitio (centrales de Baños): se separan unos píxeles para poder tocarlas
+        for(var i=0;i<pos.length;i++)for(var j=i+1;j<pos.length;j++){var a=pos[j][0]-pos[i][0],b=pos[j][1]-pos[i][1];if(Math.abs(a)<M&&Math.abs(b)<M){var k=(M-Math.abs(a))/2,sg=a>=0?1:-1;dx[i]-=sg*k;dx[j]+=sg*k}}
+        OBRAS.forEach(function(o,i){o.satXY=[pos[i][0]+dx[i],pos[i][1]];o.satEl.style.transform='translate('+o.satXY[0]+'px,'+o.satXY[1]+'px)'});place()}
+      function fill(i){var o=OBRAS[i],t=o[L()],u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]),lbl=L()==='en'?'View project':'Ver proyecto';
+        var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
+        card.style.setProperty('--c',SECT[o.s].c);
+        card.innerHTML='<div class="ph">'+(u?'<img src="'+VI(u,640)+'" alt="'+esc(t.t)+'" decoding="async" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+SECT[o.s][L()]+'</span></div>'+
+          '<div class="bd"><h3>'+esc(t.t)+'</h3><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+'</span>'+(o.pr?'<button type="button" class="go">'+lbl+arrow+'</button>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
+        if(o.pr)card.querySelector('.go').onclick=function(){openPd(o.pr)};
+        var im=card.querySelector('img');if(im&&im.complete&&im.naturalWidth)im.classList.add('ok')}
+      function show(i){cur=i;if(i!==shown){fill(i);shown=i}OBRAS.forEach(function(o,k){o.satEl.classList.toggle('on',k===i)});card.classList.add('open');place()}
+      function place(){var o=OBRAS[cur];if(!o||!o.satXY)return;
+        if(mq.matches){wire.classList.remove('on');card.style.left='';card.style.top='';return}
+        var W=pinsEl.clientWidth,H=pinsEl.clientHeight,cw=card.offsetWidth,ch=card.offsetHeight,x=o.satXY[0],y=o.satXY[1]-14,gap=72,side=1,L0=x+gap;
+        if(L0+cw>W-24){L0=x-gap-cw;side=-1}
+        var T0=Math.max(84,Math.min(H-ch-70,y-ch*.38));card.style.left=L0+'px';card.style.top=T0+'px';
+        var ex=side>0?L0:L0+cw,ey=Math.max(T0+30,Math.min(T0+ch-30,y)),ln=wire.querySelector('line'),ci=wire.querySelector('circle');
+        ln.setAttribute('x1',x+side*12);ln.setAttribute('y1',y);ln.setAttribute('x2',ex);ln.setAttribute('y2',ey);ci.setAttribute('cx',ex);ci.setAttribute('cy',ey);wire.classList.add('on')}
+      function chipsRender(){var X=T(),l=L(),u=[];OBRAS.forEach(function(o){if(u.indexOf(o.s)<0)u.push(o.s)});
+        chips.innerHTML=[["all",X.all,null]].concat(u.map(function(k){return[k,SECT[k][l],SECT[k].c]})).map(function(a){return '<button type="button" aria-pressed="'+(flt===a[0])+'" data-k="'+a[0]+'"'+(a[2]?' style="--c:'+a[2]+'"><i></i>':'>')+a[1]+'</button>'}).join('')}
+      chips.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;flt=b.dataset.k;chipsRender();
+        OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});if(!vis(OBRAS[cur])){for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}}});
+      var hint=document.querySelector('#sat-hint span'),fineP=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fineP)hint.removeAttribute('data-i18n');
+      function hintTx(){if(!fineP)hint.textContent=L()==='en'?'Tap a point to see the project':'Toca un punto para ver la obra'}hintTx();
+      chipsRender();addEventListener('resize',layout);if(mq.addEventListener)mq.addEventListener('change',layout);
+      var im=$('sat-img');if(!im.complete)im.addEventListener('load',layout);
+      layout();show(0);
+      if('IntersectionObserver' in window){new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){box.classList.add('in');ob.disconnect()}})},{threshold:.2}).observe(box)}else box.classList.add('in');
+      return function(){chipsRender();hintTx();shown=-1;show(cur)};
+    }
+    if(!$('mo-svg'))return $('sat')?SAT():function(){};
     // retícula
     var grat=$('mo-grat'),glab=$('mo-glab');
     for(var la=1;la>=-5;la--){var y=P(-81,la)[1];el("line",{x1:-10,x2:610,y1:y,y2:y,stroke:"rgba(255,255,255,.12)","stroke-dasharray":"2 6"},grat);el("text",{"class":"mo-gl",x:596,y:y-4,"text-anchor":"end"},glab).textContent=la===0?"0° Ecuador":Math.abs(la)+"° "+(la>0?"N":"S")}
@@ -1641,7 +1745,7 @@ footer a{color:var(--muted)}
     "t.corr":"Corrugation","t.diam":"Diameters","t.thick":"Thickness","t.shape":"Shapes","t.load":"Loads","t.std":"Standards","t.span":"Long span (152.S)","t.use":"Uses",
     "t.shape68":"Circular · arched","t.shape152":"Circular · vault · ellipse · underpass · arch","t.span152":"High and low profile arch · ellipse · egg shape","t.use152":"Pedestrian and vehicle underpasses · drainage",
     "mo.k":"Projects in Ecuador","mo.t":"Wherever the country <span class=\"grad\">is being built</span>","mo.lead":"From the coast to the Amazon, across the Andes. Tap a point on the map to see the project, where it is and the work we did.","mo.byWork":"By project","mo.byCity":"By city",
-    "proj.k":"Projects","proj.t":"Our track record is <span class=\"grad\">our calling card</span>",
+    "proj.k":"Projects","sat.lead":"Explore our projects across Ecuador: from the coast to the Amazon, across the Andes.","sat.hint":"Hover over a point to explore","sat.credit":"Imagery: Copernicus Sentinel-2 (2019–2024) · relief: Terrain Tiles","proj.t":"Our track record is <span class=\"grad\">our calling card</span>",
     "proj.transport":"Public transport","proj.hydro":"Hydropower","proj.steel":"Steel structure","proj.res":"Residential",
     "mo.other":"Other projects","proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funival project",
     "about.k":"About us","about.t":"A <span class=\"grad\">multidisciplinary</span> team","about.mk":"Our mission",
