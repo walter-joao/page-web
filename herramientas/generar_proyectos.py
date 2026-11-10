@@ -144,7 +144,7 @@ def pagina(p, d, todos, css_base, head_comun):
   <div class="wrap">
     <a class="logo" href="/" aria-label="Joce Cia Ltda. – inicio"><img decoding="async" src="{logo}" alt="Joce Cia Ltda." width="81" height="42"></a>
     <nav class="main" aria-label="Secciones">
-      <a href="/#sectores">Soluciones</a><a href="/#productos">Productos</a><a href="/#proyectos">Proyectos</a><a href="/#nosotros">Nosotros</a><a href="/#empleo">Trabaja con nosotros</a><a href="/#contacto">Contacto</a>
+      <a href="/#proyectos">Proyectos</a><a href="/#sectores">Soluciones</a><a href="/#productos">Productos</a><a href="/#nosotros">Nosotros</a><a href="/#empleo">Trabaja con nosotros</a><a href="/#contacto">Contacto</a>
     </nav>
     <div class="tools"><button type="button" class="round" id="theme" aria-label="Cambiar tema claro u oscuro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>
   </div>
