@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mapa de obras · propuestas</title>
+<title>Obras en Ecuador · Jocecia</title>
 <meta name="robots" content="noindex">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -85,45 +85,123 @@ button{font:inherit;color:inherit}
 #va .pin .up{position:absolute;left:0;top:0;transform-style:preserve-3d;transform:rotateZ(calc(-1 * var(--rz,-10deg))) rotateX(calc(-1 * var(--rx,50deg)));transform-origin:0 0}
 .prov{fill:transparent;stroke:rgba(255,255,255,.4);stroke-width:.8;stroke-dasharray:3 2}
 
-/* B: maqueta 3D (Ecuador recortado) */
-#vb{height:min(90svh,900px)}
-#vb canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
-#vb .pins{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-#vb .pin{pointer-events:auto}
-#vb .pin .stake{display:none}
-#vb .pin .head{width:22px;height:22px;bottom:2px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg);background:radial-gradient(circle at 50% 50%,#fff 0 26%,var(--accent) 30%);color:transparent;box-shadow:0 0 0 2px rgba(255,255,255,.18),0 0 22px 4px rgba(255,138,61,.75)}
-#vb .pin:hover .head,#vb .pin.on .head{transform:translate(-50%,-3px) rotate(-45deg) scale(1.2)}
-#vb .pin .base{width:22px;height:9px;margin:-4px 0 0 -11px;background:radial-gradient(rgba(255,138,61,.7),transparent 70%);filter:none;animation:glow 2.2s ease-out infinite}
-@keyframes glow{from{transform:scale(.6);opacity:1}to{transform:scale(2.2);opacity:0}}
-#vb .pin .tag{display:none}
-#vb .pin.dim{opacity:.18;pointer-events:none}
-#vb .ovl{position:absolute;z-index:4;left:max(18px,env(safe-area-inset-left,0px));top:26px;display:grid;gap:14px;max-width:min(420px,calc(100% - 36px));pointer-events:none}
+/* B: maqueta 3D · presentación con logo y paleta Jocecia
+   Paleta: azul marino del logo #294271, azul de marca #1f4fa0/#5b8fe6, cian #1aa3c8/#3cc8e8, naranja #ee7a2b/#ff8a3d, fondo #070d17 / #f3f5f8 (tokens de la web). */
+html[data-theme="light"]{--bg:#f3f5f8;--bg2:#e8ecf2;--fg:#0d1726;--muted:#5a6a7e;--line:rgba(13,23,38,.1);--glass:rgba(255,255,255,.8);--cyan:#1aa3c8;--accent:#ee7a2b;color-scheme:light}
+:root{--navy:#294271;--brand:#5b8fe6;--logo-filter:brightness(0) invert(1)}
+html[data-theme="light"]{--brand:#1f4fa0;--logo-filter:none}
+body.mode-b .top,body.mode-b .about{display:none}
+body.mode-b{transition:background .5s,color .5s}
+#vb{height:100svh;min-height:600px;border:0;transition:background .5s}
+#vb::before{background:radial-gradient(48% 42% at 52% 58%,color-mix(in srgb,var(--navy) 70%,transparent),transparent 72%),radial-gradient(36% 26% at 52% 66%,color-mix(in srgb,var(--cyan) 14%,transparent),transparent 70%),linear-gradient(color-mix(in srgb,var(--brand) 7%,transparent) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,color-mix(in srgb,var(--brand) 7%,transparent) 1px,transparent 1px) 0 0/64px 64px}
+#vb::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:radial-gradient(90% 80% at 50% 55%,transparent 55%,color-mix(in srgb,var(--bg) 85%,transparent) 100%),linear-gradient(180deg,var(--bg) 0,transparent 16%,transparent 84%,var(--bg) 100%)}
+html[data-theme="light"] #vb::before{background:radial-gradient(48% 42% at 52% 58%,rgba(31,79,160,.16),transparent 72%),linear-gradient(rgba(31,79,160,.06) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,rgba(31,79,160,.06) 1px,transparent 1px) 0 0/64px 64px}
+#vb canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;opacity:0;transition:opacity 1.2s ease}
+#vb.ready canvas{opacity:1}
+#vb .pins{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden}
+#vb .msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:500 .85rem var(--f-m);z-index:2}
+
+/* Cabecera con el logo original */
+#vb .bar{position:absolute;z-index:6;top:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px max(18px,env(safe-area-inset-right,0px)) 14px max(18px,env(safe-area-inset-left,0px))}
+#vb .brand{display:flex;align-items:center;text-decoration:none}
+#vb .brand img{height:46px;width:auto;display:block;filter:var(--logo-filter);transition:filter .4s}
+#vb .bar-r{display:flex;align-items:center;gap:8px}
+#vb .glassb{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 8%,transparent),color-mix(in srgb,var(--fg) 2%,transparent));box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 12%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--fg);text-decoration:none;font:600 .86rem var(--f-b);cursor:pointer;transition:border-color .2s,background .2s}
+#vb .glassb:hover{border-color:color-mix(in srgb,var(--cyan) 60%,transparent)}
+#vb .glassb svg{width:16px;height:16px}
+#vb .mt{font:500 .72rem var(--f-m);color:var(--muted);letter-spacing:.06em;padding:0 6px 0 14px}
+#vb .mt a{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:50%;color:var(--fg);text-decoration:none;font-weight:600}
+#vb .mt a[aria-current]{background:var(--fg);color:var(--bg)}
+#vb .thm{width:40px;padding:0;justify-content:center}
+
+/* Título y filtros */
+#vb .ovl{position:absolute;z-index:4;left:max(22px,env(safe-area-inset-left,0px));top:96px;display:grid;gap:14px;max-width:min(430px,calc(100% - 44px));pointer-events:none}
 #vb .ovl small{font:500 .74rem var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--cyan)}
-#vb .ovl h2{margin:0;font:600 clamp(1.7rem,3.6vw,2.9rem)/1.02 var(--f-d);letter-spacing:-.04em;background:linear-gradient(180deg,#fff 35%,#8d9bb0);-webkit-background-clip:text;background-clip:text;color:transparent}
-#vb .ovl h2 span{background:linear-gradient(100deg,#6fa0f2,#3cc8e8 55%,#ff8a3d);-webkit-background-clip:text;background-clip:text}
-#vb .ovl p{margin:0;color:var(--muted);font-size:.95rem}
-#vb .chips{display:flex;flex-wrap:wrap;gap:8px;pointer-events:auto}
-#vb .chips button{border:1px solid rgba(225,240,255,.16);background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.02));box-shadow:inset 0 1px 0 rgba(255,255,255,.08);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);padding:8px 14px;border-radius:999px;cursor:pointer;font:600 .84rem var(--f-b);display:inline-flex;gap:7px;align-items:center}
+#vb .ovl h2{margin:0;font:600 clamp(1.9rem,3.8vw,3.1rem)/1 var(--f-d);letter-spacing:-.04em;background:linear-gradient(180deg,var(--fg) 40%,color-mix(in srgb,var(--fg) 55%,var(--bg)));-webkit-background-clip:text;background-clip:text;color:transparent}
+#vb .ovl h2 span{background:linear-gradient(100deg,var(--brand),var(--cyan) 55%,var(--accent));-webkit-background-clip:text;background-clip:text}
+#vb .ovl p{margin:0;color:var(--muted);font-size:.98rem;max-width:36ch}
+#vb .chips{display:flex;flex-wrap:wrap;gap:8px;pointer-events:auto;margin-top:4px}
+#vb .chips button{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line);background:linear-gradient(180deg,color-mix(in srgb,var(--fg) 8%,transparent),color-mix(in srgb,var(--fg) 2%,transparent));backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);cursor:pointer;font:600 .86rem var(--f-b);color:var(--fg);transition:background .25s,border-color .25s,color .25s,transform .15s}
+#vb .chips button:active{transform:scale(.97)}
 #vb .chips button i{width:8px;height:8px;border-radius:50%;background:var(--c,var(--accent))}
-#vb .chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#1b0c02}
-#vb .chips button[aria-pressed="true"] i{background:#1b0c02}
-#vb .hint{left:50%;transform:translateX(-50%);bottom:18px;white-space:nowrap}
-#vb .msg{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted);font:500 .85rem var(--f-m)}
-#vb .ctrl{position:absolute;right:max(18px,env(safe-area-inset-right,0px));bottom:16px;z-index:5;display:flex;gap:4px;padding:4px;border-radius:999px;border:1px solid var(--line);background:rgba(5,9,15,.7)}
-#vb .ctrl button{border:0;background:none;padding:7px 12px;border-radius:999px;cursor:pointer;font:600 .78rem var(--f-m);color:var(--muted)}
+#vb .chips button b{font:500 .72rem var(--f-m);color:var(--muted);transition:color .25s}
+#vb .chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#1b0c02)}
+html[data-theme="light"] #vb .chips button[aria-pressed="true"]{color:#fff}
+#vb .chips button[aria-pressed="true"] b{color:inherit;opacity:.75}
+#vb .chips button[aria-pressed="true"] i{background:currentColor}
+#vb .hint{left:50%;transform:translateX(-50%);bottom:20px;white-space:nowrap;z-index:4;display:flex;align-items:center;gap:8px;transition:opacity .4s}
+#vb .hint i{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+#vb.used .hint{opacity:0}
+#vb .ctrl{position:absolute;right:max(18px,env(safe-area-inset-right,0px));bottom:16px;z-index:5;display:flex;gap:2px;padding:4px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:blur(10px)}
+#vb .ctrl button{border:0;background:none;padding:6px 11px;border-radius:999px;cursor:pointer;font:600 .74rem var(--f-m);color:var(--muted)}
 #vb .ctrl button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
-.mini{position:fixed;z-index:30;width:300px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03)),rgba(12,20,32,.82);border:1px solid rgba(225,240,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.16),0 30px 60px -20px rgba(0,0,0,.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);opacity:0;transform:translateY(6px) scale(.97);transition:opacity .2s,transform .25s cubic-bezier(.2,.8,.2,1);pointer-events:none}
-.mini.open{opacity:1;transform:none;pointer-events:auto}
-.mini .ph{aspect-ratio:16/9;max-width:100%;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 55%,#0b1422),#0b1422)}
-.mini .ph img{width:100%;height:100%;object-fit:cover;display:block}
-.mini .bd{padding:12px 16px 14px;display:grid;gap:4px}
-.mini b{font:600 1.15rem/1.15 var(--f-d);letter-spacing:-.02em}
-.mini span{color:var(--muted);font-size:.86rem}
-.mini button{justify-self:start;margin-top:6px;border:0;border-radius:999px;background:var(--accent);color:#1b0c02;font:700 .86rem var(--f-b);padding:8px 14px;cursor:pointer}
-.wire{position:fixed;inset:0;z-index:29;pointer-events:none;width:100%;height:100%}
-.wire line{stroke:rgba(255,138,61,.85);stroke-width:1.5}
+
+/* Marcadores */
+.bpin{position:absolute;left:0;top:0;width:0;height:0;border:0;padding:0;background:none;cursor:pointer;pointer-events:auto;--dx:0px;transition:opacity .45s}
+.bpin .head{position:absolute;left:var(--dx);bottom:4px;width:24px;height:24px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg) scale(0);background:radial-gradient(circle at 50% 50%,#fff 0 24%,var(--accent) 28%);box-shadow:0 0 0 2px color-mix(in srgb,var(--c) 70%,transparent),0 0 24px 4px color-mix(in srgb,var(--accent) 70%,transparent);transition:transform .45s cubic-bezier(.3,1.5,.5,1) var(--d,0ms),box-shadow .25s}
+.bpin .head::before{content:"";position:absolute;inset:-5px;border-radius:50%}
+@media (pointer:coarse){.bpin .head::before{inset:-10px}}
+#vb.in .bpin .head{transform:translate(-50%,0) rotate(-45deg) scale(1)}
+#vb.in .bpin:hover .head,#vb.in .bpin.on .head{transform:translate(-50%,-4px) rotate(-45deg) scale(1.25);transition-delay:0ms;box-shadow:0 0 0 2px #fff,0 0 30px 8px color-mix(in srgb,var(--accent) 80%,transparent)}
+.bpin .base{position:absolute;left:0;top:0;width:22px;height:9px;margin:-4px 0 0 -11px;border-radius:50%;background:radial-gradient(color-mix(in srgb,var(--accent) 75%,transparent),transparent 70%);animation:glow 2.4s ease-out infinite;animation-delay:var(--d,0ms)}
+.bpin .leg{position:absolute;top:-.5px;height:1px;left:min(0px,var(--dx));width:max(var(--dx),calc(-1 * var(--dx)));background:color-mix(in srgb,var(--accent) 80%,transparent)}
+.bpin.off{opacity:.2;pointer-events:none}
+.bpin:focus-visible{outline:none}.bpin:focus-visible .head{box-shadow:0 0 0 3px var(--cyan)}
+@keyframes glow{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+
+/* Tarjeta flotante */
+.tip{position:fixed;z-index:30;left:0;top:0;width:320px;border-radius:20px;overflow:hidden;background:linear-gradient(180deg,color-mix(in srgb,#fff 10%,transparent),color-mix(in srgb,#fff 3%,transparent)),color-mix(in srgb,var(--bg) 84%,transparent);border:1px solid color-mix(in srgb,var(--fg) 16%,transparent);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 16%,transparent),0 30px 70px -20px rgba(0,0,0,.75);backdrop-filter:blur(18px) saturate(1.2);-webkit-backdrop-filter:blur(18px) saturate(1.2);opacity:0;transform:translateY(8px) scale(.96);transition:opacity .22s,transform .3s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+html[data-theme="light"] .tip{box-shadow:0 30px 60px -24px rgba(13,23,38,.35)}
+.tip.open{opacity:1;transform:none;pointer-events:auto}
+.tip .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,color-mix(in srgb,var(--c) 45%,var(--navy)),var(--navy));overflow:hidden}
+.tip .ph img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transform:scale(1.04);transition:opacity .4s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.tip .ph img.ok{opacity:1;transform:none}
+.tip .ph::after{content:"";position:absolute;inset:auto 0 0;height:40%;background:linear-gradient(transparent,rgba(5,9,15,.45));pointer-events:none}
+.tip .badge{position:absolute;z-index:1;top:12px;left:12px;display:inline-flex;align-items:center;gap:6px;font:600 .7rem var(--f-m);letter-spacing:.04em;padding:6px 10px;border-radius:999px;background:rgba(5,9,15,.62);color:#fff;backdrop-filter:blur(8px)}
+.tip .badge i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.tip .x{position:absolute;z-index:2;top:10px;right:10px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.3);background:rgba(5,9,15,.6);color:#fff;cursor:pointer;font-size:18px;line-height:1;display:grid;place-items:center;opacity:0;transform:scale(.8);transition:opacity .2s,transform .2s}
+.tip.pinned .x{opacity:1;transform:none}
+.tip .bd{padding:14px 18px 18px;display:grid;gap:6px}
+.tip small{font:500 .7rem var(--f-m);letter-spacing:.1em;color:var(--muted);display:flex;align-items:center;gap:8px}
+.tip small em{font-style:normal;color:var(--accent);opacity:0;transition:opacity .2s}
+.tip.pinned small em{opacity:1}
+.tip b{font:600 1.3rem/1.12 var(--f-d);letter-spacing:-.02em;color:var(--fg)}
+.tip .loc{display:flex;align-items:center;gap:6px;color:var(--muted);font-size:.88rem}
+.tip .loc svg{width:14px;height:14px;flex:none;color:var(--accent)}
+.tip .go{justify-self:start;margin-top:8px;display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--accent);color:var(--accent-ink,#1b0c02);font:700 .9rem var(--f-b);padding:10px 16px;cursor:pointer;transition:transform .15s,box-shadow .2s}
+html[data-theme="light"] .tip .go{color:#fff}
+.tip .go:hover{box-shadow:0 8px 24px -6px color-mix(in srgb,var(--accent) 70%,transparent)}
+.tip .go:active{transform:scale(.97)}
+.tip .go svg{width:16px;height:16px;transition:transform .2s}.tip .go:hover svg{transform:translateX(3px)}
+.wire{position:fixed;inset:0;z-index:29;pointer-events:none;width:100%;height:100%;opacity:0;transition:opacity .2s}
+.wire.on{opacity:1}
+.wire line{stroke:color-mix(in srgb,var(--accent) 85%,transparent);stroke-width:1.5;stroke-dasharray:3 3}
 .wire circle{fill:var(--accent)}
-@media (max-width:760px){.mini,.wire{display:none}#vb .ovl h2{font-size:1.6rem}#vb .ovl p{display:none}}
+html[data-theme="light"] .card{box-shadow:0 40px 80px -24px rgba(13,23,38,.4);border-color:var(--line)}
+html[data-theme="light"] .scrim{background:rgba(13,23,38,.35)}
+
+@media (max-width:760px){
+  #vb{min-height:560px}
+  #vb .brand img{height:36px}
+  #vb .back span,#vb .mt span{display:none}
+  #vb .ovl{top:74px;gap:10px;max-width:calc(100% - 36px);left:18px}
+  #vb .ovl h2{font-size:1.7rem}
+  #vb .ovl p{display:none}
+  #vb .chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px;padding:0 18px 4px;scrollbar-width:none}
+  #vb .chips button{flex:none;height:36px}
+  #vb .ctrl{display:none}
+  #vb .hint{bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .bpin .head{width:28px;height:28px}
+  .tip{left:10px!important;right:10px;top:auto!important;bottom:calc(10px + env(safe-area-inset-bottom,0px));width:auto;display:grid;grid-template-columns:118px 1fr;transform:translateY(24px)}
+  .tip .ph{aspect-ratio:auto;height:100%;min-height:136px}
+  .tip .badge{display:none}
+  .tip .x{opacity:1;transform:none;top:8px;right:8px;width:28px;height:28px;left:auto}
+  .tip .bd{padding:12px 44px 14px 14px;gap:4px}
+  .tip b{font-size:1.08rem}
+  .tip .go{padding:8px 14px;font-size:.84rem;margin-top:4px}
+  .wire{display:none}
+}
+@media (prefers-reduced-motion:reduce){.bpin .base{animation:none}.tip,.bpin .head,#vb canvas{transition:none}}
 
 /* C: pantalla completa */
 #vc .stage{position:absolute;inset:0}
@@ -162,16 +240,24 @@ button{font:inherit;color:inherit}
 </section>
 
 <section class="view" id="vb" role="tabpanel" aria-labelledby="t-b" hidden>
-  <canvas id="b-cv" aria-label="Maqueta 3D del Ecuador con las obras de Jocecia"></canvas>
+  <header class="bar">
+    <a class="brand" href="/" aria-label="Joce Cia Ltda. · Inicio"><img src="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75" srcset="/_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=256&amp;q=75 256w, /_vercel/image?url=https%3A%2F%2Fjocecia.com%2Fportal%2Fwp-content%2Fuploads%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75 384w" sizes="160px" width="1024" height="530" alt="Joce Cia Ltda."></a>
+    <div class="bar-r">
+      <a class="glassb back" href="/#proyectos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg><span>Volver a la web</span></a>
+      <nav class="glassb mt" aria-label="Otras propuestas"><span>Propuestas</span><a href="#a">A</a><a href="#b" aria-current="page">B</a><a href="#c">C</a></nav>
+      <button type="button" class="glassb thm" id="b-thm" aria-label="Cambiar a modo claro"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg></button>
+    </div>
+  </header>
+  <canvas id="b-cv" aria-label="Maqueta 3D del Ecuador continental con las obras de Jocecia"></canvas>
   <div class="pins" id="b-pins"></div>
   <p class="msg" id="b-msg">Cargando maqueta…</p>
   <div class="ovl">
     <small>Proyectos · Obras en Ecuador</small>
     <h2>La experiencia es nuestra <span>carta de presentación</span></h2>
-    <p>De la costa a la Amazonía, pasando por los Andes.</p>
+    <p id="b-sum">De la costa a la Amazonía, pasando por los Andes.</p>
     <div class="chips" id="b-chips" role="group" aria-label="Filtrar por sector"></div>
   </div>
-  <div class="hint"><span>Pasa el cursor por un punto para explorar · arrastra para girar</span></div>
+  <div class="hint" id="b-hint"><i></i><span></span></div>
   <div class="ctrl" role="group" aria-label="Exageración del relieve"><button type="button" data-k="5" aria-pressed="false">Relieve ×5</button><button type="button" data-k="10" aria-pressed="true">×10</button><button type="button" data-k="16" aria-pressed="false">×16</button></div>
 </section>
 
@@ -269,85 +355,137 @@ var onOpen=null;
 
 /* ---------- B: maqueta 3D (Ecuador recortado) ---------- */
 var B={ready:false};
+var THEME=(function(){try{return localStorage.getItem('mo-theme')}catch(e){return null}})()||'dark';
+document.documentElement.dataset.theme=THEME;
 function initB(){if(B.ready)return;B.ready=true;
   if(!window.THREE){$('b-msg').textContent='No se pudo cargar el motor 3D.';return}
-  var cv=$('b-cv'),wrap=$('vb'),pins=$('b-pins');
+  var cv=$('b-cv'),wrap=$('vb'),pins=$('b-pins'),mob=matchMedia('(max-width:760px)'),fine=matchMedia('(hover:hover) and (pointer:fine)');
   var R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(2,devicePixelRatio));R.outputEncoding=THREE.sRGBEncoding;
-  var S=new THREE.Scene();
+  var S=new THREE.Scene();S.fog=new THREE.Fog(0x070d17,150,270);
   var C=new THREE.PerspectiveCamera(30,1,1,800);
-  var O=new THREE.OrbitControls(C,cv);O.target.set(-9,0,7);O.enableDamping=true;O.enablePan=false;O.minDistance=50;O.maxDistance=190;
-  O.minPolarAngle=.35;O.maxPolarAngle=1.05;O.minAzimuthAngle=-.7;O.maxAzimuthAngle=.7;
-  S.add(new THREE.AmbientLight(0xffffff,.55));var sun=new THREE.DirectionalLight(0xfff1e0,.8);sun.position.set(-50,60,-20);S.add(sun);
+  var O=new THREE.OrbitControls(C,cv);var T0=new THREE.Vector3(-9,0,7);O.target.copy(T0);O.enableDamping=true;O.dampingFactor=.08;O.enablePan=false;O.minDistance=50;O.maxDistance=190;
+  O.minPolarAngle=.35;O.maxPolarAngle=1.05;O.minAzimuthAngle=-.7;O.maxAzimuthAngle=.7;O.enabled=false;
+  S.add(new THREE.AmbientLight(0xdfe8ff,.5));var sun=new THREE.DirectionalLight(0xfff1e0,.9);sun.position.set(-50,60,-20);S.add(sun);
+  var rim=new THREE.DirectionalLight(0x5b8fe6,.45);rim.position.set(40,20,60);S.add(rim);
   var K=10,UNIT=.045,DEPTH=3.2,FLOOR=-DEPTH;
   var imgs={h:'/img/altura-ecuador.png',p:'/img/ecuador-3d-pais.webp',e:'/img/ecuador-3d-entorno.webp',s:'/img/ecuador-3d-sombra.png'},I={},n=0,N=4;
   Object.keys(imgs).forEach(function(k){var im=new Image();im.onload=function(){if(++n===N)build()};im.onerror=function(){$('b-msg').textContent='No se pudo cargar el relieve.'};im.src=imgs[k];I[k]=im});
-  var H,HW,HH,geo,walls=[],wallMat;
+  var H,HW,HH,geo,walls=[],env;
   function hAt(u,v){var x=Math.min(HW-1,Math.max(0,Math.round(u*(HW-1)))),y=Math.min(HH-1,Math.max(0,Math.round(v*(HH-1))));return H[(y*HW+x)*4]/255*6300}
   function yAt(u,v){return hAt(u,v)/1000*K*UNIT*2}
   function W(x,y){return[(x+10)/620*62-31,(y+10)/680*68-34]}
   function tex(im){var t=new THREE.Texture(im);t.needsUpdate=true;t.encoding=THREE.sRGBEncoding;t.anisotropy=R.capabilities.getMaxAnisotropy();return t}
   function build(){
     var c=document.createElement('canvas');HW=c.width=I.h.width;HH=c.height=I.h.height;var g=c.getContext('2d');g.drawImage(I.h,0,0);H=g.getImageData(0,0,HW,HH).data;
-    // entorno oscuro (mar y vecinos) al nivel del piso de la maqueta
-    var env=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.e),transparent:true,depthWrite:false}));env.rotation.x=-Math.PI/2;env.position.y=FLOOR-.02;
-    env.material.map.wrapS=env.material.map.wrapT=THREE.ClampToEdgeWrapping;S.add(env);
-    var envMap=env.material.map;envMap.repeat.set(1,1);
+    // entorno (mar y países vecinos) al nivel del piso de la maqueta
+    env=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.e),transparent:true,depthWrite:false}));env.rotation.x=-Math.PI/2;env.position.y=FLOOR-.02;S.add(env);
     var sh=new THREE.Mesh(new THREE.PlaneGeometry(62,68),new THREE.MeshBasicMaterial({map:tex(I.s),transparent:true,depthWrite:false}));sh.rotation.x=-Math.PI/2;sh.position.set(2.2,FLOOR+.01,2.6);sh.scale.set(1.08,1,1.08);S.add(sh);
-    // terreno del país
+    // terreno real (Terrarium/SRTM) con textura de relieve
     geo=new THREE.PlaneGeometry(62,68,372,408);geo.rotateX(-Math.PI/2);
-    var mat=new THREE.MeshBasicMaterial({map:tex(I.p),alphaTest:.5,side:THREE.DoubleSide});
-    S.add(new THREE.Mesh(geo,mat));
-    // acantilados: paredes por el contorno de cada provincia, del piso hasta el terreno
-    wallMat=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
+    S.add(new THREE.Mesh(geo,new THREE.MeshBasicMaterial({map:tex(I.p),alphaTest:.5,side:THREE.DoubleSide})));
+    // acantilados por el contorno de cada provincia
+    var wallMat=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});
     PROVS.forEach(function(p){p.d.split('M').forEach(function(sub){var nums=sub.match(/-?\d+\.?\d*/g);if(!nums||nums.length<6)return;var pts=[];for(var i=0;i<nums.length;i+=2)pts.push([+nums[i],+nums[i+1]]);pts.push(pts[0]);
-      var wg=new THREE.BufferGeometry(),pos=new Float32Array(pts.length*2*3),col=new Float32Array(pts.length*2*3),idx=[];
-      for(var i=0;i<pts.length;i++){var w=W(pts[i][0],pts[i][1]);pos.set([w[0],0,w[1]],i*6);pos.set([w[0],FLOOR,w[1]],i*6+3);col.set([.46,.36,.26],i*6);col.set([.12,.09,.07],i*6+3);if(i)idx.push((i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1)}
+      var wg=new THREE.BufferGeometry(),pos=new Float32Array(pts.length*6),col=new Float32Array(pts.length*6),idx=[];
+      for(var i=0;i<pts.length;i++){var w=W(pts[i][0],pts[i][1]);pos.set([w[0],0,w[1]],i*6);pos.set([w[0],FLOOR,w[1]],i*6+3);col.set([.46,.36,.26],i*6);col.set([.1,.08,.07],i*6+3);if(i)idx.push((i-1)*2,i*2,(i-1)*2+1,i*2,i*2+1,(i-1)*2+1)}
       wg.setAttribute('position',new THREE.BufferAttribute(pos,3));wg.setAttribute('color',new THREE.BufferAttribute(col,3));wg.setIndex(idx);wg.userData.pts=pts;walls.push(wg);S.add(new THREE.Mesh(wg,wallMat))})});
     relief(K);
-    // nubes suaves alrededor
-    var cc=document.createElement('canvas');cc.width=cc.height=128;var cg=cc.getContext('2d');for(var i=0;i<26;i++){var x=24+Math.random()*80,y=40+Math.random()*48,r=14+Math.random()*22,gr=cg.createRadialGradient(x,y,0,x,y,r);gr.addColorStop(0,'rgba(255,255,255,.55)');gr.addColorStop(1,'rgba(255,255,255,0)');cg.fillStyle=gr;cg.beginPath();cg.arc(x,y,r,0,7);cg.fill()}
-    var ct=new THREE.CanvasTexture(cc);B.clouds=[];[[-44,10,-20,26],[40,9,-30,22],[-40,8,30,30],[46,10,24,26],[-10,11,-46,20],[12,9,48,24]].forEach(function(a){var s=new THREE.Sprite(new THREE.SpriteMaterial({map:ct,transparent:true,opacity:0,depthWrite:false,visible:false}));s.position.set(a[0],a[1],a[2]);s.scale.set(a[3],a[3]*.55,1);s.userData.x=a[0];S.add(s);B.clouds.push(s)});
-    OBRAS.forEach(function(o,i){var b=pinEl(o,i,0);b.dataset.i=i;pins.appendChild(b);o._b=b;b.addEventListener('mouseenter',function(){showMini(i)});b.addEventListener('focus',function(){showMini(i)})});
-    $('b-msg').hidden=true;size();C.position.set(-13,82,110);loop();
+    OBRAS.forEach(function(o,i){var b=document.createElement('button');b.type='button';b.className='bpin';b.dataset.i=i;b.style.setProperty('--c',SECT[o.s].c);b.style.setProperty('--d',(250+i*110)+'ms');
+      b.setAttribute('aria-label',o.es.t+', '+o.city+' · '+o.prov);b.innerHTML='<span class="leg"></span><span class="base"></span><span class="head"></span>';pins.appendChild(b);o._b=b;
+      b.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse')hover(i)});
+      b.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse')leave()});
+      b.addEventListener('focus',function(){if(b.matches(':focus-visible'))hover(i)});b.addEventListener('blur',leave);
+      b.addEventListener('click',function(e){e.stopPropagation();pin(i)})});
+    theme(THEME);$('b-msg').hidden=true;size();
+    var V=view();T0.copy(V.t);O.target.copy(V.t);intro={a:V.p.clone().add(new THREE.Vector3(6,90,-60)),b:V.p,t:performance.now()};C.position.copy(intro.a);
+    wrap.classList.add('ready');loop();
   }
   function relief(k){K=k;var p=geo.attributes.position,uv=geo.attributes.uv;for(var i=0;i<p.count;i++)p.setY(i,yAt(uv.getX(i),1-uv.getY(i)));p.needsUpdate=true;
-    walls.forEach(function(wg){var pa=wg.attributes.position,pts=wg.userData.pts;for(var i=0;i<pts.length;i++){var u=(pts[i][0]+10)/620,v=(pts[i][1]+10)/680;pa.setY(i*2,yAt(u,v)+.02)}pa.needsUpdate=true;wg.computeVertexNormals()})}
+    walls.forEach(function(wg){var pa=wg.attributes.position,pts=wg.userData.pts;for(var i=0;i<pts.length;i++){var u=(pts[i][0]+10)/620,v=(pts[i][1]+10)/680;pa.setY(i*2,yAt(u,v)+.02)}pa.needsUpdate=true;wg.computeVertexNormals()});
+    OBRAS.forEach(function(o){o._w=wpos(o)})}
   function wpos(o){var q=P(o.lon,o.lat),u=(q[0]+10)/620,v=(q[1]+10)/680;return new THREE.Vector3(u*62-31,yAt(u,v)+.1,v*68-34)}
-  function size(){var w=wrap.clientWidth,h=wrap.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.fov=w<700?44:30;C.updateProjectionMatrix()}
+  // encuadre: en escritorio el mapa a la derecha del título; en celular más cenital para llenar la pantalla vertical
+  function view(){return mob.matches?{t:new THREE.Vector3(-1,0,-1),p:new THREE.Vector3(-4,128,54)}:{t:new THREE.Vector3(-12,0,6),p:new THREE.Vector3(-21,70,95)}}
+  function size(){var w=wrap.clientWidth,h=wrap.clientHeight;R.setSize(w,h,false);C.aspect=w/h;C.fov=mob.matches?40:30;C.updateProjectionMatrix()}
   addEventListener('resize',size);
-  // filtros
-  var chips=$('b-chips'),flt='all';chips.innerHTML='<button type="button" data-s="all" aria-pressed="true">Todas</button>'+Object.keys(SECT).map(function(k){return '<button type="button" data-s="'+k+'" aria-pressed="false" style="--c:'+SECT[k].c+'"><i></i>'+SECT[k].t+'</button>'}).join('');
-  chips.querySelectorAll('button').forEach(function(b){b.onclick=function(){flt=b.dataset.s;chips.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});OBRAS.forEach(function(o){o._b&&o._b.classList.toggle('dim',flt!=='all'&&o.s!==flt)});hideMini()}});
-  // ficha corta al pasar el cursor
-  var mini=document.createElement('div');mini.className='mini';document.body.appendChild(mini);
-  var wire=document.createElementNS('http://www.w3.org/2000/svg','svg');wire.setAttribute('class','wire');wire.innerHTML='<line/><circle r="3"/>';document.body.appendChild(wire);wire.style.display='none';
-  var mi=-1,hideT=0;
-  function showMini(i){if(innerWidth<=760)return;clearTimeout(hideT);mi=i;var o=OBRAS[i],f=fotos(o);mini.style.setProperty('--c',SECT[o.s].c);
-    mini.innerHTML='<div class="ph">'+(f.length?'<img src="'+vimg(f[0],640)+'" alt="" onerror="this.style.opacity=0">':'')+'</div><div class="bd"><b>'+o.es.t+'</b><span>'+SECT[o.s].t+' · '+o.city+'</span><button type="button">Ver obra ↗</button></div>';
-    mini.querySelector('button').onclick=function(e){e.stopPropagation();var k=mi;hideMini();openBig(k)};mini.classList.add('open');wire.style.display='';document.querySelectorAll('#vb .pin').forEach(function(p){p.classList.toggle('on',+p.dataset.i===i)})}
-  function hideMini(){mi=-1;mini.classList.remove('open');wire.style.display='none';document.querySelectorAll('#vb .pin.on').forEach(function(p){p.classList.remove('on')})}
-  function later(){clearTimeout(hideT);hideT=setTimeout(hideMini,350)}
-  mini.addEventListener('mouseenter',function(){clearTimeout(hideT)});mini.addEventListener('mouseleave',later);
-  pins.addEventListener('mouseleave',later,true);
-  function openBig(i){openCard(i,null)}
-  B.openBig=openBig;
-  function placeMini(){if(mi<0)return;var r=OBRAS[mi]._b.querySelector('.head').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2;
-    var w=300,h=mini.offsetHeight,x=cx+70,y=cy-h/2;if(x+w>innerWidth-16)x=cx-70-w;if(y<16)y=16;if(y+h>innerHeight-16)y=innerHeight-16-h;mini.style.left=x+'px';mini.style.top=y+'px';
-    var l=wire.querySelector('line'),ex=x>cx?x:x+w;l.setAttribute('x1',cx);l.setAttribute('y1',cy);l.setAttribute('x2',ex);l.setAttribute('y2',y+h*.42);var ci=wire.querySelector('circle');ci.setAttribute('cx',ex);ci.setAttribute('cy',y+h*.42)}
-  var t0=performance.now();
-  function loop(){requestAnimationFrame(loop);if($('vb').hidden)return;var t=(performance.now()-t0)/1000;
-    B.clouds.forEach(function(s,i){s.position.x=s.userData.x+Math.sin(t*.05+i)*3});
-    O.update();R.render(S,C);var w=wrap.clientWidth,h=wrap.clientHeight;
-    OBRAS.forEach(function(o){var v=wpos(o).project(C);o._b.style.transform='translate('+((v.x+1)/2*w)+'px,'+((1-v.y)/2*h)+'px)'});placeMini();
+
+  // tema claro / oscuro (tokens de la web)
+  function theme(t){THEME=t;document.documentElement.dataset.theme=t;try{localStorage.setItem('mo-theme',t)}catch(e){}
+    S.fog.color.set(t==='light'?0xf3f5f8:0x070d17);if(env)env.visible=t!=='light';
+    $('b-thm').setAttribute('aria-label',t==='light'?'Cambiar a modo oscuro':'Cambiar a modo claro')}
+  $('b-thm').onclick=function(){theme(THEME==='light'?'dark':'light')};
+
+  // resumen y pista con datos reales
+  var secs=Object.keys(SECT),cnt={};OBRAS.forEach(function(o){cnt[o.s]=(cnt[o.s]||0)+1});
+  $('b-sum').textContent=OBRAS.length+' obras con ubicación en '+secs.length+' sectores: de la costa a la Amazonía, pasando por los Andes.';
+  $('b-hint').querySelector('span').textContent=fine.matches?'Pasa el cursor por un punto para explorar · clic para fijar':'Toca un punto para ver la obra';
+
+  // filtros por sector
+  var chips=$('b-chips'),flt='all',goal=null;
+  chips.innerHTML='<button type="button" data-s="all" aria-pressed="true">Todas <b>'+OBRAS.length+'</b></button>'+secs.map(function(k){return '<button type="button" data-s="'+k+'" aria-pressed="false" style="--c:'+SECT[k].c+'"><i></i>'+SECT[k].t+' <b>'+cnt[k]+'</b></button>'}).join('');
+  chips.querySelectorAll('button').forEach(function(b){b.onclick=function(){flt=b.dataset.s;chips.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',x===b)});
+    var vis=[];OBRAS.forEach(function(o,i){var off=flt!=='all'&&o.s!==flt;o._b.classList.toggle('off',off);if(!off)vis.push(o)});
+    var w=want();if(w>=0&&OBRAS[w]._b.classList.contains('off')){pn=hv=-1;sync()}
+    var m=new THREE.Vector3();vis.forEach(function(o){m.add(o._w)});m.divideScalar(vis.length||1);m.y=0;
+    goal=flt==='all'?T0.clone():T0.clone().lerp(m,.65)}});
+
+  // tarjeta flotante: abierta mientras el cursor esté encima, fija con clic, toque en celular
+  var tip=document.createElement('div');tip.className='tip';tip.setAttribute('role','dialog');tip.setAttribute('aria-label','Obra');document.body.appendChild(tip);
+  var wire=document.createElementNS('http://www.w3.org/2000/svg','svg');wire.setAttribute('class','wire');wire.innerHTML='<line/><circle r="3"/><circle r="2.5"/>';document.body.appendChild(wire);
+  var hv=-1,pn=-1,shown=-1,hideT=0;
+  function want(){return hv>=0?hv:pn}
+  function setOn(i){OBRAS.forEach(function(o,k){o._b.classList.toggle('on',k===i)})}
+  function fill(i){var o=OBRAS[i],f=fotos(o);tip.style.setProperty('--c',SECT[o.s].c);
+    tip.innerHTML='<button type="button" class="x" aria-label="Cerrar">×</button><div class="ph">'+(f.length?'<img src="'+vimg(f[0],640)+'" alt="'+o.es.t+'" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+SECT[o.s].t+'</span></div>'+
+      '<div class="bd"><small>'+String(i+1).padStart(2,'0')+' / '+String(OBRAS.length).padStart(2,'0')+(o.year?' · '+o.year:'')+'<em>· fijada</em></small><b>'+o.es.t+'</b>'+
+      '<span class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>'+o.city+' · '+o.prov+'</span>'+
+      '<button type="button" class="go">Ver proyecto <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>';
+    tip.querySelector('.x').onclick=function(e){e.stopPropagation();pn=-1;hv=-1;sync()};
+    tip.querySelector('.go').onclick=function(e){e.stopPropagation();var k=shown;pn=-1;hv=-1;sync();openCard(k,null)}}
+  function sync(){clearTimeout(hideT);var i=want();
+    if(i<0){tip.classList.remove('open','pinned');wire.classList.remove('on');setOn(-1);shown=-1;return}
+    if(i!==shown){fill(i);shown=i}
+    tip.classList.toggle('pinned',i===pn);setOn(i);place();tip.classList.add('open');wrap.classList.add('used')}
+  function hover(i){clearTimeout(hideT);hv=i;sync()}
+  function leave(){clearTimeout(hideT);hideT=setTimeout(function(){hv=-1;sync()},450)}
+  function pin(i){if(pn===i&&!fine.matches){pn=-1}else if(pn===i){pn=-1;hv=i}else{pn=i}sync()}
+  tip.addEventListener('pointerenter',function(e){if(e.pointerType==='mouse'){clearTimeout(hideT);if(shown>=0&&shown!==pn)hv=shown}});
+  tip.addEventListener('pointerleave',function(e){if(e.pointerType==='mouse'&&hv>=0)leave()});
+  tip.addEventListener('click',function(e){e.stopPropagation();if(shown>=0&&pn!==shown&&fine.matches){pn=shown;sync()}});
+  var dn=null;cv.addEventListener('pointerdown',function(e){dn=[e.clientX,e.clientY]});
+  cv.addEventListener('pointerup',function(e){if(dn&&Math.hypot(e.clientX-dn[0],e.clientY-dn[1])<6&&want()>=0){pn=-1;hv=-1;sync()}dn=null});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&want()>=0&&!card.classList.contains('open')){pn=-1;hv=-1;sync()}});
+  function place(){if(shown<0)return;
+    if(mob.matches){tip.style.left='';tip.style.top='';wire.classList.remove('on');return}
+    var r=OBRAS[shown]._b.querySelector('.head').getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,w=tip.offsetWidth,h=tip.offsetHeight,gap=64,x=cx+gap,side=1;
+    if(x+w>innerWidth-16){x=cx-gap-w;side=-1}
+    var y=Math.max(76,Math.min(innerHeight-16-h,cy-h*.42));tip.style.left=x+'px';tip.style.top=y+'px';
+    var ex=side>0?x:x+w,ey=Math.max(y+28,Math.min(y+h-28,cy)),l=wire.querySelector('line'),cs=wire.querySelectorAll('circle');
+    l.setAttribute('x1',cx+side*14);l.setAttribute('y1',cy);l.setAttribute('x2',ex);l.setAttribute('y2',ey);
+    cs[0].setAttribute('cx',ex);cs[0].setAttribute('cy',ey);cs[1].setAttribute('cx',cx+side*14);cs[1].setAttribute('cy',cy);wire.classList.add('on')}
+  addEventListener('scroll',place,{passive:true});
+
+  var intro=null,MIN=26;
+  function ease(t){return 1-Math.pow(1-t,3)}
+  function loop(){requestAnimationFrame(loop);if(wrap.hidden)return;
+    if(intro){var t=Math.min(1,(performance.now()-intro.t)/2200),e=ease(t);C.position.lerpVectors(intro.a,intro.b,e);C.lookAt(O.target);if(t>.45)wrap.classList.add('in');if(t>=1){intro=null;O.enabled=true}}
+    if(goal){var d=goal.clone().sub(O.target).multiplyScalar(.07);O.target.add(d);C.position.add(d);if(d.length()<.002)goal=null}
+    if(!intro)O.update();R.render(S,C);
+    var w=wrap.clientWidth,h=wrap.clientHeight,sp=OBRAS.map(function(o){var v=o._w.clone().project(C);return[(v.x+1)/2*w,(1-v.y)/2*h]}),dx=OBRAS.map(function(){return 0});
+    // separa en pantalla los puntos muy cercanos (la ubicación real queda marcada en el suelo)
+    for(var i=0;i<sp.length;i++)for(var j=i+1;j<sp.length;j++){if(OBRAS[i]._b.classList.contains('off')||OBRAS[j]._b.classList.contains('off'))continue;
+      var ddx=sp[j][0]-sp[i][0],ddy=sp[j][1]-sp[i][1];if(Math.abs(ddx)<MIN&&Math.abs(ddy)<MIN){var s=ddx>=0?1:-1,push=(MIN-Math.abs(ddx))/2;dx[i]-=s*push;dx[j]+=s*push}}
+    OBRAS.forEach(function(o,i){o._b.style.transform='translate('+sp[i][0]+'px,'+sp[i][1]+'px)';o._b.style.setProperty('--dx',dx[i].toFixed(1)+'px')});place();
   }
   document.querySelectorAll('#vb .ctrl button').forEach(function(b){b.onclick=function(){document.querySelectorAll('#vb .ctrl button').forEach(function(x){x.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');relief(+b.dataset.k)}});
 }
 var onOpenB=null;
 
+
 /* ---------- Pestañas ---------- */
 var VIEWS={a:'va',b:'vb',c:'vc'};
 function show(k){closeCard();Object.keys(VIEWS).forEach(function(x){$(VIEWS[x]).hidden=x!==k;$('t-'+x).setAttribute('aria-selected',x===k)});
-  mode=k==='a'?'pop':'big';onOpen=null;if(k==='b')initB();
+  mode=k==='a'?'pop':'big';document.body.classList.toggle('mode-b',k==='b');onOpen=null;if(k==='b')initB();
   try{history.replaceState(null,'','#'+k)}catch(e){}}
 Object.keys(VIEWS).forEach(function(k){$('t-'+k).onclick=function(){show(k)}});
 show(({'#a':'a','#c':'c'})[location.hash]||'b');
