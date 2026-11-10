@@ -57,11 +57,6 @@
       "source": "/proyectos/funvivalt-monserrat",
       "destination": "/#proyectos",
       "permanent": false
-    },
-    {
-      "source": "/proyectos/galpon-cadeco",
-      "destination": "/#proyectos",
-      "permanent": false
     }
   ]
 }

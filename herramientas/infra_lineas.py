@@ -8,7 +8,7 @@ def vi(u, w=640):
     return "/_vercel/image?url=%s&amp;w=%d&amp;q=75" % (urllib.parse.quote(u, safe=""), w)
 # (título, descripción, foto, enlace)
 LINEAS = [
-    ("Galpones", "Diseño, fabricación y montaje de galpones industriales y comerciales.", WP+"2021/08/Galpon2.png", "#galpones"),
+    ("Galpones", "Diseño, fabricación y montaje de galpones industriales y comerciales.", WP+"2021/08/Galpon2.png", "/proyectos/galpon-cadeco"),
     ("Estructuras metálicas", "Estructuras y volados para edificios, centros comerciales y obra civil.", "/img/obras/vista-valle-coral-volados.webp", "/proyectos/vista-valle-coral-center"),
     ("Cerchas para túneles", "Cerchas curvas de perfil de acero para sostenimiento de túneles.", "/img/obras/metro-cercha.webp", "/proyectos/metro-de-quito"),
     ("Escaleras", "Escaleras metálicas fijas y provisionales para estaciones y plantas.", "/img/obras/metro-rampa.webp", "/proyectos/metro-de-quito"),
@@ -49,13 +49,12 @@ CSS = """
 def card(t, d, img, href):
     tag, attr = ("a", ' href="%s"' % href) if href else ("div", "")
     mas = '<span>Ver más ›</span>' if href else ""
-    if href and href.startswith("#"):  # sin página propia: lleva a sus fotos en esta misma página
-        mas = '<span>Ver fotos ›</span>'
     return ('<%s class="il-card"%s><figure><img decoding="async" loading="lazy" src="%s" alt="%s – Joce Cia Ltda."></figure>'
             '<div><b>%s</b><p>%s</p>%s</div></%s>') % (tag, attr, vi(img), html.escape(t), html.escape(t), html.escape(d), mas, tag)
 gal = ('<div class="il-gal" id="galpones"><h2>Galpones</h2><p>%s</p><div class="pp-gal">%s</div>'
        '<a class="btn-wa" href="%s" target="_blank" rel="noopener">Cotizar un galpón por WhatsApp</a></div>'
        % (html.escape(LINEAS[0][1]), "".join('<figure><img decoding="async" loading="lazy" src="%s" alt="Galpón metálico – Joce Cia Ltda. (foto %d)"></figure>' % (vi(u), i + 1) for i, u in enumerate(GALPONES)), WA_GALPON))
+gal = ""  # las fotos de galpones viven en /proyectos/galpon-cadeco
 cuerpo = ('<div class="wrap"><div class="il-grid">%s</div>%s<div class="il-mas"><small>También fabricamos</small>%s</div></div>'
           % ("".join(card(*l) for l in LINEAS), gal, "".join("<em>%s</em>" % html.escape(t) for t in TAMBIEN)))
 f = os.path.join(R, "productos/infraestructura-metalica.html")
