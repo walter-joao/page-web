@@ -210,6 +210,24 @@ def plano(t):
     return texto(t)
 
 
+_MAPA_WP = None
+
+
+def localizar(s):
+    """Cambia los enlaces a fotos de jocecia.com por su copia en /img/wp/ (ver traer_fotos_wp.py)."""
+    global _MAPA_WP
+    if _MAPA_WP is None:
+        f = os.path.join(RAIZ, "herramientas", "fotos-wp.json")
+        _MAPA_WP = json.load(open(f)) if os.path.exists(f) else {}
+    for remoto, local in _MAPA_WP.items():
+        if remoto in s:
+            s = s.replace(remoto, local)
+        q = quote(remoto, safe="")
+        if q in s:
+            s = s.replace(q, quote(local, safe=""))
+    return s
+
+
 def img_opt(url, w):
     return "/_vercel/image?url=%s&amp;w=%d&amp;q=75" % (quote(url, safe=""), w)
 
@@ -442,7 +460,7 @@ def main():
         bloques, usados = corregir(p["slug"], bloques, cfg)
         usados_total |= usados
         open(os.path.join(RAIZ, "productos", p["slug"] + ".html"), "w", encoding="utf-8").write(
-            pagina(p, todos, bloques, imgs, css_base, head_comun))
+            localizar(pagina(p, todos, bloques, imgs, css_base, head_comun)))
         hechos.append(p["slug"])
 
     # sitemap

@@ -67,9 +67,15 @@ CSS_PROY = """
 """
 
 
+def propia(url):
+    """Fotos ya preparadas para la web (/img/obras, /img/portada...) se sirven tal cual.
+    Las de WordPress (en jocecia.com o copiadas a /img/wp/) pasan por el optimizador."""
+    return url.startswith("/") and not url.startswith("/img/wp/")
+
+
 def src(url, w):
     """Fotos propias (/img/...) se sirven tal cual; las de jocecia.com pasan por el optimizador."""
-    return url if url.startswith("/") else gp.img_opt(url, w)
+    return url if propia(url) else gp.img_opt(url, w)
 
 
 def foto(url, alt, w=1080, eager=False):
@@ -77,7 +83,7 @@ def foto(url, alt, w=1080, eager=False):
 
 
 def grande(url):
-    return url if url.startswith("/") else re.sub(r"&amp;", "&", gp.img_opt(url, 1920))
+    return url if propia(url) else re.sub(r"&amp;", "&", gp.img_opt(url, 1920))
 
 
 def pagina(p, d, todos, css_base, head_comun):
@@ -210,7 +216,7 @@ def main():
     os.makedirs(os.path.join(RAIZ, "proyectos"), exist_ok=True)
     for p in PROYECTOS:
         open(os.path.join(RAIZ, "proyectos", p["slug"] + ".html"), "w", encoding="utf-8").write(
-            pagina(p, todos[p["pr"]], todos, css_base, head_comun))
+            gp.localizar(pagina(p, todos[p["pr"]], todos, css_base, head_comun)))
     # sitemap: se agregan (o actualizan) las URL de proyectos
     sm = os.path.join(RAIZ, "sitemap.xml")
     xml = open(sm, encoding="utf-8").read()

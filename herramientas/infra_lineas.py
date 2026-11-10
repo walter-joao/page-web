@@ -4,7 +4,7 @@ import html, re, urllib.parse, os
 R = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WP = "https://jocecia.com/portal/wp-content/uploads/"
 def vi(u, w=640):
-    if u.startswith("/"): return u
+    if u.startswith("/") and not u.startswith("/img/wp/"): return u
     return "/_vercel/image?url=%s&amp;w=%d&amp;q=75" % (urllib.parse.quote(u, safe=""), w)
 # (título, descripción, foto, enlace)
 LINEAS = [
@@ -62,5 +62,7 @@ s = open(f).read()
 s = re.sub(r'(<section class="pp-body">\s*).*?(\s*</section>)', lambda m: m.group(1) + cuerpo + m.group(2), s, count=1, flags=re.S)
 s = re.sub(r"\n\.il-grid\{.*?\.il-mas em\{[^}]*\}\n", "", s, count=1, flags=re.S)
 s = s.replace("</style>", CSS + "</style>", 1)
-open(f, "w").write(s)
+import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from generar_productos import localizar
+open(f, "w").write(localizar(s))
 print("ok")

@@ -1271,7 +1271,7 @@ footer a{color:var(--muted)}
   var root=document.documentElement;
 
   // Fotos del sitio antiguo: pasan por el optimizador de Vercel (WebP/AVIF, tamaño justo)
-  function VI(u,w){return /^https:\/\/jocecia\.com\/portal\//.test(u)?'/_vercel/image?url='+encodeURIComponent(u)+'&w='+(w||1080)+'&q=75':u}
+  function VI(u,w){return /^(https:\/\/jocecia\.com\/portal\/|\/img\/wp\/)/.test(u)?'/_vercel/image?url='+encodeURIComponent(u)+'&w='+(w||1080)+'&q=75':u}
   function IMG(u,w){return 'src="'+VI(u,w)+'" data-o="'+u+'" decoding="async"'}
 
   // Imágenes: si una foto no carga, queda el fondo de acero corrugado
