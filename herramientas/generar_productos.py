@@ -423,7 +423,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 """.format(title=html.escape(p["title"]), desc=html.escape(desc), url=url, nombre_e=html.escape(nombre),
            ogimg=('<meta property="og:image" content="%s">\n' % html.escape(galeria[0])) if galeria else "",
            head_comun=head_comun, ld=json.dumps(ld, ensure_ascii=False, indent=1), css_base=css_base,
-           css_extra=CSS_EXTRA, logo=img_opt("https://jocecia.com/portal/wp-content/uploads/2025/02/LOGO-JOCECIA-1024x530.png", 384),
+           css_extra=CSS_EXTRA, logo=img_opt("/img/wp/2025/02/LOGO-JOCECIA-1024x530.png", 384),
            grupo=html.escape(p["grupo"]), botones="".join(botones), galeria=gal_html,
            intro=('<p class="pp-lead">%s</p>\n      ' % html.escape(p["intro"])) if p.get("intro") else "",
            cuerpo=cuerpo_html(bloques, nombre), rel=rel_html, script=SCRIPT)
@@ -435,7 +435,7 @@ def main():
     css_base = max(estilos, key=len)
     fuentes = re.search(r'(<link rel="preconnect".*?display=swap">)', idx, re.S).group(1)
     fallback = re.search(r"(<script>\s*/\* Si el optimizador.*?</script>)", idx, re.S).group(1)
-    head_comun = ('<link rel="icon" href="https://jocecia.com/portal/wp-content/uploads/2020/04/cropped-icono-270x270.png">\n'
+    head_comun = ('<link rel="icon" href="/img/wp/2020/04/cropped-icono-270x270.png">\n'
                   '<style>:root{padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}</style>\n'
                   + fallback + "\n" + fuentes)
 
