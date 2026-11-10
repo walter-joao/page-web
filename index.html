@@ -935,8 +935,7 @@ footer a{color:var(--muted)}
     </a>
     <nav class="main" id="nav" aria-label="Secciones">
       <a href="#sectores" data-i18n="nav.sectors">Soluciones</a>
-      <div class="dd"><a href="#productos" data-i18n="nav.products">Productos</a><button type="button" class="dd-t" aria-label="Ver productos" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button>
-        <div class="mega"><div class="mega-sub"><b data-i18n="mm.infra">Infraestructura metálica</b><div><a href="/productos/grating-tramex"><span data-i18n="mm.s0">Pisos metálicos</span></a><a href="/productos/postes-metalicos"><span data-i18n="mm.s1">Postes</span></a><a href="/productos/grating-tramex"><span data-i18n="mm.s2">Rejillas</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s3">Placas</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s4">Cerchas para túneles</span></a><a href="/productos/encofrados"><span data-i18n="mm.s5">Encofrados</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s6">Disipadores de energía</span></a><a href="/productos/accesorios-para-tuberias"><span data-i18n="mm.s7">Accesorios para tubería</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s8">Estructuras metálicas</span></a><a href="/productos/pernos-de-alta-fiabilidad"><span data-i18n="mm.s9">Pernos de anclaje</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s10">Placas de anclaje</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s11">Galpones</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s12">Escaleras</span></a><a href="/productos/infraestructura-metalica"><span data-i18n="mm.s13">Pasamanos y pasarelas</span></a><a href="/productos/partes-y-piezas-especiales"><span data-i18n="mm.s14">Pedidos especiales</span></a></div></div><div class="mega-cat"><b data-i18n="mm.all">Todos los productos</b><a href="/productos/infraestructura-metalica"><span data-i18n="mm.c0">Infraestructura metálica</span></a><a href="/productos/pernos-de-alta-fiabilidad"><span data-i18n="mm.c1">Pernos especiales de alta fiabilidad</span></a><a href="/productos/alcantarillas-metalicas"><span data-i18n="mm.c2">Alcantarillas metálicas</span></a><a href="/productos/grating-tramex"><span data-i18n="mm.c3">Grating – Tramex</span></a><a href="/productos/encofrados"><span data-i18n="mm.c4">Encofrados</span></a><a href="/productos/accesorios-para-tuberias"><span data-i18n="mm.c5">Accesorios para tuberías</span></a><a href="/productos/soporte-en-roca"><span data-i18n="mm.c6">Soporte en rocas</span></a><a href="/productos/partes-y-piezas-especiales"><span data-i18n="mm.c7">Fabricación y reparación de piezas</span></a><a href="/productos/venta-de-soldadoras"><span data-i18n="mm.c8">Venta de soldadoras</span></a></div></div></div>
+      <a href="#productos" data-i18n="nav.products">Productos</a>
       <a href="#proyectos" data-i18n="nav.projects">Proyectos</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
       <a href="#empleo" data-i18n="nav.jobs">Trabaja con nosotros</a>
@@ -1789,11 +1788,7 @@ footer a{color:var(--muted)}
   // Menú móvil
   var menu=document.getElementById('menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
-  nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');dd.classList.remove('open');dd.querySelector('.dd-t').setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
-  // Productos: menú desplegable (en el celular se abre con la flecha)
-  var dd=nav.querySelector('.dd');
-  dd.querySelector('.dd-t').addEventListener('click',function(){var o=dd.classList.toggle('open');this.setAttribute('aria-expanded',o)});
-  addEventListener('keydown',function(e){if(e.key==='Escape'&&dd.classList.contains('open')){dd.classList.remove('open')}});
+  nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
 
   try{
     if(localStorage.getItem('joce-lang')==='en')setLang('en');
