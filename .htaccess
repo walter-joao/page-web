@@ -1,6 +1,8 @@
 # Copia de prueba (velocidad cPanel vs Vercel)
 Options -Indexes
 Header set X-Robots-Tag "noindex, nofollow"
+Header set Access-Control-Allow-Origin "*"
+Header set Timing-Allow-Origin "*"
 RewriteEngine On
 RewriteRule (^|/)\.git - [F,L]
 RewriteRule ^proyectos/(proyecto-funival|funvivalt-monserrat)/?$ /#proyectos [R=302,NE,L]
