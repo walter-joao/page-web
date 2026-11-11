@@ -66,8 +66,8 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
 .kicker{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;display:flex;align-items:center;gap:10px}
 .kicker:before{content:"";width:28px;height:2px;background:var(--grad);border-radius:2px}
 .steps{position:relative;min-height:330px}
-.step{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
-.step.on{opacity:1;transform:none;pointer-events:auto}
+.step{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(24px);transition:opacity .2s ease,transform .3s ease;pointer-events:none}
+.step.on{opacity:1;transform:none;pointer-events:auto;transition:opacity .45s ease .18s,transform .6s cubic-bezier(.2,.7,.2,1) .18s}
 .step h2,.step h1{font-family:var(--f-display);font-weight:800;font-stretch:112%;font-size:clamp(2.1rem,4.6vw,4.1rem);line-height:.98;letter-spacing:-.015em;margin:0 0 18px}
 .step h1 em,.step h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .step p{color:var(--muted);font-size:1.06rem;max-width:42ch;margin:0 0 22px}
@@ -88,6 +88,8 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
 .hint span{width:22px;height:34px;border:1.5px solid var(--muted);border-radius:12px;position:relative}
 .hint span:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--accent);animation:wheel 1.6s infinite}
 @keyframes wheel{0%{opacity:0;transform:translateY(-3px)}30%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.hint b{font-weight:500}.hint.go{animation:pulse 1.4s ease-in-out 3}
+@keyframes pulse{50%{transform:translateX(-50%) translateY(-6px)}}
 .loading{position:absolute;left:16px;bottom:18px;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);z-index:3;transition:opacity .4s}
 .prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--grad);z-index:3}
 /* Después */
@@ -115,7 +117,8 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
   .kicker{margin-bottom:10px}
   .rail{top:96px;transform:none;right:10px}
   .rail button{width:28px;height:28px;margin:8px 0;font-size:.62rem}
-  .hint{display:none}
+  .hint{bottom:auto;top:calc(76px + min(100vw,56svh) - 22px);flex-direction:row;font-size:.66rem}
+  .hint span{display:none}
   .ghost{font-size:46vw;bottom:auto;top:12vh}
   .cards{grid-template-columns:1fr}
   .how{grid-template-columns:1fr}
@@ -177,7 +180,7 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
       <button type="button" data-go="2" aria-label="Etapa 3">03</button>
       <button type="button" data-go="3" aria-label="Etapa 4">04</button>
     </nav>
-    <div class="hint" id="hint"><span></span>Baja</div>
+    <div class="hint" id="hint"><span></span><b>Ahora ármala tú: baja</b></div>
     <div class="loading" id="loading">Cargando 0%</div>
     <div class="prog" id="prog"></div>
   </div>
@@ -223,7 +226,7 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
   [8,4,2,1].forEach(function(s){for(var i=0;i<N;i+=s)if(!seen[i]){seen[i]=1;order.push(i)}});
   var q=0, busy=0;
   function next(){while(busy<6&&q<order.length){(function(i){busy++;var im=new Image();im.decoding='async';
-    im.onload=function(){ok[i]=1;imgs[i]=im;loaded++;busy--;loading.textContent='Cargando '+Math.round(loaded/N*100)+'%';if(loaded===N)loading.style.opacity=0;if(i===0||Math.round(cur)===i)need=1;next()};
+    im.onload=function(){ok[i]=1;imgs[i]=im;loaded++;busy--;loading.textContent='Cargando '+Math.round(loaded/N*100)+'%';if(loaded===N){loading.style.opacity=0;startIntro()}if(i===0||Math.round(cur)===i)need=1;next()};
     im.onerror=function(){busy--;next()};im.src=src(i)})(order[q++])}}
   next();
 
@@ -233,13 +236,22 @@ canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 8
   function progress(){var r=seq.getBoundingClientRect(),span=seq.offsetHeight-window.innerHeight;return Math.min(1,Math.max(0,-r.top/span))}
   function setStep(s){steps.forEach(function(e,i){e.classList.toggle('on',i===s)});dots.forEach(function(e,i){e.classList.toggle('on',i===s);e.classList.toggle('done',i<s)})}
   var step=-1;
+  // Intro: al entrar se arma sola (4 s), se queda armada un momento y vuelve al inicio para que el visitante la arme bajando
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches, intro=null, introDone=false;
+  var ss=function(x){x=Math.min(1,Math.max(0,x));return x*x*(3-2*x)};
+  function startIntro(){if(introDone||reduce||window.scrollY>10)return;introDone=true;intro={t0:performance.now()}}
+  function stopIntro(){if(intro){intro=null;hint.classList.remove('go')}}
+  ['wheel','touchstart','keydown','mousedown'].forEach(function(ev){window.addEventListener(ev,stopIntro,{passive:true})});
+  window.addEventListener('scroll',function(){if(window.scrollY>10)stopIntro()},{passive:true});
+  function introP(t){if(t<4200)return ss(t/4200)*.999;if(t<5600)return 1;if(t<7000)return 1-ss((t-5600)/1400);return -1}
   function frame(){
-    var p=progress();target=p*(N-1);
-    cur+= (target-cur)*.22; if(Math.abs(target-cur)<.05)cur=target;
+    var p=progress(),shown=p;
+    if(intro){var ip=introP(performance.now()-intro.t0);if(ip<0){intro=null;hint.classList.add('go')}else{shown=ip;cur=ip*(N-1)}}
+    if(!intro){target=p*(N-1);cur+=(target-cur)*.22;if(Math.abs(target-cur)<.05)cur=target}
     var i=nearest(Math.round(cur));
     if(i>=0&&(i!==last||need)){ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(imgs[i],0,0,cv.width,cv.height);last=i;need=0}
-    var s=0;for(var k=0;k<CUT.length;k++)if(p>=CUT[k])s=k; if(s!==step){step=s;setStep(s)}
-    railbar.style.height=(p*100)+'%'; prog.style.width=(p*100)+'%'; hint.style.opacity=p>.03?0:1;
+    var s=0;for(var k=0;k<CUT.length;k++)if(shown>=CUT[k])s=k; if(s!==step){step=s;setStep(s)}
+    railbar.style.height=(shown*100)+'%'; prog.style.width=(p*100)+'%'; hint.style.opacity=(intro||p>.03)?0:1;
     requestAnimationFrame(frame);
   }
   window.addEventListener('resize',size);size();requestAnimationFrame(frame);
