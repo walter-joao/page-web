@@ -691,6 +691,11 @@ a.tile{color:inherit;text-decoration:none}
 .vid button:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
 .vid iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 @media (max-width:820px){.videos{grid-template-columns:1fr}.vid.main{grid-row:auto;aspect-ratio:16/9;min-height:0}}
+.about-vid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:center;margin-top:28px}
+.about-vid .vid{aspect-ratio:16/9}
+.about-vid-t{display:grid;gap:14px;justify-items:start;min-width:0}
+.about-vid-t h3{margin:0;font:700 clamp(1.3rem,2.2vw,1.8rem)/1.15 var(--f-display);letter-spacing:-.02em;text-wrap:balance}
+@media (max-width:820px){.about-vid{grid-template-columns:1fr}}
 /* Nosotros: servicios, método y motor */
 .about-p{margin-top:24px}
 .about-p .pillar p{font-size:.95rem}
@@ -1254,6 +1259,14 @@ footer a{color:var(--muted)}
         <article class="pillar rv"><span class="kicker" data-i18n="ab2.k">Nuestro método</span><p data-i18n="ab2.d">Hacemos un diagnóstico recogiendo información entre los involucrados; con lo aprendido planificamos para obtener la mayor productividad y satisfacción entre las partes.</p></article>
         <article class="pillar rv"><span class="kicker" data-i18n="ab3.k">Nuestro motor</span><p data-i18n="ab3.d">Creemos en la mejora continua y en un propósito claro. Desarrollamos el talento de todo el equipo, lo que nos fortalece para enfrentar nuevos proyectos.</p></article>
       </div>
+      <div class="about-vid rv">
+        <div class="vid"><button type="button" data-yt="TQwNqUDObso"><img src="https://i.ytimg.com/vi/TQwNqUDObso/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><small data-i18n="v0.k">Presentación</small><b data-i18n="v0.t">Joce Cia Ltda.</b></span></button></div>
+        <div class="about-vid-t">
+          <span class="kicker" data-i18n="vid.k">Video</span>
+          <h3 data-i18n="vid.lead">Conozca nuestro trabajo en planta y en obra.</h3>
+          <a class="btn btn-line" href="https://www.youtube.com/@josecevallos9225/videos" target="_blank" rel="noopener"><span data-i18n="vid.more">Ver más videos en YouTube</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1274,22 +1287,6 @@ footer a{color:var(--muted)}
         <div class="event rv"><time>2022</time><h3 data-i18n="soc2.t">Navidad solidaria</h3><p data-i18n="soc2.d">Donación de 100 bolsas de caramelos a la Fundación Acción y Esperanza.</p></div>
         <div class="event rv"><time>2021</time><h3 data-i18n="soc3.t">Panadería en Esmeraldas</h3><p data-i18n="soc3.d">Donación e instalación del techo de una panadería comunitaria, con el proyecto Sunrise+ de la ONG AMU.</p></div>
         <div class="event rv"><time>2020</time><h3 data-i18n="soc4.t">Apoyo en la pandemia</h3><p data-i18n="soc4.d">Bandejas de desinfección y equipos de protección personal para la Dirección Distrital de Salud 10D02 Otavalo – Antonio Ante.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="videos">
-    <div class="wrap">
-      <div class="sec-head">
-        <span class="kicker" data-i18n="vid.k">Videos</span>
-        <h2 data-i18n-html="vid.t">Joce Cia <span class="grad">en video</span></h2>
-        <p class="lead" data-i18n="vid.lead">Conozca nuestro trabajo en planta y en obra.</p>
-      </div>
-      <div class="videos">
-        <div class="vid main rv"><button type="button" data-yt="TQwNqUDObso"><img src="https://i.ytimg.com/vi/TQwNqUDObso/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><small data-i18n="v0.k">Presentación</small><b data-i18n="v0.t">Joce Cia Ltda.</b></span></button></div>
-        <div class="vid rv"><button type="button" data-yt="j2iikACaN9A"><img src="https://i.ytimg.com/vi/j2iikACaN9A/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><small data-i18n="v1.k">Obra y planta</small><b data-i18n="v1.t">Múltiples trabajos y servicios</b></span></button></div>
-        <div class="vid rv"><button type="button" data-yt="QPZ9Wi5LUnQ"><img src="https://i.ytimg.com/vi/QPZ9Wi5LUnQ/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><small data-i18n="v2.k">Obra y planta</small><b data-i18n="v2.t">Trabajos y servicios · parte 1</b></span></button></div>
-        <div class="vid rv"><button type="button" data-yt="zJ5bFul0TRM"><img src="https://i.ytimg.com/vi/zJ5bFul0TRM/hqdefault.jpg" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><small data-i18n="v3.k">Obra y planta</small><b data-i18n="v3.t">Trabajos y servicios · parte 2</b></span></button></div>
       </div>
     </div>
   </section>
@@ -1938,7 +1935,7 @@ footer a{color:var(--muted)}
     "mo.other":"Other projects · location to be confirmed","proj.metro":"Quito Metro","proj.agoyan":"Agoyán plant","proj.manduriacu":"Manduriacu plant","proj.sanfrancisco":"San Francisco plant","proj.cadeco":"Cadeco warehouse","proj.funival":"Funvivalt · Monserrat complex","proj.tunel":"Roadworks","proj.tunelt":"Baños tunnel",
     "about.k":"About us","about.t":"A <span class=\"grad\">multidisciplinary</span> team","about.mk":"Our mission",
     "about.m":"“To provide our clients with innovative solutions for infrastructure projects, with punctuality and responsibility in delivery, allowing us to be the best option in the market through the full commitment of our team.”",
-    "about.v":"<b>Vision:</b> to be an indispensable company in every area of construction and production, focused on meeting our clients' needs through personalized, guaranteed service.","about.more":"See our social work","crumb.p":"Products","pd.page":"Full product page","masprod":"More products","fichas.k":"Product pages (Spanish)","cul.ficha":"Full technical sheet","cul.k":"Metal culverts","more":"Learn more","more.all":"See all","pd.h":"Ask for a quote","pd.wa":"Quote on WhatsApp","pd.cat":"View catalog","pd.subs":"Product line","pd.adv":"Benefits","t.tables":"Technical tables","cul.view":"View catalog","cul.view2":"Interactive culvert catalog","cul.pdf":"Download PDF","cat.k":"Technical catalog","cat.t":"Metal culvert TMC","cat.meta":"13 pages · PDF · Spanish","cat.g":"What you will find","cat.hint":"Pick a chapter and the catalog opens right on that page.","cv.t":"Metal culvert catalog","cv.open":"Open in a new tab","cv.dl":"Download","about.lead":"Experience and quality in every project.","ab1.k":"Our services","ab1.d":"We distribute high-reliability fasteners for industry. We manufacture metal parts and components for each business area and set a strategy to fully satisfy all parties.","ab2.k":"Our method","ab2.d":"We run a diagnosis gathering information from everyone involved, then plan to achieve the highest productivity and satisfaction for all parties.","ab3.k":"Our engine","ab3.d":"We believe in continuous improvement and a clear purpose. We develop the talent of the whole team, which makes us stronger for new projects.","vid.k":"Videos","vid.t":"Joce Cia <span class=\"grad\">in video</span>","vid.lead":"See our work in the plant and on site.","v0.k":"Introduction","v1.k":"Plant and site","v2.k":"Plant and site","v3.k":"Plant and site","v1.t":"Multiple jobs and services","v2.t":"Jobs and services · part 1","v3.t":"Jobs and services · part 2","g0":"Community bakery in Esmeraldas","g1":"Joce Cia social work","g2":"Working with the community","g3":"Joce Cia donations","ch0":"Cover","ch1":"What is a CSP culvert?","ch2":"MP 68: material and properties","ch3":"MP 68: structures and loads","ch4":"MP 68: bolts and nuts","ch5":"MP 152 & 152.S: material","ch6":"MP 152: starter channels","ch7":"MP 152: ASTM A761 bolts",
+    "about.v":"<b>Vision:</b> to be an indispensable company in every area of construction and production, focused on meeting our clients' needs through personalized, guaranteed service.","about.more":"See our social work","crumb.p":"Products","pd.page":"Full product page","masprod":"More products","fichas.k":"Product pages (Spanish)","cul.ficha":"Full technical sheet","cul.k":"Metal culverts","more":"Learn more","more.all":"See all","pd.h":"Ask for a quote","pd.wa":"Quote on WhatsApp","pd.cat":"View catalog","pd.subs":"Product line","pd.adv":"Benefits","t.tables":"Technical tables","cul.view":"View catalog","cul.view2":"Interactive culvert catalog","cul.pdf":"Download PDF","cat.k":"Technical catalog","cat.t":"Metal culvert TMC","cat.meta":"13 pages · PDF · Spanish","cat.g":"What you will find","cat.hint":"Pick a chapter and the catalog opens right on that page.","cv.t":"Metal culvert catalog","cv.open":"Open in a new tab","cv.dl":"Download","about.lead":"Experience and quality in every project.","ab1.k":"Our services","ab1.d":"We distribute high-reliability fasteners for industry. We manufacture metal parts and components for each business area and set a strategy to fully satisfy all parties.","ab2.k":"Our method","ab2.d":"We run a diagnosis gathering information from everyone involved, then plan to achieve the highest productivity and satisfaction for all parties.","ab3.k":"Our engine","ab3.d":"We believe in continuous improvement and a clear purpose. We develop the talent of the whole team, which makes us stronger for new projects.","vid.k":"Video","vid.more":"More videos on YouTube","vid.t":"Joce Cia <span class=\"grad\">in video</span>","vid.lead":"See our work in the plant and on site.","v0.k":"Introduction","v1.k":"Plant and site","v2.k":"Plant and site","v3.k":"Plant and site","v1.t":"Multiple jobs and services","v2.t":"Jobs and services · part 1","v3.t":"Jobs and services · part 2","g0":"Community bakery in Esmeraldas","g1":"Joce Cia social work","g2":"Working with the community","g3":"Joce Cia donations","ch0":"Cover","ch1":"What is a CSP culvert?","ch2":"MP 68: material and properties","ch3":"MP 68: structures and loads","ch4":"MP 68: bolts and nuts","ch5":"MP 152 & 152.S: material","ch6":"MP 152: starter channels","ch7":"MP 152: ASTM A761 bolts",
     "m1.t":"Assessment","m1.d":"We gather information from everyone involved.","m2.t":"Planning","m2.d":"We define the technical solution, schedule and resources.",
     "m3.t":"Manufacture or supply","m3.d":"We produce in our plant or import to standard.","m4.t":"Delivery and support","m4.d":"We deliver on time and support the assembly.",
     "soc.k":"Social responsibility","soc.t":"Committed to <span class=\"grad\">communities</span>",
