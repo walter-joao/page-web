@@ -954,6 +954,82 @@ footer a{color:var(--muted)}
   -webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice}
 .fx-dark .lead.lit-wrap{font-size:clamp(1.1rem,2vw,1.4rem);max-width:46ch;line-height:1.45}
 @media (prefers-reduced-motion:reduce){.hero .kicker.pill::before{animation:none}.lit{--p:100%!important}.fx-dark .tile,.fx-dark .tile .corr img{transition:none}}
+
+/* Productos: recorrido por aplicación. Capítulos con pieza 3D girable (three.js, se carga al acercarse) sobre foto de obra desenfocada, o con foto de obra grande. Panel de vidrio a la izquierda y carril de capítulos abajo. */
+.pt{--pt-a:#ffffff;--pt-b:#c9d5e4;--pt-floor:rgba(33,67,121,.14);--pt-veil:rgba(236,241,247,.62);--pt-glass:rgba(255,255,255,.74);--pt-chip:rgba(13,23,38,.06);
+  position:relative;height:min(86svh,820px);min-height:560px;overflow:hidden;isolation:isolate;border-block:1px solid var(--line);margin-top:6px;
+  background:radial-gradient(70% 80% at 62% 38%,var(--pt-a),var(--pt-b) 75%)}
+.fx-dark .pt{--pt-a:#1b3561;--pt-b:#070d17;--pt-floor:rgba(60,200,232,.16);--pt-veil:rgba(5,10,20,.58);--pt-glass:rgba(8,14,24,.62);--pt-chip:rgba(255,255,255,.08)}
+.pt::after{content:"";position:absolute;left:30%;right:-5%;bottom:9%;height:22%;z-index:0;background:radial-gradient(50% 50% at 50% 50%,var(--pt-floor),transparent 70%);pointer-events:none}
+.pt-stage{overflow:hidden}
+.pt-bg{position:absolute;inset:-30px;z-index:0;opacity:0;transition:opacity .8s ease}
+.pt-bg.on{opacity:1}
+.pt-bg img{width:100%;height:100%;object-fit:cover;filter:blur(9px) saturate(.75)}
+.pt-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 65% 45%,transparent,var(--pt-veil) 80%),var(--pt-veil)}
+.pt-ph{position:absolute;inset:0;z-index:1;opacity:0;transition:opacity .8s ease;overflow:hidden;cursor:zoom-in}
+.pt-ph.on{opacity:1}
+.pt-ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.08);transition:transform 7s ease-out}
+.pt-ph.on img{transform:scale(1)}
+.pt-ph.zoom{cursor:zoom-out}
+.pt-ph.zoom img{transform:scale(2);transition:transform .7s cubic-bezier(.2,.7,.2,1)}
+.pt-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(3,6,11,.82),rgba(3,6,11,.25) 55%,rgba(3,6,11,.05)),linear-gradient(transparent 60%,rgba(3,6,11,.7));pointer-events:none}
+.pt-gl{position:absolute;inset:0;z-index:2;width:100%;height:100%;touch-action:pan-y;cursor:grab;opacity:0;transition:opacity .6s}
+.pt-gl.on{opacity:1}
+.pt-gl.drag{cursor:grabbing}
+.pt-panel{position:absolute;z-index:3;left:max(18px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-55%);width:min(440px,calc(100% - 36px));
+  padding:24px 24px 22px;border-radius:var(--radius);background:var(--pt-glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);display:grid;gap:12px;color:var(--fg)}
+@media (min-width:1280px){.pt-panel{left:calc((100vw - 1240px)/2 + 18px)}}
+.pt-panel > *{transition:opacity .45s ease,transform .45s ease}
+.pt-panel.out > *{opacity:0;transform:translateY(14px)}
+.pt-app{display:flex;gap:10px;align-items:center;font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
+.pt-app span{color:var(--cyan)}
+.pt-app b{font-weight:500;color:var(--muted);letter-spacing:.08em}
+.pt-panel h3{margin:0;font-family:var(--f-display);font-weight:650;font-size:clamp(1.7rem,3.2vw,2.5rem);line-height:1.02;letter-spacing:-.03em;text-wrap:balance}
+.pt-panel p{margin:0;color:var(--muted)}
+.pt-vars{display:flex;flex-wrap:wrap;gap:6px}
+.pt-vars button{border:1px solid var(--line);background:var(--pt-chip);border-radius:999px;padding:7px 13px;font:600 .86rem var(--f-body);cursor:pointer;color:var(--fg)}
+.pt-vars button[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:transparent}
+.pt-tags{margin:0;font-size:.9rem;color:var(--fg)}
+.pt-facts{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:0;font-size:.9rem}
+.pt-facts dt{font:500 .7rem/1.9 var(--f-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pt-facts dd{margin:0;min-width:0}
+.pt-ctas{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pt-ctas .btn{padding:11px 18px;font-size:.92rem}
+.pt-hint,.pt-cap{position:absolute;z-index:3;right:max(18px,env(safe-area-inset-right,0px));font:500 .72rem var(--f-mono);letter-spacing:.06em;color:var(--muted)}
+.pt-hint{top:18px;padding:7px 12px;border-radius:999px;background:var(--pt-glass);border:1px solid var(--line);display:flex;gap:8px;align-items:center}
+.pt-hint i{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px rgba(255,138,61,.2)}
+.pt-cap{bottom:84px}
+.pt-rail{position:absolute;z-index:4;left:0;right:0;bottom:0;padding:0 max(18px,env(safe-area-inset-right,0px)) 16px max(18px,env(safe-area-inset-left,0px));
+  display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;justify-content:safe center}
+.pt-rail::-webkit-scrollbar{display:none}
+.pt-rail button{flex:0 0 auto;border:0;background:none;cursor:pointer;padding:12px 10px 6px;min-width:120px;text-align:left;color:var(--muted);display:grid;gap:6px;font-family:var(--f-body)}
+.pt-rail small{font:500 .66rem var(--f-mono);letter-spacing:.1em;text-transform:uppercase;opacity:.8}
+.pt-rail span{font-weight:700;font-size:.9rem}
+.pt-rail i{display:block;height:2px;border-radius:2px;background:var(--line);overflow:hidden}
+.pt-rail i::after{content:"";display:block;height:100%;width:0;background:var(--accent)}
+.pt-rail button[aria-selected="true"]{color:var(--fg)}
+.pt-rail button[aria-selected="true"] i::after{width:var(--p,100%)}
+.pt.photo-on .pt-rail button{color:rgba(255,255,255,.7)}
+.pt.photo-on .pt-rail button[aria-selected="true"]{color:#fff}
+.pt.photo-on .pt-rail i{background:rgba(255,255,255,.25)}
+.pt-arrows{position:absolute;z-index:4;right:max(18px,env(safe-area-inset-right,0px));top:50%;transform:translateY(-50%);display:grid;gap:8px}
+.pt-arrows button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--pt-glass);color:var(--fg);cursor:pointer;display:grid;place-items:center;backdrop-filter:blur(8px)}
+.pt-panel button:focus-visible,.pt-rail button:focus-visible,.pt-arrows button:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+@media (max-width:760px){
+  .pt{height:auto;min-height:0;display:flex;flex-direction:column}
+  .pt-stage{position:relative;height:58svh;min-height:340px}
+  .pt::after{left:0;right:0;bottom:auto;top:40svh;height:16svh}
+  .pt-panel{position:relative;left:auto;top:auto;transform:none;width:auto;margin:-36px 12px 0}
+  .pt-rail{position:relative;justify-content:flex-start;padding-top:8px}
+  .pt-arrows{top:29svh}
+  .pt-hint{top:12px}
+  .pt-cap{bottom:46px;left:max(18px,env(safe-area-inset-left,0px));right:auto}
+  .pt.photo-on .pt-rail button{color:var(--muted)}
+  .pt.photo-on .pt-rail button[aria-selected="true"]{color:var(--fg)}
+  .pt.photo-on .pt-rail i{background:var(--line)}
+}
+@media (min-width:761px){.pt-stage{position:absolute;inset:0}}
+@media (prefers-reduced-motion:reduce){.pt *{transition:none!important}}
 </style>
 
 </head>
@@ -1094,17 +1170,32 @@ footer a{color:var(--muted)}
         <h2 data-i18n-html="prod.t">Todo el acero de <span class="grad">su proyecto</span></h2>
         <p class="lead lit-wrap"><span class="lit" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</span></p>
       </div>
-      <div class="bento">
-        <a class="tile big rv" href="/productos/infraestructura-metalica"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2021%2F08%2FGalpon2.png&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2021%2F08%2FGalpon2.png&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2021%2F08%2FGalpon2.png&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2021/08/Galpon2.png" alt="Infraestructura metálica: postes, galpones y cerchas fabricados por Joce Cia" loading="lazy"></div><div class="body"><h3 data-i18n="p1.t">Infraestructura metálica</h3><p data-i18n="p1.d">Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/pernos-de-alta-fiabilidad"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-13-at-15.47.01.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-13-at-15.47.01.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-13-at-15.47.01.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-13-at-15.47.01.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/02/WhatsApp-Image-2025-02-13-at-15.47.01.jpeg" alt="Pernos bronce-silicio, pernos a la forja y pernos de anclaje" loading="lazy"></div><div class="body"><h3 data-i18n="p2.t">Pernos de alta fiabilidad</h3><p data-i18n="p2.d">Pernos a la forja, pernos bronce-silicio y pernos de anclaje.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/alcantarillas-metalicas"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-10-at-14.32.57.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-10-at-14.32.57.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-10-at-14.32.57.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FWhatsApp-Image-2025-02-10-at-14.32.57.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/02/WhatsApp-Image-2025-02-10-at-14.32.57.jpeg" alt="Alcantarilla metálica de acero corrugado galvanizado en obra vial" loading="lazy"></div><div class="body"><h3 data-i18n="p3.t">Alcantarillas metálicas</h3><p data-i18n="p3.d">Alcantarillas TMC de acero corrugado galvanizado MP 68 y MP 152.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/grating-tramex"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/01/WhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg" alt="Grating tipo tramex: rejillas y pisos industriales metálicos" loading="lazy"></div><div class="body"><h3 data-i18n="p4.t">Grating y tramex</h3><p data-i18n="p4.d">Rejillas metálicas y pisos industriales tipo tramex.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/encofrados"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2F272891581_5008526875879109_7336154045096469377_n-767x1024.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2F272891581_5008526875879109_7336154045096469377_n-767x1024.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2F272891581_5008526875879109_7336154045096469377_n-767x1024.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2F272891581_5008526875879109_7336154045096469377_n-767x1024.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/01/272891581_5008526875879109_7336154045096469377_n-767x1024.jpg" alt="Encofrados metálicos para obra civil" loading="lazy"></div><div class="body"><h3 data-i18n="p5.t">Encofrados</h3><p data-i18n="p5.d">Verticales, trepantes, circulares y deslizantes.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile wide rv" href="/productos/partes-y-piezas-especiales"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-06-01-at-9.21.14-AM-1024x576.jpeg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-06-01-at-9.21.14-AM-1024x576.jpeg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-06-01-at-9.21.14-AM-1024x576.jpeg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FWhatsApp-Image-2022-06-01-at-9.21.14-AM-1024x576.jpeg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/01/WhatsApp-Image-2022-06-01-at-9.21.14-AM-1024x576.jpeg" alt="Fabricación y reparación de piezas especiales en el taller de Sangolquí" loading="lazy"></div><div class="body"><h3 data-i18n="p8.t">Piezas especiales</h3><p data-i18n="p8.d">Fabricación y reparación de partes y piezas para sectores estratégicos.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/accesorios-para-tuberias"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FIMG_20231006_081314-1024x768.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FIMG_20231006_081314-1024x768.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FIMG_20231006_081314-1024x768.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FIMG_20231006_081314-1024x768.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/01/IMG_20231006_081314-1024x768.jpg" alt="Accesorios para tubería metálica" loading="lazy"></div><div class="body"><h3 data-i18n="p6.t">Accesorios para tuberías</h3><p data-i18n="p6.d">Para tuberías metálicas.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile rv" href="/productos/soporte-en-roca"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Fpernos-expansivos1.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Fpernos-expansivos1.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Fpernos-expansivos1.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Fpernos-expansivos1.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/02/pernos-expansivos1.jpg" alt="Soporte en roca: barra helicoidal y cartuchos de resina de anclaje" loading="lazy"></div><div class="body"><h3 data-i18n="p7.t">Soporte en roca</h3><p data-i18n="p7.d">Barra helicoidal y resina de anclaje.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
-        <a class="tile wide rv" href="/productos/venta-de-soldadoras"><div class="corr white"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FLincoln-Electric-RX-520.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FLincoln-Electric-RX-520.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FLincoln-Electric-RX-520.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F01%2FLincoln-Electric-RX-520.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 700px) 100vw, 50vw" data-o="/img/wp/2025/01/Lincoln-Electric-RX-520.jpg" alt="Soldadora para taller y obra" loading="lazy"></div><div class="body"><h3 data-i18n="p9.t">Venta de soldadoras</h3><p data-i18n="p9.d">Equipos de soldadura para taller y obra, con asesoría técnica.</p><span class="more"><span data-i18n="more">Saber más</span> ›</span></div></a>
+    </div>
+    <div class="pt" id="ptour" role="region" aria-label="Recorrido de productos">
+      <div class="pt-stage">
+        <div class="pt-bg" id="pt-bg-tunel"><img alt="" loading="lazy" decoding="async" src="/img/obras/tunel-banos-1.webp"></div>
+        <div class="pt-bg" id="pt-bg-alc"><img alt="" loading="lazy" decoding="async" src="/img/productos-3d/fondo-alcantarilla.webp"></div>
+        <div class="pt-bg" id="pt-bg-metro"><img alt="" loading="lazy" decoding="async" src="/img/obras/metro-rejillas.webp"></div>
+        <div class="pt-bg" id="pt-bg-postes"><img alt="" loading="lazy" decoding="async" src="/img/productos-3d/fondo-postes.webp"></div>
+        <div class="pt-ph" id="pt-ph-vial"><img alt="Pasarela peatonal metálica sobre una vía" loading="lazy" decoding="async" src="/img/portada/vial-2400.webp"></div>
+        <div class="pt-ph" id="pt-ph-soporte"><img alt="Equipo de perforación instalando soporte en roca dentro de un túnel" loading="lazy" decoding="async" src="/img/productos-3d/soporte-roca-1916.webp"></div>
+        <div class="pt-ph" id="pt-ph-sanfco"><img alt="Central hidroeléctrica San Francisco" loading="lazy" decoding="async" src="/img/portada/sanfco-2400.webp"></div>
+        <canvas class="pt-gl" id="pt-gl" aria-label="Modelo 3D del producto"></canvas>
+        <div class="pt-cap" id="pt-cap"></div>
+        <div class="pt-hint" aria-hidden="true"><i></i><span id="pt-hint"></span></div>
+        <div class="pt-arrows"><button type="button" id="pt-prev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button><button type="button" id="pt-next" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
       </div>
+      <div class="pt-panel" id="pt-panel" aria-live="polite">
+        <div class="pt-app"><span id="pt-k"></span><b id="pt-n"></b></div>
+        <h3 id="pt-t"></h3>
+        <p id="pt-d"></p>
+        <div class="pt-vars" id="pt-v"></div>
+        <dl class="pt-facts" id="pt-f"></dl>
+        <div class="pt-ctas"><a class="btn btn-accent" id="pt-wa" href="https://wa.me/593964068392" target="_blank" rel="noopener"></a><a class="btn btn-line" id="pt-l" href="/productos/pernos-de-alta-fiabilidad"></a></div>
+      </div>
+      <div class="pt-rail" id="pt-rail" role="tablist" aria-label="Aplicaciones"></div>
+    </div>
+    <div class="wrap">
 
       <nav class="fichas" aria-label="Fichas de producto"><span class="kicker" data-i18n="fichas.k">Fichas de producto</span><div><a href="/productos/pernos-bronce-silicio">Pernos bronce-silicio</a><a href="/productos/pernos-a-la-forja">Pernos a la forja</a><a href="/productos/pernos-de-alta-fiabilidad">Pernos especiales de alta fiabilidad</a><a href="/productos/alcantarillas-metalicas">Alcantarillas metálicas</a><a href="/productos/alcantarilla-mp-68">Alcantarilla TMC Minimultiplate SP MP 68</a><a href="/productos/alcantarilla-mp-152">Alcantarilla Multiplate SP MP 152 – MP 152.S</a><a href="/productos/grating-tramex">Grating y tramex</a><a href="/productos/postes-metalicos">Postes metálicos</a><a href="/productos/encofrados">Encofrados</a><a href="/productos/accesorios-para-tuberias">Accesorios para tuberías</a><a href="/productos/soporte-en-roca">Resina y pernos para soporte de rocas</a><a href="/productos/resina-de-anclaje">Cartucho de anclaje en roca con resina</a><a href="/productos/pernos-de-barra-helicoidal">Pernos de barra helicoidal</a><a href="/productos/infraestructura-metalica">Infraestructura metálica</a><a href="/productos/partes-y-piezas-especiales">Fabricación y reparación de partes y piezas especiales</a><a href="/productos/venta-de-soldadoras">Venta de soldadoras</a></div></nav>
 
@@ -1934,6 +2025,227 @@ footer a{color:var(--muted)}
   if(matchMedia('(prefers-reduced-motion: reduce)').matches){lit.forEach(function(el){el.style.setProperty('--p','100%')});return}
   var q=false;function upd(){q=false;var h=innerHeight;lit.forEach(function(el){var r=el.getBoundingClientRect();var v=(h*.9-r.top)/(h*.55);v=Math.max(0,Math.min(1,v));el.style.setProperty('--p',(v*106-6).toFixed(1)+'%')})}
   addEventListener('scroll',function(){if(!q){q=true;requestAnimationFrame(upd)}},{passive:true});addEventListener('resize',upd);upd();
+})();
+</script>
+<script>
+/* Recorrido de productos (#ptour): capítulos por aplicación, piezas 3D con three.js (se carga solo cuando la sección se acerca a la pantalla). */
+(function(){
+const tour=document.getElementById('ptour');if(!tour)return;
+const $=s=>document.getElementById(s);
+const gl=$('pt-gl'),panel=$('pt-panel'),rail=$('pt-rail');
+const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const L=()=>document.documentElement.lang==='en'?'en':'es';
+const C=[
+ {s:'pernos-de-alta-fiabilidad',m:'pernos',bg:'tunel',
+  es:{k:'Fijación y anclaje',t:'Pernos de alta fiabilidad',d:'Pernos a la forja, pernos bronce-silicio y pernos de anclaje para molinos, minería, construcción y vía férrea.',v:['Todos','A la forja','Bronce-silicio','De anclaje'],f:[['A la forja','9 tipos'],['Bronce-silicio','1 % a 5 % de silicio, resiste agua dulce y salada'],['Catálogo','PDF bronce-silicio']],bc:'Fondo: Túnel de Baños, pernos de anclaje de Jocecia'},
+  en:{k:'Fastening & anchoring',t:'High-reliability bolts',d:'Forged bolts, silicon-bronze bolts and anchor bolts for mills, mining, construction and railways.',v:['All','Forged','Silicon-bronze','Anchor'],f:[['Forged','9 types'],['Silicon-bronze','1–5 % silicon, resists fresh and salt water'],['Catalog','Silicon-bronze PDF']],bc:'Background: Baños tunnel, Jocecia anchor bolts'}},
+ {s:'alcantarillas-metalicas',m:'alc',bg:'alc',
+  es:{k:'Drenaje vial',t:'Alcantarillas metálicas',d:'Alcantarillas TMC de acero corrugado galvanizado, en tubo o en bóveda para pasos de mayor luz.',v:['MP 68','MP 152'],f:[['Modelos','MP 68 · MP 152 · MP 152.S'],['Material','Acero corrugado galvanizado'],['Extra','Catálogo interactivo y PDF']],bc:'Fondo: alcantarilla instalada en obra'},
+  en:{k:'Road drainage',t:'Metal culverts',d:'Galvanized corrugated steel culverts, as pipes or as arches for wider spans.',v:['MP 68','MP 152'],f:[['Models','MP 68 · MP 152 · MP 152.S'],['Material','Galvanized corrugated steel'],['Extra','Interactive catalog and PDF']],bc:'Background: culvert installed on site'}},
+ {s:'grating-tramex',m:'grat',bg:'metro',
+  es:{k:'Pisos industriales',t:'Grating y tramex',d:'Rejillas de acero galvanizado o inoxidable para pisos industriales, almacenes y plataformas de trabajo.',v:['De barra','Antideslizante'],f:[['De barra','Para alta carga'],['Antideslizante','Zonas con humedad y aceite'],['Ya lo usó','Metro de Quito']],bc:'Fondo: rejillas en el Metro de Quito'},
+  en:{k:'Industrial floors',t:'Grating',d:'Galvanized or stainless steel grating for industrial floors, warehouses and work platforms.',v:['Bar','Anti-slip'],f:[['Bar','For heavy loads'],['Anti-slip','Wet and oily areas'],['Used at','Quito Metro']],bc:'Background: grating at the Quito Metro'}},
+ {s:'postes-metalicos',m:'poste',bg:'postes',
+  es:{k:'Alumbrado y redes',t:'Postes metálicos',d:'Postes para alumbrado público, sujeción de cables y anclaje de estructuras.',v:['Alumbrado','Sujeción de cables'],f:[['Acabado','Galvanizado'],['Catálogo','PDF postes']],bc:'Fondo: postes galvanizados en patio'},
+  en:{k:'Lighting & networks',t:'Steel poles',d:'Poles for street lighting, cable support and structural anchoring.',v:['Lighting','Cable support'],f:[['Finish','Galvanized'],['Catalog','Poles PDF']],bc:'Background: galvanized poles in the yard'}},
+ {s:'infraestructura-metalica',ph:'vial',
+  es:{k:'Estructura',t:'Infraestructura metálica',d:'Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.',tags:'Galpones · Pasarelas · Escaleras · Cerchas · Placas',f:[['Taller','Sangolquí'],['Ya lo usó','Metro de Quito']]},
+  en:{k:'Structure',t:'Steel infrastructure',d:'Structures, warehouses, stairs, walkways, poles, plates, energy dissipators and tunnel arches.',tags:'Warehouses · Walkways · Stairs · Arches · Plates',f:[['Plant','Sangolquí'],['Used at','Quito Metro']]}},
+ {s:'soporte-en-roca',ph:'soporte',
+  es:{k:'Túneles y roca',t:'Soporte en roca',d:'Barra helicoidal y cartuchos de resina para sostener túneles y galerías, reforzar pilares en minería y consolidar taludes.',tags:'Barra helicoidal · Cartucho de resina',f:[['Ya lo usó','Túnel de Baños'],['Catálogo','PDF resina de anclaje']]},
+  en:{k:'Tunnels & rock',t:'Rock support',d:'Helical bars and resin cartridges to support tunnels and galleries, reinforce mine pillars and stabilize slopes.',tags:'Helical bar · Resin cartridge',f:[['Used at','Baños tunnel'],['Catalog','Anchoring resin PDF']]}},
+ {s:'partes-y-piezas-especiales',ph:'sanfco',
+  es:{k:'Sectores estratégicos',t:'Piezas especiales',d:'Fabricación y reparación de partes y piezas para sectores estratégicos, hechas a medida en el taller.',tags:'Fabricación · Reparación · A medida',f:[['Taller','Sangolquí']]},
+  en:{k:'Strategic sectors',t:'Special parts',d:'Manufacturing and repair of parts for strategic sectors, made to order in our plant.',tags:'Manufacturing · Repair · Made to order',f:[['Plant','Sangolquí']]}}
+];
+const UI={es:{t3:'3D',tf:'Foto',drag:'Arrastre para girar · Ctrl + rueda o dos dedos para acercar',dragm:'Arrastre para girar',photo:'Toque la foto para acercarse',wa:'Cotizar por WhatsApp',more:'Ver ficha ›',q:'Hola, quisiera cotizar: '},
+          en:{t3:'3D',tf:'Photo',drag:'Drag to rotate · Ctrl + wheel or pinch to zoom',dragm:'Drag to rotate',photo:'Tap the photo to zoom in',wa:'Quote on WhatsApp',more:'View product ›',q:'Hello, I would like a quote for: '}};
+let R=null,S,cam,root,env,mats={},cur=-1,vari=0;
+const st={ry:.6,rx:.18,vry:0,dist:1,tdist:1,auto:!reduce,lastUser:0,base:6,ty:0};
+function initGL(){
+  if(!window.THREE)return false;
+  try{R=new THREE.WebGLRenderer({canvas:gl,antialias:true,alpha:true});}catch(e){return false}
+  R.setPixelRatio(Math.min(devicePixelRatio,2));
+  R.outputEncoding=THREE.sRGBEncoding;R.toneMapping=THREE.ACESFilmicToneMapping;R.toneMappingExposure=1.05;
+  R.shadowMap.enabled=true;R.shadowMap.type=THREE.PCFSoftShadowMap;
+  S=new THREE.Scene();cam=new THREE.PerspectiveCamera(32,1,.05,200);
+  // Entorno de estudio para reflejos del metal
+  const es=new THREE.Scene();
+  const sg=new THREE.SphereGeometry(20,32,16);const col=[];const p=sg.attributes.position;
+  for(let i=0;i<p.count;i++){const y=p.getY(i)/20;const c=new THREE.Color().lerpColors(new THREE.Color(0x0a1424),new THREE.Color(0x9fb6d6),Math.max(0,y*.5+.5));col.push(c.r,c.g,c.b)}
+  sg.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
+  es.add(new THREE.Mesh(sg,new THREE.MeshBasicMaterial({side:THREE.BackSide,vertexColors:true})));
+  const box=(x,y,z,w,h,c)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m)};
+  box(-8,9,6,9,5,0xffffff);box(9,4,-4,3,10,0xffb27a);box(4,-2,9,10,2,0x9ad8ff);
+  const pm=new THREE.PMREMGenerator(R);env=pm.fromScene(es,.04).texture;S.environment=env;
+  S.add(new THREE.HemisphereLight(0xdbe8ff,0x0b1320,.5));
+  const key=new THREE.DirectionalLight(0xffffff,1.6);key.position.set(-4,8,6);key.castShadow=true;
+  key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-6,right:6,top:6,bottom:-6,near:.5,far:30});key.shadow.radius=6;S.add(key);
+  const rim=new THREE.DirectionalLight(0xff8a3d,1.4);rim.position.set(5,3,-6);S.add(rim);
+  const fill=new THREE.DirectionalLight(0x3cc8e8,.35);fill.position.set(6,1,5);S.add(fill);
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.ShadowMaterial({opacity:.35}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.name='floor';S.add(floor);
+  const M=(c,me,ro)=>new THREE.MeshStandardMaterial({color:c,metalness:me,roughness:ro,envMapIntensity:1.1});
+  mats.steel=M(0x2b2f35,.85,.42);mats.steelL=M(0x3a3f46,.8,.5);mats.bronze=M(0xb07a45,1,.32);
+  mats.galv=M(0xc9d0d8,.9,.36);mats.galvD=M(0xa7b0ba,.9,.45);mats.inox=M(0xe3e7ec,1,.2);
+  mats.lamp=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xfff1d6,emissiveIntensity:1.6});
+  mats.ins=M(0x7a4a2a,.1,.35);
+  root=new THREE.Group();S.add(root);
+  return true;
+}
+const sh=m=>{m.castShadow=true;m.receiveShadow=true;return m};
+function threadOn(g,r,y0,y1,mat){
+  const pitch=r*.42,turns=(y1-y0)/pitch,pts=[];const n=Math.ceil(turns*24);
+  for(let i=0;i<=n;i++){const a=i/24*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,y0+i/n*(y1-y0),Math.sin(a)*r))}
+  g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),n*2,r*.11,6,false),mat)));
+}
+function boltHex(mat,len){const g=new THREE.Group(),r=.11;
+  {const sk=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));sk.position.y=len/2;g.add(sk);}
+  const h=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.3,6),mat));h.position.y=r*.65;g.add(h);
+  const ch=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.6,r*1.9,r*.25,24),mat));ch.position.y=r*1.4;g.add(ch);
+  threadOn(g,r*.97,len*.45,len-.02,mat);
+  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.85,r*1.85,r*1.4,6),mat));nut.position.y=len*.62;g.add(nut);
+  const w=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*2.3,r*2.3,r*.2,32),mat));w.position.y=len*.62-r*.8;g.add(w);
+  return g}
+function boltForged(mat,len){const g=new THREE.Group(),r=.12;
+  const head=sh(new THREE.Mesh(new THREE.BoxGeometry(r*3.6,r*1.2,r*1.9),mat));head.position.y=r*.6;g.add(head);
+  const neck=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r*1.5,r*1.6,24),mat));neck.position.y=r*2;g.add(neck);
+  const s=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));s.position.y=len/2+r*1.2;g.add(s);
+  threadOn(g,r*.97,len*.5,len+r*1.1,mat);return g}
+function boltAnchor(mat){const g=new THREE.Group(),r=.09;
+  const path=new THREE.CurvePath();
+  path.add(new THREE.LineCurve3(new THREE.Vector3(0,2.1,0),new THREE.Vector3(0,.45,0)));
+  path.add(new THREE.QuadraticBezierCurve3(new THREE.Vector3(0,.45,0),new THREE.Vector3(0,0,0),new THREE.Vector3(.4,0,0)));
+  path.add(new THREE.LineCurve3(new THREE.Vector3(.4,0,0),new THREE.Vector3(.62,0,0)));
+  g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(path,80,r,20,false),mat)));
+  threadOn(g,r*.97,1.5,2.08,mat);
+  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.4,6),mat));nut.position.y=1.72;g.add(nut);
+  const pl=sh(new THREE.Mesh(new THREE.BoxGeometry(.42,.04,.42),mats.steelL));pl.position.y=1.62;g.add(pl);
+  g.position.y=r;return g}
+function buildPernos(v){const g=new THREE.Group();const m=v===2?mats.bronze:mats.steel;
+  const lay=(o,x,rz)=>{o.position.x=x;o.rotation.y=rz||0;g.add(o)};
+  if(v===0){lay(boltForged(mats.steel,1.9),-1.05,.3);lay(boltHex(mats.bronze,1.7),0,-.2);lay(boltAnchor(mats.steel),.9,-.6)}
+  else if(v===1){lay(boltForged(m,2.1),-.45,.3);lay(boltForged(m,1.5),.45,-.4)}
+  else if(v===2){lay(boltHex(m,1.9),-.4,.2);lay(boltHex(m,1.35),.45,-.3)}
+  else{lay(boltAnchor(m),-.3,.2);lay(boltAnchor(m),.45,-1)}
+  return {g,size:2.6,y:1}}
+function corr(R0,L,P,A,phi){const pts=[],n=Math.round(L/P*14);
+  for(let i=0;i<=n;i++){const y=-L/2+L*i/n;pts.push(new THREE.Vector2(R0+A*Math.sin(y/P*Math.PI*2),y))}
+  const geo=new THREE.LatheGeometry(pts,phi?72:96,0,phi||Math.PI*2);geo.computeVertexNormals();
+  const m=sh(new THREE.Mesh(geo,mats.galv.clone()));m.material.side=THREE.DoubleSide;return m}
+function buildAlc(v){const g=new THREE.Group();
+  if(v===0){const t=corr(.62,3.2,.12,.022);t.rotation.z=Math.PI/2;t.position.y=.64;g.add(t);
+    [-1.6,1.6].forEach(x=>{const ring=sh(new THREE.Mesh(new THREE.TorusGeometry(.62,.025,10,64),mats.galvD));ring.rotation.y=Math.PI/2;ring.position.set(x,.64,0);g.add(ring)});
+    return {g,size:3.4,y:.64}}
+  const a=corr(1.25,3,.22,.05,Math.PI);a.rotation.z=Math.PI/2;a.rotation.y=0;g.add(a);
+  [-1.5,1.5].forEach(x=>{const ring=sh(new THREE.Mesh(new THREE.TorusGeometry(1.25,.04,10,64,Math.PI),mats.galvD));ring.rotation.y=Math.PI/2;ring.position.x=x;g.add(ring)});
+  [-1,1].forEach(z=>{const f=sh(new THREE.Mesh(new THREE.BoxGeometry(3.1,.12,.3),mats.galvD));f.position.set(0,.06,z*1.27);g.add(f)});
+  return {g,size:3.6,y:.7}}
+function buildGrat(v){const g=new THREE.Group(),W=2.6,D=1.7,H=.12,sp=.08,t=.014;const mat=mats.galv;
+  const nb=Math.floor(W/sp);const bar=new THREE.BoxGeometry(t,H,D);
+  const ib=new THREE.InstancedMesh(bar,mat,nb+1);const o=new THREE.Object3D();
+  for(let i=0;i<=nb;i++){o.position.set(-W/2+i*sp,H/2,0);o.updateMatrix();ib.setMatrixAt(i,o.matrix)}ib.castShadow=ib.receiveShadow=true;g.add(ib);
+  const nc=Math.floor(D/.1);const cr=new THREE.CylinderGeometry(.009,.009,W,8);cr.rotateZ(Math.PI/2);
+  const ic=new THREE.InstancedMesh(cr,mat,nc+1);for(let i=0;i<=nc;i++){o.position.set(0,H-.012,-D/2+i*.1);o.updateMatrix();ic.setMatrixAt(i,o.matrix)}ic.castShadow=true;g.add(ic);
+  if(v===1){const nt=Math.floor(D/.035);const tooth=new THREE.ConeGeometry(.012,.022,4);const it=new THREE.InstancedMesh(tooth,mat,(nb+1)*nt);let k=0;
+    for(let i=0;i<=nb;i++)for(let j=0;j<nt;j++){o.position.set(-W/2+i*sp,H+.01,-D/2+j*.035+.017);o.updateMatrix();it.setMatrixAt(k++,o.matrix)}g.add(it)}
+  [[W+.03,H,t*2,0,-D/2],[W+.03,H,t*2,0,D/2]].forEach(([a,b,c,x,z])=>{const f=sh(new THREE.Mesh(new THREE.BoxGeometry(a,b,c),mats.galvD));f.position.set(x,H/2,z);g.add(f)});
+  g.rotation.x=-.0;g.position.y=.02;
+  // Segundo panel apoyado, para leer el espesor
+  const g2=new THREE.Group();g2.add(g);const c2=g.clone();c2.position.set(.5,.62,-.35);c2.rotation.set(-1.05,0,.0);g2.add(c2);
+  return {g:g2,size:2.9,y:.45}}
+function buildPoste(v){const g=new THREE.Group(),Hh=4.6;
+  const p=sh(new THREE.Mesh(new THREE.CylinderGeometry(.07,.14,Hh,8),mats.galv));p.position.y=Hh/2+.05;g.add(p);
+  const base=sh(new THREE.Mesh(new THREE.BoxGeometry(.6,.05,.6),mats.galvD));base.position.y=.025;g.add(base);
+  for(let i=0;i<4;i++){const a=i*Math.PI/2+Math.PI/4;
+    const gu=sh(new THREE.Mesh(new THREE.BoxGeometry(.012,.22,.16),mats.galvD));gu.position.set(Math.cos(a)*.2,.15,Math.sin(a)*.2);gu.rotation.y=-a;g.add(gu);
+    const b=sh(new THREE.Mesh(new THREE.CylinderGeometry(.02,.02,.14,10),mats.steel));b.position.set(Math.cos(a+Math.PI/4)*.24,.1,Math.sin(a+Math.PI/4)*.24);g.add(b);
+    const n=sh(new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.03,6),mats.steel));n.position.copy(b.position);n.position.y=.07;g.add(n)}
+  if(v===0){const arm=new THREE.QuadraticBezierCurve3(new THREE.Vector3(0,Hh-.25,0),new THREE.Vector3(0,Hh+.3,0),new THREE.Vector3(1.2,Hh+.35,0));
+    g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(arm,40,.035,10,false),mats.galv)));
+    const lum=sh(new THREE.Mesh(new THREE.BoxGeometry(.55,.08,.22),mats.galvD));lum.position.set(1.35,Hh+.33,0);g.add(lum);
+    const led=new THREE.Mesh(new THREE.BoxGeometry(.42,.01,.15),mats.lamp);led.position.set(1.35,Hh+.285,0);g.add(led);}
+  else{const cr=sh(new THREE.Mesh(new THREE.BoxGeometry(1.4,.07,.07),mats.galvD));cr.position.y=Hh-.15;g.add(cr);
+    [-.6,-.2,.2,.6].forEach(x=>{const ins=sh(new THREE.Mesh(new THREE.CylinderGeometry(.04,.055,.16,12),mats.ins));ins.position.set(x,Hh-.03,0);g.add(ins)})}
+  g.rotation.y=-.5;return {g,size:5.2,y:2.5}}
+const BUILD={pernos:buildPernos,alc:buildAlc,grat:buildGrat,poste:buildPoste};
+let built=null;
+function setModel(m,v){if(!R)return;
+  while(root.children.length){const c=root.children.pop();c.traverse(o=>{if(o.geometry)o.geometry.dispose()})}
+  built=BUILD[m](v);root.add(built.g);root.scale.setScalar(.001);st.grow=0;st.ty=built.y;st.tdist=1;st.dist=1.25;
+  resize()}
+function resize(){if(!R)return;const w=gl.clientWidth,h=gl.clientHeight;if(!w||!h)return;R.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix()}
+addEventListener('resize',resize);
+let run=false,visible=true;
+function loop(t){if(!run)return;requestAnimationFrame(loop);
+  if(st.auto&&performance.now()-st.lastUser>2500)st.ry+=.004;
+  st.ry+=st.vry;st.vry*=.92;st.dist+=(st.tdist-st.dist)*.08;
+  if(st.grow<1){st.grow=Math.min(1,st.grow+.04);const e=1-Math.pow(1-st.grow,3);root.scale.setScalar(.6+.4*e)}
+  root.rotation.y=st.ry;
+  const narrow=innerWidth<761;const asp=narrow?cam.aspect:cam.aspect*.5;const tn=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
+  const fit=Math.max(built.size/(2*tn)*1.05,built.size/(2*tn*asp)*1.02);const d=fit*st.dist;
+  const off=narrow?0:-fit*tn*cam.aspect*.42; // objeto a la derecha del panel
+  cam.position.set(Math.sin(.0)*d+off,st.ty+d*Math.sin(st.rx)+.2,d*Math.cos(st.rx));
+  cam.lookAt(off,st.ty,0);
+  R.render(S,cam)}
+function start3D(){if(!R||run||!visible)return;run=true;requestAnimationFrame(loop)}
+function stop3D(){run=false}
+// Gestos
+const ptr=new Map();let pd0=0;
+gl.addEventListener('pointerdown',e=>{gl.setPointerCapture(e.pointerId);ptr.set(e.pointerId,{x:e.clientX,y:e.clientY});gl.classList.add('drag');touched();
+  if(ptr.size===2){const [a,b]=[...ptr.values()];pd0=Math.hypot(a.x-b.x,a.y-b.y)}});
+gl.addEventListener('pointermove',e=>{const p=ptr.get(e.pointerId);if(!p)return;
+  if(ptr.size===2){p.x=e.clientX;p.y=e.clientY;const [a,b]=[...ptr.values()];const d=Math.hypot(a.x-b.x,a.y-b.y);if(pd0){st.tdist=Math.min(1.5,Math.max(.45,st.tdist*pd0/d))}pd0=d;return}
+  const dx=e.clientX-p.x,dy=e.clientY-p.y;p.x=e.clientX;p.y=e.clientY;st.vry=dx*.006;st.ry+=dx*.004;st.rx=Math.min(.9,Math.max(-.05,st.rx+dy*.004));st.lastUser=performance.now()});
+const up=e=>{ptr.delete(e.pointerId);if(!ptr.size)gl.classList.remove('drag');pd0=0};
+gl.addEventListener('pointerup',up);gl.addEventListener('pointercancel',up);
+gl.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();touched();st.tdist=Math.min(1.5,Math.max(.45,st.tdist*(1+e.deltaY*.0012)))},{passive:false});
+/* ---------- Capítulos ---------- */
+let idx=0,t0=0,paused=false,started=false;
+const esc=s=>String(s).replace(/[&<]/g,c=>({'&':'&amp;','<':'&lt;'}[c]));
+function drawRail(){const u=UI[L()];
+  rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}" aria-selected="${i===idx}"><small>${c.m?u.t3:u.tf} · ${esc(c[L()].k)}</small><span>${esc(c[L()].t)}</span><i></i></button>`).join('')}
+function fill(i){const c=C[i],t=c[L()],u=UI[L()];
+  $('pt-k').textContent=t.k;$('pt-n').textContent=(i+1)+' / '+C.length;$('pt-t').textContent=t.t;$('pt-d').textContent=t.d;
+  $('pt-v').innerHTML=t.v?t.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join(''):`<p class="pt-tags">${esc(t.tags)}</p>`;
+  $('pt-f').innerHTML=t.f.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
+  $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593964068392?text='+encodeURIComponent(u.q+t.t);
+  $('pt-l').textContent=u.more;$('pt-l').href='/productos/'+c.s;
+  $('pt-cap').textContent=!c.ph&&t.bc?t.bc:'';
+  $('pt-hint').textContent=c.m?(innerWidth<761?u.dragm:u.drag):u.photo}
+function go(i,user){i=(i+C.length)%C.length;if(user)touched();
+  const c=C[i];idx=i;vari=0;
+  rail.querySelectorAll('button').forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.style.removeProperty('--p')});
+  const sel=rail.children[i];if(sel&&rail.scrollWidth>rail.clientWidth)rail.scrollTo({left:sel.offsetLeft-rail.clientWidth/2+sel.offsetWidth/2,behavior:reduce?'auto':'smooth'});
+  panel.classList.add('out');
+  setTimeout(()=>{fill(i);panel.classList.remove('out')},reduce?0:260);
+  tour.querySelectorAll('.pt-ph').forEach(p=>{p.classList.toggle('on',!!c.ph&&p.id==='pt-ph-'+c.ph);p.classList.remove('zoom')});
+  tour.querySelectorAll('.pt-bg').forEach(p=>p.classList.toggle('on',!c.ph&&!!c.bg&&p.id==='pt-bg-'+c.bg));
+  tour.classList.toggle('photo-on',!!c.ph);
+  if(c.m&&R){gl.classList.add('on');setModel(c.m,0);start3D()}else{gl.classList.remove('on');setTimeout(()=>{if(!C[idx].m)stop3D()},600)}
+  t0=performance.now()}
+function touched(){paused=true;st.lastUser=performance.now();rail.querySelectorAll('button').forEach(b=>b.style.removeProperty('--p'))}
+function tick(){const el=rail.children[idx];
+  if(visible&&!paused&&!reduce){const p=Math.min(1,(performance.now()-t0)/9000);el&&el.style.setProperty('--p',(p*100)+'%');if(p>=1)go(idx+1)}else t0=performance.now();
+  requestAnimationFrame(tick)}
+rail.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(+b.dataset.i,true)});
+$('pt-prev').onclick=()=>go(idx-1,true);$('pt-next').onclick=()=>go(idx+1,true);
+$('pt-v').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;touched();vari=+b.dataset.v;
+  $('pt-v').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));if(R)setModel(C[idx].m,vari)});
+tour.querySelectorAll('.pt-ph').forEach(p=>p.addEventListener('click',e=>{touched();const r=p.getBoundingClientRect(),img=p.querySelector('img');
+  if(!p.classList.contains('zoom'))img.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%';p.classList.toggle('zoom')}));
+tour.addEventListener('keydown',e=>{if(e.target.closest('.pt-rail,.pt-arrows')){if(e.key==='ArrowRight')go(idx+1,true);if(e.key==='ArrowLeft')go(idx-1,true)}});
+new MutationObserver(()=>{drawRail();fill(idx)}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
+// three.js se carga cuando la sección está cerca
+function load3D(){if(window.THREE)return Promise.resolve();return new Promise((ok,ko)=>{const s=document.createElement('script');s.src='/vendor/three/three.min.js';s.onload=ok;s.onerror=ko;document.head.appendChild(s)})}
+function boot(){if(started)return;started=true;
+  load3D().then(()=>{if(initGL()&&C[idx].m){gl.classList.add('on');setModel(C[idx].m,vari);start3D()}}).catch(()=>{});
+  t0=performance.now();requestAnimationFrame(tick)}
+drawRail();fill(0);go(0);
+if('IntersectionObserver' in window){
+  new IntersectionObserver(es=>{if(es[0].isIntersecting)boot()},{rootMargin:'600px 0px'}).observe(tour);
+  new IntersectionObserver(es=>{visible=es[0].isIntersecting;if(visible&&C[idx].m)start3D();else stop3D()}).observe(tour);
+}else boot();
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stop3D();else if(visible&&C[idx].m)start3D()});
 })();
 </script>
 </body>
