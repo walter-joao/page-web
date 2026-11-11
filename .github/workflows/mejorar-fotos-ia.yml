@@ -1,0 +1,55 @@
+# Mejora con IA (Real-ESRGAN) las fotos de herramientas/fotos-ia-lista.txt y las sube a main.
+# Se ejecuta a mano desde la pestaña Actions ("Run workflow"). Ver herramientas/mejorar_fotos_ia.py.
+name: Mejorar fotos con IA
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  mejorar:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        parte: [0, 1, 2, 3, 4, 5]
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --index-url https://download.pytorch.org/whl/cpu torch torchvision
+      - run: pip install spandrel pillow numpy
+      - run: curl -sSLo /tmp/x4.pth https://github.com/xinntao/Real-ESRGAN/releases/download/v0.1.0/RealESRGAN_x4plus.pth
+      - run: python3 herramientas/mejorar_fotos_ia.py /tmp/x4.pth ${{ matrix.parte }} 6
+      - name: Empaquetar fotos mejoradas
+        run: |
+          git status --porcelain img | awk '{print $2}' > /tmp/cambios.txt
+          cat /tmp/cambios.txt
+          tar -cf /tmp/fotos-${{ matrix.parte }}.tar -T /tmp/cambios.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fotos-${{ matrix.parte }}
+          path: /tmp/fotos-${{ matrix.parte }}.tar
+  subir:
+    needs: mejorar
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/download-artifact@v4
+        with:
+          path: /tmp/fotos
+      - name: Guardar cambios
+        run: |
+          for f in /tmp/fotos/*/*.tar; do tar -xf "$f"; done
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add img
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git commit -m "Fotos mejoradas con IA (Real-ESRGAN x4, al doble de resolución, verificadas contra el original)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && exit 0; sleep 5; done
+          exit 1
