@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Alcantarilla en movimiento · Joce Cia Ltda.</title>
+<meta name="description" content="Demo: una alcantarilla metálica TMC que se arma placa por placa mientras bajas.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/img/wp/2025/02/LOGO-JOCECIA-1024x530.png">
+<link rel="preload" as="image" href="/img/animacion/a000.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<script>try{var t=localStorage.getItem('joce-theme');if(t==='dark'||t==='light')document.documentElement.dataset.theme=t}catch(e){}</script>
+<style>
+:root{
+  --bg:#eef2f7; --bg-2:#e2e8f0; --glass:rgba(255,255,255,.66); --fg:#0d1726; --muted:#56667a;
+  --line:rgba(13,23,38,.12); --brand:#1f4fa0; --cyan:#1aa3c8; --accent:#ee7a2b; --accent-ink:#fff;
+  --grad:linear-gradient(100deg,#1f4fa0 0%,#1aa3c8 55%,#ee7a2b 100%);
+  --glow-a:rgba(31,79,160,.16); --glow-b:rgba(238,122,43,.12); --grid:rgba(13,23,38,.05);
+  --logo-filter:none; --ghost:rgba(13,23,38,.045);
+  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
+  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#070d17; --bg-2:#0b1422; --glass:rgba(16,29,48,.6); --fg:#e8eef6; --muted:#93a3b8;
+  --line:rgba(160,190,230,.14); --brand:#5b8fe6; --cyan:#3cc8e8; --accent:#ff8a3d; --accent-ink:#1b0c02;
+  --grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --glow-a:rgba(60,140,232,.20); --glow-b:rgba(255,138,61,.13); --grid:rgba(160,190,230,.05);
+  --logo-filter:brightness(0) invert(1); --ghost:rgba(160,190,230,.05); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#070d17; --bg-2:#0b1422; --glass:rgba(16,29,48,.6); --fg:#e8eef6; --muted:#93a3b8;
+  --line:rgba(160,190,230,.14); --brand:#5b8fe6; --cyan:#3cc8e8; --accent:#ff8a3d; --accent-ink:#1b0c02;
+  --grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --glow-a:rgba(60,140,232,.20); --glow-b:rgba(255,138,61,.13); --grid:rgba(160,190,230,.05);
+  --logo-filter:brightness(0) invert(1); --ghost:rgba(160,190,230,.05); color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);line-height:1.55;overflow-x:hidden}
+a{color:inherit}
+/* Barra superior */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;padding:14px 16px}
+.top .in{max-width:1280px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:8px 10px 8px 16px;border:1px solid var(--line);border-radius:999px;background:var(--glass);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4)}
+.logo img{height:32px;width:auto;display:block;filter:var(--logo-filter)}
+.tag{font-family:var(--f-mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:4px 10px}
+.sp{flex:1}
+.round{width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:transform .15s,background .2s}
+.round:hover{background:var(--ghost)}.round:active{transform:scale(.92)}
+.round svg{width:18px;height:18px}
+.back{font-size:.9rem;font-weight:600;text-decoration:none;padding:9px 14px;border-radius:999px;border:1px solid var(--line);white-space:nowrap}
+.back:hover{background:var(--ghost)}
+/* Secuencia */
+.seq{position:relative;height:620vh}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;
+  background:
+   radial-gradient(60% 55% at 70% 45%,var(--glow-a),transparent 70%),
+   radial-gradient(40% 40% at 85% 80%,var(--glow-b),transparent 70%),
+   linear-gradient(var(--grid) 1px,transparent 1px) 0 0/56px 56px,
+   linear-gradient(90deg,var(--grid) 1px,transparent 1px) 0 0/56px 56px,
+   var(--bg)}
+.ghost{position:absolute;right:-2vw;bottom:-6vh;font-family:var(--f-display);font-weight:900;font-stretch:125%;font-size:min(34vw,420px);line-height:.8;color:var(--ghost);letter-spacing:-.02em;pointer-events:none;user-select:none}
+canvas#film{position:absolute;top:50%;right:max(80px,calc((100vw - 1280px)/2 + 80px));transform:translateY(-50%);width:min(54vw,94vh);height:min(54vw,94vh);-webkit-mask-image:radial-gradient(closest-side,#000 80%,transparent 100%);mask-image:radial-gradient(closest-side,#000 80%,transparent 100%)}
+.copy{position:absolute;left:max(16px,calc((100vw - 1280px)/2 + 16px));top:0;bottom:0;width:min(44vw,520px);display:flex;flex-direction:column;justify-content:center;z-index:2}
+.kicker{font-family:var(--f-mono);font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 18px;display:flex;align-items:center;gap:10px}
+.kicker:before{content:"";width:28px;height:2px;background:var(--grad);border-radius:2px}
+.steps{position:relative;min-height:330px}
+.step{position:absolute;inset:0 0 auto 0;opacity:0;transform:translateY(24px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.step.on{opacity:1;transform:none;pointer-events:auto}
+.step h2,.step h1{font-family:var(--f-display);font-weight:800;font-stretch:112%;font-size:clamp(2.1rem,4.6vw,4.1rem);line-height:.98;letter-spacing:-.015em;margin:0 0 18px}
+.step h1 em,.step h2 em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.step p{color:var(--muted);font-size:1.06rem;max-width:42ch;margin:0 0 22px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font-family:var(--f-mono);font-size:.78rem;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--glass);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:700;text-decoration:none;padding:14px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);transition:transform .15s,box-shadow .2s;box-shadow:0 12px 30px -12px var(--accent)}
+.btn:hover{transform:translateY(-2px)}.btn:active{transform:scale(.96)}
+.btn.line{background:transparent;color:var(--fg);border:1px solid var(--line);box-shadow:none}
+.row{display:flex;flex-wrap:wrap;gap:10px}
+/* Riel de números */
+.rail{position:absolute;right:max(16px,calc((100vw - 1280px)/2 + 16px));top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:0;z-index:3}
+.rail .bar{position:absolute;top:14px;bottom:14px;left:50%;width:2px;margin-left:-1px;background:var(--line);border-radius:2px;overflow:hidden}
+.rail .bar i{position:absolute;inset:0 0 auto 0;height:0;background:var(--grad)}
+.rail button{position:relative;width:34px;height:34px;margin:22px 0;border-radius:50%;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-family:var(--f-mono);font-size:.7rem;cursor:pointer;transition:all .3s}
+.rail button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink);transform:scale(1.12)}
+.rail button.done{color:var(--fg);border-color:var(--fg)}
+.hint{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);font-family:var(--f-mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;flex-direction:column;align-items:center;gap:8px;transition:opacity .4s;z-index:3}
+.hint span{width:22px;height:34px;border:1.5px solid var(--muted);border-radius:12px;position:relative}
+.hint span:after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--accent);animation:wheel 1.6s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(-3px)}30%{opacity:1}100%{opacity:0;transform:translateY(9px)}}
+.loading{position:absolute;left:16px;bottom:18px;font-family:var(--f-mono);font-size:.7rem;color:var(--muted);z-index:3;transition:opacity .4s}
+.prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--grad);z-index:3}
+/* Después */
+.after{position:relative;padding:110px 16px 90px;background:var(--bg)}
+.after .in{max-width:1180px;margin:0 auto}
+.after h2{font-family:var(--f-display);font-weight:800;font-stretch:112%;font-size:clamp(1.9rem,3.6vw,3rem);line-height:1.02;margin:0 0 14px;max-width:20ch}
+.after .lead{color:var(--muted);max-width:60ch;margin:0 0 36px;font-size:1.05rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:40px}
+.card{border:1px solid var(--line);border-radius:22px;padding:24px;background:var(--glass);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px)}
+.card small{font-family:var(--f-mono);color:var(--accent);font-size:.75rem;letter-spacing:.1em}
+.card h3{font-family:var(--f-display);font-size:1.35rem;margin:8px 0 6px}
+.card p{margin:0;color:var(--muted);font-size:.95rem}
+.how{margin-top:70px;padding-top:28px;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 2fr;gap:24px;color:var(--muted);font-size:.92rem}
+.how b{color:var(--fg);font-family:var(--f-display);font-size:1.05rem}
+.how ol{margin:0;padding-left:18px}.how li{margin-bottom:6px}
+/* Celular */
+@media (max-width:820px){
+  .tag{display:none}
+  .back{padding:8px 12px;font-size:.84rem}
+  canvas#film{top:76px;right:50%;transform:translateX(50%);width:min(100vw,56svh);height:min(100vw,56svh)}
+  .copy{left:16px;right:16px;width:auto;top:auto;bottom:62px;justify-content:flex-end}
+  .steps{min-height:250px}
+  .step h1,.step h2{font-size:clamp(1.8rem,8.4vw,2.5rem);margin-bottom:10px}
+  .step p{font-size:.95rem;margin-bottom:14px}
+  .kicker{margin-bottom:10px}
+  .rail{top:96px;transform:none;right:10px}
+  .rail button{width:28px;height:28px;margin:8px 0;font-size:.62rem}
+  .hint{display:none}
+  .ghost{font-size:46vw;bottom:auto;top:12vh}
+  .cards{grid-template-columns:1fr}
+  .how{grid-template-columns:1fr}
+}
+@media (max-width:820px) and (max-height:700px){.steps{min-height:210px}.step p{display:none}}
+@media (prefers-reduced-motion:reduce){.step{transition:none}.hint span:after{animation:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="in">
+    <a class="logo" href="/" aria-label="Joce Cia Ltda., volver al inicio"><img src="/img/wp/2025/02/LOGO-JOCECIA-1024x530.png" alt="Joce Cia Ltda." width="62" height="32"></a>
+    <span class="tag">Demo · animación por scroll</span>
+    <span class="sp"></span>
+    <button type="button" class="round" id="theme" aria-label="Cambiar tema claro u oscuro">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
+    </button>
+    <a class="back" href="/#productos">Ver la web</a>
+  </div>
+</header>
+
+<main>
+<section class="seq" id="seq" aria-label="Así se arma una alcantarilla metálica">
+  <div class="stage">
+    <div class="ghost" aria-hidden="true">TMC</div>
+    <canvas id="film" role="img" aria-label="Alcantarilla metálica de acero corrugado que se arma placa por placa"></canvas>
+    <div class="copy">
+      <p class="kicker">Alcantarillas metálicas TMC</p>
+      <div class="steps">
+        <div class="step on" data-s="0">
+          <h1>Del acero<br>a la <em>obra.</em></h1>
+          <p>Baja despacio y mira cómo se arma una alcantarilla de acero corrugado, placa por placa.</p>
+          <div class="chips"><span class="chip">MP 68</span><span class="chip">MP 152</span><span class="chip">MP 152.S</span></div>
+        </div>
+        <div class="step" data-s="1">
+          <h2>Placa por placa,<br><em>toma forma.</em></h2>
+          <p>Las láminas corrugadas se traslapan y forman anillos completos. Se transportan apiladas y se arman en el sitio.</p>
+          <div class="chips"><span class="chip">Tubo o bóveda</span><span class="chip">Fácil de transportar</span></div>
+        </div>
+        <div class="step" data-s="2">
+          <h2>Unida con<br><em>pernos.</em></h2>
+          <p>Cada costura se cierra con pernos, sin soldar en obra. El acero galvanizado protege la estructura del agua y la corrosión.</p>
+          <div class="chips"><span class="chip">Acero galvanizado</span><span class="chip">Uniones empernadas</span></div>
+        </div>
+        <div class="step" data-s="3">
+          <h2>Lista para<br><em>tu obra.</em></h2>
+          <p>Drenaje vial, pasos de agua y quebradas. Te ayudamos a elegir el modelo y el diámetro para tu proyecto.</p>
+          <div class="row">
+            <a class="btn" href="https://wa.me/593964068392?text=Hola%2C%20quiero%20cotizar%20alcantarillas%20met%C3%A1licas" target="_blank" rel="noopener">Cotizar por WhatsApp <span aria-hidden="true">→</span></a>
+            <a class="btn line" href="/productos/alcantarillas-metalicas">Ver la ficha</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="rail" aria-label="Etapas">
+      <div class="bar"><i id="railbar"></i></div>
+      <button type="button" data-go="0" class="on" aria-label="Etapa 1">01</button>
+      <button type="button" data-go="1" aria-label="Etapa 2">02</button>
+      <button type="button" data-go="2" aria-label="Etapa 3">03</button>
+      <button type="button" data-go="3" aria-label="Etapa 4">04</button>
+    </nav>
+    <div class="hint" id="hint"><span></span>Baja</div>
+    <div class="loading" id="loading">Cargando 0%</div>
+    <div class="prog" id="prog"></div>
+  </div>
+</section>
+
+<section class="after">
+  <div class="in">
+    <h2>Alcantarillas metálicas para drenaje vial.</h2>
+    <p class="lead">Acero corrugado galvanizado en forma de tubo o de bóveda para pasos de mayor luz. Más de 25 años fabricando estructuras metálicas en Ecuador.</p>
+    <div class="cards">
+      <div class="card"><small>01</small><h3>Tubo MP 68</h3><p>Sección circular para drenajes y pasos de agua en carreteras.</p></div>
+      <div class="card"><small>02</small><h3>Bóveda MP 152</h3><p>Arco de mayor luz para quebradas y pasos más anchos.</p></div>
+      <div class="card"><small>03</small><h3>Galvanizado</h3><p>Acero corrugado galvanizado que resiste el agua y el paso del tiempo.</p></div>
+    </div>
+    <div class="row">
+      <a class="btn" href="https://wa.me/593964068392?text=Hola%2C%20quiero%20cotizar%20alcantarillas%20met%C3%A1licas" target="_blank" rel="noopener">Cotizar por WhatsApp <span aria-hidden="true">→</span></a>
+      <a class="btn line" href="/#productos">Ver todos los productos</a>
+    </div>
+    <div class="how">
+      <b>Cómo funciona esta demo</b>
+      <ol>
+        <li>La alcantarilla se modeló en 3D y se grabó como 140 fotogramas WebP con fondo transparente (4,9 MB en total).</li>
+        <li>La página dibuja cada fotograma en un lienzo según cuánto bajas. Si subes, la animación retrocede.</li>
+        <li>Como el fondo es transparente, la misma secuencia sirve en modo claro y oscuro.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+</main>
+
+<script>
+(function(){
+  var N=140, src=function(i){return '/img/animacion/a'+('00'+i).slice(-3)+'.webp'};
+  var seq=document.getElementById('seq'), cv=document.getElementById('film'), ctx=cv.getContext('2d');
+  var steps=[].slice.call(document.querySelectorAll('.step')), dots=[].slice.call(document.querySelectorAll('.rail button'));
+  var railbar=document.getElementById('railbar'), prog=document.getElementById('prog'), hint=document.getElementById('hint'), loading=document.getElementById('loading');
+  var imgs=new Array(N), ok=new Array(N), loaded=0;
+  // Etapas: inicio de cada una en el avance (0..1)
+  var CUT=[0,.14,.46,.74];
+
+  // Carga: primero el fotograma 0, luego uno de cada 8 y después el resto
+  var order=[0],seen={0:1};
+  [8,4,2,1].forEach(function(s){for(var i=0;i<N;i+=s)if(!seen[i]){seen[i]=1;order.push(i)}});
+  var q=0, busy=0;
+  function next(){while(busy<6&&q<order.length){(function(i){busy++;var im=new Image();im.decoding='async';
+    im.onload=function(){ok[i]=1;imgs[i]=im;loaded++;busy--;loading.textContent='Cargando '+Math.round(loaded/N*100)+'%';if(loaded===N)loading.style.opacity=0;if(i===0||Math.round(cur)===i)need=1;next()};
+    im.onerror=function(){busy--;next()};im.src=src(i)})(order[q++])}}
+  next();
+
+  function size(){var r=cv.getBoundingClientRect(),d=Math.min(window.devicePixelRatio||1,2);cv.width=Math.round(r.width*d);cv.height=Math.round(r.height*d);need=1}
+  function nearest(i){if(ok[i])return i;for(var k=1;k<N;k++){if(ok[i-k])return i-k;if(ok[i+k])return i+k}return -1}
+  var cur=0, target=0, need=1, last=-1;
+  function progress(){var r=seq.getBoundingClientRect(),span=seq.offsetHeight-window.innerHeight;return Math.min(1,Math.max(0,-r.top/span))}
+  function setStep(s){steps.forEach(function(e,i){e.classList.toggle('on',i===s)});dots.forEach(function(e,i){e.classList.toggle('on',i===s);e.classList.toggle('done',i<s)})}
+  var step=-1;
+  function frame(){
+    var p=progress();target=p*(N-1);
+    cur+= (target-cur)*.22; if(Math.abs(target-cur)<.05)cur=target;
+    var i=nearest(Math.round(cur));
+    if(i>=0&&(i!==last||need)){ctx.clearRect(0,0,cv.width,cv.height);ctx.drawImage(imgs[i],0,0,cv.width,cv.height);last=i;need=0}
+    var s=0;for(var k=0;k<CUT.length;k++)if(p>=CUT[k])s=k; if(s!==step){step=s;setStep(s)}
+    railbar.style.height=(p*100)+'%'; prog.style.width=(p*100)+'%'; hint.style.opacity=p>.03?0:1;
+    requestAnimationFrame(frame);
+  }
+  window.addEventListener('resize',size);size();requestAnimationFrame(frame);
+  dots.forEach(function(b){b.addEventListener('click',function(){var s=+b.dataset.go,span=seq.offsetHeight-window.innerHeight;
+    var p=s===3?.9:CUT[s]+.04;window.scrollTo({top:seq.offsetTop+span*(s===0?0:p),behavior:'smooth'})})});
+
+  // Tema claro/oscuro (mismo ajuste que la web)
+  var root=document.documentElement,dm=matchMedia('(prefers-color-scheme: dark)');
+  document.getElementById('theme').addEventListener('click',function(){var dark=root.dataset.theme?root.dataset.theme==='dark':dm.matches;var t=dark?'light':'dark';root.dataset.theme=t;try{localStorage.setItem('joce-theme',t)}catch(e){}});
+})();
+</script>
+</body>
+</html>
