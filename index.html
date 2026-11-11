@@ -241,9 +241,9 @@
 .sat.lt .sat-lead{color:var(--muted)}
 .sat.lt .sat-chips button{background:rgba(255,255,255,.75);border-color:rgba(13,23,38,.16);color:var(--fg)}
 .sat.lt .sat-chips button:hover{border-color:rgba(13,23,38,.4)}
-.sat.lt .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.sat.lt .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .sat.lt .sat-hint{color:var(--fg);text-shadow:0 1px 8px rgba(255,255,255,.9)}
-.sat.lt .sat-credit{color:rgba(13,23,38,.2)}.sat.lt .sat-credit:hover{color:rgba(13,23,38,.55)}
+.sat.lt .sat-credit{color:rgba(13,23,38,.62)}.sat.lt .sat-credit:hover{color:rgba(13,23,38,.85)}
 .sat.lt .sat-wire line{stroke:rgba(31,79,160,.7)}.sat.lt .sat-wire circle{fill:#1f4fa0}
 .sat.lt .sat-pin .h{box-shadow:0 0 0 2px #fff,0 6px 16px rgba(13,23,38,.35),0 0 18px 4px rgba(238,122,43,.45)}
 .sat.lt .sat-card{box-shadow:0 24px 60px -18px rgba(13,23,38,.35);border:1px solid rgba(13,23,38,.08)}
@@ -337,12 +337,14 @@ document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
 <style>
 /* Layout: portada a pantalla completa con fotos de obra que se alternan; debajo, tarjetas de vidrio, carrusel deslizable de sectores, rejilla bento de productos, mosaico de obras y banda de contacto. Oscuro por defecto, con versión clara. */
 :root{
   --bg:#f3f5f8; --bg-2:#e8ecf2; --surface:#ffffff; --glass:rgba(255,255,255,.72); --fg:#0d1726; --muted:#5a6a7e; --line:rgba(13,23,38,.10);
-  --brand:#1f4fa0; --cyan:#1aa3c8; --accent:#ee7a2b; --accent-ink:#ffffff;
+  --brand:#1f4fa0; --cyan:#0a6f8c; --accent:#ee7a2b; --accent-ink:#1b0c02;
   --grad:linear-gradient(100deg,#1f4fa0 0%,#1aa3c8 55%,#ee7a2b 100%);
   --steel-a:#c9d1d9; --steel-b:#eef1f4; --logo-filter:none;
   --shadow:0 20px 50px -20px rgba(13,23,38,.25);
@@ -1067,7 +1069,7 @@ footer a{color:var(--muted)}
 <header class="top" id="top">
   <div class="wrap">
     <a class="logo" href="#inicio" aria-label="Joce Cia Ltda.">
-      <img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=256&amp;q=75 256w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75 384w" sizes="160px" data-o="/img/wp/2025/02/LOGO-JOCECIA-1024x530.png" alt="Joce Cia Ltda.">
+      <img width="1024" height="530" decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=256&amp;q=75 256w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2FLOGO-JOCECIA-1024x530.png&amp;w=384&amp;q=75 384w" sizes="160px" data-o="/img/wp/2025/02/LOGO-JOCECIA-1024x530.png" alt="Joce Cia Ltda.">
       <span class="logo-txt">JOCE</span>
     </a>
     <nav class="main" id="nav" aria-label="Secciones">
@@ -1136,7 +1138,7 @@ footer a{color:var(--muted)}
     <div class="sat" id="sat">
       <div class="sat-stage" id="sat-stage">
       <picture class="sat-bg">
-        <source id="sat-src" media="(max-width: 760px)" srcset="/img/paisaje-ecuador-movil.webp" width="1080" height="1350">
+        <source id="sat-src" media="(max-width: 760px)" srcset="/img/paisaje-ecuador-movil-720.webp 720w, /img/paisaje-ecuador-movil.webp 1080w" sizes="100vw" width="1080" height="1350">
         <img id="sat-img" src="/img/paisaje-ecuador-1600.webp" srcset="/img/paisaje-ecuador-1600.webp 1600w, /img/paisaje-ecuador-2560.webp 2560w" sizes="100vw" width="2560" height="1440" alt="Imagen satelital del Ecuador continental con el relieve de los Andes, la costa del Pacífico y la Amazonía" decoding="async">
       </picture>
       <div class="sat-shade" aria-hidden="true"></div>
@@ -1697,7 +1699,7 @@ footer a{color:var(--muted)}
       var sec=$('proyectos'),src=$('sat-src'),img=$('sat-img');
       function light(){var t=document.documentElement.dataset.theme;return t?t==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
       function theme(){var lt=light(),sf=lt?'-claro':'';box.classList.toggle('lt',lt);
-        src.srcset='/img/paisaje-ecuador-movil'+sf+'.webp';img.srcset='/img/paisaje-ecuador-1600'+sf+'.webp 1600w, /img/paisaje-ecuador-2560'+sf+'.webp 2560w';img.src='/img/paisaje-ecuador-1600'+sf+'.webp'}
+        src.srcset='/img/paisaje-ecuador-movil-720'+sf+'.webp 720w, /img/paisaje-ecuador-movil'+sf+'.webp 1080w';img.srcset='/img/paisaje-ecuador-1600'+sf+'.webp 1600w, /img/paisaje-ecuador-2560'+sf+'.webp 2560w';img.src='/img/paisaje-ecuador-1600'+sf+'.webp'}
       theme();new MutationObserver(theme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
       var dm=matchMedia('(prefers-color-scheme: dark)');if(dm.addEventListener)dm.addEventListener('change',theme);
       // los sectores con obras ubicadas abren el mapa ya filtrado
