@@ -270,7 +270,7 @@
 .sat-card .badge{position:absolute;top:12px;left:12px;display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(6,14,26,.7);color:#fff;font:600 .7rem var(--f-mono);letter-spacing:.04em}
 .sat-card .badge i{width:7px;height:7px;border-radius:50%;background:var(--c)}
 .sat-card .bd{padding:16px 20px 20px;display:grid;gap:4px}
-.sat-card h3{margin:0;font:700 1.35rem/1.15 var(--f-display);letter-spacing:-.02em;color:#0d1726}
+.sat-card .tt{display:block;margin:0;font:700 1.35rem/1.15 var(--f-display);letter-spacing:-.02em;color:#0d1726}
 .sat-card .loc{color:#5a6a7e;font-size:.92rem}
 .sat-card .go{justify-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;border:0;background:var(--accent);color:#fff;font:700 .95rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s}
 .sat-card .go:hover{box-shadow:0 10px 26px -8px rgba(238,122,43,.8)}
@@ -296,7 +296,7 @@
   .sat-card .ph{aspect-ratio:auto;height:100%;min-height:150px}
   .sat-card .badge{display:none}
   .sat-card .bd{padding:14px 16px}
-  .sat-card h3{font-size:1.12rem}
+  .sat-card .tt{font-size:1.12rem}
   .sat-card .go{padding:9px 14px;font-size:.88rem;margin-top:8px}
   .sat-pin .h{width:30px;height:30px}
   /* en celular la ficha sale encima del punto tocado, como un globo */
@@ -324,7 +324,7 @@
   .sat-card .ls em{margin-left:auto;font-style:normal;color:#9aa6b5;font-size:1.1rem}
   .sat-card .bk{justify-self:start;margin:0 0 4px;padding:0;border:0;background:none;color:#5a6a7e;font:600 .8rem var(--f-body);cursor:pointer}
   .sat-stage .sat-card .bd{padding:10px 34px 12px 12px;gap:2px}
-  .sat-stage .sat-card h3{font-size:1rem}
+  .sat-stage .sat-card .tt{font-size:1rem}
   .sat-stage .sat-card .loc{font-size:.8rem}
   .sat-stage .sat-card .go{padding:7px 12px;font-size:.8rem;margin-top:6px;border-radius:10px}
   .sat-stage .sat-card .x{display:grid;place-items:center;position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:rgba(13,23,38,.07);color:#0d1726;font:600 1rem/1 var(--f-body);cursor:pointer}
@@ -1661,7 +1661,7 @@ footer a{color:var(--muted)}
         var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
         card.style.setProperty('--c',SECT[o.s].c);
         card.innerHTML='<div class="ph">'+(u?'<img src="'+VI(u,640)+'" alt="'+esc(t.t)+'" decoding="async" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+SECT[o.s][L()]+'</span></div>'+
-          '<button type="button" class="x" aria-label="'+(L()==='en'?'Close':'Cerrar')+'">×</button><div class="bd">'+(o.satEl.classList.contains('cl-in')&&mq.matches?'<button type="button" class="bk" data-k="'+o.cg+'">‹ '+(L()==='en'?'All in ':'Todas en ')+esc(CL[o.cg].c.n)+'</button>':'')+'<h3>'+esc(t.t)+'</h3><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+(o.apx?(L()==='en'?' (approx.)':' (aprox.)'):'')+'</span>'+(o.pr?'<a class="go" href="/proyectos/'+PRURL[o.pr]+'">'+lbl+arrow+'</a>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
+          '<button type="button" class="x" aria-label="'+(L()==='en'?'Close':'Cerrar')+'">×</button><div class="bd">'+(o.satEl.classList.contains('cl-in')&&mq.matches?'<button type="button" class="bk" data-k="'+o.cg+'">‹ '+(L()==='en'?'All in ':'Todas en ')+esc(CL[o.cg].c.n)+'</button>':'')+'<p class="tt">'+esc(t.t)+'</p><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+(o.apx?(L()==='en'?' (approx.)':' (aprox.)'):'')+'</span>'+(o.pr?'<a class="go" href="/proyectos/'+PRURL[o.pr]+'">'+lbl+arrow+'</a>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
         var im=card.querySelector('img');if(im&&im.complete&&im.naturalWidth)im.classList.add('ok')}
       function show(i){cur=i;clk=null;card.classList.remove('lst');if(i!==shown){fill(i);shown=i}OBRAS.forEach(function(o,k){o.satEl.classList.toggle('on',k===i)});
         for(var k in CL)CL[k].el.classList.toggle('on',OBRAS[i].satEl.classList.contains('cl-in')&&OBRAS[i].cg===k);card.classList.add('open');place()}
