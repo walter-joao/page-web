@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Probar en celular · Jocecia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;800&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Simulador: la web real dentro de un marco con el ancho exacto de cada teléfono */
+:root{--bg:#060b14;--panel:rgba(255,255,255,.04);--line:rgba(255,255,255,.1);--fg:#eef3fa;--muted:#8d9bb0;--acc:#ff8a3d;--body:#1a2230;color-scheme:dark}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){--bg:#eef2f8;--panel:#fff;--line:rgba(10,30,60,.12);--fg:#0f1b2d;--muted:#5b6a80;--acc:#ee7a2b;--body:#0f1520;color-scheme:light}}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font:500 15px/1.45 Manrope,system-ui,sans-serif;display:grid;grid-template-columns:minmax(0,300px) 1fr;gap:24px;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));overflow:hidden}
+aside{display:grid;align-content:start;gap:18px;min-width:0}
+h1{margin:0;font:800 1.6rem/1.05 Archivo,sans-serif;letter-spacing:-.02em}
+p{margin:0;color:var(--muted);font-size:.9rem}
+.lbl{font:500 .7rem/1 "JetBrains Mono",monospace;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.devs{display:grid;gap:6px}
+.devs button,.go button,.row button{font:600 .9rem Manrope,sans-serif;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;cursor:pointer;text-align:left;display:flex;justify-content:space-between;gap:8px}
+.devs button span{color:var(--muted);font:500 .75rem "JetBrains Mono",monospace}
+.devs button[aria-pressed="true"]{border-color:var(--acc);box-shadow:0 0 0 1px var(--acc) inset}
+.row{display:flex;flex-wrap:wrap;gap:6px}
+.row button{text-align:center;justify-content:center;flex:1 1 auto}
+.row button[aria-pressed="true"]{border-color:var(--acc);color:var(--acc)}
+.go{display:flex;gap:6px}
+.go input{flex:1;min-width:0;font:500 .85rem "JetBrains Mono",monospace;color:var(--fg);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.go button{background:var(--acc);border-color:var(--acc);color:#fff}
+button:focus-visible,input:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.note{font-size:.8rem;border-top:1px solid var(--line);padding-top:14px}
+main{position:relative;min-width:0;display:grid;place-items:center;overflow:hidden}
+.phone{position:absolute;left:50%;top:50%;transform-origin:center;padding:14px;border-radius:52px;background:var(--body);box-shadow:0 0 0 2px #2c3647,0 40px 90px -30px rgba(0,0,0,.7)}
+.phone.small{border-radius:40px;padding:14px 12px 62px}
+.phone.small::after{content:"";position:absolute;left:50%;bottom:12px;width:40px;height:40px;margin-left:-20px;border-radius:50%;border:2px solid #2c3647}
+.screen{position:relative;overflow:hidden;border-radius:38px;background:#000}
+.phone.small .screen{border-radius:4px}
+.phone.small{padding-top:62px}
+.phone .notch{position:absolute;left:50%;top:14px;width:120px;height:30px;margin-left:-60px;border-radius:0 0 18px 18px;background:var(--body);z-index:2}
+.phone.small .notch{top:26px;width:60px;height:6px;margin-left:-30px;border-radius:3px;background:#2c3647}
+iframe{display:block;border:0;width:100%;height:100%;background:#fff}
+@media (max-width:760px){body{grid-template-columns:1fr;overflow:auto;height:auto}main{display:none}aside::after{content:"Abre esta página en la computadora: en el celular ya estás viendo la web real.";color:var(--acc);font-size:.9rem}}
+</style>
+</head>
+<body>
+<aside>
+  <div>
+    <h1>Probar en celular</h1>
+    <p style="margin-top:8px">La web real, con el ancho exacto de cada teléfono. Haz clic donde tocarías con el dedo.</p>
+  </div>
+  <div>
+    <div class="lbl">Teléfono</div>
+    <div class="devs" id="devs"></div>
+  </div>
+  <div>
+    <div class="lbl">Ir a</div>
+    <div class="row" id="atajos">
+      <button type="button" data-p="/">Inicio</button>
+      <button type="button" data-p="/#proyectos">Mapa</button>
+      <button type="button" data-p="/#productos">Productos</button>
+    </div>
+  </div>
+  <form class="go" id="go">
+    <input id="ruta" value="/#proyectos" aria-label="Dirección dentro de la web">
+    <button type="submit">Abrir</button>
+  </form>
+  <div>
+    <div class="lbl">Tema</div>
+    <div class="row" id="tema">
+      <button type="button" data-t="dark" aria-pressed="true">Oscuro</button>
+      <button type="button" data-t="light" aria-pressed="false">Claro</button>
+    </div>
+  </div>
+  <p class="note">Es una simulación del tamaño de pantalla. En un celular de verdad el dedo cubre más que el puntero del mouse, por eso el puntero aquí es un círculo del tamaño de una yema.</p>
+</aside>
+<main id="main">
+  <div class="phone" id="phone"><div class="notch"></div><div class="screen" id="screen"><iframe id="fr" title="Web de Jocecia en celular"></iframe></div></div>
+</main>
+<script>
+(function(){
+  var D=[["iPhone SE",375,667,1],["iPhone 13 / 14",390,844,0],["iPhone 15 Pro Max",430,932,0],["Samsung Galaxy S23",360,780,0],["Google Pixel 7",412,915,0]];
+  var devs=document.getElementById('devs'),fr=document.getElementById('fr'),phone=document.getElementById('phone'),scr=document.getElementById('screen'),main=document.getElementById('main'),ruta=document.getElementById('ruta');
+  var cur=0,tema='dark';
+  try{var g=JSON.parse(localStorage.getItem('celular')||'{}');if(D[g.d])cur=g.d;if(g.t)tema=g.t}catch(e){}
+  function save(){try{localStorage.setItem('celular',JSON.stringify({d:cur,t:tema}))}catch(e){}}
+  devs.innerHTML=D.map(function(d,i){return '<button type="button" data-i="'+i+'"><b>'+d[0]+'</b><span>'+d[1]+'×'+d[2]+'</span></button>'}).join('');
+  function fit(){var d=D[cur],pw=d[1]+(d[3]?24:28),ph=d[2]+(d[3]?124:28),s=Math.min(1,(main.clientHeight-10)/ph,(main.clientWidth-10)/pw);
+    phone.style.transform='translate(-50%,-50%) scale('+s+')'}
+  function setDev(i){cur=i;var d=D[i];scr.style.width=d[1]+'px';scr.style.height=d[2]+'px';phone.classList.toggle('small',!!d[3]);
+    [].forEach.call(devs.children,function(b,k){b.setAttribute('aria-pressed',k===i)});fit();save()}
+  // dentro del marco: tema elegido y puntero redondo del tamaño de un dedo
+  var dedo="url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='36'%3E%3Ccircle cx='18' cy='18' r='16' fill='rgba(120,120,120,.35)' stroke='white' stroke-width='2'/%3E%3C/svg%3E\") 18 18, pointer";
+  function prep(){try{var doc=fr.contentDocument;if(!doc||!doc.documentElement)return;doc.documentElement.dataset.theme=tema;
+    try{fr.contentWindow.localStorage.setItem('joce-theme',tema)}catch(e){}
+    if(!doc.getElementById('sim-dedo')){var st=doc.createElement('style');st.id='sim-dedo';st.textContent='*,*::before,*::after{cursor:'+dedo+'!important}';(doc.head||doc.documentElement).appendChild(st)}}catch(e){}}
+  fr.addEventListener('load',prep);
+  function abrir(p){if(p.charAt(0)!=='/')p='/'+p;ruta.value=p;fr.src=p+(p.indexOf('#')<0?'':'')}
+  devs.addEventListener('click',function(e){var b=e.target.closest('button');if(b)setDev(+b.dataset.i)});
+  document.getElementById('atajos').addEventListener('click',function(e){var b=e.target.closest('button');if(b)abrir(b.dataset.p)});
+  document.getElementById('go').addEventListener('submit',function(e){e.preventDefault();abrir(ruta.value.trim()||'/')});
+  var tb=document.getElementById('tema');
+  function setTema(t){tema=t;[].forEach.call(tb.children,function(b){b.setAttribute('aria-pressed',b.dataset.t===t)});prep();save()}
+  tb.addEventListener('click',function(e){var b=e.target.closest('button');if(b)setTema(b.dataset.t)});
+  addEventListener('resize',fit);
+  setDev(cur);setTema(tema);abrir('/#proyectos');
+})();
+</script>
+</body>
+</html>
