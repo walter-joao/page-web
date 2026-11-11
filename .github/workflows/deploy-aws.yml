@@ -1,5 +1,6 @@
 # Publica la web en AWS (S3 + CloudFront) en cada push a main.
-# Se activa solo cuando existen las variables del repo AWS_ROLE_ARN, AWS_BUCKET y AWS_CF_DIST.
+# Estos datos no son secretos: el rol solo acepta este repo (rama main) y solo puede
+# escribir en el bucket jocecia-web e invalidar la distribución de Jocecia.
 name: Deploy a AWS
 on:
   push:
@@ -9,9 +10,12 @@ permissions:
   id-token: write   # para entrar a AWS con OIDC, sin claves guardadas
   contents: read
 concurrency: deploy-aws
+env:
+  AWS_ROLE_ARN: arn:aws:iam::396870631978:role/github-jocecia-deploy
+  AWS_BUCKET: jocecia-web            # bucket S3 en us-east-2 (Ohio)
+  AWS_CF_DIST: E2B6SLOODCMVHZ        # distribución CloudFront jocecia-web
 jobs:
   deploy:
-    if: ${{ vars.AWS_ROLE_ARN != '' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -22,13 +26,13 @@ jobs:
         run: python herramientas/build_estatico.py . _site
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: ${{ vars.AWS_ROLE_ARN }}
+          role-to-assume: ${{ env.AWS_ROLE_ARN }}
           aws-region: us-east-2
       - name: Subir a S3
         run: |
-          aws s3 sync _site "s3://${{ vars.AWS_BUCKET }}" --delete \
+          aws s3 sync _site "s3://${{ env.AWS_BUCKET }}" --delete \
             --exclude "*.html" --cache-control "public,max-age=2592000"
-          aws s3 sync _site "s3://${{ vars.AWS_BUCKET }}" --delete \
+          aws s3 sync _site "s3://${{ env.AWS_BUCKET }}" --delete \
             --exclude "*" --include "*.html" --cache-control "public,max-age=0,must-revalidate"
       - name: Invalidar caché de CloudFront
-        run: aws cloudfront create-invalidation --distribution-id "${{ vars.AWS_CF_DIST }}" --paths "/*"
+        run: aws cloudfront create-invalidation --distribution-id "${{ env.AWS_CF_DIST }}" --paths "/*"
