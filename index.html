@@ -1840,6 +1840,11 @@ footer a{color:var(--muted)}
     b.addEventListener('click',function(){var n=+b.dataset.page;if(cv.hidden)openCv(n);else cvPage(n)});
   });
   document.getElementById('cvx').addEventListener('click',closeCv);
+  // Abrir el catálogo interactivo desde otra página: /#catalogo-<archivo> (p. ej. desde las fichas de producto)
+  (function(){function fromHash(){var m=/^#catalogo-([a-z0-9-]+)$/.exec(location.hash);if(!m)return;
+    try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+    if(m[1]==='alcantarillas')openCv(1);else openCv(1,'/catalogos/'+m[1]+'.pdf',(root.lang==='en'?'Catalog':'Catálogo'))}
+    fromHash();addEventListener('hashchange',fromHash)})();
   document.getElementById('cvprev').addEventListener('click',function(){if(cvCur>1)goPage(cvCur-1,true)});
   document.getElementById('cvnext').addEventListener('click',function(){if(cvDoc&&cvCur<cvDoc.numPages)goPage(cvCur+1,true)});
   function zoom(f){var keep=cvCur;cvZoom=Math.min(3,Math.max(.5,cvZoom*f));layout();goPage(keep,false)}

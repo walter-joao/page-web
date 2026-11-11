@@ -335,7 +335,9 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
     pdf = p.get("pdf")
     botones = ['<a class="btn btn-accent" href="https://wa.me/%s?text=%s" target="_blank" rel="noopener">Cotizar por WhatsApp</a>' % (WA, wa_txt)]
     if pdf:
-        botones.append('<a class="btn btn-line" href="%s" target="_blank" rel="noopener">Ver catálogo (PDF)</a>' % pdf)
+        nom = pdf.rsplit("/", 1)[-1][:-4]
+        botones.append('<a class="btn btn-line" href="/#catalogo-%s">Ver catálogo interactivo</a>' % nom)
+        botones.append('<a class="btn btn-line" href="%s" target="_blank" rel="noopener" download>Descargar PDF</a>' % pdf)
     botones.append('<a class="btn btn-line" href="/#contacto">Contacto</a>')
     gal_html = ""
     if galeria:
