@@ -1901,7 +1901,7 @@ footer a{color:var(--muted)}
   // Abrir el catálogo interactivo desde otra página: /#catalogo-<archivo> (p. ej. desde las fichas de producto)
   (function(){function fromHash(){var m=/^#catalogo-([a-z0-9-]+)$/.exec(location.hash);if(!m)return;
     try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
-    if(m[1]==='alcantarillas')openCv(1);else openCv(1,'/catalogos/'+m[1]+'.pdf',(root.lang==='en'?'Catalog':'Catálogo'))}
+    if(m[1]==='alcantarillas')openCv(1);else{var T={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']}[m[1]],en=root.lang==='en';openCv(1,'/catalogos/'+m[1]+'.pdf',(en?'Catalog · ':'Catálogo · ')+(T?T[en?1:0]:m[1]))}}
     fromHash();addEventListener('hashchange',fromHash)})();
   document.getElementById('cvprev').addEventListener('click',function(){if(cvCur>1)goPage(cvCur-1,true)});
   document.getElementById('cvnext').addEventListener('click',function(){if(cvDoc&&cvCur<cvDoc.numPages)goPage(cvCur+1,true)});
