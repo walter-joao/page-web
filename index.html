@@ -1057,6 +1057,10 @@ footer a{color:var(--muted)}
 @media (prefers-reduced-motion:reduce){.pt *{transition:none!important}}
 </style>
 
+<script>
+/* Al recargar, la página empieza arriba (no donde quedó ni en la sección del enlace #...). Los enlaces directos a una obra o catálogo se respetan. */
+(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';var h=location.hash;if(h&&!/^#(obra-|catalogo-)/.test(h)){history.replaceState(null,'',location.pathname+location.search)}addEventListener('load',function(){if(!location.hash)scrollTo(0,0)})}catch(e){}})();
+</script>
 </head>
 <body>
 <header class="top" id="top">
