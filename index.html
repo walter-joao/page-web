@@ -2095,7 +2095,7 @@ function initGL(){
   mats.steel=M(0x2b2f35,.85,.42);mats.steelL=M(0x3a3f46,.8,.5);mats.bronze=M(0xb07a45,1,.32);
   mats.galv=M(0xc9d0d8,.9,.36);mats.galvD=M(0xa7b0ba,.9,.45);mats.inox=M(0xe3e7ec,1,.2);
   mats.lamp=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xfff1d6,emissiveIntensity:1.6});
-  mats.ins=M(0x7a4a2a,.1,.35);mats.encR=M(0x5a6472,.75,.45);
+  mats.ins=M(0x7a4a2a,.1,.35);mats.blackS=M(0x050506,.45,.55);mats.blackS.envMapIntensity=.4;mats.bronze=M(0x7a3d18,1,.3);mats.encR=M(0x5a6472,.75,.45);
   const ML=(c,me,ro)=>{const m=M(c,me,ro);m.color.convertSRGBToLinear();return m};
   mats.yel=ML(0xe0a800,.2,.5);mats.yelF=ML(0xb08a4a,.05,.75);mats.red=ML(0xb23a2c,.15,.55);mats.redO=ML(0xe0552a,.15,.45);mats.blk=ML(0x2a2d31,.5,.55);
   root=new THREE.Group();S.add(root);
@@ -2107,19 +2107,27 @@ function threadOn(g,r,y0,y1,mat){
   for(let i=0;i<=n;i++){const a=i/24*Math.PI*2;pts.push(new THREE.Vector3(Math.cos(a)*r,y0+i/n*(y1-y0),Math.sin(a)*r))}
   g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),n*2,r*.11,6,false),mat)));
 }
-function boltHex(mat,len){const g=new THREE.Group(),r=.11;
-  {const sk=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));sk.position.y=len/2;g.add(sk);}
-  const h=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.3,6),mat));h.position.y=r*.65;g.add(h);
-  const ch=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.6,r*1.9,r*.25,24),mat));ch.position.y=r*1.4;g.add(ch);
-  threadOn(g,r*.97,len*.45,len-.02,mat);
-  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.85,r*1.85,r*1.4,6),mat));nut.position.y=len*.62;g.add(nut);
-  const w=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*2.3,r*2.3,r*.2,32),mat));w.position.y=len*.62-r*.8;g.add(w);
+// Pernos según las fotos originales: cabeza hexagonal ancha con tuerca y arandela; los de acero forjado en negro
+function hexNut(r,h,mat){const g=new THREE.Group();
+  const n=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,6),mat));g.add(n);
+  [-1,1].forEach(s=>{const c=sh(new THREE.Mesh(new THREE.CylinderGeometry(s>0?r*.86:r*.97,s>0?r*.97:r*.86,h*.12,24),mat));c.position.y=s*h*.5;g.add(c)});
+  return g}
+function boltHex(mat,len,o){o=o||{};const g=new THREE.Group(),r=.11;
+  const sk=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));sk.position.y=len/2;g.add(sk);
+  const hh=r*1.5,hd=hexNut(r*2.15,hh,mat);hd.position.y=hh/2;g.add(hd);
+  threadOn(g,r*.97,len*(o.full?.18:.45),len-.02,mat);
+  if(o.nut!==false){const ny=o.ny||len*.66;
+    const w=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*2.5,r*2.5,r*.22,40),mat));w.position.y=ny-r*.9;g.add(w);
+    const nut=hexNut(r*2.15,r*1.6,mat);nut.position.y=ny;g.add(nut)}
   return g}
 function boltForged(mat,len){const g=new THREE.Group(),r=.12;
-  const head=sh(new THREE.Mesh(new THREE.BoxGeometry(r*3.6,r*1.2,r*1.9),mat));head.position.y=r*.6;g.add(head);
-  const neck=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r*1.5,r*1.6,24),mat));neck.position.y=r*2;g.add(neck);
-  const s=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));s.position.y=len/2+r*1.2;g.add(s);
-  threadOn(g,r*.97,len*.5,len+r*1.1,mat);return g}
+  // perno de molino: cabeza cónica ancha (avellanada) forjada, con tuerca pesada
+  const head=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r*2.7,r*1.9,32),mat));head.position.y=r*.95;g.add(head);
+  const s=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));s.position.y=len/2+r*1.9;g.add(s);
+  threadOn(g,r*.97,len*.45,len+r*1.8,mat);
+  const w=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*2.5,r*2.5,r*.22,40),mat));w.position.y=len*.68-r*.9;g.add(w);
+  const nut=hexNut(r*2.2,r*1.7,mat);nut.position.y=len*.68;g.add(nut);
+  return g}
 function boltAnchor(mat){const g=new THREE.Group(),r=.09;
   const path=new THREE.CurvePath();
   path.add(new THREE.LineCurve3(new THREE.Vector3(0,2.1,0),new THREE.Vector3(0,.45,0)));
@@ -2127,14 +2135,15 @@ function boltAnchor(mat){const g=new THREE.Group(),r=.09;
   path.add(new THREE.LineCurve3(new THREE.Vector3(.4,0,0),new THREE.Vector3(.62,0,0)));
   g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(path,80,r,20,false),mat)));
   threadOn(g,r*.97,1.5,2.08,mat);
-  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.4,6),mat));nut.position.y=1.72;g.add(nut);
-  const pl=sh(new THREE.Mesh(new THREE.BoxGeometry(.42,.04,.42),mats.steelL));pl.position.y=1.62;g.add(pl);
+  const nut=hexNut(r*2.15,r*1.6,mat);nut.position.y=1.74;g.add(nut);
+  const pl=sh(new THREE.Mesh(new THREE.BoxGeometry(.46,.05,.46),mat));pl.position.y=1.63;g.add(pl);
   g.position.y=r;return g}
-function buildPernos(v){const g=new THREE.Group();const m=v===2?mats.bronze:mats.steel;
+function buildPernos(v){const g=new THREE.Group();const m=v===2?mats.bronze:mats.blackS,K=mats.blackS;
   const lay=(o,x,rz)=>{o.position.x=x;o.rotation.y=rz||0;g.add(o)};
-  if(v===0){lay(boltForged(mats.steel,1.9),-1.05,.3);lay(boltHex(mats.bronze,1.7),0,-.2);lay(boltAnchor(mats.steel),.9,-.6)}
-  else if(v===1){lay(boltForged(m,2.1),-.45,.3);lay(boltForged(m,1.5),.45,-.4)}
-  else if(v===2){lay(boltHex(m,1.9),-.4,.2);lay(boltHex(m,1.35),.45,-.3)}
+  if(v===0){lay(boltHex(K,1.9),-1.05,.3);lay(boltHex(mats.bronze,1.6,{full:1}),0,-.2);lay(boltAnchor(K),.9,-.6)}
+  else if(v===1){lay(boltHex(m,2.1),-.75,.3);lay(boltForged(m,1.6),0,-.4);const n=hexNut(.26,.2,m);n.position.set(.75,.1,.2);g.add(n)}
+  else if(v===2){lay(boltHex(m,1.9,{full:1}),-.4,.2);lay(boltHex(m,1.35,{full:1}),.45,-.3);
+    [[.95,.1],[1.1,-.35]].forEach(([x,z],i)=>{const w=sh(new THREE.Mesh(new THREE.TorusGeometry(.2,.06,8,32),m));w.rotation.x=Math.PI/2;w.scale.z=.4;w.position.set(x,.025,z);g.add(w)})}
   else if(v===3){lay(boltAnchor(m),-.3,.2);lay(boltAnchor(m),.45,-1)}
   else{lay(barHelical(),-.35,0);const b2=barHelical();b2.scale.setScalar(.8);lay(b2,.5,.6)}
   return v===4?{g,size:3.1,y:1.25}:{g,size:2.6,y:1}}
