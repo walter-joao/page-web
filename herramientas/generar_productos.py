@@ -383,6 +383,8 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 </script>
 <style>{css_base}
 {css_extra}</style>
+<!-- Estadísticas de visitas (Umami, sin cookies) -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="4e93816a-d608-46e0-a24f-06889298964a" data-domains="www.jocecia.com,jocecia.com,d1wirxu5lk9yc9.cloudfront.net"></script>
 </head>
 <body>
 <a class="skip" href="#contenido" style="position:absolute;left:-9999px">Saltar al contenido</a>
