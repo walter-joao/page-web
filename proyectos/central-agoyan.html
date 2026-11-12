@@ -150,7 +150,7 @@ header.top.away{transform:translateY(-100%)}
 header.top.solid{background:var(--glass);backdrop-filter:blur(16px) saturate(1.4);-webkit-backdrop-filter:blur(16px) saturate(1.4);border-color:var(--line)}
 .top .wrap{display:flex;align-items:center;gap:18px;min-height:76px}
 .logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
-.logo img{height:42px;width:auto;filter:var(--logo-filter)}
+.logo img{height:clamp(50px,5vw,68px);width:auto;filter:var(--logo-filter)}
 .top:not(.solid) .logo img{filter:brightness(0) invert(1)}
 .logo-txt{font-family:var(--f-display);font-weight:800;font-size:1.6rem;color:#fff;letter-spacing:.02em}
 .top.solid .logo-txt{color:var(--fg)}
