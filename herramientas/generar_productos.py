@@ -287,7 +287,7 @@ def descripcion(bloques, nombre):
             if len(t) > 155:
                 t = t[:152].rsplit(" ", 1)[0] + "…"
             return t
-    return "%s de Joce Cia Ltda., Sangolquí, Ecuador. Cotice por WhatsApp o descargue el catálogo." % nombre
+    return "%s de JOCE Ingeniería y Materiales, Sangolquí, Ecuador. Cotice por WhatsApp o descargue el catálogo." % nombre
 
 
 CSS_EXTRA = """
@@ -343,20 +343,20 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
     gal_html = ""
     if galeria:
         gal_html = '<div class="pp-gal">%s</div>' % "".join(
-            "<figure>%s</figure>" % foto(u, "%s – Joce Cia Ltda. (foto %d)" % (nombre, i + 1), eager=(i == 0))
+            "<figure>%s</figure>" % foto(u, "%s – JOCE Ingeniería y Materiales (foto %d)" % (nombre, i + 1), eager=(i == 0))
             for i, u in enumerate(galeria[:6]))
     rel = [todos[s] for s in p.get("rel", []) if s in todos]
     rel_html = "".join('<a href="/productos/%s"><small>%s</small>%s</a>' % (r["slug"], html.escape(r["grupo"]), html.escape(r["nombre"])) for r in rel)
     ld = {"@context": "https://schema.org", "@graph": [
         {"@type": "Product", "name": nombre, "description": desc, "url": url,
          "image": [g for g in galeria[:3]], "category": p["grupo"],
-         "brand": {"@type": "Organization", "name": "Joce Cia Ltda."},
+         "brand": {"@type": "Organization", "name": "JOCE Ingeniería y Materiales"},
          "manufacturer": {"@id": DOMINIO + "/#empresa"}},
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": DOMINIO + "/"},
             {"@type": "ListItem", "position": 2, "name": "Productos", "item": DOMINIO + "/#productos"},
             {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]},
-        {"@type": ["Organization", "LocalBusiness"], "@id": DOMINIO + "/#empresa", "name": "Joce Cia Ltda.",
+        {"@type": ["Organization", "LocalBusiness"], "@id": DOMINIO + "/#empresa", "name": "JOCE Ingeniería y Materiales",
          "url": DOMINIO + "/", "telephone": "+593 2 233 7445", "email": "compras@jocecia.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Calle La Florida 2114, Barrio San Sebastián",
                      "addressLocality": "Sangolquí", "addressRegion": "Pichincha", "addressCountry": "EC"}}]}
@@ -369,9 +369,9 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="product">
-<meta property="og:site_name" content="Joce Cia Ltda.">
+<meta property="og:site_name" content="JOCE Ingeniería y Materiales">
 <meta property="og:url" content="{url}">
-<meta property="og:title" content="{nombre_e} · Joce Cia Ltda.">
+<meta property="og:title" content="{nombre_e} · JOCE Ingeniería y Materiales">
 <meta property="og:description" content="{desc}">
 {ogimg}<meta property="og:locale" content="es_EC">
 <meta name="twitter:card" content="summary_large_image">
@@ -390,7 +390,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 <a class="skip" href="#contenido" style="position:absolute;left:-9999px">Saltar al contenido</a>
 <header class="top solid" id="top">
   <div class="wrap">
-    <a class="logo" href="/" aria-label="Joce Cia Ltda. – inicio"><img decoding="async" src="{logo}" alt="Joce Cia Ltda." width="81" height="42"></a>
+    <a class="logo" href="/" aria-label="JOCE Ingeniería y Materiales – inicio"><img decoding="async" src="{logo}" alt="JOCE Ingeniería y Materiales" width="81" height="42"></a>
     <nav class="main" aria-label="Secciones">
       <a href="/#proyectos">Proyectos</a><a href="/#sectores">Soluciones</a><a href="/#productos">Productos</a><a href="/#nosotros">Nosotros</a><a href="/#empleo">Trabaja con nosotros</a><a href="/#contacto">Contacto</a>
     </nav>
@@ -402,7 +402,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
     <div class="wrap">
       <nav class="crumb" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/#productos">Productos</a> / <span>{grupo}</span></nav>
       <h1>{nombre_e}</h1>
-      {intro}<p class="grupo">{grupo} · Joce Cia Ltda., Sangolquí, Ecuador</p>
+      {intro}<p class="grupo">{grupo} · JOCE Ingeniería y Materiales, Sangolquí, Ecuador</p>
       <div class="cta-row">{botones}</div>
       {galeria}
     </div>
@@ -418,7 +418,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 </main>
 <footer>
   <div class="wrap">
-    <span>© Joce Cia Ltda. · Calle La Florida 2114, Barrio San Sebastián, Sangolquí · <a href="tel:+59322337445">(02) 233 7445</a> · <a href="mailto:compras@jocecia.com">compras@jocecia.com</a></span>
+    <span>© José Cevallos JOCE Cía. Ltda. · Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí · <a href="tel:+59322337445">(02) 233 7445</a> · <a href="mailto:compras@jocecia.com">compras@jocecia.com</a></span>
     <a href="/">Volver al inicio</a>
   </div>
 </footer>

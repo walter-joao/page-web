@@ -49,11 +49,11 @@ CSS = """
 def card(t, d, img, href):
     tag, attr = ("a", ' href="%s"' % href) if href else ("div", "")
     mas = '<span>Ver más ›</span>' if href else ""
-    return ('<%s class="il-card"%s><figure><img decoding="async" loading="lazy" src="%s" alt="%s – Joce Cia Ltda."></figure>'
+    return ('<%s class="il-card"%s><figure><img decoding="async" loading="lazy" src="%s" alt="%s – JOCE Ingeniería y Materiales"></figure>'
             '<div><b>%s</b><p>%s</p>%s</div></%s>') % (tag, attr, vi(img), html.escape(t), html.escape(t), html.escape(d), mas, tag)
 gal = ('<div class="il-gal" id="galpones"><h2>Galpones</h2><p>%s</p><div class="pp-gal">%s</div>'
        '<a class="btn-wa" href="%s" target="_blank" rel="noopener">Cotizar un galpón por WhatsApp</a></div>'
-       % (html.escape(LINEAS[0][1]), "".join('<figure><img decoding="async" loading="lazy" src="%s" alt="Galpón metálico – Joce Cia Ltda. (foto %d)"></figure>' % (vi(u), i + 1) for i, u in enumerate(GALPONES)), WA_GALPON))
+       % (html.escape(LINEAS[0][1]), "".join('<figure><img decoding="async" loading="lazy" src="%s" alt="Galpón metálico – JOCE Ingeniería y Materiales (foto %d)"></figure>' % (vi(u), i + 1) for i, u in enumerate(GALPONES)), WA_GALPON))
 gal = ""  # las fotos de galpones viven en /proyectos/galpon-cadeco
 cuerpo = ('<div class="wrap"><div class="il-grid">%s</div>%s<div class="il-mas"><small>También fabricamos</small>%s</div></div>'
           % ("".join(card(*l) for l in LINEAS), gal, "".join("<em>%s</em>" % html.escape(t) for t in TAMBIEN)))

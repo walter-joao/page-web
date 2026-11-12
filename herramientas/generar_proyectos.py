@@ -91,7 +91,7 @@ def pagina(p, d, todos, css_base, head_comun):
     es = d["es"]
     nombre = es["t"]
     url = "%s/proyectos/%s" % (DOMINIO, p["slug"])
-    desc = "%s %s Obra de Joce Cia Ltda., Sangolquí, Ecuador." % (es["d"], ("en " + p["lugar"].split(",")[0] + ".") if p.get("lugar") else "")
+    desc = "%s %s Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador." % (es["d"], ("en " + p["lugar"].split(",")[0] + ".") if p.get("lugar") else "")
     desc = re.sub(r"\s+", " ", desc).strip()
     imgs = d.get("img", [])
     wa = quote("Hola, vi el proyecto %s en su web y quisiera cotizar algo similar." % nombre)
@@ -107,7 +107,7 @@ def pagina(p, d, todos, css_base, head_comun):
     gal = ""
     if imgs:
         gal = '<div class="pj-gal n%d">%s</div>' % (len(imgs), "".join(
-            '<a href="%s" target="_blank" rel="noopener">%s</a>' % (html.escape(grande(u)), foto(u, "%s – Joce Cia Ltda. (foto %d)" % (nombre, i + 1), 1920 if i == 0 else 1080, eager=(i == 0)))
+            '<a href="%s" target="_blank" rel="noopener">%s</a>' % (html.escape(grande(u)), foto(u, "%s – JOCE Ingeniería y Materiales (foto %d)" % (nombre, i + 1), 1920 if i == 0 else 1080, eager=(i == 0)))
             for i, u in enumerate(imgs)))
     lista = '<ul class="pj-list">%s</ul>' % "".join("<li>%s</li>" % html.escape(f) for f in es.get("f", []))
     nota = ('<p class="pj-nota">Ubicación aproximada.</p>' if p.get("apx") else "")
@@ -123,7 +123,7 @@ def pagina(p, d, todos, css_base, head_comun):
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": DOMINIO + "/"},
             {"@type": "ListItem", "position": 2, "name": "Proyectos", "item": DOMINIO + "/#proyectos"},
             {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]},
-        {"@type": ["Organization", "LocalBusiness"], "@id": DOMINIO + "/#empresa", "name": "Joce Cia Ltda.",
+        {"@type": ["Organization", "LocalBusiness"], "@id": DOMINIO + "/#empresa", "name": "JOCE Ingeniería y Materiales",
          "url": DOMINIO + "/", "telephone": "+593 2 233 7445", "email": "compras@jocecia.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Calle La Florida 2114, Barrio San Sebastián",
                      "addressLocality": "Sangolquí", "addressRegion": "Pichincha", "addressCountry": "EC"}}]}
@@ -132,13 +132,13 @@ def pagina(p, d, todos, css_base, head_comun):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{nombre_e} · Proyectos · Joce Cia Ltda.</title>
+<title>{nombre_e} · Proyectos · JOCE Ingeniería y Materiales</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{url}">
 <meta property="og:type" content="article">
-<meta property="og:site_name" content="Joce Cia Ltda.">
+<meta property="og:site_name" content="JOCE Ingeniería y Materiales">
 <meta property="og:url" content="{url}">
-<meta property="og:title" content="{nombre_e} · Joce Cia Ltda.">
+<meta property="og:title" content="{nombre_e} · JOCE Ingeniería y Materiales">
 <meta property="og:description" content="{desc}">
 {ogimg}<meta property="og:locale" content="es_EC">
 <meta name="twitter:card" content="summary_large_image">
@@ -158,7 +158,7 @@ def pagina(p, d, todos, css_base, head_comun):
 <a class="skip" href="#contenido" style="position:absolute;left:-9999px">Saltar al contenido</a>
 <header class="top solid" id="top">
   <div class="wrap">
-    <a class="logo" href="/" aria-label="Joce Cia Ltda. – inicio"><img decoding="async" src="{logo}" alt="Joce Cia Ltda." width="81" height="42"></a>
+    <a class="logo" href="/" aria-label="JOCE Ingeniería y Materiales – inicio"><img decoding="async" src="{logo}" alt="JOCE Ingeniería y Materiales" width="81" height="42"></a>
     <nav class="main" aria-label="Secciones">
       <a href="/#proyectos">Proyectos</a><a href="/#sectores">Soluciones</a><a href="/#productos">Productos</a><a href="/#nosotros">Nosotros</a><a href="/#empleo">Trabaja con nosotros</a><a href="/#contacto">Contacto</a>
     </nav>
@@ -189,7 +189,7 @@ def pagina(p, d, todos, css_base, head_comun):
 </main>
 <footer>
   <div class="wrap">
-    <span>© Joce Cia Ltda. · Calle La Florida 2114, Barrio San Sebastián, Sangolquí · <a href="tel:+59322337445">(02) 233 7445</a> · <a href="mailto:compras@jocecia.com">compras@jocecia.com</a></span>
+    <span>© José Cevallos JOCE Cía. Ltda. · Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí · <a href="tel:+59322337445">(02) 233 7445</a> · <a href="mailto:compras@jocecia.com">compras@jocecia.com</a></span>
     <a href="/">Volver al inicio</a>
   </div>
 </footer>
