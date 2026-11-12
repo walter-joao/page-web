@@ -799,6 +799,7 @@ a.tile{color:inherit;text-decoration:none}
 .cinfo small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .cinfo b{font-weight:600;user-select:all}
 .cinfo a,.cinfo b a{color:inherit;text-decoration:none}
+#lbimg,#pdhero img{opacity:0;transition:opacity .2s ease}#lbimg.ok,#pdhero img.ok{opacity:1}
 .cinfo .addr-map{text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);text-underline-offset:4px}.cinfo .addr-map svg{display:inline-block;margin-left:6px;vertical-align:-2px;opacity:.75}@media (hover:hover){.cinfo .addr-map:hover{text-decoration-color:currentColor}}
 .cinfo .social{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .social a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:.9rem}
@@ -1124,7 +1125,14 @@ footer a{color:var(--muted)}
 
 <script>
 /* Al recargar, la página empieza arriba (no donde quedó ni en la sección del enlace #...). Los enlaces directos a una obra o catálogo se respetan. */
-(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';var h=location.hash;if(h&&!/^#(obra-|catalogo-)/.test(h)){history.replaceState(null,'',location.pathname+location.search)}addEventListener('load',function(){if(!location.hash)scrollTo(0,0)})}catch(e){}})();
+/* Al abrir la portada: sin #, empieza arriba; con #seccion (p. ej. /#productos desde otra página), va a esa sección.
+   Se repite tras 0,6 s porque las fotos y el 3D cambian la altura al cargar. #obra- y #catalogo- los abre su propio script. */
+(function(){try{if('scrollRestoration' in history)history.scrollRestoration='manual';
+function irA(){var h=location.hash;if(/^#(obra-|catalogo-)/.test(h))return;var el=h&&document.getElementById(decodeURIComponent(h.slice(1)));if(el)el.scrollIntoView({block:'start'});else if(!h)scrollTo(0,0)}
+addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserver)return;
+  /* mientras la página termina de acomodarse (fotos, mapa, 3D) se mantiene la sección en su sitio, hasta que la persona se mueva */
+  var ro=new ResizeObserver(irA),fin=function(){ro.disconnect();['wheel','touchstart','keydown','mousedown'].forEach(function(e){removeEventListener(e,fin)})};
+  ro.observe(document.body);['wheel','touchstart','keydown','mousedown'].forEach(function(e){addEventListener(e,fin,{passive:true})});setTimeout(fin,4000)})}catch(e){}})();
 </script>
 <!-- Estadísticas de visitas (Umami, sin cookies) -->
 <script defer src="https://cloud.umami.is/script.js" data-website-id="4e93816a-d608-46e0-a24f-06889298964a" data-domains="www.jocecia.com,jocecia.com,d1wirxu5lk9yc9.cloudfront.net"></script>
@@ -1456,11 +1464,15 @@ footer a{color:var(--muted)}
   var wa=document.querySelector('.wa'),ct=document.getElementById('contacto');
   if('IntersectionObserver' in window&&wa&&ct){new IntersectionObserver(function(es){wa.classList.toggle('hide',es[0].isIntersecting)},{threshold:.2}).observe(ct)}
 
+  /* Cambia la foto de un visor sin que se vea un instante la anterior: se oculta, se vacía y aparece cuando la nueva terminó de cargar.
+     o = foto original para el respaldo si falla el optimizador de Vercel. */
+  window.cambiarFoto=function(img,src,o){img.classList.remove('ok');img.removeAttribute('data-f');img.dataset.o=o||'';
+    img.onload=function(){img.classList.add('ok')};img.removeAttribute('src');if(src)img.src=src};
   // Proyectos: ampliar la foto dentro de la página
   var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg');
   var lbSet=null,lbI=0;
   function closeLb(){lb.hidden=true;lbSet=null;document.getElementById('lbp').hidden=document.getElementById('lbn').hidden=true;document.body.style.overflow=''}
-  function lbShow(i){lbI=(i+lbSet.list.length)%lbSet.list.length;lbimg.dataset.o='';lbimg.src=lbSet.list[lbI];lbimg.hidden=false;
+  function lbShow(i){lbI=(i+lbSet.list.length)%lbSet.list.length;cambiarFoto(lbimg,lbSet.list[lbI]);lbimg.hidden=false;
     document.getElementById('lbk').textContent=lbSet.k+' · '+(lbI+1)+' / '+lbSet.list.length;document.getElementById('lbt').textContent=lbSet.t}
   document.querySelectorAll('[data-tables]').forEach(function(b){
     b.addEventListener('click',function(){
@@ -1475,7 +1487,7 @@ footer a{color:var(--muted)}
   document.querySelectorAll('.shot').forEach(function(a){
     a.addEventListener('click',function(e){
       e.preventDefault();var im=a.querySelector('img');
-      lbimg.removeAttribute('data-f');lbimg.dataset.o=(!a.dataset.full&&im&&im.dataset.o)||'';lbimg.src=a.dataset.full||(im?(im.dataset.o?VI(im.dataset.o,1920):im.src):'');lbimg.hidden=!im;
+      cambiarFoto(lbimg,a.dataset.full||(im?(im.dataset.o?VI(im.dataset.o,1920):im.src):''),(!a.dataset.full&&im&&im.dataset.o)||'');lbimg.hidden=!im;
       document.getElementById('lbk').textContent=a.querySelector('small').textContent;
       document.getElementById('lbt').textContent=a.querySelector('b').textContent;
       lb.hidden=false;document.body.style.overflow='hidden';document.getElementById('lbx').focus();
@@ -1500,7 +1512,7 @@ footer a{color:var(--muted)}
     document.getElementById('pds').innerHTML=p.img.map(function(u){return '<div class="corr'+(p.contain?' white':'')+'"><img '+IMG(u,1080)+' alt="" loading="lazy"></div>'}).join('');
     document.querySelectorAll('#pds img').forEach(function(i){i.addEventListener('error',function(){i.remove()})});
     document.getElementById('pdwa').href='https://wa.me/593964068392?text='+encodeURIComponent((TR('Hola, quisiera cotizar: ','Hello, I would like a quote for: '))+t.t);
-    var hr=document.getElementById('pdhero');hr.hidden=!p.hero;if(p.hero){var hi=hr.querySelector('img');hi.removeAttribute('data-f');hi.dataset.o=p.hero.img;hi.src=VI(p.hero.img,1080);hr.querySelector('b').textContent=ZO(p.hero)}
+    var hr=document.getElementById('pdhero');hr.hidden=!p.hero;if(p.hero){cambiarFoto(hr.querySelector('img'),VI(p.hero.img,1080),p.hero.img);hr.querySelector('b').textContent=ZO(p.hero)}
     var L=JL(),SB=p.subs||[],AD=t.adv||[];
     document.getElementById('pdsec').innerHTML=secHtml(t.sec);
     document.getElementById('pdh').hidden=!t.f;document.getElementById('pdf').hidden=!t.f;
