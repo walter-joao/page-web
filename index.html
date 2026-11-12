@@ -479,7 +479,7 @@ nav.main .mega-cat a:hover,.top.solid nav.main .mega-cat a:hover{background:var(
 .slide{position:absolute;inset:0;opacity:0;z-index:0;transition:opacity 1.4s ease}
 .slide.prev{opacity:1;z-index:1;transition:none}
 .slide.on{opacity:1;z-index:2}
-.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04)}
+.slide img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);will-change:transform;backface-visibility:hidden}
 .slide.on img,.slide.prev img{animation:kb 9s ease-out forwards}
 @keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.16)}}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;background:
