@@ -1121,7 +1121,7 @@ footer a{color:var(--muted)}
       <a href="#sectores" data-i18n="nav.sectors">Soluciones</a>
       <a href="#productos" data-i18n="nav.products">Productos</a>
       <a href="#nosotros" data-i18n="nav.about">Nosotros</a>
-      <a href="#empleo" data-i18n="nav.jobs">Trabaja con nosotros</a>
+      <a href="/trabaja-con-nosotros" data-i18n="nav.jobs">Trabaja con nosotros</a>
       <a href="#contacto" data-i18n="nav.contact">Contacto</a>
     </nav>
     <div class="tools">
@@ -1330,54 +1330,6 @@ footer a{color:var(--muted)}
     </div>
   </section>
 
-  <section id="empleo">
-    <div class="wrap">
-      <div class="job">
-        <div class="job-intro">
-          <span class="kicker" data-i18n="job.k">Trabaja con nosotros</span>
-          <h2 data-i18n-html="job.t">Construyamos <span class="grad">juntos</span></h2>
-          <p class="lead" data-i18n="job.lead">Buscamos soldadores, armadores, ingenieros y personal de ventas y administración. Déjenos sus datos y su hoja de vida: el área de talento humano la revisa y le contacta si su perfil encaja.</p>
-          <ol class="steps job-steps">
-            <li><div><b data-i18n="job.s1">Llene el formulario</b><span data-i18n="job.s1d">Nombre, contacto y el área a la que postula.</span></div></li>
-            <li><div><b data-i18n="job.s2">Adjunte su hoja de vida</b><span data-i18n="job.s2d">En PDF o Word, hasta 5 MB.</span></div></li>
-            <li><div><b data-i18n="job.s3">Le contactamos</b><span data-i18n="job.s3d">Su postulación llega directo al correo de la empresa.</span></div></li>
-          </ol>
-        </div>
-        <form class="job-form rv" id="jobform" novalidate data-endpoint="" enctype="multipart/form-data">
-          <div class="f2">
-            <label class="fld"><span data-i18n="job.name">Nombres y apellidos</span><input name="nombre" type="text" autocomplete="name" required maxlength="120"></label>
-            <label class="fld"><span data-i18n="job.phone">Teléfono / WhatsApp</span><input name="telefono" type="tel" autocomplete="tel" inputmode="tel" required maxlength="30"></label>
-          </div>
-          <label class="fld"><span data-i18n="job.mail">Correo electrónico</span><input name="correo" type="email" autocomplete="email" required maxlength="120"></label>
-          <div class="f2">
-            <label class="fld"><span data-i18n="job.area">Área a la que postula</span>
-              <select name="area" required>
-                <option value="" data-i18n="job.a0">Elija un área</option>
-                <option value="Producción en planta (soldadura, armado, pintura)" data-i18n="job.a1">Producción en planta (soldadura, armado, pintura)</option>
-                <option value="Montaje e instalación en obra" data-i18n="job.a2">Montaje e instalación en obra</option>
-                <option value="Ingeniería y proyectos" data-i18n="job.a3">Ingeniería y proyectos</option>
-                <option value="Ventas y atención al cliente" data-i18n="job.a4">Ventas y atención al cliente</option>
-                <option value="Administración y finanzas" data-i18n="job.a5">Administración y finanzas</option>
-                <option value="Bodega y logística" data-i18n="job.a6">Bodega y logística</option>
-                <option value="Otra área / postulación espontánea" data-i18n="job.a7">Otra área / postulación espontánea</option>
-              </select></label>
-            <label class="fld"><span><span data-i18n="job.role">Cargo</span> <i data-i18n="job.opt">(opcional)</i></span><input name="cargo" type="text" maxlength="120"></label>
-          </div>
-          <label class="fld file" id="jobdrop"><span data-i18n="job.cv">Hoja de vida (PDF o Word, máx. 5 MB)</span>
-            <input name="cv" type="file" accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required>
-            <span class="drop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4M6 10l6-6 6 6"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg><b id="jobfile" data-i18n="job.pick">Elegir archivo</b></span></label>
-          <label class="fld"><span><span data-i18n="job.msg">Cuéntenos de su experiencia</span> <i data-i18n="job.opt">(opcional)</i></span><textarea name="mensaje" rows="3" maxlength="1500"></textarea></label>
-          <label class="hp" aria-hidden="true">Web<input name="web" type="text" tabindex="-1" autocomplete="off"></label>
-          <label class="chk"><input name="acepto" type="checkbox" value="si" required><span data-i18n="job.ok">Autorizo a Joce Cia Ltda. a tratar mis datos personales solo para este proceso de selección.</span></label>
-          <div class="job-act">
-            <button type="submit" class="btn btn-accent" id="jobsend"><span data-i18n="job.send">Enviar postulación</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-            <p class="job-msg" id="jobmsg" role="status" aria-live="polite"></p>
-          </div>
-        </form>
-      </div>
-    </div>
-  </section>
-
   <section id="contacto" style="padding-block:56px 40px">
     <div class="wrap">
       <div class="cta-band rv">
@@ -1398,7 +1350,7 @@ footer a{color:var(--muted)}
             <li><a href="mailto:ventas_2@jocecia.com">ventas_2@jocecia.com</a> · <a href="mailto:ventas8@jocecia.com">ventas8@jocecia.com</a><span data-i18n="ct.m1">Ventas: pernos, alcantarillas, accesorios, grating, piezas, resina y encofrados</span></li>
             <li><a href="mailto:ingenieria@jocecia.com">ingenieria@jocecia.com</a><span data-i18n="ct.m2">Ingeniería: soluciones de infraestructura, servicios y consultorías</span></li>
             <li><a href="mailto:compras@jocecia.com">compras@jocecia.com</a><span data-i18n="ct.m3">Gerencia general</span></li></ul></div>
-          <div><small data-i18n="ct.jobs">Empleo</small><b><a href="#empleo" data-i18n="ct.jobsl">Envíe su hoja de vida aquí</a></b></div>
+          <div><small data-i18n="ct.jobs">Empleo</small><b><a href="/trabaja-con-nosotros" data-i18n="ct.jobsl">Envíe su hoja de vida aquí</a></b></div>
           <div><small data-i18n="ct.hours.t">Horario</small><b data-i18n="ct.hours">Lunes a viernes, 08:00 – 17:00</b></div>
           <div><small data-i18n="ct.follow">Síganos</small><div class="social"><a href="https://www.facebook.com/jocecialtda" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.3c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v2.1H7.7v3.2h2.7V22H14v-10.3h2.7l.4-3.2z"/></svg><span>Facebook</span></a><a href="https://www.instagram.com/jocecialtda/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>Instagram</span></a><a href="https://www.linkedin.com/company/joce-cia-ltda/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg><span>LinkedIn</span></a></div></div>
         </div>
@@ -1410,7 +1362,7 @@ footer a{color:var(--muted)}
 <footer>
   <div class="wrap">
     <span>© Joce Cia Ltda. · <span data-i18n="tagline">Ingeniería y Materiales</span></span>
-    <a href="#empleo" data-i18n="nav.jobs">Trabaja con nosotros</a>
+    <a href="/trabaja-con-nosotros" data-i18n="nav.jobs">Trabaja con nosotros</a>
     <span data-i18n="footer.demo">Demo de rediseño, no es el sitio oficial</span>
   </div>
 </footer>
@@ -2037,49 +1989,6 @@ footer a{color:var(--muted)}
 })();
 </script>
 
-<script>
-/* Trabaja con nosotros: valida y envía el formulario (con la hoja de vida) al endpoint de data-endpoint */
-(function(){
-  var f=document.getElementById('jobform');if(!f)return;
-  var msg=document.getElementById('jobmsg'),btn=document.getElementById('jobsend'),drop=document.getElementById('jobdrop'),fileL=document.getElementById('jobfile'),cv=f.elements.cv;
-  var MAX=5*1024*1024,OK=/\.(pdf|docx?)$/i;
-  var T={es:{req:'Complete los campos marcados.',mail:'Revise el correo electrónico.',cv:'Adjunte su hoja de vida en PDF o Word.',big:'El archivo pesa más de 5 MB.',chk:'Debe aceptar el tratamiento de datos.',sending:'Enviando…',ok:'¡Gracias! Recibimos su postulación. Le contactaremos si su perfil encaja.',fail:'No se pudo enviar. Intente de nuevo o escriba por WhatsApp.',demo:'Vista previa: el envío se activará cuando se configure el correo de destino.',pick:'Elegir archivo'},
-         en:{req:'Please fill in the highlighted fields.',mail:'Please check your email address.',cv:'Attach your résumé as PDF or Word.',big:'The file is larger than 5 MB.',chk:'Please accept the data processing terms.',sending:'Sending…',ok:'Thank you! We received your application and will contact you if your profile is a fit.',fail:'Could not send. Please try again or message us on WhatsApp.',demo:'Preview: sending will be enabled once the destination email is set up.',pick:'Choose file'}};
-  function t(k){return ZO(T)[k]}
-  function say(k,cls){msg.textContent=t(k);msg.className='job-msg'+(cls?' '+cls:'')}
-  function showFile(){var x=cv.files&&cv.files[0];drop.classList.toggle('has',!!x);fileL.textContent=x?x.name:t('pick');drop.classList.remove('bad')}
-  cv.addEventListener('change',showFile);
-  ['dragenter','dragover'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.add('over')})});
-  ['dragleave','drop'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.remove('over')})});
-  drop.addEventListener('drop',function(ev){if(ev.dataTransfer&&ev.dataTransfer.files.length){cv.files=ev.dataTransfer.files;showFile()}});
-  f.addEventListener('input',function(e){if(e.target.classList)e.target.classList.remove('bad')});
-  function check(){
-    var first=null,why='req';
-    ['nombre','telefono','correo','area'].forEach(function(n){var el=f.elements[n];var bad=!el.value.trim();if(n==='correo'&&!bad&&!el.checkValidity()){bad=true;if(!first)why='mail'}el.classList.toggle('bad',bad);if(bad&&!first)first=el});
-    var x=cv.files&&cv.files[0];
-    if(!first&&(!x||!OK.test(x.name))){drop.classList.add('bad');first=cv;why='cv'}
-    else if(!first&&x.size>MAX){drop.classList.add('bad');first=cv;why='big'}
-    if(!first&&!f.elements.acepto.checked){first=f.elements.acepto;why='chk'}
-    if(first){say(why,'err');first.focus();return false}
-    return true;
-  }
-  f.addEventListener('submit',function(e){
-    e.preventDefault();
-    if(!check())return;
-    var url=f.dataset.endpoint;
-    if(!url){say('demo');return}
-    btn.setAttribute('aria-busy','true');say('sending');
-    var fd=new FormData(f);fd.append('idioma',document.documentElement.lang);
-    fetch(url,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok)throw 0})})
-      .then(function(){f.reset();showFile();say('ok','ok')})
-      .catch(function(){say('fail','err')})
-      .then(function(){btn.removeAttribute('aria-busy')});
-  });
-  document.getElementById('lang-es').addEventListener('click',function(){setTimeout(showFile)});
-  document.getElementById('lang-en').addEventListener('click',function(){setTimeout(showFile)});
-  document.getElementById('lang-zh').addEventListener('click',function(){setTimeout(showFile,400)});
-})();
-</script>
 <script>
 /* Muestra de estilo: luz que sigue al cursor en las tarjetas y texto que se ilumina con el scroll */
 (function(){
