@@ -986,16 +986,21 @@ footer a{color:var(--muted)}
 .pt{--pt-a:#ffffff;--pt-b:#c9d5e4;--pt-floor:rgba(33,67,121,.14);--pt-veil:rgba(236,241,247,.62);--pt-glass:rgba(255,255,255,.74);--pt-chip:rgba(13,23,38,.06);
   position:relative;height:min(86svh,820px);min-height:560px;overflow:hidden;isolation:isolate;border-block:1px solid var(--line);margin-top:6px;
   background:radial-gradient(70% 80% at 62% 38%,var(--pt-a),var(--pt-b) 75%)}
-.fx-dark .pt{--pt-a:#1b3561;--pt-b:#070d17;--pt-floor:rgba(60,200,232,.3);--pt-veil:rgba(6,12,26,.5);--pt-glass:rgba(8,14,24,.62);--pt-chip:rgba(255,255,255,.08)}
+.fx-dark .pt{--pt-a:#132a4e;--pt-b:#04070e;--pt-floor:rgba(60,200,232,.3);--pt-veil:rgba(6,12,26,.5);--pt-glass:rgba(8,14,24,.62);--pt-chip:rgba(255,255,255,.08)}
 .pt::after{content:"";position:absolute;left:30%;right:-5%;bottom:9%;height:22%;z-index:0;background:radial-gradient(50% 50% at 50% 50%,var(--pt-floor),transparent 70%);pointer-events:none}
 .pt-stage{overflow:hidden}
-.pt-bg{position:absolute;inset:-30px;z-index:0;opacity:0;transition:opacity .8s ease}
-.pt-bg.on{opacity:1}
-.pt-bg img{width:100%;height:100%;object-fit:cover;filter:blur(6px) saturate(.9) contrast(1.08)}
-.pt-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(55% 75% at var(--ox,68%) 45%,transparent,var(--pt-edge) 85%),var(--pt-veil)}
+/* Fondo de estudio: piso de cuadrícula técnica en perspectiva, línea de horizonte y luz detrás de la pieza */
+.pt{--pt-grid:rgba(33,67,121,.16);--pt-hz:rgba(33,67,121,.35)}
+.fx-dark .pt{--pt-grid:rgba(110,175,255,.2);--pt-hz:rgba(90,190,255,.55)}
+.pt-studio{position:absolute;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.pt-studio::before{content:"";position:absolute;left:-60%;right:-60%;top:58%;height:80%;transform-origin:50% 0;transform:perspective(520px) rotateX(64deg);
+  background:linear-gradient(var(--pt-grid) 1px,transparent 1px) 0 0/64px 64px,linear-gradient(90deg,var(--pt-grid) 1px,transparent 1px) 0 0/64px 64px;
+  -webkit-mask-image:linear-gradient(#000 10%,transparent 75%);mask-image:linear-gradient(#000 10%,transparent 75%);animation:pt-grid 6s linear infinite}
+.pt-studio::after{content:"";position:absolute;left:0;right:0;top:58%;height:1px;background:linear-gradient(90deg,transparent,var(--pt-hz) 30%,var(--pt-hz) 70%,transparent);box-shadow:0 0 24px 2px var(--pt-hz)}
+@keyframes pt-grid{to{background-position:0 64px,0 64px}}
+.pt.photo-on .pt-studio::before{animation-play-state:paused}
 .pt{--pt-edge:rgba(214,224,238,.85);--pt-g1:rgba(255,255,255,.95);--pt-g2:rgba(120,170,230,.35);--pt-g3:rgba(238,122,43,.16)}
 .fx-dark .pt{--pt-edge:rgba(2,4,9,.97);--pt-g1:rgba(90,170,250,.62);--pt-g2:rgba(40,90,170,.42);--pt-g3:rgba(238,122,43,.3)}
-.fx-dark .pt-bg img{filter:blur(6px) saturate(.55) brightness(.7) contrast(1.15)}
 .pt-glow{position:absolute;z-index:1;left:var(--ox,68%);top:47%;width:min(980px,75vw);aspect-ratio:1;transform:translate(-50%,-50%);pointer-events:none;opacity:0;transition:opacity .8s ease,left .6s ease;
   background:radial-gradient(closest-side,var(--pt-g1),var(--pt-g2) 42%,transparent 72%),radial-gradient(closest-side at 62% 64%,var(--pt-g3),transparent 70%)}
 .pt-glow::after{content:"";position:absolute;left:12%;right:12%;top:74%;height:14%;border-radius:50%;background:radial-gradient(closest-side,var(--pt-floor),transparent);filter:blur(6px)}
@@ -1012,7 +1017,7 @@ footer a{color:var(--muted)}
 .pt-gl.drag{cursor:grabbing}
 .pt-panel{position:absolute;z-index:3;left:max(18px,env(safe-area-inset-left,0px));top:50%;transform:translateY(-55%);width:min(440px,calc(100% - 36px));
   padding:24px 24px 22px;border-radius:var(--radius);background:var(--pt-glass);border:1px solid var(--line);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08);display:grid;gap:12px;color:var(--fg)}
-@media (min-width:1280px){.pt-panel{left:calc((100vw - 1240px)/2 + 18px)}}
+
 .pt-panel > *{transition:opacity .45s ease,transform .45s ease}
 .pt-panel.out > *{opacity:0;transform:translateY(14px)}
 .pt-app{display:flex;gap:10px;align-items:center;font:500 .72rem var(--f-mono);letter-spacing:.14em;text-transform:uppercase}
@@ -1067,7 +1072,10 @@ footer a{color:var(--muted)}
   .pt.photo-on .pt-rail i{background:var(--line)}
 }
 @media (min-width:761px){.pt-stage{position:absolute;inset:0}}
-@media (min-width:1280px){.pt-hint,.pt-cap,.pt-arrows{right:calc((100vw - 1240px)/2 + 18px)}}
+/* En pantallas anchas el recorrido es una ventana del mismo ancho que el contenido, no una franja de borde a borde */
+@media (min-width:761px){.pt{width:min(1204px,calc(100% - 36px));margin:8px auto 0;border:1px solid var(--line);border-radius:28px;box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
+  .pt-panel{left:28px}.pt-hint,.pt-cap,.pt-arrows{right:22px}}
+#productos.fx-dark::before{background:radial-gradient(45% 360px at 50% 340px,rgba(52,120,255,.2),transparent 75%);-webkit-mask-image:none;mask-image:none}
 @media (prefers-reduced-motion:reduce){.pt *{transition:none!important}}
 </style>
 
@@ -1215,10 +1223,7 @@ footer a{color:var(--muted)}
     </div>
     <div class="pt" id="ptour" role="region" aria-label="Recorrido de productos">
       <div class="pt-stage">
-        <div class="pt-bg" id="pt-bg-tunel"><img alt="" loading="lazy" decoding="async" src="/img/obras/tunel-banos-1.webp"></div>
-        <div class="pt-bg" id="pt-bg-alc"><img alt="" loading="lazy" decoding="async" src="/img/productos-3d/fondo-alcantarilla.webp"></div>
-        <div class="pt-bg" id="pt-bg-metro"><img alt="" loading="lazy" decoding="async" src="/img/obras/metro-rejillas.webp"></div>
-        <div class="pt-bg" id="pt-bg-postes"><img alt="" loading="lazy" decoding="async" src="/img/productos-3d/fondo-postes.webp"></div>
+        <div class="pt-studio" aria-hidden="true"></div>
         <div class="pt-glow" aria-hidden="true"></div>
         <div class="pt-ph" id="pt-ph-vial"><img alt="Pasarela peatonal metálica sobre una vía" loading="lazy" decoding="async" src="/img/portada/vial-2400.webp"></div>
         <div class="pt-ph" id="pt-ph-soporte"><img alt="Equipo de perforación instalando soporte en roca dentro de un túnel" loading="lazy" decoding="async" src="/img/productos-3d/soporte-roca-1916.webp"></div>
@@ -2235,7 +2240,7 @@ function loop(t){if(!run)return;requestAnimationFrame(loop);
   root.rotation.y=st.ry;
   const narrow=innerWidth<761,W=gl.clientWidth||innerWidth;const tn=Math.tan(THREE.MathUtils.degToRad(cam.fov/2));
   // Hueco a la derecha del panel, dentro del ancho de 1240 px de la página
-  const wl=Math.max(18,(W-1240)/2),pr=wl+18+Math.min(440,W-36),cx=narrow?W/2:(pr+W-wl-60)/2,fr=narrow?1:Math.max(.3,(W-wl-60-pr)/W);
+  const wl=Math.max(10,(W-1240)/2),pr=wl+18+Math.min(440,W-36),cx=narrow?W/2:(pr+W-wl-60)/2,fr=narrow?1:Math.max(.3,(W-wl-60-pr)/W);
   const fit=Math.max(built.size/(2*tn)*1.3,built.size/(2*tn*cam.aspect*fr)*1.08);const d=fit*st.dist;
   const ndc=cx/W*2-1,off=-ndc*fit*tn*cam.aspect; // objeto centrado en ese hueco
   if(st.cx!==cx){st.cx=cx;tour.style.setProperty('--ox',(cx/W*100).toFixed(1)+'%')}
@@ -2265,7 +2270,7 @@ function fill(i){const c=C[i],t=c[L()],u=UI[L()];
   $('pt-f').innerHTML=t.f.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
   $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593964068392?text='+encodeURIComponent(u.q+t.t);
   $('pt-l').textContent=u.more;$('pt-l').href='/productos/'+(c.es.vs?c.es.vs[vari]||c.s:c.s);
-  $('pt-cap').textContent=!c.ph&&t.bc?t.bc:'';
+  $('pt-cap').textContent='';
   $('pt-hint').textContent=c.m?(innerWidth<761?u.dragm:u.drag):u.photo}
 function go(i,user){i=(i+C.length)%C.length;if(user)touched();
   const c=C[i];idx=i;vari=0;
