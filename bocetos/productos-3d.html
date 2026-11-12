@@ -13,17 +13,17 @@
   --bg:#05090f;--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.13);
   --glass:rgba(8,14,24,.62);--glass2:rgba(255,255,255,.08);
   --stage-a:#1b3561;--stage-b:#070d17;--floor:rgba(60,200,232,.16);
-  --veil:rgba(5,10,20,.58);--cyan:#8db5db;--accent:#ff8a3d;--onacc:#1a0d03;
+  --veil:rgba(5,10,20,.58);--cyan:#8db5db;--accent:#8db5db;--onacc:#0d4374;
   --f-d:"Archivo","Arial Narrow",Arial,sans-serif;--f-b:"Manrope",system-ui,sans-serif;--f-m:"JetBrains Mono",ui-monospace,Menlo,monospace;
   color-scheme:dark}
 @media (prefers-color-scheme: light){:root:not([data-theme="dark"]){
   --bg:#f3f5f9;--fg:#0e1726;--muted:#55657a;--line:rgba(14,30,55,.13);
   --glass:rgba(255,255,255,.72);--glass2:rgba(14,30,55,.06);
-  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#0d4374;--accent:#e2681f;--onacc:#fff;color-scheme:light}}
+  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#0d4374;--accent:#0d4374;--onacc:#fff;color-scheme:light}}
 :root[data-theme="light"]{
   --bg:#f3f5f9;--fg:#0e1726;--muted:#55657a;--line:rgba(14,30,55,.13);
   --glass:rgba(255,255,255,.72);--glass2:rgba(14,30,55,.06);
-  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#0d4374;--accent:#e2681f;--onacc:#fff;color-scheme:light}
+  --veil:rgba(236,241,247,.62);--stage-a:#ffffff;--stage-b:#c9d5e4;--floor:rgba(33,67,121,.14);--cyan:#0d4374;--accent:#0d4374;--onacc:#fff;color-scheme:light}
 *{box-sizing:border-box}
 body{margin:0}
 html,body{background:var(--bg);color:var(--fg);font:16px/1.55 var(--f-b)}
@@ -200,12 +200,12 @@ function initGL(){
   sg.setAttribute('color',new THREE.Float32BufferAttribute(col,3));
   es.add(new THREE.Mesh(sg,new THREE.MeshBasicMaterial({side:THREE.BackSide,vertexColors:true})));
   const box=(x,y,z,w,h,c)=>{const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({color:c,side:THREE.DoubleSide}));m.position.set(x,y,z);m.lookAt(0,0,0);es.add(m)};
-  box(-8,9,6,9,5,0xffffff);box(9,4,-4,3,10,0xffb27a);box(4,-2,9,10,2,0x9ad8ff);
+  box(-8,9,6,9,5,0xffffff);box(9,4,-4,3,10,0xbcd4ee);box(4,-2,9,10,2,0x9ad8ff);
   const pm=new THREE.PMREMGenerator(R);env=pm.fromScene(es,.04).texture;S.environment=env;
   S.add(new THREE.HemisphereLight(0xdbe8ff,0x0b1320,.5));
   const key=new THREE.DirectionalLight(0xffffff,1.6);key.position.set(-4,8,6);key.castShadow=true;
   key.shadow.mapSize.set(1024,1024);Object.assign(key.shadow.camera,{left:-6,right:6,top:6,bottom:-6,near:.5,far:30});key.shadow.radius=6;S.add(key);
-  const rim=new THREE.DirectionalLight(0xff8a3d,1.4);rim.position.set(5,3,-6);S.add(rim);
+  const rim=new THREE.DirectionalLight(0x8db5db,1.4);rim.position.set(5,3,-6);S.add(rim);
   const fill=new THREE.DirectionalLight(0x3cc8e8,.35);fill.position.set(6,1,5);S.add(fill);
   const floor=new THREE.Mesh(new THREE.PlaneGeometry(40,40),new THREE.ShadowMaterial({opacity:.35}));floor.rotation.x=-Math.PI/2;floor.receiveShadow=true;floor.name='floor';S.add(floor);
   const M=(c,me,ro)=>new THREE.MeshStandardMaterial({color:c,metalness:me,roughness:ro,envMapIntensity:1.1});
