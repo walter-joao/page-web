@@ -822,6 +822,7 @@ function set(l){
   R.lang=l;document.title=l==='en'&&R.dataset.titleEn?R.dataset.titleEn:T;
   if(M)M.content=l==='en'&&R.dataset.descEn?R.dataset.descEn:D;
   var a=document.getElementById('lang-es'),b=document.getElementById('lang-en');if(a){a.setAttribute('aria-pressed',l==='es');b.setAttribute('aria-pressed',l==='en')}
+  document.querySelectorAll('a[href^="/catalogos/"]').forEach(function(e){var h=e.getAttribute('href').replace('/catalogos/en/','/catalogos/');e.setAttribute('href',l==='en'?h.replace('/catalogos/','/catalogos/en/'):h)});
   try{localStorage.setItem(K,l)}catch(e){}}
 var a=document.getElementById('lang-es'),b=document.getElementById('lang-en');
 if(a){a.addEventListener('click',function(){set('es')});b.addEventListener('click',function(){set('en')})}

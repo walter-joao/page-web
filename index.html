@@ -1857,6 +1857,7 @@ footer a{color:var(--muted)}
   }
   function cvLoad(url,title,n){
     cv.classList.toggle('solo',url!==PDF);
+    url=url.replace('/catalogos/en/','/catalogos/');if(root.lang==='en')url=url.replace('/catalogos/','/catalogos/en/');
     cvTitle.textContent=title||(root.lang==='en'?'Metal culvert catalog':cvTitle0);
     cv.querySelectorAll('.cvl').forEach(function(a){a.href=url});
     cvWant=n||1;
@@ -1877,7 +1878,7 @@ footer a{color:var(--muted)}
   (function(){function fromHash(){var m=/^#catalogo-([a-z0-9-]+)$/.exec(location.hash);if(!m)return;
     try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
     if(m[1]==='alcantarillas')openCv(1);else{var T={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']}[m[1]],en=root.lang==='en';openCv(1,'/catalogos/'+m[1]+'.pdf',(en?'Catalog · ':'Catálogo · ')+(T?T[en?1:0]:m[1]))}}
-    fromHash();addEventListener('hashchange',fromHash)})();
+    setTimeout(fromHash,0);addEventListener('hashchange',fromHash)})();
   document.getElementById('cvprev').addEventListener('click',function(){if(cvCur>1)goPage(cvCur-1,true)});
   document.getElementById('cvnext').addEventListener('click',function(){if(cvDoc&&cvCur<cvDoc.numPages)goPage(cvCur+1,true)});
   function zoom(f){var keep=cvCur;cvZoom=Math.min(3,Math.max(.5,cvZoom*f));layout();goPage(keep,false)}

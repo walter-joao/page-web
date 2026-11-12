@@ -468,7 +468,7 @@ def main():
 
     # sitemap
     urls = [(DOMINIO + "/", "1.0")] + [("%s/productos/%s" % (DOMINIO, s), "0.8") for s in hechos]
-    urls += [(DOMINIO + "/catalogos/" + f, "0.5") for f in sorted(os.listdir(os.path.join(RAIZ, "catalogos")))]
+    urls += [(DOMINIO + "/catalogos/" + f, "0.5") for f in sorted(os.listdir(os.path.join(RAIZ, "catalogos"))) if f.endswith(".pdf")]
     xml = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     xml += ["  <url><loc>%s</loc><lastmod>%s</lastmod><priority>%s</priority></url>" % (u, HOY, pr) for u, pr in urls]
     open(os.path.join(RAIZ, "sitemap.xml"), "w").write("\n".join(xml + ["</urlset>", ""]))
