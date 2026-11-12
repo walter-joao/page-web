@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Después de generar, correr herramientas/traducir_paginas.py para agregar el inglés (data-en) y el botón ES/EN.
 """Genera una página HTML estática por proyecto en /proyectos/.
 
 Los textos y fotos salen del objeto PRODS de index.html (entradas pr1, pr2, ...),

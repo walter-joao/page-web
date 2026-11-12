@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# Después de generar, correr herramientas/traducir_paginas.py para agregar el inglés (data-en) y el botón ES/EN.
 """Genera una página HTML estática por producto en /productos/.
 
 El texto de cada producto se toma TAL CUAL de la web original (WordPress de
