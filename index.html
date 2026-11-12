@@ -358,6 +358,15 @@ W.JL=function(){var l=document.documentElement.lang;return l==='en'?'en':l==='zh
 W.ZT=function(v){if(typeof v==='string')return ZH[v]!=null?ZH[v]:v;if(Array.isArray(v))return v.map(W.ZT);if(v&&typeof v==='object'){var o={};for(var k in v)o[k]=W.ZT(v[k]);return o}return v};
 W.TR=function(es,en){var l=W.JL();return l==='en'?en:l==='zh'?W.ZT(en):es};
 W.ZO=function(o){var l=W.JL();if(l!=='zh')return o[l];if(o.zh===undefined)o.zh=W.ZT(o.en);return o.zh};
+W.CATN=function(u){var m=/\/catalogos\/(?:en\/|zh\/)?([a-z0-9-]+)\.pdf/.exec(u||'');if(!m)return '';var N={
+ 'alcantarillas':['CATALOGO-ALCANTARILLAS-METALICAS','CATALOG-METAL-CULVERTS','金属涵管目录'],
+ 'postes':['CATALOGO-POSTES-METALICOS','CATALOG-STEEL-POLES','金属电线杆目录'],
+ 'grating-tramex':['CATALOGO-GRATING-Y-TRAMEX','CATALOG-GRATING','钢格板目录'],
+ 'pernos-bronce-silicio':['CATALOGO-PERNOS-BRONCE-SILICIO','CATALOG-SILICON-BRONZE-BOLTS','硅青铜螺栓目录'],
+ 'resina-de-anclaje':['CATALOGO-RESINA-DE-ANCLAJE','CATALOG-ANCHORING-RESIN','岩石锚固树脂药卷目录'],
+ 'accesorios-para-tuberia':['CATALOGO-ACCESORIOS-PARA-TUBERIA','CATALOG-PIPE-FITTINGS','管道配件目录']}[m[1]];
+ var l=W.JL();return N?N[l==='en'?1:l==='zh'?2:0]+'-JOCECIA.pdf':''};
+W.CATU=function(u){u=u.replace(/\/catalogos\/(en|zh)\//,'/catalogos/');var l=W.JL();return l==='es'?u:u.replace('/catalogos/','/catalogos/'+l+'/')};
 W.loadZH=function(cb){if(W.ZHOK)return cb();cbs.push(cb);if(busy)return;busy=1;
   fetch('/i18n/zh.json').then(function(r){return r.json()}).then(function(j){ZH=j;W.ZHOK=1;cbs.splice(0).forEach(function(f){f()})}).catch(function(){busy=0;cbs=[]})};
 try{if(localStorage.getItem('joce-lang')==='zh')W.loadZH(function(){})}catch(e){}
@@ -1388,7 +1397,7 @@ footer a{color:var(--muted)}
 </div>
 
 <div class="cv" id="cv" hidden role="dialog" aria-modal="true" aria-labelledby="cvt">
-  <div class="cv-bar"><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1v14c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6v14"/></svg></span><b id="cvt" data-i18n="cv.t">Catálogo de alcantarillas metálicas</b><a class="ib cvl" href="/catalogos/alcantarillas.pdf" target="_blank" rel="noopener" aria-label="Abrir en pestaña nueva" title="Abrir en pestaña nueva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a><a class="cv-dl cvl" href="/catalogos/alcantarillas.pdf" download><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="cv.dl">Descargar</span></a><button type="button" class="ib" id="cvx" aria-label="Cerrar">×</button></div>
+  <div class="cv-bar"><span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5c3-1.5 7-1.5 10 1 3-2.5 7-2.5 10-1v14c-3-1.5-7-1.5-10 1-3-2.5-7-2.5-10-1z"/><path d="M12 6v14"/></svg></span><b id="cvt" data-i18n="cv.t">Catálogo de alcantarillas metálicas</b><a class="ib cvl" href="/catalogos/alcantarillas.pdf" target="_blank" rel="noopener" aria-label="Abrir en pestaña nueva" title="Abrir en pestaña nueva"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg></a><a class="cv-dl cvl" href="/catalogos/alcantarillas.pdf" download="CATALOGO-ALCANTARILLAS-METALICAS-JOCECIA.pdf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><span data-i18n="cv.dl">Descargar</span></a><button type="button" class="ib" id="cvx" aria-label="Cerrar">×</button></div>
   <div class="cv-body"><aside class="cv-side"><div class="cv-thumbs" id="cvth" aria-label="Páginas"></div></aside>
     <div class="cv-frame"><div class="cv-pages" id="cvpages" tabindex="0"></div><p class="cv-msg" id="cvmsg" role="status"></p>
       <div class="cv-pager"><button type="button" id="cvprev" aria-label="Página anterior">‹</button><span id="cvnum">1 / 1</span><button type="button" id="cvnext" aria-label="Página siguiente">›</button><i></i><button type="button" id="cvzo" aria-label="Alejar">−</button><button type="button" id="cvzi" aria-label="Acercar">+</button></div></div></div>
@@ -1839,9 +1848,9 @@ footer a{color:var(--muted)}
   }
   function cvLoad(url,title,n){
     cv.classList.toggle('solo',url!==PDF);
-    url=url.replace('/catalogos/en/','/catalogos/');if(JL()!=='es')url=url.replace('/catalogos/','/catalogos/en/');
+    url=CATU(url);
     cvTitle.textContent=title||TR(cvTitle0,'Metal culvert catalog');
-    cv.querySelectorAll('.cvl').forEach(function(a){a.href=url});
+    cv.querySelectorAll('.cvl').forEach(function(a){a.href=url;if(a.hasAttribute('download'))a.setAttribute('download',CATN(url))});
     cvWant=n||1;
     if(cvUrl===url&&cvDoc){goPage(cvWant,true);return}
     cvUrl=url;cvDoc=null;cvZoom=1;var task=++cvTask;pagesEl.innerHTML='';thEl.innerHTML='';

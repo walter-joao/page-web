@@ -21,6 +21,15 @@ from bs4 import BeautifulSoup
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TR = json.load(open(os.path.join(RAIZ, "herramientas", "traducciones-en.json"), encoding="utf-8"))
+# Nombre del PDF al descargar, por idioma (es, en, zh). Igual que W.CATN en index.html.
+CATALOGOS = {
+    "alcantarillas": ["CATALOGO-ALCANTARILLAS-METALICAS", "CATALOG-METAL-CULVERTS", "金属涵管目录"],
+    "postes": ["CATALOGO-POSTES-METALICOS", "CATALOG-STEEL-POLES", "金属电线杆目录"],
+    "grating-tramex": ["CATALOGO-GRATING-Y-TRAMEX", "CATALOG-GRATING", "钢格板目录"],
+    "pernos-bronce-silicio": ["CATALOGO-PERNOS-BRONCE-SILICIO", "CATALOG-SILICON-BRONZE-BOLTS", "硅青铜螺栓目录"],
+    "resina-de-anclaje": ["CATALOGO-RESINA-DE-ANCLAJE", "CATALOG-ANCHORING-RESIN", "岩石锚固树脂药卷目录"],
+    "accesorios-para-tuberia": ["CATALOGO-ACCESORIOS-PARA-TUBERIA", "CATALOG-PIPE-FITTINGS", "管道配件目录"],
+}
 ZH = json.load(open(os.path.join(RAIZ, "herramientas", "traducciones-zh.json"), encoding="utf-8"))
 
 UNIDAD = {"p", "li", "h1", "h2", "h3", "h4", "h5", "td", "th", "dt", "dd", "figcaption", "small", "b", "strong",
@@ -38,18 +47,19 @@ ZH_CSS = ('<style id="i18n-zh">html:lang(zh-CN){--f-body:"Open Sans",system-ui,"
           'html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}'
           '.pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}</style>')
 
-SCRIPT = """<script id="i18n-fichas">(function(){
+SCRIPT = r"""<script id="i18n-fichas">(function(){
+var CN=%s;
 var R=document.documentElement,K='joce-lang',T=document.title,M=document.querySelector('meta[name="description"]'),D=M&&M.content,L=['es','en','zh'];
 function set(l){
   document.querySelectorAll('[data-en]').forEach(function(e){if(e.dataset.es==null)e.dataset.es=e.innerHTML;e.innerHTML=l==='es'?e.dataset.es:l==='zh'&&e.dataset.zh!=null?e.dataset.zh:e.dataset.en});
   R.lang=l==='zh'?'zh-CN':l;var d=R.dataset,tt=l==='zh'?d.titleZh||d.titleEn:l==='en'?d.titleEn:0,dd=l==='zh'?d.descZh||d.descEn:l==='en'?d.descEn:0;
   document.title=tt||T;if(M)M.content=dd||D;
   L.forEach(function(x){var b=document.getElementById('lang-'+x);if(b)b.setAttribute('aria-pressed',l===x)});
-  document.querySelectorAll('a[href^="/catalogos/"]').forEach(function(e){var h=e.getAttribute('href').replace('/catalogos/en/','/catalogos/');e.setAttribute('href',l!=='es'?h.replace('/catalogos/','/catalogos/en/'):h)});
+  document.querySelectorAll('a[href^="/catalogos/"]').forEach(function(e){var h=e.getAttribute('href').replace(/\/catalogos\/(en|zh)\//,'/catalogos/');e.setAttribute('href',l!=='es'?h.replace('/catalogos/','/catalogos/'+l+'/'):h);var n=CN[(/([a-z0-9-]+)\.pdf$/.exec(h)||[])[1]];if(n&&e.hasAttribute('download'))e.setAttribute('download',n[L.indexOf(l)]+'-JOCECIA.pdf')});
   try{localStorage.setItem(K,l)}catch(e){}}
 L.forEach(function(x){var b=document.getElementById('lang-'+x);if(b)b.addEventListener('click',function(){set(x)})});
 try{var s=localStorage.getItem(K);if(s==='en'||s==='zh')set(s)}catch(e){}
-})();</script>"""
+})();</script>""" % json.dumps(CATALOGOS, ensure_ascii=False)
 
 
 def unidades(body):
@@ -90,6 +100,10 @@ def procesar(ruta, faltan):
         html["data-desc-en"] = TR["META:" + m["content"]][5:]
         if TR["META:" + m["content"]] in ZH:
             html["data-desc-zh"] = ZH[TR["META:" + m["content"]]][5:]
+    for a in soup.select('a[href^="/catalogos/"][download]'):
+        m = re.search(r"([a-z0-9-]+)\.pdf$", a["href"])
+        if m and m.group(1) in CATALOGOS:
+            a["download"] = CATALOGOS[m.group(1)][0] + "-JOCECIA.pdf"
     tools = soup.select_one("header .tools")
     if tools:
         for viejo in tools.select(".pill"):
