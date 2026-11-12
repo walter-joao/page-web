@@ -337,8 +337,24 @@
 /* Manual de marca: sobre la foto de portada el botón principal va en blanco con letras azules */
 .hero .btn-accent{background:#fff;color:#0d4374;box-shadow:0 12px 30px -12px rgba(0,0,0,.55)}
 /* Manual de marca: párrafos largos justificados en pantallas medianas y grandes */
+html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;--f-mono:"Montserrat",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;--f-display:"Montserrat",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif}
+html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}
+html:lang(zh-CN) .kicker{letter-spacing:.08em}
+.pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}
 @media (min-width:700px){.hero .lead,.quote p,.pillar p,.event p,.job-intro .lead,.pp-lead,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
 </style>
+<script>
+/* Idiomas: es / en / zh (chino simplificado). El chino se carga de /i18n/zh.json solo si se elige; ese archivo traduce cada texto INGLÉS al chino. */
+(function(){var W=window,ZH={},cbs=[],busy=0;
+W.JL=function(){var l=document.documentElement.lang;return l==='en'?'en':l==='zh-CN'?'zh':'es'};
+W.ZT=function(v){if(typeof v==='string')return ZH[v]!=null?ZH[v]:v;if(Array.isArray(v))return v.map(W.ZT);if(v&&typeof v==='object'){var o={};for(var k in v)o[k]=W.ZT(v[k]);return o}return v};
+W.TR=function(es,en){var l=W.JL();return l==='en'?en:l==='zh'?W.ZT(en):es};
+W.ZO=function(o){var l=W.JL();if(l!=='zh')return o[l];if(o.zh===undefined)o.zh=W.ZT(o.en);return o.zh};
+W.loadZH=function(cb){if(W.ZHOK)return cb();cbs.push(cb);if(busy)return;busy=1;
+  fetch('/i18n/zh.json').then(function(r){return r.json()}).then(function(j){ZH=j;W.ZHOK=1;cbs.splice(0).forEach(function(f){f()})}).catch(function(){busy=0;cbs=[]})};
+try{if(localStorage.getItem('joce-lang')==='zh')W.loadZH(function(){})}catch(e){}
+})();
+</script>
 <script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
 document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
@@ -1112,6 +1128,7 @@ footer a{color:var(--muted)}
       <div class="pill" role="group" aria-label="Idioma / Language">
         <button type="button" id="lang-es" aria-pressed="true">ES</button>
         <button type="button" id="lang-en" aria-pressed="false">EN</button>
+        <button type="button" id="lang-zh" aria-pressed="false" lang="zh-CN">中文</button>
       </div>
       <button type="button" class="round" id="theme" aria-label="Cambiar tema claro u oscuro">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
@@ -1457,7 +1474,7 @@ footer a{color:var(--muted)}
     cur=(i+slides.length)%slides.length;
     slides[cur].classList.add('on');
     var d=dots.children[cur];void d.offsetWidth;d.classList.add('on');
-    cap.textContent=lang==='en'?slides[cur].dataset.capEn:slides[cur].dataset.cap;
+    cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
     if(manual)start();
   }
   function start(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(cur+1)},6000)}
@@ -1502,7 +1519,7 @@ footer a{color:var(--muted)}
   function closePd(){pd.hidden=true;document.body.style.overflow='';if(pdLast)pdLast.focus()}
   function secHtml(sec){return (sec||[]).map(function(z){return '<div class="sec"><h4>'+z.h+'</h4>'+(z.p?'<p>'+z.p+'</p>':'')+(z.items?'<div class="adv">'+z.items.map(function(a,j){return '<div><i>'+('0'+(j+1))+'</i><b>'+a[0]+'</b><span>'+a[1]+'</span></div>'}).join('')+'</div>':'')+'</div>'}).join('')}
   function openPd(id){
-    var p=PRODS[id],t=p[root.lang==='en'?'en':'es'];
+    var p=PRODS[id],t=ZO(p);
     document.getElementById('pdk').textContent=t.k;
     document.getElementById('pdt').textContent=t.t;
     document.getElementById('pdd').textContent=t.d;
@@ -1510,25 +1527,25 @@ footer a{color:var(--muted)}
     document.getElementById('pdf').innerHTML=(t.f||[]).map(function(x){return '<li>'+x+'</li>'}).join('');
     document.getElementById('pds').innerHTML=p.img.map(function(u){return '<div class="corr'+(p.contain?' white':'')+'"><img '+IMG(u,1080)+' alt="" loading="lazy"></div>'}).join('');
     document.querySelectorAll('#pds img').forEach(function(i){i.addEventListener('error',function(){i.remove()})});
-    document.getElementById('pdwa').href='https://wa.me/593964068392?text='+encodeURIComponent((root.lang==='en'?'Hello, I would like a quote for: ':'Hola, quisiera cotizar: ')+t.t);
-    var hr=document.getElementById('pdhero');hr.hidden=!p.hero;if(p.hero){var hi=hr.querySelector('img');hi.removeAttribute('data-f');hi.dataset.o=p.hero.img;hi.src=VI(p.hero.img,1080);hr.querySelector('b').textContent=p.hero[root.lang==='en'?'en':'es']}
-    var L=root.lang==='en'?'en':'es',SB=p.subs||[],AD=t.adv||[];
+    document.getElementById('pdwa').href='https://wa.me/593964068392?text='+encodeURIComponent((TR('Hola, quisiera cotizar: ','Hello, I would like a quote for: '))+t.t);
+    var hr=document.getElementById('pdhero');hr.hidden=!p.hero;if(p.hero){var hi=hr.querySelector('img');hi.removeAttribute('data-f');hi.dataset.o=p.hero.img;hi.src=VI(p.hero.img,1080);hr.querySelector('b').textContent=ZO(p.hero)}
+    var L=JL(),SB=p.subs||[],AD=t.adv||[];
     document.getElementById('pdsec').innerHTML=secHtml(t.sec);
     document.getElementById('pdh').hidden=!t.f;document.getElementById('pdf').hidden=!t.f;
     document.getElementById('pdd').hidden=!t.d;
     document.getElementById('pdah').hidden=!AD.length;
     document.getElementById('pdadv').innerHTML=AD.map(function(a,i){return '<div><i>'+('0'+(i+1))+'</i><b>'+a[0]+'</b><span>'+a[1]+'</span></div>'}).join('');
     document.getElementById('pdsh').hidden=!SB.length;
-    document.getElementById('pdsub').innerHTML=SB.map(function(x,i){var c=x[L];
+    document.getElementById('pdsub').innerHTML=SB.map(function(x,i){var c=ZO(x);
       return '<details class="sub"'+(i===0&&!x.go?' open':'')+'><summary>'+(x.img?'<span class="corr white"><img '+IMG(x.img,256)+' alt="" loading="lazy"></span>':'')+'<b>'+c.t+'</b></summary><div class="sub-b">'
         +(x.gal?'<div class="sub-gal">'+x.gal.map(function(g){return '<div class="corr white"><img '+IMG(g,1080)+' alt="" loading="lazy"></div>'}).join('')+'</div>':'')
         +(c.d?'<p>'+c.d+'</p>':'')
         +(c.sec||[]).map(function(z){return '<div class="sec"><h4>'+z.h+'</h4>'+(z.p?'<p>'+z.p+'</p>':'')+(z.items?'<div class="adv">'+z.items.map(function(a,j){return '<div><i>'+('0'+(j+1))+'</i><b>'+a[0]+'</b><span>'+a[1]+'</span></div>'}).join('')+'</div>':'')+'</div>'}).join('')
         +(c.f?'<h4>'+c.h+'</h4><ul class="pd-list">'+c.f.map(function(y){return '<li>'+y+'</li>'}).join('')+'</ul>':'')
-        +(x.pdf||x.go?'<div class="cta-row">'+(x.pdf?'<button type="button" class="btn btn-line" data-pdf="'+x.pdf+'" data-title="'+c.t+'">'+(L==='en'?'View catalog':'Ver catálogo')+'</button>':'')+(x.go?'<button type="button" class="btn btn-line" data-go="'+x.go+'">'+(L==='en'?'Learn more':'Saber más')+' ›</button>':'')+'</div>':'')
+        +(x.pdf||x.go?'<div class="cta-row">'+(x.pdf?'<button type="button" class="btn btn-line" data-pdf="'+x.pdf+'" data-title="'+c.t+'">'+(TR('Ver catálogo','View catalog'))+'</button>':'')+(x.go?'<button type="button" class="btn btn-line" data-go="'+x.go+'">'+(TR('Saber más','Learn more'))+' ›</button>':'')+'</div>':'')
         +'</div></details>'}).join('');
     var pc=document.getElementById('pdcat');pc.hidden=!p.pdf;
-    pc.onclick=function(){closePd();openCv(1,p.pdf,(root.lang==='en'?'Catalog · ':'Catálogo · ')+t.k)};
+    pc.onclick=function(){closePd();openCv(1,p.pdf,(TR('Catálogo · ','Catalog · '))+t.k)};
     var FICHA={p1:'infraestructura-metalica',p2:'pernos-de-alta-fiabilidad',p4:'grating-tramex',p5:'encofrados',p6:'accesorios-para-tuberias',p7:'soporte-en-roca',p8:'partes-y-piezas-especiales',p9:'venta-de-soldadoras'},fp=document.getElementById('pdpage');fp.hidden=!FICHA[id];if(FICHA[id])fp.href='/productos/'+FICHA[id];
     if(pd.hidden)pdLast=document.activeElement;pd.hidden=false;document.body.style.overflow='hidden';
     pd.querySelector('.pd-in').scrollTop=0;document.getElementById('pdx').focus();
@@ -1541,7 +1558,8 @@ footer a{color:var(--muted)}
     var SECT={hidro:{c:"#3cc8e8",es:"Hidroeléctrica",en:"Hydropower"},trans:{c:"#8fb2ff",es:"Transporte",en:"Transport"},soc:{c:"#7fd6a4",es:"Obra social",en:"Social work"},edif:{c:"#f4a95c",es:"Edificación y comercio",en:"Buildings & retail"}};
     var TX={
       es:{all:"Todas",works:"obras en el mapa",provs:"provincias",cities:"ciudades",obras:"obras",obra:"obra",done:"Trabajos realizados",photos:"Ver fotos de la obra",social:"Ver labor social",quote:"Cotizar un proyecto similar",prev:"← Anterior",next:"Siguiente →",client:"Cliente",year:"Año",here:"Nuestras obras aquí",back:"← Volver a ",hq:"Planta Sangolquí",hqL:"Planta Jocecia",ocean:"OCÉANO PACÍFICO",more:function(n){return "y "+n+" trabajos más en otras estaciones"}},
-      en:{all:"All",works:"projects on the map",provs:"provinces",cities:"cities",obras:"projects",obra:"project",done:"Work carried out",photos:"See project photos",social:"See our social work",quote:"Quote a similar project",prev:"← Previous",next:"Next →",client:"Client",year:"Year",here:"Our projects here",back:"← Back to ",hq:"Sangolquí plant",hqL:"Jocecia plant",ocean:"PACIFIC OCEAN",more:function(n){return "and "+n+" more jobs at other stations"}}
+      en:{all:"All",works:"projects on the map",provs:"provinces",cities:"cities",obras:"projects",obra:"project",done:"Work carried out",photos:"See project photos",social:"See our social work",quote:"Quote a similar project",prev:"← Previous",next:"Next →",client:"Client",year:"Year",here:"Our projects here",back:"← Back to ",hq:"Sangolquí plant",hqL:"Jocecia plant",ocean:"PACIFIC OCEAN",more:function(n){return "and "+n+" more jobs at other stations"}},
+      zh:{all:"全部",works:"个项目在地图上",provs:"个省份",cities:"座城市",obras:"个项目",obra:"个项目",done:"已完成的工作",photos:"查看项目照片",social:"查看我们的社会公益",quote:"咨询类似项目报价",prev:"← 上一个",next:"下一个 →",client:"客户",year:"年份",here:"我们在这里的项目",back:"← 返回 ",hq:"Sangolquí 工厂",hqL:"Jocecia 工厂",ocean:"太平洋",more:function(n){return "以及其他车站的另外 "+n+" 项工作"}}
     };
     var OBRAS=[
       {id:"vistavalle",pr:"pr7",cg:"quito",s:"edif",lat:-0.2965,lon:-78.457,city:"Valle de los Chillos",prov:"Pichincha",
@@ -1587,8 +1605,8 @@ footer a{color:var(--muted)}
     var NS="http://www.w3.org/2000/svg",$=function(id){return document.getElementById(id)};
     function P(lon,lat){return[(lon+81.1)*100,(1.5-lat)*100]}
     function el(t,a,p){var e=document.createElementNS(NS,t);for(var k in a)e.setAttribute(k,a[k]);if(p)p.appendChild(e);return e}
-    function L(){return root.lang==='en'?'en':'es'}
-    function T(){return TX[L()]}
+    function L(){return JL()}
+    function T(){return ZO(TX)}
     function fmt(v,a,b){return Math.abs(v).toFixed(2)+"° "+(v>=0?a:b)}
     function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
     var filter="all",mode="obras",sel="metro";
@@ -1627,22 +1645,22 @@ footer a{color:var(--muted)}
         for(k in CL)CL[k].el.style.display='none';
         un.forEach(function(u){u.m.forEach(function(i){var o=OBRAS[i];o.satXY=[u.p[0],u.p[1]];o.satEl.classList.toggle('cl-in',!!u.g);o.satEl.style.transform='translate('+u.p[0]+'px,'+u.p[1]+'px)'});
           if(u.g){u.g.xy=u.p;u.g.el.style.display='';u.g.el.firstChild.textContent=u.m.length;u.g.el.style.transform='translate('+u.p[0]+'px,'+u.p[1]+'px)';
-            u.g.el.setAttribute('aria-label',u.g.c.n+' · '+u.m.length+(L()==='en'?' projects':' obras'))}});
+            u.g.el.setAttribute('aria-label',u.g.c.n+' · '+u.m.length+(TR(' obras',' projects')))}});
         if(clk&&!(CL[clk].m.length>1&&mob))clk=null;
         PV.forEach(function(p,pi){var x=x0+(mob?p[3]:p[1])*c.w*s,y=y0+(mob?p[4]:p[2])*c.h*s;
           // celular: si el nombre queda bajo un punto, se corre a un lado para que se lea entero
           if(mob){var hw=PW[pi]/2+22;un.forEach(function(u){var ux=u.p[0],uy=u.p[1]-(u.g?0:14);if(Math.abs(uy-y)<20&&Math.abs(ux-x)<hw)x=x<ux?ux-hw:ux+hw})}p.el.style.transform='translate('+x+'px,'+y+'px) translate(-50%,-50%)'});place()}
-      function fill(i){var o=OBRAS[i],t=o[L()],u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]),lbl=L()==='en'?'View project':'Ver proyecto';
+      function fill(i){var o=OBRAS[i],t=ZO(o),u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]),lbl=TR('Ver proyecto','View project');
         var arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>';
         card.style.setProperty('--c',SECT[o.s].c);
-        card.innerHTML='<div class="ph">'+(u?'<img src="'+VI(u,640)+'" alt="'+esc(t.t)+'" decoding="async" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+SECT[o.s][L()]+'</span></div>'+
-          '<button type="button" class="x" aria-label="'+(L()==='en'?'Close':'Cerrar')+'">×</button><div class="bd">'+(o.satEl.classList.contains('cl-in')&&mq.matches?'<button type="button" class="bk" data-k="'+o.cg+'">‹ '+(L()==='en'?'All in ':'Todas en ')+esc(CL[o.cg].c.n)+'</button>':'')+'<p class="tt">'+esc(t.t)+'</p><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+(o.apx?(L()==='en'?' (approx.)':' (aprox.)'):'')+'</span>'+(o.pr?'<a class="go" href="/proyectos/'+PRURL[o.pr]+'">'+lbl+arrow+'</a>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
+        card.innerHTML='<div class="ph">'+(u?'<img src="'+VI(u,640)+'" alt="'+esc(t.t)+'" decoding="async" onload="this.classList.add(\'ok\')" onerror="this.remove()">':'')+'<span class="badge"><i></i>'+ZO(SECT[o.s])+'</span></div>'+
+          '<button type="button" class="x" aria-label="'+(TR('Cerrar','Close'))+'">×</button><div class="bd">'+(o.satEl.classList.contains('cl-in')&&mq.matches?'<button type="button" class="bk" data-k="'+o.cg+'">‹ '+(TR('Todas en ','All in '))+esc(CL[o.cg].c.n)+'</button>':'')+'<p class="tt">'+esc(t.t)+'</p><span class="loc">'+esc(o.city)+' · '+esc(o.prov)+(o.apx?(TR(' (aprox.)',' (approx.)')):'')+'</span>'+(o.pr?'<a class="go" href="/proyectos/'+PRURL[o.pr]+'">'+lbl+arrow+'</a>':'<a class="go" href="#social">'+lbl+arrow+'</a>')+'</div>';
         var im=card.querySelector('img');if(im&&im.complete&&im.naturalWidth)im.classList.add('ok')}
       function show(i){cur=i;clk=null;card.classList.remove('lst');if(i!==shown){fill(i);shown=i}OBRAS.forEach(function(o,k){o.satEl.classList.toggle('on',k===i)});
         for(var k in CL)CL[k].el.classList.toggle('on',OBRAS[i].satEl.classList.contains('cl-in')&&OBRAS[i].cg===k);card.classList.add('open');place()}
       function showCl(k){var g=CL[k],l=L();clk=k;shown=-1;card.classList.add('lst');
-        card.innerHTML='<button type="button" class="x" aria-label="'+(l==='en'?'Close':'Cerrar')+'">×</button><div class="lh"><b>'+esc(g.c.n)+' · '+g.m.length+(l==='en'?' projects':' obras')+'</b><span>'+esc(g.c.prov)+(l==='en'?' · tap one to see it':' · toca una para verla')+'</span></div><ul class="ls">'+
-          g.m.map(function(i){var o=OBRAS[i];return '<li><button type="button" data-i="'+i+'" style="--c:'+SECT[o.s].c+'"><i></i>'+esc(o[l].t)+'<em>›</em></button></li>'}).join('')+'</ul>';
+        card.innerHTML='<button type="button" class="x" aria-label="'+(TR('Cerrar','Close'))+'">×</button><div class="lh"><b>'+esc(g.c.n)+' · '+g.m.length+(TR(' obras',' projects'))+'</b><span>'+esc(g.c.prov)+(TR(' · toca una para verla',' · tap one to see it'))+'</span></div><ul class="ls">'+
+          g.m.map(function(i){var o=OBRAS[i];return '<li><button type="button" data-i="'+i+'" style="--c:'+SECT[o.s].c+'"><i></i>'+esc(ZO(o).t)+'<em>›</em></button></li>'}).join('')+'</ul>';
         OBRAS.forEach(function(o){o.satEl.classList.remove('on')});for(var q in CL)CL[q].el.classList.toggle('on',q===k);card.classList.add('open');box.classList.add('used');place()}
       function place(){var o=OBRAS[cur];if(!o||!o.satXY)return;var XY=clk?CL[clk].xy:o.satXY;
         if(mq.matches){wire.classList.remove('on');if(card.parentNode!==stage)return;
@@ -1658,7 +1676,7 @@ footer a{color:var(--muted)}
         var ex=side>0?L0:L0+cw,ey=Math.max(T0+30,Math.min(T0+ch-30,y)),ln=wire.querySelector('line'),ci=wire.querySelector('circle');
         ln.setAttribute('x1',x+side*12);ln.setAttribute('y1',y);ln.setAttribute('x2',ex);ln.setAttribute('y2',ey);ci.setAttribute('cx',ex);ci.setAttribute('cy',ey);wire.classList.add('on')}
       function chipsRender(){var X=T(),l=L(),u=[];OBRAS.forEach(function(o){if(u.indexOf(o.s)<0)u.push(o.s)});
-        chips.innerHTML=[["all",X.all,null]].concat(u.map(function(k){return[k,SECT[k][l],SECT[k].c]})).map(function(a){return '<button type="button" aria-pressed="'+(flt===a[0])+'" data-k="'+a[0]+'"'+(a[2]?' style="--c:'+a[2]+'"><i></i>':'>')+a[1]+'</button>'}).join('')}
+        chips.innerHTML=[["all",X.all,null]].concat(u.map(function(k){return[k,ZO(SECT[k]),SECT[k].c]})).map(function(a){return '<button type="button" aria-pressed="'+(flt===a[0])+'" data-k="'+a[0]+'"'+(a[2]?' style="--c:'+a[2]+'"><i></i>':'>')+a[1]+'</button>'}).join('')}
       function mobCard(){if(mq.matches){if(card.parentNode!==stage){stage.appendChild(card);cerrar()}}
         else if(card.parentNode!==cardHome){cardHome.appendChild(card);card.style.removeProperty('left');card.style.removeProperty('top');show(cur)}}
       function cerrar(){card.classList.remove('open');clk=null;OBRAS.forEach(function(o){o.satEl.classList.remove('on')});for(var k in CL)CL[k].el.classList.remove('on')}
@@ -1667,7 +1685,7 @@ footer a{color:var(--muted)}
       chips.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;flt=b.dataset.k;chipsRender();
         OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();if(mq.matches&&card.classList.contains('open')&&(clk||!vis(OBRAS[cur])))cerrar();else if(!vis(OBRAS[cur])){for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}}});
       var hint=document.querySelector('#sat-hint span'),fineP=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fineP)hint.removeAttribute('data-i18n');
-      function hintTx(){if(!fineP)hint.textContent=L()==='en'?'Tap a point to see the project':'Toca un punto para ver la obra'}hintTx();
+      function hintTx(){if(!fineP)hint.textContent=TR('Toca un punto para ver la obra','Tap a point to see the project')}hintTx();
       chipsRender();addEventListener('resize',layout);if(mq.addEventListener)mq.addEventListener('change',function(){mobCard();layout()});
       var im=$('sat-img');if(!im.complete)im.addEventListener('load',layout);
       // versión clara: paisaje con el entorno en papel claro para que Ecuador resalte sobre fondo blanco
@@ -1732,15 +1750,15 @@ footer a{color:var(--muted)}
     }
     function photo(o,w){var u=o.img||(o.pr&&PRODS[o.pr]&&PRODS[o.pr].img[0]);return u?'<img src="'+VI(u,w||640)+'" alt="" loading="lazy" decoding="async">':''}
     function showObra(id,fromCity){
-      var o=byId(id),i=OBRAS.indexOf(o),t=o[L()],X=T();sel=id;
+      var o=byId(id),i=OBRAS.indexOf(o),t=ZO(o),X=T();sel=id;
       OBRAS.forEach(function(x){x.pinEl.classList.toggle('sel',x.id===id)});
       document.querySelectorAll('.mo-row').forEach(function(r){r.classList.toggle('sel',r.dataset.id===id)});
       hiProv(o.prov.split(" / "));
-      var where='<span><b>'+esc(o.city)+'</b>, '+esc(o.prov)+'</span><span>'+fmt(o.lat,"N","S")+' · '+fmt(o.lon,"E",L()==='en'?"W":"O")+'</span>'+(o.cl?'<span>'+X.client+': <b>'+esc(o.cl)+'</b></span>':'')+(o.year?'<span>'+X.year+': <b>'+o.year+'</b></span>':'');
+      var where='<span><b>'+esc(o.city)+'</b>, '+esc(o.prov)+'</span><span>'+fmt(o.lat,"N","S")+' · '+fmt(o.lon,"E",TR("O","W"))+'</span>'+(o.cl?'<span>'+X.client+': <b>'+esc(o.cl)+'</b></span>':'')+(o.year?'<span>'+X.year+': <b>'+o.year+'</b></span>':'');
       var list='<h4>'+X.done+'</h4><ul>'+t.f.map(function(f){return '<li>'+esc(f)+'</li>'}).join('')+(o.more?'<li>'+X.more(o.more)+'</li>':'')+'</ul>';
       var gal=o.pr?'<button type="button" class="btn btn-accent" id="mo-gal">'+X.photos+'</button>':'<a class="btn btn-accent" href="#social">'+X.social+'</a>';
       var nav=fromCity?'':'<div class="mo-nav"><button type="button" id="mo-prev">'+X.prev+'</button><span>'+(i+1)+' / '+OBRAS.length+'</span><button type="button" id="mo-next">'+X.next+'</button></div>';
-      $('mo-panel').innerHTML='<div class="mo-ph" style="--c:'+SECT[o.s].c+'">'+photo(o)+'<span class="mo-badge">'+('0'+(i+1)).slice(-2)+' · '+SECT[o.s][L()].toUpperCase()+'</span></div>'+
+      $('mo-panel').innerHTML='<div class="mo-ph" style="--c:'+SECT[o.s].c+'">'+photo(o)+'<span class="mo-badge">'+('0'+(i+1)).slice(-2)+' · '+ZO(SECT[o.s]).toUpperCase()+'</span></div>'+
         '<div class="mo-body">'+(fromCity?'<button type="button" class="mo-back" id="mo-back">'+X.back+esc(cityBy(fromCity).n)+'</button>':'')+'<h3>'+esc(t.t)+'</h3><div class="mo-where">'+where+'</div><p>'+esc(t.d)+'</p>'+list+
         '<div class="mo-actions">'+gal+'<a class="btn btn-line" href="#contacto">'+X.quote+'</a></div></div>'+nav;
       if(o.pr)$('mo-gal').onclick=function(){openPd(o.pr)};
@@ -1753,17 +1771,17 @@ footer a{color:var(--muted)}
       hiProv([c.prov]);
       var col=SECT[(os[0]||OBRAS[0]).s].c;
       $('mo-panel').innerHTML='<div class="mo-ph city" style="--c:'+col+'">'+(os[0]?photo(os[0]):'')+'<span class="mo-badge">'+os.length+' '+(os.length===1?X.obra:X.obras).toUpperCase()+' · '+c.prov.toUpperCase()+'</span></div>'+
-        '<div class="mo-body"><h3>'+esc(c.n)+'</h3><div class="mo-where"><span><b>'+esc(c.prov)+'</b></span><span>'+fmt(c.lat,"N","S")+' · '+fmt(c.lon,"E",L()==='en'?"W":"O")+'</span></div><p>'+esc(c[L()])+'</p><h4>'+X.here+'</h4>'+
-        '<div class="mo-olist">'+os.map(function(o){return '<button type="button" class="mo-ocard" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(OBRAS.indexOf(o)+1)+'</span><span><b>'+esc(o[L()].t)+'</b><small>'+SECT[o.s][L()]+' · '+esc(o[L()].d)+'</small></span><span class="go">→</span></button>'}).join('')+'</div></div>';
+        '<div class="mo-body"><h3>'+esc(c.n)+'</h3><div class="mo-where"><span><b>'+esc(c.prov)+'</b></span><span>'+fmt(c.lat,"N","S")+' · '+fmt(c.lon,"E",TR("O","W"))+'</span></div><p>'+esc(ZO(c))+'</p><h4>'+X.here+'</h4>'+
+        '<div class="mo-olist">'+os.map(function(o){return '<button type="button" class="mo-ocard" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(OBRAS.indexOf(o)+1)+'</span><span><b>'+esc(ZO(o).t)+'</b><small>'+ZO(SECT[o.s])+' · '+esc(ZO(o).d)+'</small></span><span class="go">→</span></button>'}).join('')+'</div></div>';
       document.querySelectorAll('.mo-ocard').forEach(function(b){b.onclick=function(){showObra(b.dataset.id,k)}});
     }
     function used(){var u=[];OBRAS.forEach(function(o){if(u.indexOf(o.s)<0)u.push(o.s)});return u}
     function render(){
       var X=T(),l=L();
-      hqLbl.textContent=X.hq;$('mo-ocean').textContent=X.ocean;$('mo-peru').textContent=l==='en'?'PERU':'PERÚ';
-      OBRAS.forEach(function(o){o.lblEl.textContent=o[l].t;o.pinEl.setAttribute('aria-label',o[l].t)});
-      $('mo-chips').innerHTML=[["all",X.all,null]].concat(used().map(function(k){return[k,SECT[k][l],SECT[k].c]})).map(function(a){return '<button type="button" class="mo-chip" aria-pressed="'+(filter===a[0])+'" data-k="'+a[0]+'">'+(a[2]?'<i style="background:'+a[2]+'"></i>':'')+a[1]+'</button>'}).join('');
-      $('mo-legend').innerHTML=used().map(function(k){return '<span><i style="background:'+SECT[k].c+'"></i>'+SECT[k][l]+'</span>'}).join('')+'<span><i style="border:2px solid var(--accent);border-radius:2px;transform:rotate(45deg);width:9px;height:9px"></i>'+X.hqL+'</span>';
+      hqLbl.textContent=X.hq;$('mo-ocean').textContent=X.ocean;$('mo-peru').textContent=TR('PERÚ','PERU');
+      OBRAS.forEach(function(o){o.lblEl.textContent=ZO(o).t;o.pinEl.setAttribute('aria-label',ZO(o).t)});
+      $('mo-chips').innerHTML=[["all",X.all,null]].concat(used().map(function(k){return[k,ZO(SECT[k]),SECT[k].c]})).map(function(a){return '<button type="button" class="mo-chip" aria-pressed="'+(filter===a[0])+'" data-k="'+a[0]+'">'+(a[2]?'<i style="background:'+a[2]+'"></i>':'')+a[1]+'</button>'}).join('');
+      $('mo-legend').innerHTML=used().map(function(k){return '<span><i style="background:'+SECT[k].c+'"></i>'+ZO(SECT[k])+'</span>'}).join('')+'<span><i style="border:2px solid var(--accent);border-radius:2px;transform:rotate(45deg);width:9px;height:9px"></i>'+X.hqL+'</span>';
       $('mo-m-obras').setAttribute('aria-pressed',mode==="obras");$('mo-m-ciud').setAttribute('aria-pressed',mode==="ciud");
       pins.toggleAttribute('hidden',mode!=="obras");cG.toggleAttribute('hidden',mode==="obras");$('mo-refs').toggleAttribute('hidden',mode==="obras");
       var list=$('mo-list');
@@ -1771,7 +1789,7 @@ footer a{color:var(--muted)}
         OBRAS.forEach(function(o){o.pinEl.classList.toggle('off',!vis(o))});
         var v=OBRAS.filter(vis),pv={};v.forEach(function(o){o.prov.split(" / ").forEach(function(p){pv[p]=1})});
         $('mo-stats').innerHTML='<b>'+v.length+'</b> '+X.works+' · <b>'+Object.keys(pv).length+'</b> '+X.provs;
-        list.innerHTML=OBRAS.map(function(o,i){return '<button type="button" class="mo-row'+(vis(o)?'':' off')+'" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(i+1)+'</span><div><b>'+esc(o[l].t)+'</b><small>'+esc(o.city)+' · '+esc(o.prov)+'</small></div></button>'}).join('');
+        list.innerHTML=OBRAS.map(function(o,i){return '<button type="button" class="mo-row'+(vis(o)?'':' off')+'" data-id="'+o.id+'"><span class="mo-n" style="--c:'+SECT[o.s].c+'">'+(i+1)+'</span><div><b>'+esc(ZO(o).t)+'</b><small>'+esc(o.city)+' · '+esc(o.prov)+'</small></div></button>'}).join('');
         list.querySelectorAll('.mo-row').forEach(function(r){r.onclick=function(){showObra(r.dataset.id)}});
         var cur=byId(sel);showObra(cur&&vis(cur)?cur.id:(v[0]||OBRAS[0]).id);
       }else{
@@ -1793,7 +1811,7 @@ footer a{color:var(--muted)}
   document.getElementById('pdsub').addEventListener('click',function(e){
     var b=e.target.closest('[data-pdf],[data-go]');if(!b)return;
     if(b.dataset.go){openPd(b.dataset.go);return}
-    closePd();openCv(1,b.dataset.pdf,(root.lang==='en'?'Catalog · ':'Catálogo · ')+b.dataset.title);
+    closePd();openCv(1,b.dataset.pdf,(TR('Catálogo · ','Catalog · '))+b.dataset.title);
   });
   pd.addEventListener('click',function(e){if(e.target===pd)closePd()});
 
@@ -1849,7 +1867,7 @@ footer a{color:var(--muted)}
         var v=pg.getViewport({scale:1}),ar=v.height/v.width,n=ix+1;
         var d=document.createElement('div');d.className='cv-pg';d.dataset.n=n;d.dataset.ar=ar;d.innerHTML='<span>'+n+'</span>';
         pagesEl.appendChild(d);pgIO.observe(d);
-        var t=document.createElement('button');t.type='button';t.dataset.n=n;t.style.setProperty('--ar',1/ar);t.setAttribute('aria-label',(root.lang==='en'?'Page ':'Página ')+n);
+        var t=document.createElement('button');t.type='button';t.dataset.n=n;t.style.setProperty('--ar',1/ar);t.setAttribute('aria-label',(TR('Página ','Page '))+n);
         var tc=document.createElement('canvas');t.appendChild(tc);t.insertAdjacentHTML('beforeend','<b>'+n+'</b>');thEl.appendChild(t);
         t.addEventListener('click',function(){goPage(n,true)});
         if(getComputedStyle(thEl).display!=='none'){var tv=pg.getViewport({scale:180/v.width});tc.width=tv.width;tc.height=tv.height;pg.render({canvasContext:tc.getContext('2d'),viewport:tv})}
@@ -1859,15 +1877,15 @@ footer a{color:var(--muted)}
   }
   function cvLoad(url,title,n){
     cv.classList.toggle('solo',url!==PDF);
-    url=url.replace('/catalogos/en/','/catalogos/');if(root.lang==='en')url=url.replace('/catalogos/','/catalogos/en/');
-    cvTitle.textContent=title||(root.lang==='en'?'Metal culvert catalog':cvTitle0);
+    url=url.replace('/catalogos/en/','/catalogos/');if(JL()!=='es')url=url.replace('/catalogos/','/catalogos/en/');
+    cvTitle.textContent=title||TR(cvTitle0,'Metal culvert catalog');
     cv.querySelectorAll('.cvl').forEach(function(a){a.href=url});
     cvWant=n||1;
     if(cvUrl===url&&cvDoc){goPage(cvWant,true);return}
     cvUrl=url;cvDoc=null;cvZoom=1;var task=++cvTask;pagesEl.innerHTML='';thEl.innerHTML='';
-    msg.textContent=root.lang==='en'?'Loading catalog…':'Cargando catálogo…';
+    msg.textContent=TR('Cargando catálogo…','Loading catalog…');
     lib().then(function(L){return L.getDocument(url).promise}).then(function(doc){if(task!==cvTask)return;cvDoc=doc;build(doc,task)})
-      .catch(function(){if(task!==cvTask)return;cvUrl='';msg.innerHTML=(root.lang==='en'?'The catalog could not be shown here. ':'No se pudo mostrar el catálogo aquí. ')+'<a href="'+url+'" target="_blank" rel="noopener">'+(root.lang==='en'?'Open PDF':'Abrir el PDF')+'</a>'});
+      .catch(function(){if(task!==cvTask)return;cvUrl='';msg.innerHTML=(TR('No se pudo mostrar el catálogo aquí. ','The catalog could not be shown here. '))+'<a href="'+url+'" target="_blank" rel="noopener">'+(TR('Abrir el PDF','Open PDF'))+'</a>'});
   }
   function cvPage(n){cvLoad(PDF,null,n)}
   function openCv(n,url,title){cvLast=document.activeElement;cv.hidden=false;document.body.style.overflow='hidden';if(url)cvLoad(url,title,1);else cvPage(n);document.getElementById('cvx').focus()}
@@ -1879,7 +1897,7 @@ footer a{color:var(--muted)}
   // Abrir el catálogo interactivo desde otra página: /#catalogo-<archivo> (p. ej. desde las fichas de producto)
   (function(){function fromHash(){var m=/^#catalogo-([a-z0-9-]+)$/.exec(location.hash);if(!m)return;
     try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
-    if(m[1]==='alcantarillas')openCv(1);else{var T={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']}[m[1]],en=root.lang==='en';openCv(1,'/catalogos/'+m[1]+'.pdf',(en?'Catalog · ':'Catálogo · ')+(T?T[en?1:0]:m[1]))}}
+    if(m[1]==='alcantarillas')openCv(1);else{var T={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']}[m[1]];openCv(1,'/catalogos/'+m[1]+'.pdf',TR('Catálogo · ','Catalog · ')+(T?TR(T[0],T[1]):m[1]))}}
     setTimeout(fromHash,0);addEventListener('hashchange',fromHash)})();
   document.getElementById('cvprev').addEventListener('click',function(){if(cvCur>1)goPage(cvCur-1,true)});
   document.getElementById('cvnext').addEventListener('click',function(){if(cvDoc&&cvCur<cvDoc.numPages)goPage(cvCur+1,true)});
@@ -1978,21 +1996,21 @@ footer a{color:var(--muted)}
   var nodes=document.querySelectorAll('[data-i18n],[data-i18n-html]'),es={};
   nodes.forEach(function(el){es[el.dataset.i18n||el.dataset.i18nHtml]=el.innerHTML});
   function setLang(l){
+    if(l==='zh'&&!window.ZHOK){loadZH(function(){setLang('zh')});return}
     lang=l;
     nodes.forEach(function(el){
-      var k=el.dataset.i18n||el.dataset.i18nHtml,v=l==='en'?EN[k]:es[k];
+      var k=el.dataset.i18n||el.dataset.i18nHtml,v=l==='en'?EN[k]:l==='zh'?(EN[k]!=null?ZT(EN[k]):null):es[k];
       if(v==null)return;
       if(l==='es'||el.dataset.i18nHtml)el.innerHTML=v;else el.textContent=v;
     });
-    cap.textContent=l==='en'?slides[cur].dataset.capEn:slides[cur].dataset.cap;
-    root.lang=l;
+    root.lang=l==='zh'?'zh-CN':l;
+    cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
     if(typeof MO==='function')MO();
-    document.getElementById('lang-es').setAttribute('aria-pressed',l==='es');
-    document.getElementById('lang-en').setAttribute('aria-pressed',l==='en');
+    ['es','en','zh'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x)});
     try{localStorage.setItem('joce-lang',l)}catch(e){}
   }
-  document.getElementById('lang-es').addEventListener('click',function(){setLang('es')});
   document.getElementById('lang-en').addEventListener('click',function(){setLang('en')});
+  document.getElementById('lang-zh').addEventListener('click',function(){setLang('zh')});
 
   // Tema claro / oscuro
   function isDark(){var t=root.dataset.theme;return t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches}
@@ -2013,7 +2031,7 @@ footer a{color:var(--muted)}
   nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
 
   try{
-    if(localStorage.getItem('joce-lang')==='en')setLang('en');
+    var sl=localStorage.getItem('joce-lang');if(sl==='en'||sl==='zh')setLang(sl);
     var st=localStorage.getItem('joce-theme');if(st==='dark'||st==='light')root.dataset.theme=st;
   }catch(e){}
 })();
@@ -2027,7 +2045,7 @@ footer a{color:var(--muted)}
   var MAX=5*1024*1024,OK=/\.(pdf|docx?)$/i;
   var T={es:{req:'Complete los campos marcados.',mail:'Revise el correo electrónico.',cv:'Adjunte su hoja de vida en PDF o Word.',big:'El archivo pesa más de 5 MB.',chk:'Debe aceptar el tratamiento de datos.',sending:'Enviando…',ok:'¡Gracias! Recibimos su postulación. Le contactaremos si su perfil encaja.',fail:'No se pudo enviar. Intente de nuevo o escriba por WhatsApp.',demo:'Vista previa: el envío se activará cuando se configure el correo de destino.',pick:'Elegir archivo'},
          en:{req:'Please fill in the highlighted fields.',mail:'Please check your email address.',cv:'Attach your résumé as PDF or Word.',big:'The file is larger than 5 MB.',chk:'Please accept the data processing terms.',sending:'Sending…',ok:'Thank you! We received your application and will contact you if your profile is a fit.',fail:'Could not send. Please try again or message us on WhatsApp.',demo:'Preview: sending will be enabled once the destination email is set up.',pick:'Choose file'}};
-  function t(k){return (T[document.documentElement.lang]||T.es)[k]}
+  function t(k){return ZO(T)[k]}
   function say(k,cls){msg.textContent=t(k);msg.className='job-msg'+(cls?' '+cls:'')}
   function showFile(){var x=cv.files&&cv.files[0];drop.classList.toggle('has',!!x);fileL.textContent=x?x.name:t('pick');drop.classList.remove('bad')}
   cv.addEventListener('change',showFile);
@@ -2059,6 +2077,7 @@ footer a{color:var(--muted)}
   });
   document.getElementById('lang-es').addEventListener('click',function(){setTimeout(showFile)});
   document.getElementById('lang-en').addEventListener('click',function(){setTimeout(showFile)});
+  document.getElementById('lang-zh').addEventListener('click',function(){setTimeout(showFile,400)});
 })();
 </script>
 <script>
@@ -2078,7 +2097,7 @@ const tour=document.getElementById('ptour');if(!tour)return;
 const $=s=>document.getElementById(s);
 const gl=$('pt-gl'),panel=$('pt-panel'),rail=$('pt-rail');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const L=()=>document.documentElement.lang==='en'?'en':'es';
+const L=()=>JL();
 const C=[
  {s:'pernos-de-alta-fiabilidad',m:'pernos',bg:'tunel',
   es:{k:'Fijación y anclaje',t:'Pernos de alta fiabilidad',d:'Pernos a la forja, pernos bronce-silicio y pernos de anclaje para molinos, minería, construcción y vía férrea.',v:['Todos','A la forja','Bronce-silicio','De anclaje','Barra helicoidal'],vs:['pernos-de-alta-fiabilidad','pernos-a-la-forja','pernos-bronce-silicio','pernos-de-alta-fiabilidad','pernos-de-barra-helicoidal'],f:[['A la forja','9 tipos'],['Bronce-silicio','1 % a 5 % de silicio, resiste agua dulce y salada'],['Barra helicoidal','Para sostenimiento en roca']],bc:'Fondo: Túnel de Baños, pernos de anclaje de Jocecia'},
@@ -2384,11 +2403,11 @@ gl.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();touched(
 /* ---------- Capítulos ---------- */
 let idx=0,t0=0,paused=false,started=false;
 const esc=s=>String(s).replace(/[&<]/g,c=>({'&':'&amp;','<':'&lt;'}[c]));
-function drawRail(){const u=UI[L()];
-  rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}" aria-selected="${i===idx}"><small>${c.m?u.t3:u.tf} · ${esc(c[L()].k)}</small><span>${esc(c[L()].t)}</span><i></i></button>`).join('')}
-function fill(i){const c=C[i],t=c[L()],u=UI[L()];
+function drawRail(){const u=ZO(UI);
+  rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}" aria-selected="${i===idx}"><small>${c.m?u.t3:u.tf} · ${esc(ZO(c).k)}</small><span>${esc(ZO(c).t)}</span><i></i></button>`).join('')}
+function fill(i){const c=C[i],t=ZO(c),u=ZO(UI);
   $('pt-k').textContent=t.k;$('pt-n').textContent=(i+1)+' / '+C.length;$('pt-t').textContent=t.t;$('pt-d').textContent=t.d;
-  $('pt-v').innerHTML=t.v?t.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join('')+(t.lk?`<p class="pt-lk"><span>${L()==='en'?'Also':'También'}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:''):`<p class="pt-tags">${esc(t.tags)}</p>`+(t.lk?`<p class="pt-lk"><span>${L()==='en'?'Also':'También'}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:'');
+  $('pt-v').innerHTML=t.v?t.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join('')+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:''):`<p class="pt-tags">${esc(t.tags)}</p>`+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:'');
   $('pt-f').innerHTML=t.f.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
   $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593964068392?text='+encodeURIComponent(u.q+t.t);
   $('pt-l').textContent=u.more;$('pt-l').href='/productos/'+(c.es.vs?c.es.vs[vari]||c.s:c.s);
