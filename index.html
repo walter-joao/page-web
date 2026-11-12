@@ -239,6 +239,11 @@
 .sat.lt .sat-shade{background:linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 86%,var(--bg) 100%)}
 .sat.lt .sat-copy h2{color:var(--fg)}
 .sat.lt .sat-lead{color:var(--muted)}
+/* En pantallas anchas el mapa es una ventana del mismo ancho que el contenido, igual que Productos */
+@media (min-width:761px){.sat{width:auto;margin-left:0;height:clamp(560px,min(82vh,50vw),780px);border-radius:28px;border:1px solid var(--line);box-shadow:0 40px 90px -40px rgba(0,0,0,.6)}
+  .sat-copy{left:clamp(24px,4vw,48px);width:min(460px,40%)}
+  .sat-shade{background:linear-gradient(90deg,rgba(4,12,24,.92) 0%,rgba(4,12,24,.72) 30%,rgba(4,12,24,.18) 52%,transparent 64%)}
+  .sat.lt .sat-shade{background:linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 30%,rgba(243,245,248,.2) 52%,transparent 64%)}}
 .sat.lt .sat-chips button{background:rgba(255,255,255,.75);border-color:rgba(13,23,38,.16);color:var(--fg)}
 .sat.lt .sat-chips button:hover{border-color:rgba(13,23,38,.4)}
 .sat.lt .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
@@ -966,7 +971,7 @@ footer a{color:var(--muted)}
 }
 .fx-dark .fichas a{background:rgba(255,255,255,.04)}
 .values.fx-dark{background:#05090f!important;overflow:visible}.values:not(.fx-dark){background:var(--bg)}.values:not(.fx-dark) .card{background:var(--surface);box-shadow:0 20px 50px -24px rgba(13,23,38,.22)}.values.fx-dark::before{display:none}
-#proyectos.fx-dark::before{background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.22),transparent 75%),linear-gradient(rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px,linear-gradient(90deg,rgba(170,205,255,.05) 1px,transparent 1px) 50% 0/64px 64px}
+#proyectos.fx-dark::before{background:radial-gradient(45% 360px at 50% 300px,rgba(52,120,255,.16),transparent 75%);-webkit-mask-image:none;mask-image:none}
 .fx-dark .mo-map{border-color:rgba(160,200,255,.22);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 0 0 1px rgba(0,0,0,.4),0 40px 90px -30px rgba(40,110,255,.35)}
 .fx-dark .mo-panel{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.015)),#0a121d;border-color:rgba(225,240,255,.12);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 30px 60px -30px rgba(0,0,0,.8)}
 .fx-dark .mo-chip:not([aria-pressed="true"]),.fx-dark .mo-seg,.fx-dark .mo-row{background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border-color:rgba(225,240,255,.13);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
