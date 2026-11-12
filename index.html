@@ -333,6 +333,9 @@
   .sat-stage .sat-card .x{display:grid;place-items:center;position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:rgba(13,23,38,.07);color:#0d1726;font:600 1rem/1 var(--f-body);cursor:pointer}
 }
 @media (prefers-reduced-motion:reduce){.sat-pin .g{animation:none}.sat-bg img,.sat-card{transition:none}}
+
+/* Manual de marca: párrafos largos justificados en pantallas medianas y grandes */
+@media (min-width:700px){.hero .lead,.quote p,.pillar p,.event p,.job-intro .lead,.pp-lead,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
 </style>
 <script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
@@ -340,32 +343,32 @@ document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&family=Open+Sans:wght@400..700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&family=Open+Sans:wght@400..700&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&family=Open+Sans:wght@400..700&display=swap"></noscript>
 <style>
 /* Layout: portada a pantalla completa con fotos de obra que se alternan; debajo, tarjetas de vidrio, carrusel deslizable de sectores, rejilla bento de productos, mosaico de obras y banda de contacto. Oscuro por defecto, con versión clara. */
 :root{
   --bg:#f3f5f8; --bg-2:#e8ecf2; --surface:#ffffff; --glass:rgba(255,255,255,.72); --fg:#0d1726; --muted:#5a6a7e; --line:rgba(13,23,38,.10);
-  --brand:#1f4fa0; --cyan:#0a6f8c; --accent:#ee7a2b; --accent-ink:#1b0c02;
-  --grad:linear-gradient(100deg,#1f4fa0 0%,#1aa3c8 55%,#ee7a2b 100%);
+  --brand:#0d4374; --cyan:#0d4374; --accent:#ee7a2b; --accent-ink:#1b0c02;
+  --grad:linear-gradient(100deg,#0d4374 0%,#0d4374 100%);
   --steel-a:#c9d1d9; --steel-b:#eef1f4; --logo-filter:none;
   --shadow:0 20px 50px -20px rgba(13,23,38,.25);
-  --f-display:"Archivo","Arial Narrow",Arial,sans-serif;
-  --f-body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --f-display:"Montserrat",Arial,sans-serif;
+  --f-body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Montserrat",Arial,sans-serif;
   --radius:22px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#05090f; --bg-2:#0b1422; --surface:#0f1b2c; --glass:rgba(16,29,48,.62); --fg:#e8eef6; --muted:#93a3b8; --line:rgba(160,190,230,.12);
-  --brand:#5b8fe6; --cyan:#3cc8e8; --accent:#ff8a3d; --accent-ink:#1b0c02;
-  --grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --brand:#8db5db; --cyan:#8db5db; --accent:#ff8a3d; --accent-ink:#1b0c02;
+  --grad:linear-gradient(100deg,#8db5db 0%,#8db5db 100%);
   --steel-a:#152235; --steel-b:#1d2d44; --logo-filter:brightness(0) invert(1);
   --shadow:0 30px 60px -25px rgba(0,0,0,.7); color-scheme:dark }}
 :root[data-theme="dark"]{
   --bg:#05090f; --bg-2:#0b1422; --surface:#0f1b2c; --glass:rgba(16,29,48,.62); --fg:#e8eef6; --muted:#93a3b8; --line:rgba(160,190,230,.12);
-  --brand:#5b8fe6; --cyan:#3cc8e8; --accent:#ff8a3d; --accent-ink:#1b0c02;
-  --grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --brand:#8db5db; --cyan:#8db5db; --accent:#ff8a3d; --accent-ink:#1b0c02;
+  --grad:linear-gradient(100deg,#8db5db 0%,#8db5db 100%);
   --steel-a:#152235; --steel-b:#1d2d44; --logo-filter:brightness(0) invert(1);
   --shadow:0 30px 60px -25px rgba(0,0,0,.7); color-scheme:dark }
 
@@ -487,7 +490,7 @@ nav.main .mega-cat a:hover,.top.solid nav.main .mega-cat a:hover{background:var(
   radial-gradient(80% 60% at 0% 100%,rgba(31,79,160,.55),transparent 70%)}
 .hero .wrap{width:100%;padding-block:150px 56px;display:grid;gap:40px}
 .hero h1{font-size:clamp(2.7rem,8vw,6.6rem);font-weight:900;font-stretch:115%;max-width:14ch;overflow-wrap:break-word}
-.hero h1 .grad{background:linear-gradient(100deg,#8fb8ff,#5fdcf5 50%,#ffa057);-webkit-background-clip:text;background-clip:text}
+.hero h1 .grad{background:linear-gradient(100deg,#8db5db,#8db5db);-webkit-background-clip:text;background-clip:text}
 .hero .lead{color:rgba(255,255,255,.82);font-size:1.15rem}
 .hero .copy{display:grid;gap:26px;max-width:820px;min-width:0}
 .cta-row{display:flex;flex-wrap:wrap;gap:12px}
@@ -926,7 +929,7 @@ footer a{color:var(--muted)}
 @keyframes fxpulse{to{box-shadow:0 0 0 9px rgba(95,220,245,0)}}
 .hero h1{font-weight:600;font-stretch:100%;letter-spacing:-.04em;line-height:1;
   background:linear-gradient(180deg,#fff 30%,#a4b1c4);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero h1 .grad{background:linear-gradient(100deg,#8fb8ff,#5fdcf5 55%,#ffa057);-webkit-background-clip:text;background-clip:text}
+.hero h1 .grad{background:linear-gradient(100deg,#8db5db,#8db5db);-webkit-background-clip:text;background-clip:text}
 .hero .btn-glass,.fx-dark .btn-line{background:linear-gradient(180deg,rgba(255,255,255,.14),rgba(255,255,255,.04));border-color:rgba(225,240,255,.24);color:#fff;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 10px 30px -12px rgba(0,0,0,.6)}
 .btn-accent{box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 12px 30px -10px var(--accent)}
@@ -941,7 +944,7 @@ footer a{color:var(--muted)}
 
 /* Productos: isla oscura (también en tema claro) con resplandor y cuadrícula */
 .fx-dark{--bg:#05090f;--bg-2:#05090f;--surface:#0c1522;--glass:rgba(16,29,48,.55);--fg:#e8eef6;--muted:#93a3b8;--line:rgba(225,240,255,.11);
-  --cyan:#3cc8e8;--accent:#ff8a3d;--accent-ink:#1b0c02;--grad:linear-gradient(100deg,#6fa0f2 0%,#3cc8e8 55%,#ff8a3d 100%);
+  --cyan:#8db5db;--accent:#ff8a3d;--accent-ink:#1b0c02;--grad:linear-gradient(100deg,#8db5db 0%,#8db5db 100%);
   --steel-a:#152235;--steel-b:#1d2d44;color-scheme:dark;background:#05090f!important;color:var(--fg);overflow:clip;isolation:isolate}
 .fx-dark::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
   background:radial-gradient(50% 420px at 50% 0%,rgba(52,120,255,.28),transparent 75%),
@@ -1222,8 +1225,8 @@ footer a{color:var(--muted)}
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker" data-i18n="prod.k">Productos</span>
-        <h2 data-i18n-html="prod.t">Todo el acero de <span class="grad">su proyecto</span></h2>
-        <p class="lead lit-wrap"><span class="lit" data-i18n="prod.lead">Fabricación propia en Sangolquí e importación bajo normas internacionales.</span></p>
+        <h2 data-i18n-html="prod.t">Ingeniería, materiales y consultoría para <span class="grad">su proyecto</span></h2>
+        <p class="lead lit-wrap"><span class="lit" data-i18n="prod.lead">Soluciones de infraestructura, servicios y consultorías: fabricación propia en Sangolquí e importación bajo normas internacionales.</span></p>
       </div>
     </div>
     <div class="pt" id="ptour" role="region" aria-label="Recorrido de productos">
@@ -1937,7 +1940,7 @@ footer a{color:var(--muted)}
     "s6.t":"Steel structures","s6.d":"Warehouses, trusses and industrial building structures.",
     "s7.t":"Street furniture","s7.d":"Playgrounds, sculptures, stainless fountains, benches and bins.",
     "s8.t":"Special orders","s8.d":"Custom parts, such as aircraft boarding stairs.",
-    "prod.k":"Products","prod.t":"All the steel for <span class=\"grad\">your project</span>","prod.lead":"Made in our Sangolquí plant and imported under international standards.",
+    "prod.k":"Products","prod.t":"Engineering, materials and consulting for <span class=\"grad\">your project</span>","prod.lead":"Infrastructure solutions, services and consulting: made in our Sangolquí plant and imported under international standards.",
     "p1.t":"Steel infrastructure","p1.d":"Structures, warehouses, stairs, walkways, poles, plates, energy dissipators and tunnel arches.","p1.c1":"Warehouses","p1.c2":"Poles","p1.c3":"Arches","p1.c4":"Walkways",
     "p2.t":"High-reliability bolts","p2.d":"Forged, silicon bronze and anchor bolts.",
     "p3.t":"Steel culverts","p3.d":"Corrugated galvanized steel, MP 68 and MP 152.",
