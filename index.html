@@ -799,6 +799,7 @@ a.tile{color:inherit;text-decoration:none}
 .cinfo small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .cinfo b{font-weight:600;user-select:all}
 .cinfo a,.cinfo b a{color:inherit;text-decoration:none}
+.cinfo .addr-map{text-decoration:underline;text-decoration-color:color-mix(in srgb,currentColor 40%,transparent);text-underline-offset:4px}.cinfo .addr-map svg{display:inline-block;margin-left:6px;vertical-align:-2px;opacity:.75}@media (hover:hover){.cinfo .addr-map:hover{text-decoration-color:currentColor}}
 .cinfo .social{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
 .social a{display:inline-flex;align-items:center;gap:8px;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid var(--line);background:var(--bg);font-weight:700;font-size:.9rem}
 .social a:hover{border-color:var(--cyan);color:var(--cyan)}
@@ -1362,9 +1363,9 @@ footer a{color:var(--muted)}
           </div>
         </div>
         <div class="cinfo">
-          <div><small data-i18n="ct.addr">Planta</small><b>Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí, Pichincha</b></div>
-          <div><small data-i18n="ct.phones">Teléfonos</small><b>+593 (2) 233 7445 · +593 (2) 233 2622 · +593 99 516 2850</b></div>
-          <div><small>WhatsApp</small><b>+593 96 406 8392</b></div>
+          <div><small data-i18n="ct.addr">Planta</small><b><a class="addr-map" href="https://goo.gl/maps/nqrk2EPtWefnFMfS6" target="_blank" rel="noopener" aria-label="Ver la planta en Google Maps">Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí, Pichincha<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></b></div>
+          <div><small data-i18n="ct.phones">Teléfonos</small><b><a href="tel:+59322337445">+593 (2) 233 7445</a> · <a href="tel:+59322332622">+593 (2) 233 2622</a> · <a href="tel:+593995162850">+593 99 516 2850</a></b></div>
+          <div><small>WhatsApp</small><b><a href="https://wa.me/593964068392" target="_blank" rel="noopener">+593 96 406 8392</a></b></div>
           <div><small data-i18n="ct.mail">Correos por área</small><ul class="mails">
             <li><a href="mailto:ventas_2@jocecia.com">ventas_2@jocecia.com</a> · <a href="mailto:ventas8@jocecia.com">ventas8@jocecia.com</a><span data-i18n="ct.m1">Ventas: pernos, alcantarillas, accesorios, grating, piezas, resina y encofrados</span></li>
             <li><a href="mailto:ingenieria@jocecia.com">ingenieria@jocecia.com</a><span data-i18n="ct.m2">Ingeniería: soluciones de infraestructura, servicios y consultorías</span></li>
