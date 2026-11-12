@@ -16,7 +16,7 @@ LINEAS = [
     ("Rejillas", "Rejillas metálicas para drenaje, ventilación y pisos técnicos.", "/img/obras/metro-rejillas.webp", "/proyectos/metro-de-quito"),
     ("Pisos metálicos grating y tramex", "Pisos industriales de rejilla electrosoldada.", WP+"2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg", "/productos/grating-tramex"),
     ("Postes", "Postes de acero para alumbrado, cableado y anclaje de estructuras.", WP+"2025/02/image003.jpg", "/productos/postes-metalicos"),
-    ("Encofrados", "Encofrados verticales, trepantes, circulares y deslizantes.", WP+"2025/02/IMG-20220426-WA0011-1024x576.jpg", "/productos/encofrados"),
+    ("Encofrados", "Encofrados metálicos de acero para moldear y sostener el hormigón.", WP+"2025/02/IMG-20220426-WA0011-1024x576.jpg", "/productos/encofrados"),
     ("Pernos de anclaje", "Pernos para roca, túneles y estructuras.", "/img/obras/tunel-banos-1.webp", "/productos/soporte-en-roca"),
     ("Resina para anclaje", "Cartuchos de resina para fijar pernos en roca y concreto.", WP+"2025/02/IMG_20180131_095956-1024x768-1.jpg", "/productos/resina-de-anclaje"),
     ("Accesorios para tubería", "Codos, tees, reducciones, uniones y válvulas.", WP+"2025/02/IMG-20220426-WA0008-1-1024x576.jpg", "/productos/accesorios-para-tuberias"),
