@@ -11,12 +11,17 @@ portada a una ficha y al revés.
 
 Si un texto no está en el JSON, el script lo lista al final: agregue su
 traducción al JSON y vuelva a correrlo.
+
+Chino simplificado (botón 中文): cada texto recibe también data-zh, sacado de
+herramientas/traducciones-zh.json, que traduce el texto INGLÉS al chino (la misma idea que
+i18n/zh.json de la portada). Si falta, la ficha muestra el inglés en modo chino.
 """
 import glob, json, os, re, sys
 from bs4 import BeautifulSoup
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TR = json.load(open(os.path.join(RAIZ, "herramientas", "traducciones-en.json"), encoding="utf-8"))
+ZH = json.load(open(os.path.join(RAIZ, "herramientas", "traducciones-zh.json"), encoding="utf-8"))
 
 UNIDAD = {"p", "li", "h1", "h2", "h3", "h4", "h5", "td", "th", "dt", "dd", "figcaption", "small", "b", "strong",
           "span", "a", "button", "label", "summary", "caption", "em", "i"}
@@ -25,20 +30,25 @@ LETRAS = re.compile("[A-Za-zÁÉÍÓÚáéíóúñÑ]{2,}")
 
 PILL = ('<div class="pill" role="group" aria-label="Idioma / Language">'
         '<button type="button" id="lang-es" aria-pressed="true">ES</button>'
-        '<button type="button" id="lang-en" aria-pressed="false">EN</button></div>')
+        '<button type="button" id="lang-en" aria-pressed="false">EN</button>'
+        '<button type="button" id="lang-zh" aria-pressed="false" lang="zh-CN">中文</button></div>')
+
+ZH_CSS = ('<style id="i18n-zh">html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;'
+          '--f-mono:"Montserrat",Arial,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;--f-display:"Montserrat",Arial,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}'
+          'html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}'
+          '.pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}</style>')
 
 SCRIPT = """<script id="i18n-fichas">(function(){
-var R=document.documentElement,K='joce-lang',T=document.title,M=document.querySelector('meta[name="description"]'),D=M&&M.content;
+var R=document.documentElement,K='joce-lang',T=document.title,M=document.querySelector('meta[name="description"]'),D=M&&M.content,L=['es','en','zh'];
 function set(l){
-  document.querySelectorAll('[data-en]').forEach(function(e){if(e.dataset.es==null)e.dataset.es=e.innerHTML;e.innerHTML=l==='en'?e.dataset.en:e.dataset.es});
-  R.lang=l;document.title=l==='en'&&R.dataset.titleEn?R.dataset.titleEn:T;
-  if(M)M.content=l==='en'&&R.dataset.descEn?R.dataset.descEn:D;
-  var a=document.getElementById('lang-es'),b=document.getElementById('lang-en');if(a){a.setAttribute('aria-pressed',l==='es');b.setAttribute('aria-pressed',l==='en')}
-  document.querySelectorAll('a[href^="/catalogos/"]').forEach(function(e){var h=e.getAttribute('href').replace('/catalogos/en/','/catalogos/');e.setAttribute('href',l==='en'?h.replace('/catalogos/','/catalogos/en/'):h)});
+  document.querySelectorAll('[data-en]').forEach(function(e){if(e.dataset.es==null)e.dataset.es=e.innerHTML;e.innerHTML=l==='es'?e.dataset.es:l==='zh'&&e.dataset.zh!=null?e.dataset.zh:e.dataset.en});
+  R.lang=l==='zh'?'zh-CN':l;var d=R.dataset,tt=l==='zh'?d.titleZh||d.titleEn:l==='en'?d.titleEn:0,dd=l==='zh'?d.descZh||d.descEn:l==='en'?d.descEn:0;
+  document.title=tt||T;if(M)M.content=dd||D;
+  L.forEach(function(x){var b=document.getElementById('lang-'+x);if(b)b.setAttribute('aria-pressed',l===x)});
+  document.querySelectorAll('a[href^="/catalogos/"]').forEach(function(e){var h=e.getAttribute('href').replace('/catalogos/en/','/catalogos/');e.setAttribute('href',l!=='es'?h.replace('/catalogos/','/catalogos/en/'):h)});
   try{localStorage.setItem(K,l)}catch(e){}}
-var a=document.getElementById('lang-es'),b=document.getElementById('lang-en');
-if(a){a.addEventListener('click',function(){set('es')});b.addEventListener('click',function(){set('en')})}
-try{if(localStorage.getItem(K)==='en')set('en')}catch(e){}
+L.forEach(function(x){var b=document.getElementById('lang-'+x);if(b)b.addEventListener('click',function(){set(x)})});
+try{var s=localStorage.getItem(K);if(s==='en'||s==='zh')set(s)}catch(e){}
 })();</script>"""
 
 
@@ -63,18 +73,31 @@ def procesar(ruta, faltan):
         es = el.decode_contents().strip()
         if es in TR:
             el["data-en"] = TR[es]
+            if "data-zh" in el.attrs:
+                del el["data-zh"]
+            if TR[es] in ZH:
+                el["data-zh"] = ZH[TR[es]]
         else:
             faltan.setdefault(es, []).append(ruta)
     html = soup.html
     t = "TITLE:" + soup.title.string
     if t in TR:
         html["data-title-en"] = TR[t][6:]
+        if TR[t] in ZH:
+            html["data-title-zh"] = ZH[TR[t]][6:]
     m = soup.find("meta", attrs={"name": "description"})
     if m and "META:" + m["content"] in TR:
         html["data-desc-en"] = TR["META:" + m["content"]][5:]
+        if TR["META:" + m["content"]] in ZH:
+            html["data-desc-zh"] = ZH[TR["META:" + m["content"]]][5:]
     tools = soup.select_one("header .tools")
-    if tools and not tools.select_one("#lang-es"):
+    if tools:
+        for viejo in tools.select(".pill"):
+            viejo.decompose()
         tools.insert(0, BeautifulSoup(PILL, "html.parser"))
+    for viejo in soup.select("style#i18n-zh"):
+        viejo.decompose()
+    soup.head.append(BeautifulSoup(ZH_CSS, "html.parser"))
     viejo = soup.find("script", id="i18n-fichas")
     if viejo:
         viejo.decompose()
