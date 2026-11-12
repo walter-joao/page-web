@@ -2090,9 +2090,12 @@ const C=[
  {s:'postes-metalicos',m:'poste',bg:'postes',
   es:{k:'Alumbrado y redes',t:'Postes metálicos',d:'Postes para alumbrado público, sujeción de cables y anclaje de estructuras.',v:['Alumbrado','Sujeción de cables'],f:[['Acabado','Galvanizado'],['Catálogo','PDF postes']],bc:'Fondo: postes galvanizados en patio'},
   en:{k:'Lighting & networks',t:'Steel poles',d:'Poles for street lighting, cable support and structural anchoring.',v:['Lighting','Cable support'],f:[['Finish','Galvanized'],['Catalog','Poles PDF']],bc:'Background: galvanized poles in the yard'}},
+ {s:'encofrados',m:'enc',bg:'tunel',
+  es:{k:'Obra civil',t:'Encofrados metálicos',d:'Encofrados de acero que moldean y sostienen el hormigón hasta que fragua: verticales para muros, circulares para tanques y silos, y trepantes para pilas y presas.',v:['Verticales','Circulares','Trepantes'],f:[['Tipos','Verticales · trepantes · circulares · deslizantes'],['Material','Acero, a medida'],['Ya lo usó','Hidroeléctricas y cementeras']]},
+  en:{k:'Civil works',t:'Steel formwork',d:'Steel formwork that shapes and holds concrete until it sets: vertical for walls, circular for tanks and silos, and climbing for piers and dams.',v:['Vertical','Circular','Climbing'],f:[['Types','Vertical · climbing · circular · slip'],['Material','Steel, made to order'],['Used at','Hydropower and cement plants']]}},
  {s:'infraestructura-metalica',ph:'vial',
-  es:{k:'Estructura',t:'Infraestructura metálica',d:'Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.',tags:'Galpones · Pasarelas · Escaleras · Cerchas · Placas',lk:[['Encofrados','encofrados']],f:[['Taller','Sangolquí'],['Ya lo usó','Metro de Quito']]},
-  en:{k:'Structure',t:'Steel infrastructure',d:'Structures, warehouses, stairs, walkways, poles, plates, energy dissipators and tunnel arches.',tags:'Warehouses · Walkways · Stairs · Arches · Plates',lk:[['Formwork','encofrados']],f:[['Plant','Sangolquí'],['Used at','Quito Metro']]}},
+  es:{k:'Estructura',t:'Infraestructura metálica',d:'Estructuras, galpones, escaleras, pasarelas, postes, placas, disipadores de energía y cerchas para túneles.',tags:'Galpones · Pasarelas · Escaleras · Cerchas · Placas',f:[['Taller','Sangolquí'],['Ya lo usó','Metro de Quito']]},
+  en:{k:'Structure',t:'Steel infrastructure',d:'Structures, warehouses, stairs, walkways, poles, plates, energy dissipators and tunnel arches.',tags:'Warehouses · Walkways · Stairs · Arches · Plates',f:[['Plant','Sangolquí'],['Used at','Quito Metro']]}},
  {s:'soporte-en-roca',ph:'soporte',
   es:{k:'Túneles y roca',t:'Soporte en roca',d:'Barra helicoidal y cartuchos de resina para sostener túneles y galerías, reforzar pilares en minería y consolidar taludes.',tags:'Barra helicoidal · Cartucho de resina',lk:[['Resina de anclaje','resina-de-anclaje'],['Pernos de barra helicoidal','pernos-de-barra-helicoidal']],f:[['Ya lo usó','Túnel de Baños'],['Catálogo','PDF resina de anclaje']]},
   en:{k:'Tunnels & rock',t:'Rock support',d:'Helical bars and resin cartridges to support tunnels and galleries, reinforce mine pillars and stabilize slopes.',tags:'Helical bar · Resin cartridge',lk:[['Anchoring resin','resina-de-anclaje'],['Helical bar bolts','pernos-de-barra-helicoidal']],f:[['Used at','Baños tunnel'],['Catalog','Anchoring resin PDF']]}},
@@ -2130,7 +2133,7 @@ function initGL(){
   mats.steel=M(0x2b2f35,.85,.42);mats.steelL=M(0x3a3f46,.8,.5);mats.bronze=M(0xb07a45,1,.32);
   mats.galv=M(0xc9d0d8,.9,.36);mats.galvD=M(0xa7b0ba,.9,.45);mats.inox=M(0xe3e7ec,1,.2);
   mats.lamp=new THREE.MeshStandardMaterial({color:0xffffff,emissive:0xfff1d6,emissiveIntensity:1.6});
-  mats.ins=M(0x7a4a2a,.1,.35);
+  mats.ins=M(0x7a4a2a,.1,.35);mats.encR=M(0x5a6472,.75,.45);
   root=new THREE.Group();S.add(root);
   return true;
 }
@@ -2230,7 +2233,37 @@ function buildPoste(v){const g=new THREE.Group(),Hh=4.6;
   else{const cr=sh(new THREE.Mesh(new THREE.BoxGeometry(1.4,.07,.07),mats.galvD));cr.position.y=Hh-.15;g.add(cr);
     [-.6,-.2,.2,.6].forEach(x=>{const ins=sh(new THREE.Mesh(new THREE.CylinderGeometry(.04,.055,.16,12),mats.ins));ins.position.set(x,Hh-.03,0);g.add(ins)})}
   g.rotation.y=-.5;return {g,size:5.2,y:2.5}}
-const BUILD={pernos:buildPernos,alc:buildAlc,grat:buildGrat,poste:buildPoste};
+function encPanel(W,H){const g=new THREE.Group(),d=.09,t=.012;
+  const face=sh(new THREE.Mesh(new THREE.BoxGeometry(W,H,t),mats.steelL));face.position.set(0,H/2,0);g.add(face);
+  const fr=(w,h,x,y)=>{const b=sh(new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mats.encR));b.position.set(x,y,-d/2-t/2);g.add(b)};
+  fr(W,.05,0,.025);fr(W,.05,0,H-.025);fr(.05,H,-W/2+.025,H/2);fr(.05,H,W/2-.025,H/2);
+  for(let y=.4;y<H-.2;y+=.4)fr(W-.1,.03,0,y);
+  [-W/6,W/6].forEach(x=>fr(.04,H-.1,x,H/2));
+  const wl=sh(new THREE.Mesh(new THREE.BoxGeometry(W*.9,.1,.07),mats.galvD));wl.position.set(0,H*.3,-d-.05);g.add(wl);
+  const w2=wl.clone();w2.position.y=H*.75;g.add(w2);
+  return g}
+function encProp(g,x,y0,z0,len){const p=sh(new THREE.Mesh(new THREE.CylinderGeometry(.03,.03,len,12),mats.galv));
+  const a=Math.PI/4;p.position.set(x,y0-Math.cos(a)*len/2,z0-Math.sin(a)*len/2);p.rotation.x=-a;g.add(p);
+  const bp=sh(new THREE.Mesh(new THREE.BoxGeometry(.18,.02,.18),mats.galvD));bp.position.set(x,.01,z0-Math.sin(a)*len);g.add(bp)}
+function buildEnc(v){const g=new THREE.Group();
+  if(v===1){const R=1.05,H=1.9,n=7;
+    const face=sh(new THREE.Mesh(new THREE.CylinderGeometry(R,R,H,48,1,true,0,Math.PI),mats.steelL));face.material.side=THREE.DoubleSide;face.position.y=H/2;g.add(face);
+    for(let y=.05;y<=H;y+=(H-.1)/4){const r=sh(new THREE.Mesh(new THREE.TorusGeometry(R+.045,.035,6,48,Math.PI),mats.encR));r.rotation.x=Math.PI/2;r.rotation.z=-Math.PI/2;r.position.y=y;g.add(r)}
+    for(let i=0;i<=n;i++){const a=i/n*Math.PI;const b=sh(new THREE.Mesh(new THREE.BoxGeometry(.08,H,.05),mats.encR));b.position.set(Math.sin(a)*(R+.05),H/2,Math.cos(a)*(R+.05));b.rotation.y=a;g.add(b)}
+    g.rotation.y=Math.PI*.95;return {g,size:2.6,y:.95}}
+  const p=encPanel(1.9,2.3);
+  if(v===2){p.position.y=1.15;g.add(p);
+    const pl=sh(new THREE.Mesh(new THREE.BoxGeometry(2.1,.05,.9),mats.galv));pl.position.set(0,1.1,-.55);g.add(pl);
+    [-.8,.8].forEach(x=>{const st=sh(new THREE.Mesh(new THREE.BoxGeometry(.06,1.15,.06),mats.encR));st.position.set(x,.55,-.08);g.add(st);
+      const br=sh(new THREE.Mesh(new THREE.BoxGeometry(.05,1.25,.05),mats.encR));br.position.set(x,.62,-.5);br.rotation.x=.75;g.add(br);
+      const post=sh(new THREE.Mesh(new THREE.CylinderGeometry(.02,.02,1,8),mats.galvD));post.position.set(x,1.6,-.97);g.add(post)});
+    [1.45,2.05].forEach(y=>{const r=sh(new THREE.Mesh(new THREE.CylinderGeometry(.018,.018,2.1,8),mats.galvD));r.rotation.z=Math.PI/2;r.position.set(0,y,-.97);g.add(r)});
+    const wall=sh(new THREE.Mesh(new THREE.BoxGeometry(2.4,1.1,.3),new THREE.MeshStandardMaterial({color:0x9a9da0,roughness:.9})));wall.position.set(0,.55,.2);g.add(wall);
+    g.rotation.y=Math.PI*.82;return {g,size:3.6,y:1.6}}
+  g.add(p);const p2=encPanel(1.9,2.3);p2.position.x=-1.92;g.add(p2);
+  [-2.5,-1.35,-.6,.6].forEach(x=>encProp(g,x,1.7,-.1,1.9));
+  g.position.x=.96;const w=new THREE.Group();w.add(g);w.rotation.y=Math.PI*.8;return {g:w,size:3.6,y:1.15}}
+const BUILD={pernos:buildPernos,alc:buildAlc,grat:buildGrat,poste:buildPoste,enc:buildEnc};
 let built=null;
 function setModel(m,v){if(!R)return;
   while(root.children.length){const c=root.children.pop();c.traverse(o=>{if(o.geometry)o.geometry.dispose()})}
