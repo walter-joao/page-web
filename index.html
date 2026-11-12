@@ -209,12 +209,12 @@
 }
 </script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Mapa de obras sobre paisaje satelital (render fijo + marcadores HTML calibrados con la misma cámara) */
-.sat{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:clamp(620px,min(92vh,56.25vw),1240px);overflow:hidden;isolation:isolate;background:#04101f;color:#e8eef6}
+.sat{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:clamp(620px,min(92vh,56.25vw),1240px);overflow:hidden;isolation:isolate;background:var(--bg);color:#e8eef6}
 .sat-stage{position:absolute;inset:0}
 .sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sat-bg img{object-fit:cover;object-position:62% 25%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
 .sat.in .sat-bg img{transform:none}
-.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,12,24,.92) 0%,rgba(4,12,24,.72) 26%,rgba(4,12,24,.18) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 84%,var(--bg) 100%)}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.92) 0%,rgba(5,9,15,.72) 26%,rgba(5,9,15,.18) 48%,transparent 60%)}
 .sat-copy .kicker{justify-self:start}
 .sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
 .sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
@@ -236,7 +236,7 @@
 .sat-prov.has{color:#fff;font-weight:700;font-size:.7rem}
 .sat-prov.has::before{content:"";display:inline-block;width:5px;height:5px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(255,138,61,.9);vertical-align:middle}
 .sat.lt{background:var(--bg);color:var(--fg)}
-.sat.lt .sat-shade{background:linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%),linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 86%,var(--bg) 100%)}
+.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%)}
 .sat.lt .sat-copy h2{color:var(--fg)}
 .sat.lt .sat-lead{color:var(--muted)}
 /* En pantallas anchas el mapa va de borde a borde; el texto se alinea con el contenido */
@@ -986,8 +986,10 @@ footer a{color:var(--muted)}
 
 /* Productos: recorrido por aplicación. Capítulos con pieza 3D girable (three.js, se carga al acercarse) sobre foto de obra desenfocada, o con foto de obra grande. Panel de vidrio a la izquierda y carril de capítulos abajo. */
 .pt{--pt-a:#ffffff;--pt-b:#c9d5e4;--pt-floor:rgba(33,67,121,.14);--pt-veil:rgba(236,241,247,.62);--pt-glass:rgba(255,255,255,.74);--pt-chip:rgba(13,23,38,.06);
-  position:relative;height:min(86svh,820px);min-height:560px;overflow:hidden;isolation:isolate;border-block:1px solid var(--line);margin-top:6px;
-  background:radial-gradient(70% 80% at 62% 38%,var(--pt-a),var(--pt-b) 75%)}
+  position:relative;height:min(86svh,820px);min-height:560px;overflow:hidden;isolation:isolate;margin-top:6px;
+  background:linear-gradient(180deg,var(--bg) 0%,transparent 16%,transparent 84%,var(--bg) 100%),radial-gradient(70% 80% at 62% 38%,var(--pt-a),var(--pt-b) 75%)}
+/* El piso cuadriculado se desvanece abajo para que la franja no tenga borde */
+.pt-studio{-webkit-mask-image:linear-gradient(180deg,#000 78%,transparent);mask-image:linear-gradient(180deg,#000 78%,transparent)}
 .fx-dark .pt{--pt-a:#132a4e;--pt-b:#04070e;--pt-floor:rgba(60,200,232,.3);--pt-veil:rgba(6,12,26,.5);--pt-glass:rgba(8,14,24,.62);--pt-chip:rgba(255,255,255,.08)}
 .pt::after{content:"";position:absolute;left:30%;right:-5%;bottom:9%;height:22%;z-index:0;background:radial-gradient(50% 50% at 50% 50%,var(--pt-floor),transparent 70%);pointer-events:none}
 .pt-stage{overflow:hidden}
@@ -1076,7 +1078,7 @@ footer a{color:var(--muted)}
 @media (min-width:761px){.pt-stage{position:absolute;inset:0}}
 /* En pantallas anchas el recorrido va de borde a borde; panel y controles se alinean con el contenido */
 @media (min-width:761px){.pt-panel{left:max(18px,calc((100% - 1240px)/2 + 18px))}.pt-hint,.pt-cap,.pt-arrows{right:max(22px,calc((100% - 1240px)/2 + 18px))}}
-#productos.fx-dark::before{background:radial-gradient(45% 360px at 50% 340px,rgba(52,120,255,.2),transparent 75%);-webkit-mask-image:none;mask-image:none}
+#productos.fx-dark::before{background:none}
 @media (prefers-reduced-motion:reduce){.pt *{transition:none!important}}
 </style>
 
