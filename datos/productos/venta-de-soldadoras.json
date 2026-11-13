@@ -1,0 +1,265 @@
+{
+  "titulo": {
+    "es": "Venta de soldadoras Lincoln Electric en Ecuador | Jocecia",
+    "en": "Lincoln Electric welding machines for sale in Ecuador | Jocecia",
+    "zh": "厄瓜多尔 Lincoln Electric 焊机销售 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Venta de soldadoras Lincoln Electric: RX 520, Invertec V275-S, Invertec V350 PRO, Tomahawk 625, LF-72 y Linc 405-SA. Motosoldadoras reparadas con overhaul.",
+    "en": "Lincoln Electric welding machines for sale: RX 520, Invertec V275-S, Invertec V350 PRO, Tomahawk 625, LF-72 and Linc 405-SA. Overhauled engine-driven welders.",
+    "zh": "Lincoln Electric 焊机销售：RX 520、Invertec V275-S、Invertec V350 PRO、Tomahawk 625、LF-72 和 Linc 405-SA。翻新的发动机驱动焊机。"
+  },
+  "nombre": {
+    "es": "Venta de soldadoras",
+    "en": "Welding machines for sale",
+    "zh": "焊机销售"
+  },
+  "lead": {
+    "es": "Venta de soldadoras Lincoln Electric en Ecuador: Invertec V275-S y V350 PRO, Tomahawk 625, LF-72, RX 520 y Linc 405-SA, además de motosoldadoras reparadas con overhaul.",
+    "en": "Lincoln Electric welding machines for sale in Ecuador: Invertec V275-S and V350 PRO, Tomahawk 625, LF-72, RX 520 and Linc 405-SA, plus overhauled engine-driven welders.",
+    "zh": "厄瓜多尔 Lincoln Electric 焊机销售：Invertec V275-S 和 V350 PRO、Tomahawk 625、LF-72、RX 520 和 Linc 405-SA，以及翻新的发动机驱动焊机。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Servicios",
+      "en": "Services",
+      "zh": "服务"
+    },
+    "pagina": null
+  },
+  "fotos": [
+    "/img/wp/2025/01/Lincoln-Electric-RX-520.jpg",
+    "/img/wp/2025/01/Invertec-v275-S-left.jpg",
+    "/img/wp/2025/01/lincoln_electric_invertec_v350_pro_1.jpg",
+    "/img/wp/2025/01/625-TOMAHAWK.jpg",
+    "/img/wp/2025/01/LF-72.jpg",
+    "/img/wp/2025/01/azav1-lin405saperb.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h3",
+      "es": "MOTOSOLDADORAS REPARADAS - CON OVERHAUL -",
+      "en": "OVERHAULED ENGINE-DRIVEN WELDERS",
+      "zh": "翻新的发动机驱动焊机"
+    },
+    {
+      "tipo": "h3",
+      "es": "Lincoln Electric RX 520",
+      "en": "Lincoln Electric RX 520",
+      "zh": "Lincoln Electric RX 520"
+    },
+    {
+      "tipo": "p",
+      "es": "Marca: LINCOLN ELECTRIC",
+      "en": "Brand: LINCOLN ELECTRIC",
+      "zh": "品牌：LINCOLN ELECTRIC"
+    },
+    {
+      "tipo": "p",
+      "es": "Modelo: RX-520",
+      "en": "Model: RX-520",
+      "zh": "型号：RX-520"
+    },
+    {
+      "tipo": "p",
+      "es": "Soldadora eléctrica de corriente alterna y directa monofásica y trifásica",
+      "en": "AC/DC electric welder, single-phase and three-phase",
+      "zh": "交直流电焊机，单相和三相"
+    },
+    {
+      "tipo": "p",
+      "es": "Rango Corriente Nominal: 220v3-440v3-/ 60 HZ",
+      "en": "Rated input: 220V 3ph - 440V 3ph / 60 Hz",
+      "zh": "额定输入：220V 三相 - 440V 三相 / 60 Hz"
+    },
+    {
+      "tipo": "p",
+      "es": "Rango de salida: 55-110 A CD",
+      "en": "Output range: 55-110 A DC",
+      "zh": "输出范围：55-110 A 直流"
+    },
+    {
+      "tipo": "h3",
+      "es": "Invertec V275-S",
+      "en": "Invertec V275-S",
+      "zh": "Invertec V275-S"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "400V ±15%, 3Ph 50/60Hz, preparado para trabajar con generador",
+          "en": "400V ±15%, 3Ph 50/60Hz, generator ready",
+          "zh": "400V ±15%，三相 50/60Hz，可配合发电机使用"
+        },
+        {
+          "es": "Peso ligero: solo 14,3 kg",
+          "en": "Lightweight: only 14.3 kg",
+          "zh": "轻巧：仅 14.3 kg"
+        },
+        {
+          "es": "Potencia en vacío 19W y eficiencia &gt; 85%",
+          "en": "Idle power 19W and efficiency &gt; 85%",
+          "zh": "待机功率 19W，效率 &gt; 85%"
+        },
+        {
+          "es": "SMAW Manual, Sinérgico y Pulsado",
+          "en": "Manual SMAW, synergic and pulsed",
+          "zh": "手动 SMAW、协同和脉冲"
+        },
+        {
+          "es": "Electrodo Pulsado: 0,5-15 Hz",
+          "en": "Pulsed stick: 0.5-15 Hz",
+          "zh": "脉冲焊条焊：0.5-15 Hz"
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Invertec V350 PRO",
+      "en": "Invertec V350 PRO",
+      "zh": "Invertec V350 PRO"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "400V ±15%, 3Ph 50/60Hz, preparado para trabajar con generador",
+          "en": "400V ±15%, 3Ph 50/60Hz, generator ready",
+          "zh": "400V ±15%，三相 50/60Hz，可配合发电机使用"
+        },
+        {
+          "es": "Peso ligero: solo 14,3 kg",
+          "en": "Lightweight: only 14.3 kg",
+          "zh": "轻巧：仅 14.3 kg"
+        },
+        {
+          "es": "Potencia en vacío 19W y eficiencia &gt; 85%",
+          "en": "Idle power 19W and efficiency &gt; 85%",
+          "zh": "待机功率 19W，效率 &gt; 85%"
+        },
+        {
+          "es": "SMAW Manual, Sinérgico y Pulsado",
+          "en": "Manual SMAW, synergic and pulsed",
+          "zh": "手动 SMAW、协同和脉冲"
+        },
+        {
+          "es": "Electrodo Pulsado: 0,5-15 Hz",
+          "en": "Pulsed stick: 0.5-15 Hz",
+          "zh": "脉冲焊条焊：0.5-15 Hz"
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Tomahawk 625",
+      "en": "Tomahawk 625",
+      "zh": "Tomahawk 625"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "La Tomahawk 625 es una cortadora de plasma con antorcha manual de 20 pies (6.1 metros)",
+          "en": "The Tomahawk 625 is a plasma cutter with a 20 ft (6.1 m) hand torch",
+          "zh": "Tomahawk 625 是一款配 20 英尺（6.1 m）手持割枪的等离子切割机"
+        },
+        {
+          "es": "Fabricada por Lincoln Electric, una marca reconocida por su calidad y fiabilidad en equipos de soldadura y corte.",
+          "en": "Made by Lincoln Electric, a brand known for the quality and reliability of its welding and cutting equipment.",
+          "zh": "由 Lincoln Electric 制造，该品牌以焊接和切割设备的品质和可靠性著称。"
+        },
+        {
+          "es": "Concentra el arco para diferentes espesores de material.",
+          "en": "Focuses the arc for different material thicknesses.",
+          "zh": "电弧集中，适合不同厚度的材料。"
+        },
+        {
+          "es": "Inicio confiable del arco de plasma sin alta frecuencia.",
+          "en": "Reliable plasma arc starting without high frequency.",
+          "zh": "无高频，等离子电弧起弧可靠。"
+        },
+        {
+          "es": "Corte rápido entre gaps, aún en metal expandido",
+          "en": "Fast cutting across gaps, even on expanded metal",
+          "zh": "可快速跨越间隙切割，甚至可切割钢板网"
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Lincoln Electric LF-72",
+      "en": "Lincoln Electric LF-72",
+      "zh": "Lincoln Electric LF-72"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Conexiones de pistola de latón a latón para una mejor conductividad eléctrica que da como resultado un mejor rendimiento del arco.",
+          "en": "Brass-to-brass gun connections for better electrical conductivity and better arc performance.",
+          "zh": "焊枪采用铜对铜连接，导电性更好，电弧性能更佳。"
+        },
+        {
+          "es": "Alimentador de 2 rodillos impulsores para aplicaciones básicas de soldadura con alambre.",
+          "en": "2-roll drive wire feeder for basic wire welding.",
+          "zh": "双辊驱动送丝机，适用于基本的焊丝焊接。"
+        },
+        {
+          "es": "Instalación de guías de alambre y rodillos impulsores totalmente sin herramientas.",
+          "en": "Completely tool-free installation of wire guides and drive rolls.",
+          "zh": "导丝管和送丝轮完全无需工具即可安装。"
+        },
+        {
+          "es": "Los rodillos impulsores de alambre accionados por engranajes se deslizan hacia adentro y hacia afuera fácilmente.",
+          "en": "Gear-driven wire drive rolls slide in and out easily.",
+          "zh": "齿轮驱动的送丝轮可轻松滑入滑出。"
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Linc 405-SA",
+      "en": "Linc 405-SA",
+      "zh": "Linc 405-SA"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "LINC 405-SA se completa además con características más sofisticadas.",
+          "en": "The LINC 405-SA also comes with more advanced features.",
+          "zh": "LINC 405-SA 还具备更多高级功能。"
+        },
+        {
+          "es": "Sus dos ruedas grandes, tiradores frontales y anillas superiores proporcionan una fácil maniobrabilidad en el taller. El LINC 405-SA tiene medidores digitales que muestran la corriente de soldadura.",
+          "en": "Its two large wheels, front handles and top lifting rings make it easy to move around the shop. The LINC 405-SA has digital meters that show the welding current.",
+          "zh": "两个大轮子、前把手和顶部吊环，便于在车间内移动。LINC 405-SA 配有显示焊接电流的数字仪表。"
+        },
+        {
+          "es": "Esta máquina también tiene la característica Hot Start ajustable, que permite al soldador aumentar la corriente de soldadura en el cebado del electrodo.",
+          "en": "It also has adjustable Hot Start, which lets the welder raise the welding current when striking the electrode.",
+          "zh": "它还具有可调热启动功能，焊工可在引弧时提高焊接电流。"
+        },
+        {
+          "es": "La Fuerza de Arco ajustable permite al soldador prevenir el pegado del electrodo en el baño de la soldadura.",
+          "en": "Adjustable Arc Force lets the welder keep the electrode from sticking in the weld pool.",
+          "zh": "可调电弧推力可防止焊条粘在熔池中。"
+        },
+        {
+          "es": "El ventilador actúa sólo cuando el equipo detecta que es necesario (F.A.N.™) de manera que se obtienen dos ventajas; reducir el ruido durante el tiempo que no se esté en funcionamiento y reducir el polvo en el interior de la máquina.",
+          "en": "The fan runs only when the machine detects it is needed (F.A.N.™), which gives two benefits: less noise while idle and less dust inside the machine.",
+          "zh": "风扇仅在机器检测到需要时运行（F.A.N.™），带来两个好处：待机时噪音更低，机器内部灰尘更少。"
+        },
+        {
+          "es": "Ambos rectificadores disponen de un control remoto opcional que permite al soldador ajustar la corriente de soldadura a distancia.",
+          "en": "Both rectifiers offer an optional remote control so the welder can adjust the welding current from a distance.",
+          "zh": "两款整流焊机均可选配遥控器，焊工可远距离调节焊接电流。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "partes-y-piezas-especiales"
+  ]
+}

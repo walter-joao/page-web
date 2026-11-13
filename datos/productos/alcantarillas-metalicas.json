@@ -1,0 +1,83 @@
+{
+  "titulo": {
+    "es": "Alcantarillas metálicas TMC en Ecuador | Jocecia",
+    "en": "TMC metal culverts in Ecuador | Jocecia",
+    "zh": "厄瓜多尔 TMC 金属涵管 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Son elementos de acero corrugado y galvanizado, también conocidos como Tubería Metálica Corrugada (TMC), compuesto por anillos que se ensamblan en obra…",
+    "en": "Corrugated, galvanized steel culverts, also known as corrugated steel pipe (TMC), assembled on site with high-strength bolts and nuts.",
+    "zh": "镀锌波纹钢涵管，又称波纹钢管（TMC），现场用高强度螺栓和螺母组装。"
+  },
+  "nombre": {
+    "es": "Alcantarillas metálicas",
+    "en": "Metal culverts",
+    "zh": "金属涵管"
+  },
+  "lead": {
+    "es": "Las alcantarillas metálicas, o tubería metálica corrugada (TMC), son de acero galvanizado, se arman en obra con pernos sin mano de obra especializada y soportan grandes rellenos. Jocecia ofrece dos modelos: MP 68 y MP 152.",
+    "en": "Metal culverts, or corrugated steel pipe (TMC), are made of galvanized steel, are bolted together on site without specialized labor and carry deep fills. Jocecia offers two models: MP 68 and MP 152.",
+    "zh": "金属涵管，即波纹钢管（TMC），由镀锌钢制成，现场用螺栓拼装，无需专业工人，可承受深填方。Jocecia 提供两种型号：MP 68 和 MP 152。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Alcantarillas metálicas",
+      "en": "Metal culverts",
+      "zh": "金属涵管"
+    },
+    "pagina": "alcantarillas-metalicas"
+  },
+  "catalogo": {
+    "ancla": "catalogo-alcantarillas",
+    "pdf": "/catalogos/alcantarillas.pdf",
+    "descarga": "CATALOGO-ALCANTARILLAS-METALICAS-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/WhatsApp-Image-2025-02-10-at-14.32.57.jpeg",
+    "/img/wp/2021/08/AlcantarillasMetalicas1.png",
+    "/img/wp/2025/02/th.jpg",
+    "/img/wp/2025/02/th-1.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "ALCANTARILLA METÁLICA DE ALTA CALIDAD",
+      "en": "HIGH-QUALITY METAL CULVERTS",
+      "zh": "高品质金属涵管"
+    },
+    {
+      "tipo": "p",
+      "es": "Son elementos de acero corrugado y galvanizado, también conocidos como Tubería Metálica Corrugada (TMC), compuesto por anillos que se ensamblan en obra mediante pernos y tuercas de alta resistencia; este armado es sencillo y no requiere mano de obra especializada.",
+      "en": "They are corrugated, galvanized steel elements, also known as corrugated steel pipe (TMC), made of rings that are assembled on site with high-strength bolts and nuts; assembly is simple and needs no specialized labor.",
+      "zh": "它们是镀锌波纹钢构件，又称波纹钢管（TMC），由多个管环组成，在现场用高强度螺栓和螺母组装；安装简单，无需专业工人。"
+    },
+    {
+      "tipo": "p",
+      "es": "Su alta resistencia estructural, permite soportar grandes rellenos y trabaja efectivamente como drenaje de aguas superficiales; ideal para solucionar problemas de trasvase de fluidos en obras de infraestructura vial.",
+      "en": "Their high structural strength lets them carry deep fills, and they work well as surface-water drainage; an ideal solution for moving water across road infrastructure.",
+      "zh": "其结构强度高，可承受深填方，非常适合地表排水，是道路基础设施中过水的理想方案。"
+    },
+    {
+      "tipo": "h2",
+      "es": "CLASIFICACIÓN",
+      "en": "CLASSIFICATION",
+      "zh": "分类"
+    },
+    {
+      "tipo": "h3",
+      "es": "Alcantarilla TMC Minimultiplate SP MP 68",
+      "en": "TMC Minimultiplate SP MP 68 culvert",
+      "zh": "TMC Minimultiplate SP MP 68 涵管"
+    },
+    {
+      "tipo": "h3",
+      "es": "Alcantarilla Multiplate SP MP 152-MP 152.S",
+      "en": "Multiplate SP MP 152-MP 152.S culvert",
+      "zh": "Multiplate SP MP 152-MP 152.S 涵管"
+    }
+  ],
+  "relacionados": [
+    "alcantarilla-mp-68",
+    "alcantarilla-mp-152"
+  ]
+}

@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{#- Ficha de producto: /productos/<slug>. Datos en datos/productos/<slug>.json (ver herramientas/LEEME.md).
+    Campos: titulo, descripcion, nombre, lead (textos {es,en,zh}); grupo {nombre, pagina}; catalogo (opcional);
+    fotos (rutas); cuerpo (bloques h2/h3/h4/p/ul/ol/figura); relacionados (slugs de otros productos).
+    Solo infraestructura-metalica: estilo, lineas, tambien, fichas.
+    Todo lo demás (URLs de fotos, alt, WhatsApp, og:*, JSON-LD, contactos) se calcula aquí con p y sitio. -#}
+
+{%- macro foto_src(ruta, w) -%}
+{#- Las fotos propias ya optimizadas (/img/obras/...) van directas; las demás por el optimizador de Vercel -#}
+{%- if ruta.startswith("/img/obras/") %}{{ ruta }}{% else %}{{ ruta | vimg(w) }}{% endif -%}
+{%- endmacro %}
+{%- macro srcset(ruta) %}{{ ruta | vimg(384) }} 384w, {{ ruta | vimg(640) }} 640w, {{ ruta | vimg(1080) }} 1080w{% endmacro %}
+{%- macro j(valor) %}{{ valor | tojson_bonito | safe }}{% endmacro %}
+
+{%- set nombre = p.nombre.es %}
+{%- set g = p.grupo %}
+{%- set url = sitio.dominio ~ p.ruta %}
+{%- set ciudad = sitio.direccion.rsplit(", ", 1)[1] %}
+{#- Migas: el grupo es enlace salvo en la propia página del grupo o si el grupo no tiene página (Servicios) -#}
+{%- set grupo_enlace = g.pagina and g.pagina != p.slug %}
+
+{#- JSON-LD (Product + BreadcrumbList + la empresa) -#}
+{%- set migas = [("Inicio", sitio.dominio ~ "/"), ("Productos", sitio.dominio ~ "/#productos")]
+      + ([(g.nombre.es, sitio.dominio ~ "/productos/" ~ g.pagina)] if grupo_enlace else [])
+      + [(nombre, url)] %}
+{%- set ld %}
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Product",
+   "name": {{ j(nombre) }},
+   "description": {{ j(p.descripcion.es) }},
+   "url": {{ j(url) }},
+   "image": [{% for f in p.fotos[:3] %}
+    {{ j(f) }}{% if not loop.last %},{% endif %}{% endfor %}{% if p.fotos %}
+   {% endif %}],
+   "category": {{ j(g.nombre.es) }},
+   "brand": {
+    "@type": "Organization",
+    "name": {{ j(sitio.marca) }}, "legalName": {{ j(sitio.razon_social) }}
+   },
+   "manufacturer": {
+    "@id": {{ j(sitio.dominio ~ "/#empresa") }}
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [{% for nom, item in migas %}
+    {
+     "@type": "ListItem",
+     "position": {{ loop.index }},
+     "name": {{ j(nom) }},
+     "item": {{ j(item) }}
+    }{% if not loop.last %},{% endif %}{% endfor %}
+   ]
+  },
+  {
+   "@type": [
+    "Organization",
+    "LocalBusiness"
+   ],
+   "@id": {{ j(sitio.dominio ~ "/#empresa") }},
+   "name": {{ j(sitio.marca) }}, "legalName": {{ j(sitio.razon_social) }},
+   "url": {{ j(sitio.dominio ~ "/") }},
+   "telephone": {{ j(sitio.telefono.internacional) }},
+   "email": {{ j(sitio.correo) }},
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ j(sitio.direccion.split(", ")[:2] | join(", ")) }},
+    "addressLocality": {{ j(ciudad) }},
+    "addressRegion": "Pichincha",
+    "addressCountry": "EC"
+   }
+  }
+ ]
+}
+{% endset %}
+{#- Campos que lee base.html -#}
+{%- set _ = p.update({"og_tipo": "product", "og_titulo": nombre ~ " · " ~ sitio.marca,
+                      "og_imagen": p.fotos[0] if p.fotos else None, "ld_json": ld}) %}
+
+{%- block estilo %}{% if p.get("estilo") %}<style>{% include "estilos/" ~ p.estilo ~ ".css" %}</style>
+{% endif %}{% endblock %}
+
+{%- block main %}
+{%- set wa = ("Hola, quisiera una cotización de " ~ nombre ~ ".") | urlencode | replace("/", "%2F") %}
+<main id="contenido">
+<section class="pp-hero">
+<div class="wrap">
+<nav aria-label="Ruta" class="crumb"><a data-en="Home" data-zh="首页" href="/">Inicio</a> / <a data-en="Products" data-zh="产品" href="/#productos">Productos</a> / {% if grupo_enlace %}<a data-en="{{ g.nombre.en }}" data-zh="{{ g.nombre.zh }}" href="/productos/{{ g.pagina }}">{{ g.nombre.es | safe }}</a>{% else %}<span data-en="{{ g.nombre.en }}" data-zh="{{ g.nombre.zh }}">{{ g.nombre.es | safe }}</span>{% endif %}</nav>
+<h1 data-en="{{ p.nombre.en }}" data-zh="{{ p.nombre.zh }}">{{ nombre | safe }}</h1>
+<p class="pp-lead" data-en="{{ p.lead.en }}" data-zh="{{ p.lead.zh }}">{{ p.lead.es | safe }}</p>
+<p class="grupo" data-en="{{ g.nombre.en }} · {{ sitio.marca }}, {{ ciudad }}, {{ sitio.pais.en }}" data-zh="{{ g.nombre.zh }} · {{ sitio.marca }}，{{ sitio.pais.zh }} {{ ciudad }}">{{ g.nombre.es | safe }} · {{ sitio.marca }}, {{ ciudad }}, {{ sitio.pais.es }}</p>
+<div class="cta-row"><a class="btn btn-accent" data-en="Quote on WhatsApp" data-zh="通过 WhatsApp 询价" href="https://wa.me/{{ sitio.whatsapp }}?text={{ wa }}" rel="noopener" target="_blank">Cotizar por WhatsApp</a>
+{%- if p.get("catalogo") %}<a class="btn btn-line" data-en="View catalog" data-zh="查看目录" href="/#{{ p.catalogo.ancla }}">Ver catálogo</a><a class="btn btn-line" data-en="Download PDF" data-zh="下载 PDF" download="{{ p.catalogo.descarga }}" href="{{ p.catalogo.pdf }}" rel="noopener" target="_blank">Descargar PDF</a>{% endif -%}
+<a class="btn btn-line" data-en="Contact" data-zh="联系我们" href="/#contacto">Contacto</a></div>
+{% if p.fotos %}<div class="pp-gal">
+{%- for f in p.fotos %}<figure><img alt="{{ nombre }} – {{ sitio.marca }} (foto {{ loop.index }})" data-o="{{ f }}" decoding="async"{% if not loop.first %} loading="lazy"{% endif %} sizes="(max-width: 700px) 100vw, 33vw" src="{{ f | vimg(640) }}" srcset="{{ srcset(f) }}"/></figure>{% endfor -%}
+</div>
+{% endif %}</div>
+</section>
+<section class="pp-body">
+<div class="wrap">
+{%- if p.get("lineas") %}{{ lineas() }}{% else %}<article class="pp-txt">
+{% for b in p.cuerpo %}{{ bloque(b) }}
+{% endfor %}</article>{% endif %}</div>
+</section>
+<section class="pp-rel">
+<div class="wrap"><h2 data-en="Related products" data-zh="相关产品">Productos relacionados</h2><div class="pp-cards">
+{%- for slug in p.relacionados %}{% set o = productos[slug] -%}
+<a data-en="&lt;small&gt;{{ o.grupo.nombre.en }}&lt;/small&gt;{{ o.nombre.en }}" data-zh="&lt;small&gt;{{ o.grupo.nombre.zh }}&lt;/small&gt;{{ o.nombre.zh }}" href="/productos/{{ slug }}"><small>{{ o.grupo.nombre.es | safe }}</small>{{ o.nombre.es | safe }}</a>
+{%- endfor -%}
+<a data-en="&lt;small&gt;Catalog&lt;/small&gt;All products" data-zh="&lt;small&gt;目录&lt;/small&gt;全部产品" href="/#productos"><small>Catálogo</small>Todos los productos</a></div></div>
+</section>
+</main>
+{% endblock %}
+
+{#- Un bloque del cuerpo de la ficha -#}
+{%- macro bloque(b) -%}
+{%- if b.tipo in ("h2", "h3", "h4", "p") -%}
+<{{ b.tipo }} data-en="{{ b.en }}" data-zh="{{ b.zh }}">{{ b.es | safe }}</{{ b.tipo }}>
+{%- elif b.tipo in ("ul", "ol") -%}
+<{{ b.tipo }}>{% for i in b["items"] %}<li data-en="{{ i.en }}" data-zh="{{ i.zh }}">{{ i.es | safe }}</li>{% endfor %}</{{ b.tipo }}>
+{%- elif b.tipo == "figura" -%}
+<figure class="pp-fig"><a href="{{ b.foto }}" rel="noopener" target="_blank"><img alt="{{ b.get('alt') or p.nombre.es }}" data-o="{{ b.foto }}" decoding="async" loading="lazy" sizes="(max-width: 800px) 100vw, 760px" src="{{ b.foto | vimg(640) }}" srcset="{{ srcset(b.foto) }}"/></a></figure>
+{%- else -%}
+{{ fallo_tipo_de_bloque_desconocido[b.tipo] }}
+{%- endif -%}
+{%- endmacro %}
+
+{#- Solo infraestructura-metalica: tarjetas de líneas, "También fabricamos" y productos con ficha propia -#}
+{%- macro lineas() -%}
+<div class="il-grid">
+{%- for l in p.lineas -%}
+<a class="il-card" href="{{ l.enlace }}"><figure><img alt="{{ l.titulo.es }} – {{ sitio.marca }}" decoding="async" loading="lazy" src="{{ foto_src(l.foto, 640) }}"/></figure><div><b data-en="{{ l.titulo.en }}" data-zh="{{ l.titulo.zh }}">{{ l.titulo.es | safe }}</b><p data-en="{{ l.texto.en }}" data-zh="{{ l.texto.zh }}">{{ l.texto.es | safe }}</p><span data-en="See more ›" data-zh="查看更多 ›">Ver más ›</span></div></a>
+{%- endfor -%}
+</div><div class="il-mas"><small data-en="{{ p.tambien.titulo.en }}" data-zh="{{ p.tambien.titulo.zh }}">{{ p.tambien.titulo.es | safe }}</small>
+{%- for e in p.tambien["items"] %}<em data-en="{{ e.en }}" data-zh="{{ e.zh }}">{{ e.es | safe }}</em>{% endfor -%}
+</div><h2 class="il-sub" data-en="{{ p.fichas.titulo.en }}" data-zh="{{ p.fichas.titulo.zh }}">{{ p.fichas.titulo.es | safe }}</h2><p data-en="{{ p.fichas.intro.en }}" data-zh="{{ p.fichas.intro.zh }}">{{ p.fichas.intro.es | safe }}</p><div class="il-fichas">
+{%- for f in p.fichas["items"] -%}
+<a class="il-ficha" href="/productos/{{ f.producto }}"><img alt="{{ f.nombre.es }} – Joce Cia Ltda." decoding="async" loading="lazy" src="{{ foto_src(f.foto, 256) }}"/><div><b data-en="{{ f.nombre.en }}" data-zh="{{ f.nombre.zh }}">{{ f.nombre.es | safe }}</b><span data-en="View product ›" data-zh="查看产品 ›">Ver ficha ›</span></div></a>
+{%- endfor -%}
+</div>
+{%- endmacro %}

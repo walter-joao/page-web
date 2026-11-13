@@ -1,0 +1,229 @@
+{
+  "titulo": {
+    "es": "Infraestructura y estructuras metálicas en Ecuador | Jocecia",
+    "en": "Steel infrastructure and structures in Ecuador | Jocecia",
+    "zh": "厄瓜多尔钢结构基础设施 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Infraestructura metálica: grating y tramex, encofrados, cerchas para túneles, rejillas, placas, estructuras metálicas, galpones, escaleras, pasarelas y postes.",
+    "en": "Steel infrastructure: grating, formwork, tunnel arches, gratings, plates, steel structures, warehouses, stairs, walkways and poles.",
+    "zh": "钢结构基础设施：钢格板、模板、隧道拱架、格栅、钢板、钢结构、厂房、楼梯、走道和电线杆。"
+  },
+  "nombre": {
+    "es": "Infraestructura metálica",
+    "en": "Steel infrastructure",
+    "zh": "钢结构基础设施"
+  },
+  "lead": {
+    "es": "Infraestructura metálica para obras en Ecuador: Jocecia fabrica galpones, estructuras metálicas, escaleras, pasarelas, cerchas para túneles, rejillas, placas, disipadores de energía y pedidos especiales.",
+    "en": "Steel infrastructure for projects in Ecuador: Jocecia makes warehouses, steel structures, stairs, walkways, tunnel arches, gratings, plates, energy dissipators and special orders.",
+    "zh": "厄瓜多尔项目用钢结构基础设施：Jocecia 制造厂房、钢结构、楼梯、走道、隧道拱架、格栅、钢板、消能器及特殊订单产品。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Infraestructura metálica",
+      "en": "Steel infrastructure",
+      "zh": "钢结构基础设施"
+    },
+    "pagina": "infraestructura-metalica"
+  },
+  "fotos": [],
+  "estilo": "infraestructura-metalica",
+  "lineas": [
+    {
+      "titulo": {
+        "es": "Galpones",
+        "en": "Warehouses",
+        "zh": "厂房"
+      },
+      "texto": {
+        "es": "Diseño, fabricación y montaje de galpones industriales y comerciales.",
+        "en": "Design, fabrication and erection of industrial and commercial warehouses.",
+        "zh": "工业和商业厂房的设计、制造和安装。"
+      },
+      "foto": "/img/wp/2021/08/Galpon2.png",
+      "enlace": "/proyectos/galpon-cadeco"
+    },
+    {
+      "titulo": {
+        "es": "Estructuras metálicas",
+        "en": "Steel structures",
+        "zh": "钢结构"
+      },
+      "texto": {
+        "es": "Estructuras y volados para edificios, centros comerciales y obra civil.",
+        "en": "Structures and cantilevers for buildings, shopping centers and civil works.",
+        "zh": "用于建筑、购物中心和土木工程的结构和悬挑。"
+      },
+      "foto": "/img/obras/vista-valle-coral-volados.webp",
+      "enlace": "/proyectos/vista-valle-coral-center"
+    },
+    {
+      "titulo": {
+        "es": "Cerchas para túneles",
+        "en": "Tunnel arches",
+        "zh": "隧道拱架"
+      },
+      "texto": {
+        "es": "Cerchas curvas de perfil de acero para sostenimiento de túneles.",
+        "en": "Curved steel-section arches for tunnel support.",
+        "zh": "用于隧道支护的弯曲型钢拱架。"
+      },
+      "foto": "/img/obras/metro-cercha.webp",
+      "enlace": "/proyectos/metro-de-quito"
+    },
+    {
+      "titulo": {
+        "es": "Escaleras",
+        "en": "Stairs",
+        "zh": "楼梯"
+      },
+      "texto": {
+        "es": "Escaleras metálicas fijas y provisionales para estaciones y plantas.",
+        "en": "Fixed and temporary steel stairs for stations and plants.",
+        "zh": "用于车站和工厂的固定式和临时钢楼梯。"
+      },
+      "foto": "/img/obras/metro-rampa.webp",
+      "enlace": "/proyectos/metro-de-quito"
+    },
+    {
+      "titulo": {
+        "es": "Pasamanos y pasarelas",
+        "en": "Handrails and walkways",
+        "zh": "扶手与走道"
+      },
+      "texto": {
+        "es": "Plataformas, pasarelas y barandas de acero con acabado a pedido.",
+        "en": "Steel platforms, walkways and railings with custom finishes.",
+        "zh": "钢平台、走道和栏杆，表面处理可定制。"
+      },
+      "foto": "/img/obras/metro-plataformas.webp",
+      "enlace": "/proyectos/metro-de-quito"
+    },
+    {
+      "titulo": {
+        "es": "Rejillas",
+        "en": "Gratings",
+        "zh": "格栅"
+      },
+      "texto": {
+        "es": "Rejillas metálicas para drenaje, ventilación y pisos técnicos.",
+        "en": "Steel gratings for drainage, ventilation and technical floors.",
+        "zh": "用于排水、通风和技术地板的钢格栅。"
+      },
+      "foto": "/img/obras/metro-rejillas.webp",
+      "enlace": "/proyectos/metro-de-quito"
+    }
+  ],
+  "tambien": {
+    "titulo": {
+      "es": "También fabricamos",
+      "en": "We also make",
+      "zh": "我们还生产"
+    },
+    "items": [
+      {
+        "es": "Placas",
+        "en": "Plates",
+        "zh": "钢板"
+      },
+      {
+        "es": "Placas de anclaje",
+        "en": "Anchor plates",
+        "zh": "锚板"
+      },
+      {
+        "es": "Disipadores de energía",
+        "en": "Energy dissipators",
+        "zh": "消能器"
+      },
+      {
+        "es": "Tubería metálica",
+        "en": "Steel pipe",
+        "zh": "钢管"
+      }
+    ]
+  },
+  "fichas": {
+    "titulo": {
+      "es": "Con ficha propia",
+      "en": "With their own product page",
+      "zh": "有独立产品页面"
+    },
+    "intro": {
+      "es": "Estos productos también son parte de la infraestructura metálica de Jocecia y tienen su propia página.",
+      "en": "These products are also part of Jocecia's steel infrastructure line and have their own page.",
+      "zh": "这些产品同样属于 Jocecia 钢结构基础设施产品线，并有各自的独立页面。"
+    },
+    "items": [
+      {
+        "nombre": {
+          "es": "Pisos metálicos grating y tramex",
+          "en": "Grating floors",
+          "zh": "钢格板地板"
+        },
+        "foto": "/img/wp/2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg",
+        "producto": "grating-tramex"
+      },
+      {
+        "nombre": {
+          "es": "Postes",
+          "en": "Poles",
+          "zh": "电线杆"
+        },
+        "foto": "/img/wp/2025/02/image003.jpg",
+        "producto": "postes-metalicos"
+      },
+      {
+        "nombre": {
+          "es": "Encofrados",
+          "en": "Formwork",
+          "zh": "模板"
+        },
+        "foto": "/img/wp/2025/02/IMG-20220426-WA0011-1024x576.jpg",
+        "producto": "encofrados"
+      },
+      {
+        "nombre": {
+          "es": "Pernos de anclaje",
+          "en": "Anchor bolts",
+          "zh": "锚栓"
+        },
+        "foto": "/img/obras/tunel-banos-1.webp",
+        "producto": "soporte-en-roca"
+      },
+      {
+        "nombre": {
+          "es": "Resina para anclaje",
+          "en": "Anchoring resin",
+          "zh": "锚固树脂"
+        },
+        "foto": "/img/wp/2025/02/IMG_20180131_095956-1024x768-1.jpg",
+        "producto": "resina-de-anclaje"
+      },
+      {
+        "nombre": {
+          "es": "Accesorios para tubería",
+          "en": "Pipe fittings",
+          "zh": "管道配件"
+        },
+        "foto": "/img/wp/2025/02/IMG-20220426-WA0008-1-1024x576.jpg",
+        "producto": "accesorios-para-tuberias"
+      },
+      {
+        "nombre": {
+          "es": "Pedidos especiales",
+          "en": "Special orders",
+          "zh": "特殊订单"
+        },
+        "foto": "/img/wp/2021/08/ReparacionCilindro4-1-576x1024.png",
+        "producto": "partes-y-piezas-especiales"
+      }
+    ]
+  },
+  "relacionados": [
+    "alcantarillas-metalicas",
+    "pernos-de-alta-fiabilidad",
+    "soporte-en-roca"
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "titulo": {
+    "es": "Alcantarilla Multiplate MP 152 y MP 152.S | Jocecia Ecuador",
+    "en": "Multiplate MP 152 and MP 152.S culverts | Jocecia Ecuador",
+    "zh": "Multiplate MP 152 和 MP 152.S 涵管 | Jocecia 厄瓜多尔"
+  },
+  "descripcion": {
+    "es": "Las estructuras Multiplate SP MP-152 están formadas por planchas de acero corrugado, curvadas y galvanizadas. Las partes son unidas por pernos y…",
+    "en": "Multiplate SP MP-152 structures are made of curved, corrugated and galvanized steel plates joined with bolts and nuts.",
+    "zh": "Multiplate SP MP-152 结构由弯曲、波纹、镀锌钢板制成，用螺栓和螺母连接。"
+  },
+  "nombre": {
+    "es": "Alcantarilla Multiplate SP MP 152 – MP 152.S",
+    "en": "Multiplate SP MP 152 – MP 152.S culvert",
+    "zh": "Multiplate SP MP 152 – MP 152.S 涵管"
+  },
+  "lead": {
+    "es": "La alcantarilla Multiplate MP 152 se arma con planchas de acero corrugado y galvanizado, en forma circular, de bóveda, elipse, arco o paso inferior. Sirve como paso vehicular, peatonal o drenaje bajo grandes rellenos.",
+    "en": "The Multiplate MP 152 culvert is assembled from corrugated galvanized steel plates in circular, arch, ellipse, pipe-arch or underpass shapes. It serves as a vehicle or pedestrian underpass, or as drainage under deep fills.",
+    "zh": "Multiplate MP 152 涵管由镀锌波纹钢板拼装而成，可做成圆形、拱形、椭圆、管拱或地下通道形状。可用作车行或人行地下通道，或深填方下的排水通道。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Alcantarillas metálicas",
+      "en": "Metal culverts",
+      "zh": "金属涵管"
+    },
+    "pagina": "alcantarillas-metalicas"
+  },
+  "catalogo": {
+    "ancla": "catalogo-alcantarillas",
+    "pdf": "/catalogos/alcantarillas.pdf",
+    "descarga": "CATALOGO-ALCANTARILLAS-METALICAS-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/20230208T21572744621-AlcantarillaTMCOpt-300x200.webp",
+    "/img/wp/2025/02/alcantarillas.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "Estructuras Multiplate SP MP-152",
+      "en": "Multiplate SP MP-152 structures",
+      "zh": "Multiplate SP MP-152 结构"
+    },
+    {
+      "tipo": "p",
+      "es": "Las estructuras Multiplate SP MP-152 están formadas por planchas de acero corrugado, curvadas y galvanizadas. Las partes son unidas por pernos y tuercas y dan forma a estructuras de formas geométricas tales como: circular, bóveda, elipse, paso inferior y arco en diversos diámetros.",
+      "en": "Multiplate SP MP-152 structures are made of curved, corrugated and galvanized steel plates. The parts are joined with bolts and nuts to form structures in shapes such as circular, arch, ellipse, underpass and pipe-arch, in a range of diameters.",
+      "zh": "Multiplate SP MP-152 结构由弯曲、波纹、镀锌钢板制成。各部件用螺栓和螺母连接，形成圆形、拱形、椭圆、地下通道和管拱等多种形状、多种直径的结构。"
+    },
+    {
+      "tipo": "p",
+      "es": "Su alta resistencia estructural, permite soportar grandes rellenos y trabaja efectivamente como pasos subterráneos tanto peatonal, vehicular o como drenaje de aguas superficiales; ideal para solucionar obras de infraestructura vial. También fabricamos estructuras de Gran luz Multiplate SP MP – 152 S en formas geométricas como: Arco Perfil Alto, Arco Perfil Bajo, Elipse y Ovoide.",
+      "en": "Their high structural strength lets them carry deep fills, and they work well as pedestrian or vehicle underpasses or as surface-water drainage, an ideal solution for road infrastructure. We also make long-span Multiplate SP MP-152 S structures in shapes such as high-profile arch, low-profile arch, ellipse and egg shape.",
+      "zh": "其结构强度高，可承受深填方，非常适合用作人行或车行地下通道或地表排水，是道路基础设施的理想方案。我们还生产大跨度的 Multiplate SP MP-152 S 结构，形状包括高拱、低拱、椭圆和蛋形。"
+    },
+    {
+      "tipo": "h2",
+      "es": "1.- Composición Química",
+      "en": "1. Chemical composition",
+      "zh": "1. 化学成分"
+    },
+    {
+      "tipo": "p",
+      "es": "Los requerimientos en composición química de las estructuras Multiplate SP MP-152 están establecidos conforme a ASTM A929 y se muestran en la Tabla 1.",
+      "en": "The chemical composition requirements of Multiplate SP MP-152 structures follow ASTM A929 and are shown in Table 1.",
+      "zh": "Multiplate SP MP-152 结构的化学成分要求符合 ASTM A929，见表 1。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.1.png",
+      "alt": "Tabla_2.1"
+    },
+    {
+      "tipo": "h2",
+      "es": "2.- Propiedades Mecánicas",
+      "en": "2. Mechanical properties",
+      "zh": "2. 力学性能"
+    },
+    {
+      "tipo": "p",
+      "es": "El material base antes del corrugado presenta propiedades mecánicas conforme a los valores presentados en la Tabla 2.",
+      "en": "Before corrugation, the base material has the mechanical properties shown in Table 2.",
+      "zh": "波纹成形前，基材的力学性能见表 2。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.2.png",
+      "alt": "Tabla_2.2"
+    },
+    {
+      "tipo": "h2",
+      "es": "3.- Características Dimensionales Planchas Multiplate SP",
+      "en": "3. Dimensions of Multiplate SP plates",
+      "zh": "3. Multiplate SP 钢板尺寸"
+    },
+    {
+      "tipo": "p",
+      "es": "Los espesores nominales de las planchas utilizadas en estas estructuras son: 2.5 a 8.0 mm.",
+      "en": "The nominal thicknesses of the plates used in these structures are 2.5 to 8.0 mm.",
+      "zh": "这些结构所用钢板的公称厚度为 2.5 至 8.0 mm。"
+    },
+    {
+      "tipo": "p",
+      "es": "De requerir un espesor específico, consultar con nuestra área técnica (Los espesores nominales no consideran el recubrimiento de zinc). Las dimensiones nominales de las planchas corrugadas que conforman las estructuras Multiplate SP MP-152 se muestran en la siguiente tabla.",
+      "en": "If you need a specific thickness, please ask our technical team (nominal thicknesses do not include the zinc coating). The nominal dimensions of the corrugated plates that make up Multiplate SP MP-152 structures are shown in the table below.",
+      "zh": "如需特定厚度，请咨询我们的技术团队（公称厚度不含镀锌层）。组成 Multiplate SP MP-152 结构的波纹钢板公称尺寸见下表。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.3.png",
+      "alt": "Tabla_2.3"
+    },
+    {
+      "tipo": "h2",
+      "es": "4.- Dimensiones De La Corruga",
+      "en": "4. Corrugation dimensions",
+      "zh": "4. 波纹尺寸"
+    },
+    {
+      "tipo": "p",
+      "es": "Las corrugas de las planchas forman curvas continuas y tangentes. La corruga está designada por el paso (distancia de cresta a cresta) y la profundidad de la corruga. Para las estructuras Multiplate SP MP-152 y SP MP-152 S, el tamaño nominal de la corruga es 152 mm x 51 mm. En la Figura 1 se muestran las dimensiones de la corruga y las tolerancias dimensionales.",
+      "en": "The plate corrugations form continuous, tangent curves. A corrugation is defined by its pitch (crest-to-crest distance) and depth. For Multiplate SP MP-152 and SP MP-152 S structures the nominal corrugation size is 152 mm x 51 mm. Figure 1 shows the corrugation dimensions and tolerances.",
+      "zh": "钢板波纹形成连续相切的曲线。波纹由波距（波峰到波峰的距离）和波深定义。Multiplate SP MP-152 和 SP MP-152 S 结构的公称波纹尺寸为 152 mm x 51 mm。图 1 显示了波纹尺寸及公差。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.4.png",
+      "alt": "Tabla_2.4"
+    },
+    {
+      "tipo": "h2",
+      "es": "5.- Canales De Arranque (Canales Para Arco)",
+      "en": "5. Base channels (arch channels)",
+      "zh": "5. 基础槽钢（拱脚槽钢）"
+    },
+    {
+      "tipo": "p",
+      "es": "El espesor nominal de las planchas utilizadas para los canales de arranque es 6.00 mm. Estos canales son suministrados de acuerdo al diseño y dimensiones; por ejemplo, la figura 4, muestra las dimensiones de un canal de arranque de 8 pies.",
+      "en": "The nominal thickness of the plates used for base channels is 6.00 mm. These channels are supplied according to the design and dimensions; for example, Figure 4 shows the dimensions of an 8-foot base channel.",
+      "zh": "基础槽钢所用钢板的公称厚度为 6.00 mm。这些槽钢根据设计和尺寸供应；例如，图 4 显示了 8 英尺基础槽钢的尺寸。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.5_1.png",
+      "alt": "Tabla_2.5_1"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.5_2.png"
+    },
+    {
+      "tipo": "h2",
+      "es": "6.- Estructuras",
+      "en": "6. Structures",
+      "zh": "6. 结构"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.6.png",
+      "alt": "Tabla_2.6"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.6_2.png",
+      "alt": "Tabla_2.6_2"
+    },
+    {
+      "tipo": "h2",
+      "es": "7.- Pernos Y Tuercas",
+      "en": "7. Bolts and nuts",
+      "zh": "7. 螺栓与螺母"
+    },
+    {
+      "tipo": "p",
+      "es": "Los pernos y tuercas que sirven para unir las planchas Multiplate SP cumplen con la norma ASTM A761.",
+      "en": "The bolts and nuts used to join Multiplate SP plates comply with ASTM A761.",
+      "zh": "用于连接 Multiplate SP 钢板的螺栓和螺母符合 ASTM A761。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla_2.7.png",
+      "alt": "Tabla_2.7"
+    },
+    {
+      "tipo": "h2",
+      "es": "8.- Documentos De Referencia",
+      "en": "8. Reference documents",
+      "zh": "8. 参考文件"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>ASTM A 761</strong> Standard Specification for Corrugated Steel Structural Plate, Zinc-Coated, for Field-Bolted Pipe, Pipe-Arches, and Arches",
+          "en": "<strong>ASTM A 761</strong> Standard Specification for Corrugated Steel Structural Plate, Zinc-Coated, for Field-Bolted Pipe, Pipe-Arches, and Arches",
+          "zh": "<strong>ASTM A 761</strong> 现场螺栓连接的管、管拱和拱用镀锌波纹钢结构板标准规范"
+        },
+        {
+          "es": "<strong>AASHTO M167</strong> Standard Specification for Structural Plate for Pipe, Pipe-Arches, and Arches",
+          "en": "<strong>AASHTO M167</strong> Standard Specification for Structural Plate for Pipe, Pipe-Arches, and Arches",
+          "zh": "<strong>AASHTO M167</strong> 管、管拱和拱用结构板标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 449</strong> Standard Specification for Quenched and Tempered Steel Bolts and Studs",
+          "en": "<strong>ASTM A 449</strong> Standard Specification for Quenched and Tempered Steel Bolts and Studs",
+          "zh": "<strong>ASTM A 449</strong> 淬火回火钢螺栓和螺柱标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 563</strong> Standard Specification for Carbon and Alloy Steel Nuts",
+          "en": "<strong>ASTM A 563</strong> Standard Specification for Carbon and Alloy Steel Nuts",
+          "zh": "<strong>ASTM A 563</strong> 碳钢和合金钢螺母标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 307</strong> Standard Specification for Carbon Steel Bolts and Studs, 60 000 PSI Tensile Strength",
+          "en": "<strong>ASTM A 307</strong> Standard Specification for Carbon Steel Bolts and Studs, 60 000 PSI Tensile Strength",
+          "zh": "<strong>ASTM A 307</strong> 抗拉强度 60 000 PSI 的碳钢螺栓和螺柱标准规范"
+        },
+        {
+          "es": "<strong>ASTM A153/A153M</strong> Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware",
+          "en": "<strong>ASTM A153/A153M</strong> Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware",
+          "zh": "<strong>ASTM A153/A153M</strong> 钢铁五金件热浸镀锌层标准规范"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "alcantarillas-metalicas",
+    "alcantarilla-mp-68"
+  ]
+}

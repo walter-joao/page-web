@@ -1,0 +1,306 @@
+{
+  "titulo": {
+    "es": "Resina de anclaje en roca (cartucho) en Ecuador | Jocecia",
+    "en": "Resin rock anchor cartridges in Ecuador | Jocecia",
+    "zh": "厄瓜多尔树脂岩石锚固药卷 | Jocecia"
+  },
+  "descripcion": {
+    "es": "El cartucho de anclaje en roca con resina es un sistema de fijación utilizado para instalar anclajes en materiales rocosos o de alta resistencia. Este…",
+    "en": "The resin rock anchor cartridge is a fastening system used to install anchors in rock or other high-strength materials.",
+    "zh": "树脂岩石锚固药卷是一种用于在岩石或其他高强度材料中安装锚杆的固定系统。"
+  },
+  "nombre": {
+    "es": "Cartucho de anclaje en roca con resina",
+    "en": "Resin rock anchor cartridge",
+    "zh": "树脂岩石锚固药卷"
+  },
+  "lead": {
+    "es": "La resina de anclaje en cartucho fija pernos y barras en roca de forma segura y duradera, sin dañar la roca. Se usa en túneles, pozos, minería subterránea y montaje de estructuras sobre roca.",
+    "en": "Resin anchor cartridges fix bolts and bars in rock safely and permanently without damaging the rock. Used in tunnels, shafts, underground mining and mounting structures on rock.",
+    "zh": "树脂锚固药卷可将锚杆和钢筋安全、永久地固定在岩石中，且不损伤岩石。用于隧道、竖井、地下采矿以及在岩石上安装结构。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Soporte en roca",
+      "en": "Rock support",
+      "zh": "岩石支护"
+    },
+    "pagina": "soporte-en-roca"
+  },
+  "catalogo": {
+    "ancla": "catalogo-resina-de-anclaje",
+    "pdf": "/catalogos/resina-de-anclaje.pdf",
+    "descarga": "CATALOGO-RESINA-DE-ANCLAJE-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/IMG_20180131_095956-1024x768-1.jpg",
+    "/img/wp/2025/02/pernos-expansivos1.jpg",
+    "/img/wp/2021/08/tunnel-4427609_1280-1024x681.jpg",
+    "/img/wp/2021/01/4.2-1024x768.jpg",
+    "/img/wp/2025/02/photo-roc-loc-1.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "DESCRIPCIÓN",
+      "en": "DESCRIPTION",
+      "zh": "产品说明"
+    },
+    {
+      "tipo": "p",
+      "es": "El <strong>cartucho de anclaje en roca con resina</strong> es un sistema de fijación utilizado para instalar anclajes en materiales rocosos o de alta resistencia. Este tipo de cartucho emplea una resina especial como medio de anclaje, lo que permite obtener una fijación segura y duradera en rocas de diversas composiciones y durezas. A continuación, se detalla la estructura, funcionamiento y aplicaciones de este tipo de cartucho.",
+      "en": "The <strong>resin rock anchor cartridge</strong> is a fastening system used to install anchors in rock or other high-strength materials. It uses a special resin as the anchoring medium, giving a secure, lasting hold in rock of many compositions and hardnesses. Below are its structure, how it works and its applications.",
+      "zh": "<strong>树脂岩石锚固药卷</strong>是一种用于在岩石或其他高强度材料中安装锚杆的固定系统。它以特殊树脂作为锚固介质，可在各种成分和硬度的岩石中实现牢固、持久的锚固。以下介绍其结构、工作原理和应用。"
+    },
+    {
+      "tipo": "h2",
+      "es": "APLICACIONES",
+      "en": "APPLICATIONS",
+      "zh": "应用"
+    },
+    {
+      "tipo": "p",
+      "es": "El cartucho de anclaje en roca con resina se utiliza principalmente en obras de construcción, minería, y trabajos de perforación en roca. Su instalación es sencilla y se lleva a cabo mediante el uso de una pistola de inyección, que permite la mezcla de los componentes de la resina a medida que se inyecta en el agujero previamente perforado en la roca.",
+      "en": "The resin rock anchor cartridge is used mainly in construction, mining and rock drilling. Installation is simple, using an injection gun that mixes the resin components as they are injected into the hole drilled in the rock.",
+      "zh": "树脂岩石锚固药卷主要用于建筑、采矿和岩石钻孔。安装简单，使用注射枪在注入岩石钻孔的同时混合树脂各组分。"
+    },
+    {
+      "tipo": "h2",
+      "es": "VENTAJAS",
+      "en": "ADVANTAGES",
+      "zh": "优势"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Fijación segura y duradera</strong>: La resina proporciona una unión muy fuerte con la roca, evitando desplazamientos o aflojamientos de los anclajes a lo largo del tiempo.",
+          "en": "<strong>Secure, lasting hold</strong>: the resin forms a very strong bond with the rock, keeping anchors from shifting or loosening over time.",
+          "zh": "<strong>牢固持久的锚固</strong>：树脂与岩石形成非常牢固的粘结，防止锚杆随时间移位或松动。"
+        },
+        {
+          "es": "<strong>Reducción de daño a la roca</strong>: Al no requerir la utilización de sistemas de fijación mecánicos invasivos, se minimiza el daño en la estructura de la roca.",
+          "en": "<strong>Less damage to the rock</strong>: because no invasive mechanical fixing is needed, damage to the rock structure is minimized.",
+          "zh": "<strong>减少岩石损伤</strong>：无需侵入式机械固定，最大限度减少对岩石结构的损伤。"
+        },
+        {
+          "es": "<strong>Adaptabilidad</strong>: El sistema se puede usar en una amplia gama de tipos de roca y aplicaciones, desde trabajos ligeros hasta proyectos de gran envergadura.",
+          "en": "<strong>Adaptability</strong>: the system works in a wide range of rock types and applications, from light work to large projects.",
+          "zh": "<strong>适应性强</strong>：该系统适用于各种岩石类型和用途，从小型作业到大型项目。"
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "APLICACIONES COMUNES",
+      "en": "COMMON APPLICATIONS",
+      "zh": "常见应用"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Fijación de barras de refuerzo en construcción de túneles o pozos.",
+          "en": "Fixing reinforcing bars in tunnel or shaft construction.",
+          "zh": "在隧道或竖井施工中固定钢筋。"
+        },
+        {
+          "es": "Instalación de anclajes para estructuras de soporte en minería subterránea.",
+          "en": "Installing anchors for support structures in underground mining.",
+          "zh": "在地下采矿中安装支护结构锚杆。"
+        },
+        {
+          "es": "Montaje de estructuras metálicas o de concreto en la roca.",
+          "en": "Mounting steel or concrete structures on rock.",
+          "zh": "在岩石上安装钢结构或混凝土结构。"
+        },
+        {
+          "es": "Sistemas de anclaje para equipos pesados en ambientes rocosos.",
+          "en": "Anchoring systems for heavy equipment in rocky ground.",
+          "zh": "岩质地层中重型设备的锚固系统。"
+        }
+      ]
+    },
+    {
+      "tipo": "h2",
+      "es": "FUNCIÓN:",
+      "en": "PURPOSE:",
+      "zh": "用途："
+    },
+    {
+      "tipo": "p",
+      "es": "El cartucho de anclaje es un producto a base de resina poliéster, formulada para anclar pernos, barras de anclaje y fijaciones soportantes, principalmente en roca y hormigón.",
+      "en": "The anchor cartridge is a polyester resin product formulated to anchor bolts, anchor bars and load-bearing fixings, mainly in rock and concrete.",
+      "zh": "锚固药卷是一种聚酯树脂产品，专为锚固螺栓、锚杆和承重固定件而配制，主要用于岩石和混凝土。"
+    },
+    {
+      "tipo": "p",
+      "es": "Densidad: 1.8 Kg/dm3 (20°C)",
+      "en": "Density: 1.8 kg/dm3 (20°C)",
+      "zh": "密度：1.8 kg/dm3（20°C）"
+    },
+    {
+      "tipo": "h2",
+      "es": "DATOS TÉCNICOS:",
+      "en": "TECHNICAL DATA:",
+      "zh": "技术数据："
+    },
+    {
+      "tipo": "p",
+      "es": "Esfuerzo de arrancamiento a tracción directo en roca, con perforación de 50mm de diámetro y perno de anclaje de acero estriado de 25 mm de diámetro. Anclado 15cm a las 24 horas y temperatura de 23°C:",
+      "en": "Direct tensile pull-out strength in rock, with a 50 mm diameter hole and a 25 mm ribbed steel anchor bolt. Anchored 15 cm, after 24 hours at 23°C:",
+      "zh": "岩石中直接拉拔强度，孔径 50 mm，25 mm 螺纹钢锚杆。锚固 15 cm，23°C 下养护 24 小时后："
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Carga máxima (KN) 114.4",
+          "en": "Maximum load (kN) 114.4",
+          "zh": "最大荷载（kN）114.4"
+        },
+        {
+          "es": "Resistencia a la tracción (MPa) 7.9",
+          "en": "Tensile strength (MPa) 7.9",
+          "zh": "抗拉强度（MPa）7.9"
+        }
+      ]
+    },
+    {
+      "tipo": "p",
+      "es": "Ensayos Pontificia Universidad Católica REP 23602",
+      "en": "Tests by Pontificia Universidad Católica, REP 23602",
+      "zh": "试验由厄瓜多尔天主教大学完成，REP 23602"
+    },
+    {
+      "tipo": "h2",
+      "es": "PROPIEDADES:",
+      "en": "PROPERTIES:",
+      "zh": "性能："
+    },
+    {
+      "tipo": "p",
+      "es": "- Gran adherencia a roca, hormigón y acero.<br/>-Gran rapidez de colocación y de fraguado.<br/>-Gran capacidad de anclaje en corto periodo.<br/>-Material tixotrópico.<br/>-Gran resistencia mecánica y química.<br/>-La resina ya curada o procesada es resistente a los ácidos y álcalis entre 2 y 10 de pH.<br/>-No presenta ningún debilitamiento aun estando sumergida en agua.<br/>-Presenta un anclaje indefinido.<br/>-Reduce costos de mano de obra.<br/>-Completamente curada o procesada la resina es más fuerte que la roca y que la mayoría de los otros materiales en los cuales es usada.<br/>-La resina procesada es resistente a la distorsión provocada por calentamiento hasta 100°C.<br/>-La instalación no es afectada y su fuerza no disminuye, siempre que la resina y su envoltura estuvieran a una temperatura de 10 °C en el momento de su instalación.<br/>-El tiempo de solidificación o estado plástico antes de endurecer, está indicado para cada tipo. No se hace referencia a fraguado inicial y final por ser muy breves los periodos entre uno y otro el cual puede variar desde 1 minuto hasta 15 minutos.",
+      "en": "- Strong adhesion to rock, concrete and steel.<br/>- Very fast placement and setting.<br/>- High anchoring capacity in a short time.<br/>- Thixotropic material.<br/>- High mechanical and chemical resistance.<br/>- Cured resin resists acids and alkalis between pH 2 and 10.<br/>- Does not weaken even when submerged in water.<br/>- Provides permanent anchorage.<br/>- Reduces labor costs.<br/>- Fully cured, the resin is stronger than the rock and most other materials it is used in.<br/>- Cured resin resists heat distortion up to 100°C.<br/>- Installation and strength are not affected as long as the resin and its wrapper were at 10 °C at the time of installation.<br/>- The gel time (plastic state before hardening) is given for each type. Initial and final set are not listed because the interval between them is very short, from 1 to 15 minutes.",
+      "zh": "- 与岩石、混凝土和钢材粘结力强。<br/>- 放置和凝固非常快。<br/>- 短时间内达到高锚固力。<br/>- 触变性材料。<br/>- 机械和化学耐受性高。<br/>- 固化后的树脂耐 pH 2 至 10 的酸碱。<br/>- 即使浸没在水中强度也不减弱。<br/>- 提供永久锚固。<br/>- 降低人工成本。<br/>- 完全固化后，树脂强度高于岩石及其所用的大多数材料。<br/>- 固化后的树脂在 100°C 以下不会受热变形。<br/>- 只要安装时树脂及其包装处于 10 °C，安装和强度就不受影响。<br/>- 每种类型均标明凝胶时间（硬化前的塑性状态）。初凝和终凝时间未列出，因为两者间隔很短，为 1 至 15 分钟。"
+    },
+    {
+      "tipo": "h2",
+      "es": "RECOMENDACIONES:",
+      "en": "RECOMMENDATIONS:",
+      "zh": "建议："
+    },
+    {
+      "tipo": "p",
+      "es": "Una vez terminada la faena, se recomienda limpiar las herramientas con solvente del tipo acetona.",
+      "en": "When the job is finished, clean tools with an acetone-type solvent.",
+      "zh": "作业结束后，用丙酮类溶剂清洁工具。"
+    },
+    {
+      "tipo": "h2",
+      "es": "PRESENTACIÓN:",
+      "en": "PACKAGING:",
+      "zh": "包装："
+    },
+    {
+      "tipo": "p",
+      "es": "-Carga de 25mm x 500mm<br/>-Carga de 40mm x 500mm",
+      "en": "- 25mm x 500mm cartridge<br/>- 40mm x 500mm cartridge",
+      "zh": "- 25mm x 500mm 药卷<br/>- 40mm x 500mm 药卷"
+    },
+    {
+      "tipo": "h2",
+      "es": "CONSUMO:",
+      "en": "CONSUMPTION:",
+      "zh": "用量："
+    },
+    {
+      "tipo": "p",
+      "es": "Variable según diámetro, longitud de perforación y longitud de la barra de anclaje.",
+      "en": "Varies with the diameter, hole length and anchor bar length.",
+      "zh": "取决于孔径、孔深和锚杆长度。"
+    },
+    {
+      "tipo": "h2",
+      "es": "ALMACENAMIENTO:",
+      "en": "STORAGE:",
+      "zh": "储存："
+    },
+    {
+      "tipo": "p",
+      "es": "Tiempo de almacenamiento según las indicaciones en los envases, siempre y cuando se mantengan los mismos en sitios frescos y bajo techo, conservando el producto en los envases originales bien cerrados.",
+      "en": "Shelf life as stated on the packaging, provided it is kept in cool, covered places in the original, tightly closed packaging.",
+      "zh": "在阴凉、有遮盖处、原包装密封保存时，保质期以包装标示为准。"
+    },
+    {
+      "tipo": "p",
+      "es": "Los cartuchos de resina poliéster no deben ser expuestos a la luz solar.",
+      "en": "Polyester resin cartridges must not be exposed to sunlight.",
+      "zh": "聚酯树脂药卷不得暴露在阳光下。"
+    },
+    {
+      "tipo": "h2",
+      "es": "PRECAUCIONES:",
+      "en": "PRECAUTIONS:",
+      "zh": "注意事项："
+    },
+    {
+      "tipo": "p",
+      "es": "Durante la manipulación de cualquier tipo de producto químico, evite el contacto directo con los ojos, piel y vías respiratorias.",
+      "en": "When handling any chemical product, avoid direct contact with eyes, skin and airways.",
+      "zh": "处理任何化学产品时，避免直接接触眼睛、皮肤和呼吸道。"
+    },
+    {
+      "tipo": "p",
+      "es": "Se recomienda protegerse utilizando guantes de goma y anteojos de seguridad.",
+      "en": "Wear rubber gloves and safety glasses.",
+      "zh": "佩戴橡胶手套和护目镜。"
+    },
+    {
+      "tipo": "p",
+      "es": "En caso de contacto con los ojos, lavar inmediatamente con abundante agua manteniendo los párpados abiertos. A la vez, se recomienda lavarse las manos antes de ingerir alimentos.",
+      "en": "In case of eye contact, rinse immediately with plenty of water while holding the eyelids open. Also wash your hands before eating.",
+      "zh": "如接触眼睛，立即撑开眼睑用大量清水冲洗。进食前也请洗手。"
+    },
+    {
+      "tipo": "h2",
+      "es": "MODO DE EMPLEO:",
+      "en": "HOW TO USE:",
+      "zh": "使用方法："
+    },
+    {
+      "tipo": "p",
+      "es": "-Efectuar la perforación hasta una profundidad igual al largo del perno, considerando que la parte roscada de éste, quede fuera de la perforación y la punta del perno debe ser cortante, en forma de bisel.",
+      "en": "- Drill to a depth equal to the bolt length, so that the threaded part of the bolt stays outside the hole; the bolt tip should be cut at a bevel.",
+      "zh": "- 钻孔深度等于锚杆长度，使锚杆螺纹部分留在孔外；锚杆端部应切成斜口。"
+    },
+    {
+      "tipo": "p",
+      "es": "-Limpiar la perforación lo mejor posible, preferentemente mediante aire comprimido.",
+      "en": "- Clean the hole as well as possible, preferably with compressed air.",
+      "zh": "- 尽可能将孔清理干净，最好使用压缩空气。"
+    },
+    {
+      "tipo": "p",
+      "es": "-Se insertan los cartuchos de anclaje en la perforación, calculando un exceso de volumen de resina entre un 10 – 20% con el fin de cubrir irregularidades o grietas en la perforación.",
+      "en": "- Insert the anchor cartridges into the hole, allowing 10 – 20% extra resin volume to fill irregularities or cracks in the hole.",
+      "zh": "- 将锚固药卷放入孔中，多留 10 – 20% 的树脂量以填充孔内的不平或裂隙。"
+    },
+    {
+      "tipo": "p",
+      "es": "-Se inserta el perno rotándolo mecánicamente a través de los cartuchos para que los rompa y se produzca la mezcla entre la resina y catalizador. El perno se puede rotar con el mismo equipo con el que se efectuó la perforación.",
+      "en": "- Insert the bolt while rotating it mechanically through the cartridges so it breaks them and mixes the resin and catalyst. The bolt can be rotated with the same rig used for drilling.",
+      "zh": "- 机械旋转锚杆穿过药卷，使药卷破裂并混合树脂和固化剂。可使用钻孔所用的同一台钻机旋转锚杆。"
+    },
+    {
+      "tipo": "p",
+      "es": "-Una vez que el perno llegue al fondo de la perforación, se recomienda seguir rotando por unos 90 – 100 segundos, asegurando tener una buena mezcla de los componentes del cartucho de anclaje.",
+      "en": "- Once the bolt reaches the bottom of the hole, keep rotating for about 90 – 100 seconds to ensure the cartridge components are well mixed.",
+      "zh": "- 锚杆到达孔底后，继续旋转约 90 – 100 秒，确保药卷各组分充分混合。"
+    }
+  ],
+  "relacionados": [
+    "pernos-de-barra-helicoidal",
+    "soporte-en-roca"
+  ]
+}

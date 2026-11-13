@@ -1,0 +1,254 @@
+{
+  "titulo": {
+    "es": "Alcantarilla TMC Minimultiplate MP 68 | Jocecia Ecuador",
+    "en": "TMC Minimultiplate MP 68 culvert | Jocecia Ecuador",
+    "zh": "TMC Minimultiplate MP 68 涵管 | Jocecia 厄瓜多尔"
+  },
+  "descripcion": {
+    "es": "Los requerimientos en composición química de la alcantarilla TMC MiniMultiplate SP MP-68 están establecidos conforme a ASTM A929 y se muestran en la…",
+    "en": "Chemical composition requirements of the TMC MiniMultiplate SP MP-68 culvert, made under ASTM A929, with its technical tables.",
+    "zh": "按 ASTM A929 生产的 TMC MiniMultiplate SP MP-68 涵管的化学成分要求及技术表格。"
+  },
+  "nombre": {
+    "es": "Alcantarilla TMC Minimultiplate SP MP 68",
+    "en": "TMC Minimultiplate SP MP 68 culvert",
+    "zh": "TMC Minimultiplate SP MP 68 涵管"
+  },
+  "lead": {
+    "es": "La alcantarilla TMC MiniMultiplate MP 68 se fabrica en forma circular o abovedada, conforme a la norma ASTM A929. En esta ficha están su composición, sus propiedades mecánicas, sus dimensiones y sus tablas técnicas.",
+    "en": "The TMC MiniMultiplate MP 68 culvert is made in circular or arch shape under ASTM A929. This page lists its composition, mechanical properties, dimensions and technical tables.",
+    "zh": "TMC MiniMultiplate MP 68 涵管按 ASTM A929 生产，有圆形和拱形两种。本页列出其成分、力学性能、尺寸和技术表格。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Alcantarillas metálicas",
+      "en": "Metal culverts",
+      "zh": "金属涵管"
+    },
+    "pagina": "alcantarillas-metalicas"
+  },
+  "catalogo": {
+    "ancla": "catalogo-alcantarillas",
+    "pdf": "/catalogos/alcantarillas.pdf",
+    "descarga": "CATALOGO-ALCANTARILLAS-METALICAS-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/th.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2025-02-10-at-14.32.57.jpeg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "1.- Composición Química",
+      "en": "1. Chemical composition",
+      "zh": "1. 化学成分"
+    },
+    {
+      "tipo": "p",
+      "es": "Los requerimientos en composición química de la alcantarilla TMC MiniMultiplate SP MP-68 están establecidos conforme a ASTM A929 y se muestran en la Tabla 1.",
+      "en": "The chemical composition requirements of the TMC MiniMultiplate SP MP-68 culvert follow ASTM A929 and are shown in Table 1.",
+      "zh": "TMC MiniMultiplate SP MP-68 涵管的化学成分要求符合 ASTM A929，见表 1。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/3767521.png"
+    },
+    {
+      "tipo": "h2",
+      "es": "2.- Propiedades Mecánicas",
+      "en": "2. Mechanical properties",
+      "zh": "2. 力学性能"
+    },
+    {
+      "tipo": "p",
+      "es": "Las propiedades mecánicas del material base están en conformidad con la especificación ASTM A 929 y se muestran en la Tabla 2.",
+      "en": "The mechanical properties of the base material comply with ASTM A 929 and are shown in Table 2.",
+      "zh": "基材的力学性能符合 ASTM A 929，见表 2。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla2.png",
+      "alt": "Tabla2"
+    },
+    {
+      "tipo": "h2",
+      "es": "3.- Características Dimensionales",
+      "en": "3. Dimensions",
+      "zh": "3. 尺寸"
+    },
+    {
+      "tipo": "p",
+      "es": "La alcantarilla TMC MiniMultiplate SP MP-68 se fabrica en dos formas: circular y abovedada. Estas alcantarillas están disponibles en espesores de 1.80 a 3.50 mm y en diámetros de 24 hasta 72 pulgadas. Los diámetros internos nominales y espesores utilizados se muestran en la Tabla 3.",
+      "en": "The TMC MiniMultiplate SP MP-68 culvert is made in two shapes: circular and arch. These culverts come in thicknesses from 1.80 to 3.50 mm and diameters from 24 to 72 inches. Nominal inside diameters and thicknesses are shown in Table 3.",
+      "zh": "TMC MiniMultiplate SP MP-68 涵管有两种形状：圆形和拱形。厚度 1.80 至 3.50 mm，直径 24 至 72 英寸。公称内径和厚度见表 3。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-3.png",
+      "alt": "Tabla 3"
+    },
+    {
+      "tipo": "h2",
+      "es": "4.- Dimensiones De La Corruga",
+      "en": "4. Corrugation dimensions",
+      "zh": "4. 波纹尺寸"
+    },
+    {
+      "tipo": "p",
+      "es": "Las corrugas de las planchas deben formar curvas suaves continuas. La corruga está designada por el paso (distancia de cresta a cresta) y la profundidad de la corruga. Tal como se muestra en la Figura 1, el tamaño nominal de la corruga es 68 mm x 13 mm para las alcantarillas TMC Minimultiplate SP MP-68. En Tabla 4 se muestran los requerimientos dimensionales referentes a la corruga.",
+      "en": "The plate corrugations must form smooth, continuous curves. A corrugation is defined by its pitch (crest-to-crest distance) and depth. As shown in Figure 1, the nominal corrugation size for TMC Minimultiplate SP MP-68 culverts is 68 mm x 13 mm. Table 4 shows the corrugation dimension requirements.",
+      "zh": "钢板波纹必须形成平滑连续的曲线。波纹由波距（波峰到波峰的距离）和波深定义。如图 1 所示，TMC Minimultiplate SP MP-68 涵管的公称波纹尺寸为 68 mm x 13 mm。波纹尺寸要求见表 4。"
+    },
+    {
+      "tipo": "p",
+      "es": "- REQUERIMIENTOS PARA LA CORRUGA",
+      "en": "- CORRUGATION REQUIREMENTS",
+      "zh": "- 波纹要求"
+    },
+    {
+      "tipo": "p",
+      "es": "o DIMENSIÓN NOMINAL (mm): 68x13",
+      "en": "o NOMINAL SIZE (mm): 68x13",
+      "zh": "o 公称尺寸（mm）：68x13"
+    },
+    {
+      "tipo": "p",
+      "es": "o TOLERANCIA EN PASO (mm): +4.00 /-1.00",
+      "en": "o PITCH TOLERANCE (mm): +4.00 /-1.00",
+      "zh": "o 波距公差（mm）：+4.00 /-1.00"
+    },
+    {
+      "tipo": "p",
+      "es": "o TOLERANCIA EN PROFUNDIDAD (mm) +/- 1.00",
+      "en": "o DEPTH TOLERANCE (mm) +/- 1.00",
+      "zh": "o 波深公差（mm）+/- 1.00"
+    },
+    {
+      "tipo": "p",
+      "es": "o Radio interior (mm):",
+      "en": "o Inside radius (mm):",
+      "zh": "o 内半径（mm）："
+    },
+    {
+      "tipo": "p",
+      "es": "§ Nominal: 17",
+      "en": "§ Nominal: 17",
+      "zh": "§ 公称：17"
+    },
+    {
+      "tipo": "p",
+      "es": "§ Mínimo: 12",
+      "en": "§ Minimum: 12",
+      "zh": "§ 最小：12"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-4.png",
+      "alt": "Tabla 4"
+    },
+    {
+      "tipo": "h2",
+      "es": "5.- Estructuras",
+      "en": "5. Structures",
+      "zh": "5. 结构"
+    },
+    {
+      "tipo": "p",
+      "es": "Las siguientes tablas muestran las principales propiedades geométricas, estructurales e hidráulicas de las alcantarillas TMC con diámetros comerciales (luz), para el caso de las abovedadas (luz y flecha), considerando que soportan combinación de cargas HS20-44 o HL.93.",
+      "en": "The following tables show the main geometric, structural and hydraulic properties of TMC culverts in commercial diameters (span), and for arch culverts (span and rise), assuming HS20-44 or HL-93 load combinations.",
+      "zh": "下表列出了商用直径（跨度）的 TMC 涵管以及拱形涵管（跨度和矢高）的主要几何、结构和水力性能，按 HS20-44 或 HL-93 荷载组合计算。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-5.png",
+      "alt": "Tabla 5"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>SECCIÓN CIRCULAR:<br/> </strong>",
+      "en": "<strong>CIRCULAR SECTION:<br/> </strong>",
+      "zh": "<strong>圆形截面：<br/> </strong>"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-5SCI.png"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>SECCIÓN ABOVEDADA:<br/> </strong>",
+      "en": "<strong>ARCH SECTION:<br/> </strong>",
+      "zh": "<strong>拱形截面：<br/> </strong>"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-5SAB.png"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>NOTA:</strong> El relleno se considera desde la corona de la alcantarilla hasta el nivel de fondo de la subrasante. El relleno puede incrementarse considerando mayores espesores de la plancha. El material de relleno debe cumplir con la norma ASTM A-807 y la sección 502 de la EG-2013 del MTC.",
+      "en": "<strong>NOTE:</strong> Fill is measured from the crown of the culvert to the bottom of the subgrade. Fill can be increased with thicker plates. Fill material must comply with ASTM A-807 and section 502 of MTC EG-2013.",
+      "zh": "<strong>注：</strong>填土高度从涵管顶部量至路基底部。使用更厚的钢板可增加填土高度。填料必须符合 ASTM A-807 和 MTC EG-2013 第 502 节。"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>Pernos y Tuercas: </strong>",
+      "en": "<strong>Bolts and nuts: </strong>",
+      "zh": "<strong>螺栓与螺母：</strong>"
+    },
+    {
+      "tipo": "p",
+      "es": "Los pernos y tuercas utilizados para la alcantarilla TMC MiniMultiplate SP MP-68 deben reunir los requerimientos de ASTM A449 (pernos) y ASTM A563 Grado C (tuercas). Los pernos y tuercas son galvanizados por inmersión en caliente en conformidad con la especificación ASTM A 153. Las dimensiones de los pernos y tuercas utilizados se indican en la siguiente tabla.",
+      "en": "The bolts and nuts used for the TMC MiniMultiplate SP MP-68 culvert must meet ASTM A449 (bolts) and ASTM A563 Grade C (nuts). Bolts and nuts are hot-dip galvanized according to ASTM A 153. Their dimensions are given in the table below.",
+      "zh": "TMC MiniMultiplate SP MP-68 涵管所用螺栓和螺母必须符合 ASTM A449（螺栓）和 ASTM A563 C 级（螺母）。螺栓和螺母按 ASTM A 153 热浸镀锌。其尺寸见下表。"
+    },
+    {
+      "tipo": "figura",
+      "foto": "/img/wp/2021/08/Tabla-5PT.png"
+    },
+    {
+      "tipo": "h2",
+      "es": "6.- Documentos De Referencia",
+      "en": "6. Reference documents",
+      "zh": "6. 参考文件"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>ASTM A 929</strong> Standard Specification for Steel Sheets, Metallic-Coated by Hot-Dip Process for Corrugated Steel Pipe",
+          "en": "<strong>ASTM A 929</strong> Standard Specification for Steel Sheets, Metallic-Coated by Hot-Dip Process for Corrugated Steel Pipe",
+          "zh": "<strong>ASTM A 929</strong> 波纹钢管用热浸金属镀层钢板标准规范"
+        },
+        {
+          "es": "<strong>AASHTO M36</strong> Standard Specification for Corrugated Steel Pipe, Metallic-Coated, for Sewers and Drains",
+          "en": "<strong>AASHTO M36</strong> Standard Specification for Corrugated Steel Pipe, Metallic-Coated, for Sewers and Drains",
+          "zh": "<strong>AASHTO M36</strong> 下水道和排水用金属镀层波纹钢管标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 760</strong> Standard Specification for Corrugated Steel Pipe, Metallic-Coated for Sewers and Drains",
+          "en": "<strong>ASTM A 760</strong> Standard Specification for Corrugated Steel Pipe, Metallic-Coated for Sewers and Drains",
+          "zh": "<strong>ASTM A 760</strong> 下水道和排水用金属镀层波纹钢管标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 449</strong> Standard Specification for Quenched and Tempered Steel Bolts and Studs",
+          "en": "<strong>ASTM A 449</strong> Standard Specification for Quenched and Tempered Steel Bolts and Studs",
+          "zh": "<strong>ASTM A 449</strong> 淬火回火钢螺栓和螺柱标准规范"
+        },
+        {
+          "es": "<strong>ASTM A 563</strong> Standard Specification for Carbon and Alloy Steel Nuts",
+          "en": "<strong>ASTM A 563</strong> Standard Specification for Carbon and Alloy Steel Nuts",
+          "zh": "<strong>ASTM A 563</strong> 碳钢和合金钢螺母标准规范"
+        },
+        {
+          "es": "<strong>ASTM A153/A153M</strong> Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware",
+          "en": "<strong>ASTM A153/A153M</strong> Standard Specification for Zinc Coating (Hot-Dip) on Iron and Steel Hardware",
+          "zh": "<strong>ASTM A153/A153M</strong> 钢铁五金件热浸镀锌层标准规范"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "alcantarillas-metalicas",
+    "alcantarilla-mp-152"
+  ]
+}

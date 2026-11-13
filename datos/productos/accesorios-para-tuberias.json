@@ -1,0 +1,94 @@
+{
+  "titulo": {
+    "es": "Accesorios para tubería metálica en Ecuador | Jocecia",
+    "en": "Steel pipe fittings in Ecuador | Jocecia",
+    "zh": "厄瓜多尔金属管道配件 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Los accesorios para tubería metálica son componentes utilizados para conectar, unir, cambiar la dirección, controlar el flujo y sellar las tuberías…",
+    "en": "Steel pipe fittings connect, join, change direction, control the flow and seal steel pipes in plumbing, heating, ventilation and air conditioning systems.",
+    "zh": "金属管道配件用于在给排水、供暖、通风和空调系统中连接、接合、改变方向、控制流量和密封钢管。"
+  },
+  "nombre": {
+    "es": "Accesorios para tuberías",
+    "en": "Pipe fittings",
+    "zh": "管道配件"
+  },
+  "lead": {
+    "es": "Los accesorios para tubería metálica conectan, desvían, controlan y sellan el flujo: codos, tees, reducciones, uniones, válvulas, tapones y tapaderas para plomería, calefacción, ventilación y aire acondicionado.",
+    "en": "Steel pipe fittings connect, divert, control and seal the flow: elbows, tees, reducers, unions, valves, plugs and caps for plumbing, heating, ventilation and air conditioning.",
+    "zh": "钢管配件用于连接、转向、控制和密封流体：弯头、三通、异径管、活接头、阀门、管堵和管帽，适用于给排水、供暖、通风和空调系统。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Infraestructura metálica",
+      "en": "Steel infrastructure",
+      "zh": "钢结构基础设施"
+    },
+    "pagina": "infraestructura-metalica"
+  },
+  "catalogo": {
+    "ancla": "catalogo-accesorios-para-tuberia",
+    "pdf": "/catalogos/accesorios-para-tuberia.pdf",
+    "descarga": "CATALOGO-ACCESORIOS-PARA-TUBERIA-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/IMG-20220426-WA0008-1-1024x576.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.34.46-AM-1-576x1024.jpeg",
+    "/img/wp/2025/01/IMG_20240228_182048-768x1024.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.34.45-AM-1-576x1024.jpeg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "DESCRIPCIÓN",
+      "en": "DESCRIPTION",
+      "zh": "产品说明"
+    },
+    {
+      "tipo": "p",
+      "es": "Los accesorios para tubería metálica son componentes utilizados para conectar, unir, cambiar la dirección, controlar el flujo y sellar las tuberías metálicas en sistemas de plomería, calefacción, ventilación y aire acondicionado, entre otros. Algunos ejemplos comunes de estos accesorios incluyen:",
+      "en": "Steel pipe fittings are components used to connect, join, change direction, control the flow and seal steel pipes in plumbing, heating, ventilation and air conditioning systems, among others. Common examples include:",
+      "zh": "金属管道配件是用于在给排水、供暖、通风和空调等系统中连接、接合、改变方向、控制流量和密封钢管的部件。常见的有："
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Codos</strong>: Utilizados para cambiar la dirección del flujo en la tubería.",
+          "en": "<strong>Elbows</strong>: used to change the direction of flow in the pipe.",
+          "zh": "<strong>弯头</strong>：用于改变管道中的流动方向。"
+        },
+        {
+          "es": "<strong>Tee</strong>: Permiten la conexión de tres tramos de tubería en forma de T.",
+          "en": "<strong>Tees</strong>: connect three pipe sections in a T shape.",
+          "zh": "<strong>三通</strong>：以 T 形连接三段管道。"
+        },
+        {
+          "es": "<strong>Reducciones</strong>: Utilizadas para conectar tuberías de diferentes diámetros.",
+          "en": "<strong>Reducers</strong>: used to connect pipes of different diameters.",
+          "zh": "<strong>异径管</strong>：用于连接不同直径的管道。"
+        },
+        {
+          "es": "<strong>Uniones</strong>: Permiten la conexión y desconexión fácil de tramos de tubería.",
+          "en": "<strong>Unions</strong>: allow pipe sections to be connected and disconnected easily.",
+          "zh": "<strong>活接头</strong>：便于管段的连接和拆卸。"
+        },
+        {
+          "es": "<strong>Válvulas</strong>: Controlan el flujo de líquidos o gases a través de la tubería.",
+          "en": "<strong>Valves</strong>: control the flow of liquids or gases through the pipe.",
+          "zh": "<strong>阀门</strong>：控制管道中液体或气体的流量。"
+        },
+        {
+          "es": "<strong>Tapones y tapaderas</strong>: Utilizados para cerrar extremos de tuberías.",
+          "en": "<strong>Plugs and caps</strong>: used to close pipe ends.",
+          "zh": "<strong>管堵和管帽</strong>：用于封闭管道末端。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "infraestructura-metalica",
+    "encofrados"
+  ]
+}

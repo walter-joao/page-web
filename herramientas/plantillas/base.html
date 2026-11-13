@@ -15,13 +15,13 @@
 <meta content="{{ sitio.dominio }}{{ p.ruta }}" property="og:url"/>
 <meta content="{{ p.og_titulo }}" property="og:title"/>
 <meta content="{{ p.get("og_descripcion") or p.descripcion.es }}" property="og:description"/>
-<meta content="{{ p.og_imagen }}" property="og:image"/>
-<meta content="es_EC" property="og:locale"/>
+{% if p.get("og_imagen") %}<meta content="{{ p.og_imagen }}" property="og:image"/>
+{% endif %}<meta content="es_EC" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="{{ sitio.color_tema }}" name="theme-color"/>
 <meta content="telephone=no" name="format-detection"/>
 <link href="{{ sitio.icono }}" rel="icon"/>
-<script>
+{% block estilo %}{% endblock %}<script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
 document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
 </script>
