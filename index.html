@@ -777,6 +777,7 @@ a.tile{color:inherit;text-decoration:none}
 .adv span{color:var(--muted);font-size:.9rem}
 
 .mails{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:10px}.mails a{color:var(--fg);font-weight:700;text-decoration:none}.mails a:hover{color:var(--cyan)}.mails span{display:block;color:var(--muted);font-size:.85rem;font-weight:400}
+.nums{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:6px}.nums li{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}.nums a{color:var(--fg);font-weight:700;font-size:1.05rem;text-decoration:none;white-space:nowrap}.nums a:hover{color:var(--cyan)}.nums em{font-style:normal;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 8px}
 /* Social */
 .gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:18px}
 .gallery .corr{border-radius:var(--radius);aspect-ratio:4/5}
@@ -1372,10 +1373,14 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
         </div>
         <div class="cinfo">
           <div><small data-i18n="ct.addr">Planta</small><b><a class="addr-map" href="https://goo.gl/maps/nqrk2EPtWefnFMfS6" target="_blank" rel="noopener" aria-label="Ver la planta en Google Maps">Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí, Pichincha<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"/></svg></a></b></div>
-          <div><small data-i18n="ct.phones">Teléfonos</small><b><a href="tel:+59322337445">+593 (2) 233 7445</a> · <a href="tel:+59322332622">+593 (2) 233 2622</a> · <a href="tel:+593995162850">+593 99 516 2850</a></b></div>
-          <div><small>WhatsApp</small><b><a href="https://wa.me/593964068392" target="_blank" rel="noopener">+593 96 406 8392</a></b></div>
+          <div><small data-i18n="ct.fixed">Teléfonos fijos</small><ul class="nums">
+            <li><a href="tel:+59322337445">+593 (2) 233 7445</a></li>
+            <li><a href="tel:+59322332622">+593 (2) 233 2622</a></li></ul></div>
+          <div><small data-i18n="ct.cell">Celulares y WhatsApp</small><ul class="nums">
+            <li><a href="https://wa.me/593964068392" target="_blank" rel="noopener">+593 96 406 8392</a><em data-i18n="ct.cwa">WhatsApp</em></li>
+            <li><a href="tel:+593995162850">+593 99 516 2850</a><em data-i18n="ct.ccall">Llamadas</em></li></ul></div>
           <div><small data-i18n="ct.mail">Correos por área</small><ul class="mails">
-            <li><a href="mailto:ventas_2@jocecia.com">ventas_2@jocecia.com</a> · <a href="mailto:ventas8@jocecia.com">ventas8@jocecia.com</a><span data-i18n="ct.m1">Ventas: pernos, alcantarillas, accesorios, grating, piezas, resina y encofrados</span></li>
+            <li><a href="mailto:ventas_2@jocecia.com">ventas_2@jocecia.com</a><br><a href="mailto:ventas8@jocecia.com">ventas8@jocecia.com</a><span data-i18n="ct.m1">Ventas: pernos, alcantarillas, accesorios, grating, piezas, resina y encofrados</span></li>
             <li><a href="mailto:ingenieria@jocecia.com">ingenieria@jocecia.com</a><span data-i18n="ct.m2">Ingeniería: soluciones de infraestructura, servicios y consultorías</span></li>
             <li><a href="mailto:compras@jocecia.com">compras@jocecia.com</a><span data-i18n="ct.m3">Gerencia general</span></li></ul></div>
           <div><small data-i18n="ct.jobs">Empleo</small><b><a href="/trabaja-con-nosotros" data-i18n="ct.jobsl">Envíe su hoja de vida aquí</a></b></div>
@@ -1969,7 +1974,7 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
     "soc3.t":"Bakery in Esmeraldas","soc3.d":"Roof donated and installed for a community bakery, with the AMU NGO's Sunrise+ project.",
     "soc4.t":"Pandemic support","soc4.d":"Disinfection trays and personal protective equipment for the 10D02 Otavalo – Antonio Ante District Health Office.",
     "ct.k":"Contact","ct.t":"Shall we talk about your next project?","ct.lead":"Tell us what you need manufactured or supplied and an engineer will get back to you.",
-    "ct.wa":"Message us on WhatsApp","ct.map":"Get directions","ct.addr":"Plant","ct.phones":"Phones","ct.mail":"Email by department","ct.m1":"Sales: bolts, culverts, fittings, grating, parts, resin and formwork","ct.m2":"Engineering: infrastructure solutions, services and consulting","ct.m3":"General management","ct.hours.t":"Hours","ct.hours":"Monday to Friday, 08:00 – 17:00","ct.follow":"Follow us",
+    "ct.wa":"Message us on WhatsApp","ct.map":"Get directions","ct.addr":"Plant","ct.phones":"Phones","ct.fixed":"Landlines","ct.cell":"Mobile and WhatsApp","ct.cwa":"WhatsApp","ct.ccall":"Calls","ct.mail":"Email by department","ct.m1":"Sales: bolts, culverts, fittings, grating, parts, resin and formwork","ct.m2":"Engineering: infrastructure solutions, services and consulting","ct.m3":"General management","ct.hours.t":"Hours","ct.hours":"Monday to Friday, 08:00 – 17:00","ct.follow":"Follow us",
     "job.k":"Careers","job.t":"Let's build <span class=\"grad\">together</span>","job.lead":"We are looking for welders, fitters, engineers, and sales and admin staff. Leave your details and résumé: our HR team reviews it and contacts you if your profile is a fit.",
     "job.s1":"Fill in the form","job.s1d":"Name, contact details and the area you are applying to.","job.s2":"Attach your résumé","job.s2d":"PDF or Word, up to 5 MB.","job.s3":"We get in touch","job.s3d":"Your application goes straight to the company's inbox.",
     "job.name":"Full name","job.phone":"Phone / WhatsApp","job.mail":"Email","job.area":"Area you are applying to","job.role":"Position","job.opt":"(optional)",
