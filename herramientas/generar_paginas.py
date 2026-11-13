@@ -31,6 +31,8 @@ env.filters["vimg"] = vimg
 env.filters["tojson_bonito"] = lambda o: json.dumps(o, ensure_ascii=False, indent=1)
 
 SITIO = cargar("datos/sitio.json")
+# Datos de todos los productos, por slug (las fichas los usan para "Productos relacionados")
+env.globals["productos"] = {os.path.basename(r)[:-5]: cargar(r) for r in glob.glob("datos/productos/*.json")}
 # (carpeta de datos, plantilla, carpeta de salida o None si la página va en la raíz)
 TIPOS = [("datos/productos", "producto.html", "productos"),
          ("datos/proyectos", "proyecto.html", "proyectos"),

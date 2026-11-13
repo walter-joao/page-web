@@ -1,0 +1,110 @@
+{
+  "titulo": {
+    "es": "Fabricación y reparación de piezas especiales | Jocecia Ecuador",
+    "en": "Manufacturing and repair of special parts | Jocecia Ecuador",
+    "zh": "特殊零部件制造与维修 | Jocecia 厄瓜多尔"
+  },
+  "descripcion": {
+    "es": "Fabricación y reparación de partes y piezas especiales de JOCE Ingeniería y Materiales, Sangolquí, Ecuador. Cotice por WhatsApp o descargue el catálogo.",
+    "en": "Manufacturing and repair of special parts by JOCE Ingeniería y Materiales, Sangolquí, Ecuador. Get a quote on WhatsApp or download the catalog.",
+    "zh": "JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）特殊零部件制造与维修。通过 WhatsApp 询价或下载目录。"
+  },
+  "nombre": {
+    "es": "Fabricación y reparación de partes y piezas especiales",
+    "en": "Manufacturing and repair of special parts",
+    "zh": "特殊零部件制造与维修"
+  },
+  "lead": {
+    "es": "Fabricación y reparación de piezas metálicas a medida: diseño en 3D, corte láser, plasma y por agua, doblado CNC, soldadura MIG y TIG, y acabados en pintura electrostática, galvanizado o anodizado.",
+    "en": "Custom manufacturing and repair of metal parts: 3D design, laser, plasma and waterjet cutting, CNC bending, MIG and TIG welding, and electrostatic paint, galvanized or anodized finishes.",
+    "zh": "金属零件定制制造与维修：三维设计，激光、等离子和水刀切割，数控折弯，MIG 和 TIG 焊接，以及静电喷涂、镀锌或阳极氧化表面处理。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Servicios",
+      "en": "Services",
+      "zh": "服务"
+    },
+    "pagina": null
+  },
+  "fotos": [
+    "/img/wp/2021/08/ReparacionCilindro4-1-576x1024.png",
+    "/img/wp/2025/01/IMG_20240613_105948-1024x768.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-06-01-at-9.21.17-AM-1-576x1024.jpeg",
+    "/img/wp/2021/08/Ataguia-Estructura-2-1024x768.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "PARTES Y PIEZAS ESPECIALES",
+      "en": "SPECIAL PARTS",
+      "zh": "特殊零部件"
+    },
+    {
+      "tipo": "h2",
+      "es": "NUESTROS SERVICIOS",
+      "en": "OUR SERVICES",
+      "zh": "我们的服务"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Diseño y Prototipado</strong>: Trabajamos estrechamente con nuestros clientes para desarrollar diseños personalizados y prototipos que se ajusten a sus requisitos específicos. Utilizamos software de diseño avanzado y técnicas de modelado 3D para garantizar la precisión en cada etapa del proceso.",
+          "en": "<strong>Design and prototyping</strong>: we work closely with our clients to develop custom designs and prototypes that meet their specific requirements. We use advanced design software and 3D modeling to ensure accuracy at every stage of the process.",
+          "zh": "<strong>设计与打样</strong>：我们与客户密切合作，开发满足其具体要求的定制设计和样品。我们使用先进的设计软件和三维建模，确保每个环节的精度。"
+        },
+        {
+          "es": "<strong>Corte y Conformado</strong>: Contamos con equipos de corte láser, plasma y agua de última generación, así como prensas y dobladoras CNC, que nos permiten conformar piezas metálicas con gran precisión y eficiencia.",
+          "en": "<strong>Cutting and forming</strong>: we have state-of-the-art laser, plasma and waterjet cutting equipment, plus CNC presses and press brakes, so we can form metal parts with great precision and efficiency.",
+          "zh": "<strong>切割与成形</strong>：我们拥有先进的激光、等离子和水刀切割设备，以及数控压力机和折弯机，能够高精度、高效率地加工金属零件。"
+        },
+        {
+          "es": "<strong>Soldadura y Ensamblaje</strong>: Nuestros soldadores certificados y técnicos especializados aseguran un ensamblaje robusto y duradero de las piezas metálicas, utilizando técnicas de soldadura MIG, TIG y por puntos.",
+          "en": "<strong>Welding and assembly</strong>: our certified welders and specialized technicians ensure sturdy, long-lasting assembly of metal parts, using MIG, TIG and spot welding.",
+          "zh": "<strong>焊接与装配</strong>：我们的持证焊工和专业技术人员采用 MIG、TIG 和点焊工艺，确保金属零件装配牢固耐用。"
+        },
+        {
+          "es": "<strong>Acabados Superficiales</strong>: Ofrecemos una variedad de acabados superficiales, incluyendo pintura electrostática, galvanizado y anodizado, para mejorar la apariencia y resistencia a la corrosión de las piezas metálicas.",
+          "en": "<strong>Surface finishes</strong>: we offer a range of surface finishes, including electrostatic paint, galvanizing and anodizing, to improve the appearance and corrosion resistance of metal parts.",
+          "zh": "<strong>表面处理</strong>：我们提供静电喷涂、镀锌和阳极氧化等多种表面处理，提升金属零件的外观和耐腐蚀性。"
+        }
+      ]
+    },
+    {
+      "tipo": "h2",
+      "es": "VENTAJAS DE TRABAJAR CON NOSOTROS",
+      "en": "WHY WORK WITH US",
+      "zh": "为什么选择我们"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Calidad Garantizada</strong>: Nos comprometemos a entregar productos de la más alta calidad, sometidos a rigurosos controles de calidad en cada etapa del proceso de fabricación.",
+          "en": "<strong>Guaranteed quality</strong>: we are committed to delivering products of the highest quality, with strict quality control at every stage of manufacturing.",
+          "zh": "<strong>质量保证</strong>：我们致力于提供最高品质的产品，在制造的每个环节执行严格的质量控制。"
+        },
+        {
+          "es": "<strong>Personalización</strong>: Entendemos que cada proyecto es único, por lo que ofrecemos soluciones personalizadas que se adaptan a las necesidades específicas de nuestros clientes.",
+          "en": "<strong>Customization</strong>: we know every project is unique, so we offer custom solutions that fit our clients' specific needs.",
+          "zh": "<strong>定制化</strong>：我们深知每个项目都是独特的，因此提供符合客户具体需求的定制方案。"
+        },
+        {
+          "es": "<strong>Tecnología Avanzada</strong>: Utilizamos tecnología de vanguardia y maquinaria de última generación para garantizar la precisión y eficiencia en la fabricación de piezas metálicas.",
+          "en": "<strong>Advanced technology</strong>: we use cutting-edge technology and state-of-the-art machinery to ensure precision and efficiency in making metal parts.",
+          "zh": "<strong>先进技术</strong>：我们采用尖端技术和先进设备，确保金属零件制造的精度和效率。"
+        },
+        {
+          "es": "<strong>Experiencia y Profesionalismo</strong>: Nuestro equipo de expertos cuenta con años de experiencia en la industria y está dedicado a proporcionar un servicio excepcional y soluciones innovadoras.",
+          "en": "<strong>Experience and professionalism</strong>: our team of experts has years of industry experience and is dedicated to exceptional service and innovative solutions.",
+          "zh": "<strong>经验与专业</strong>：我们的专家团队拥有多年行业经验，致力于提供卓越的服务和创新的解决方案。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "infraestructura-metalica",
+    "venta-de-soldadoras"
+  ]
+}

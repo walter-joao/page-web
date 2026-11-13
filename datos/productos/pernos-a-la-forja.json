@@ -1,0 +1,120 @@
+{
+  "titulo": {
+    "es": "Pernos a la forja en Ecuador | Jocecia",
+    "en": "Forged bolts in Ecuador | Jocecia",
+    "zh": "厄瓜多尔锻造螺栓 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Los pernos a la forja son elementos de fijación metálicos que se fabrican mediante el proceso de forja, que implica moldear el material mediante la…",
+    "en": "Forged bolts are metal fasteners made by forging, which shapes the material with heat and pressure. 9 types in Ecuador.",
+    "zh": "锻造螺栓是通过锻造制成的金属紧固件，即在高温和压力下使材料成形。厄瓜多尔供应 9 种类型。"
+  },
+  "nombre": {
+    "es": "Pernos a la forja",
+    "en": "Forged bolts",
+    "zh": "锻造螺栓"
+  },
+  "lead": {
+    "es": "Los pernos forjados se moldean con calor y presión, lo que les da más resistencia a la fatiga y al desgaste. Jocecia los ofrece en 9 tipos, para molinos, minería, construcción y vía férrea.",
+    "en": "Forged bolts are shaped with heat and pressure, which gives them more resistance to fatigue and wear. Jocecia offers 9 types, for mills, mining, construction and railways.",
+    "zh": "锻造螺栓通过高温和压力成形，因而更耐疲劳、更耐磨。Jocecia 提供 9 种类型，用于磨机、采矿、建筑和铁路。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Pernos de alta fiabilidad",
+      "en": "High-reliability bolts",
+      "zh": "高可靠性螺栓"
+    },
+    "pagina": "pernos-de-alta-fiabilidad"
+  },
+  "fotos": [
+    "/img/wp/2025/02/WhatsApp-Image-2025-02-11-at-14.46.30-fotor-bg-remover-2025021114511.png",
+    "/img/wp/2025/01/ALTARESOLUCION1-1024x577.png"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "¿QUÉ SON PERNOS A LA FORJA?",
+      "en": "WHAT ARE FORGED BOLTS?",
+      "zh": "什么是锻造螺栓？"
+    },
+    {
+      "tipo": "p",
+      "es": "Los <strong>pernos a la forja</strong> son elementos de fijación metálicos que se fabrican mediante el proceso de forja, que implica moldear el material mediante la aplicación de calor y presión. Este proceso mejora las propiedades mecánicas del material, como la resistencia y la dureza, debido a la orientación de los cristales del metal. Los pernos forjados suelen tener una mayor resistencia a la fatiga y al desgaste, en comparación con los fabricados mediante otros procesos como el estampado o el mecanizado.",
+      "en": "<strong>Forged bolts</strong> are metal fasteners made by forging, which shapes the material with heat and pressure. This process improves the material's mechanical properties, such as strength and hardness, because of the way it aligns the metal's grain. Forged bolts usually resist fatigue and wear better than bolts made by other processes such as stamping or machining.",
+      "zh": "<strong>锻造螺栓</strong>是通过锻造制成的金属紧固件，即在高温和压力下使材料成形。这一工艺使金属晶粒定向排列，从而提高材料的强度和硬度等力学性能。与冲压或机加工等其他工艺制成的螺栓相比，锻造螺栓通常更耐疲劳、更耐磨。"
+    },
+    {
+      "tipo": "p",
+      "es": "En términos técnicos, los pernos a la forja se utilizan principalmente en aplicaciones que requieren alta resistencia y durabilidad, tales como en la construcción de maquinaria pesada, estructuras metálicas, equipos de transporte y en la industria automotriz.",
+      "en": "Technically, forged bolts are used mainly where high strength and durability are needed, such as heavy machinery, steel structures, transport equipment and the automotive industry.",
+      "zh": "从技术上讲，锻造螺栓主要用于需要高强度和高耐久性的场合，如重型机械、钢结构、运输设备和汽车工业。"
+    },
+    {
+      "tipo": "p",
+      "es": "En resumen, los pernos a la forja son una opción ideal cuando se busca un alto rendimiento y resistencia en un elemento de fijación, aprovechando las ventajas que otorga el proceso de forja.",
+      "en": "In short, forged bolts are the right choice when you need high performance and strength in a fastener, taking advantage of what forging provides.",
+      "zh": "总之，当紧固件需要高性能和高强度时，锻造螺栓是正确的选择，充分发挥了锻造工艺的优势。"
+    },
+    {
+      "tipo": "h2",
+      "es": "CLASIFICACIÓN",
+      "en": "CLASSIFICATION",
+      "zh": "分类"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Pernos Molino",
+          "en": "Mill bolts",
+          "zh": "磨机螺栓"
+        },
+        {
+          "es": "Pernos para la Construcción",
+          "en": "Construction bolts",
+          "zh": "建筑螺栓"
+        },
+        {
+          "es": "Pernos para la Industria Minera y Alimenticia",
+          "en": "Bolts for mining and food processing",
+          "zh": "采矿和食品加工用螺栓"
+        },
+        {
+          "es": "Pernos para Vía Férrea",
+          "en": "Railway bolts",
+          "zh": "铁路螺栓"
+        },
+        {
+          "es": "Pernos Estándar",
+          "en": "Standard bolts",
+          "zh": "标准螺栓"
+        },
+        {
+          "es": "Productos Especiales",
+          "en": "Special products",
+          "zh": "特殊产品"
+        },
+        {
+          "es": "Herrajería Eléctrica",
+          "en": "Electrical hardware",
+          "zh": "电力金具"
+        },
+        {
+          "es": "Tuercas Estándar y Especiales",
+          "en": "Standard and special nuts",
+          "zh": "标准及特殊螺母"
+        },
+        {
+          "es": "Rodelas",
+          "en": "Washers",
+          "zh": "垫圈"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "pernos-bronce-silicio",
+    "pernos-de-alta-fiabilidad"
+  ]
+}

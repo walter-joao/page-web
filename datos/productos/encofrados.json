@@ -1,0 +1,85 @@
+{
+  "titulo": {
+    "es": "Encofrados metálicos en Ecuador | Jocecia",
+    "en": "Steel formwork in Ecuador | Jocecia",
+    "zh": "厄瓜多尔钢模板 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Los encofrados metálicos son estructuras temporales utilizadas en la construcción para moldear y sostener el hormigón fresco hasta que este se endurece…",
+    "en": "Steel formwork is a temporary structure used to shape and hold fresh concrete until it hardens. Made in Ecuador by Jocecia.",
+    "zh": "钢模板是用于塑造并支撑新浇混凝土直至硬化的临时结构。由 Jocecia 在厄瓜多尔制造。"
+  },
+  "nombre": {
+    "es": "Encofrados",
+    "en": "Formwork",
+    "zh": "模板"
+  },
+  "lead": {
+    "es": "Los encofrados metálicos de acero moldean y sostienen el hormigón fresco hasta que se endurece. Jocecia los ofrece en varios tamaños y configuraciones, de instalación rápida, para obras pequeñas y grandes infraestructuras.",
+    "en": "Steel formwork shapes and holds fresh concrete until it hardens. Jocecia offers it in many sizes and configurations, quick to install, for small works and large infrastructure.",
+    "zh": "钢模板用于塑造并支撑新浇混凝土直至硬化。Jocecia 提供多种尺寸和配置的钢模板，安装快速，适用于小型工程和大型基础设施。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Infraestructura metálica",
+      "en": "Steel infrastructure",
+      "zh": "钢结构基础设施"
+    },
+    "pagina": "infraestructura-metalica"
+  },
+  "fotos": [
+    "/img/wp/2025/02/IMG-20220426-WA0011-1024x576.jpg",
+    "/img/wp/2025/01/WhatsApp-Image-2022-04-26-at-10.16.34-AM-1-1024x576.jpeg",
+    "/img/wp/2025/02/IMG_20230912_152446-1-768x1024.jpg",
+    "/img/wp/2021/08/ENCOFRADOS-METALICOS-3-768x1024.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "DESCRIPCIÓN",
+      "en": "DESCRIPTION",
+      "zh": "产品说明"
+    },
+    {
+      "tipo": "p",
+      "es": "Los encofrados metálicos son estructuras temporales utilizadas en la construcción para moldear y sostener el hormigón fresco hasta que este se endurece y adquiere la resistencia necesaria para soportar su propio peso y las cargas a las que estará sometido. Estos encofrados están fabricados principalmente de acero lo que les confiere una gran durabilidad y resistencia.",
+      "en": "Steel formwork is a temporary structure used in construction to shape and hold fresh concrete until it hardens and gains the strength to carry its own weight and the loads it will bear. This formwork is made mainly of steel, which makes it highly durable and strong.",
+      "zh": "钢模板是建筑施工中使用的临时结构，用于塑造并支撑新浇混凝土，直至其硬化并具备承受自重和设计荷载的强度。这种模板主要由钢材制成，因此非常耐用、坚固。"
+    },
+    {
+      "tipo": "h2",
+      "es": "VENTAJAS DE NUESTROS ENCOFRADOS METÁLICOS",
+      "en": "ADVANTAGES OF OUR STEEL FORMWORK",
+      "zh": "我们钢模板的优势"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Durabilidad y Resistencia</strong>: Fabricados con materiales de primera calidad, nuestros encofrados metálicos están diseñados para soportar las condiciones más adversas y garantizar una larga vida útil.",
+          "en": "<strong>Durability and strength</strong>: made from top-quality materials, our steel formwork is designed to withstand the harshest conditions and last a long time.",
+          "zh": "<strong>耐久与强度</strong>：我们的钢模板采用顶级材料制成，能够承受最严苛的条件，使用寿命长。"
+        },
+        {
+          "es": "<strong>Eficiencia en la Construcción</strong>: Nuestros encofrados permiten una instalación rápida y sencilla, lo que reduce el tiempo y los costos de construcción, aumentando la eficiencia del proyecto.",
+          "en": "<strong>Construction efficiency</strong>: our formwork installs quickly and easily, cutting construction time and cost and making the project more efficient.",
+          "zh": "<strong>施工效率</strong>：我们的模板安装快速简便，缩短工期、降低成本，使项目更高效。"
+        },
+        {
+          "es": "<strong>Versatilidad</strong>: Disponibles en una variedad de tamaños y configuraciones, nuestros encofrados metálicos pueden adaptarse a cualquier proyecto, desde pequeñas obras hasta grandes infraestructuras.",
+          "en": "<strong>Versatility</strong>: available in many sizes and configurations, our steel formwork adapts to any project, from small works to large infrastructure.",
+          "zh": "<strong>多功能</strong>：我们的钢模板有多种尺寸和配置，适用于从小型工程到大型基础设施的各类项目。"
+        },
+        {
+          "es": "<strong>Seguridad</strong>: Diseñados para proporcionar una estructura robusta y segura, nuestros encofrados garantizan la seguridad de los trabajadores y la integridad del proyecto.",
+          "en": "<strong>Safety</strong>: designed to provide a sturdy, safe structure, our formwork protects workers and the integrity of the project.",
+          "zh": "<strong>安全</strong>：我们的模板结构坚固安全，保护工人和项目的完整性。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "infraestructura-metalica",
+    "accesorios-para-tuberias"
+  ]
+}

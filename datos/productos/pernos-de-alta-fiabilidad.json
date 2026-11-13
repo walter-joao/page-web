@@ -1,0 +1,82 @@
+{
+  "titulo": {
+    "es": "Pernos especiales de alta fiabilidad en Ecuador | Jocecia",
+    "en": "Special high-reliability bolts in Ecuador | Jocecia",
+    "zh": "厄瓜多尔高可靠性特殊螺栓 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Importamos y distribuimos pernos especiales de alta fiabilidad para proyectos de infraestructura metálica, de acuerdo a la necesidad del cliente.",
+    "en": "We import and distribute special high-reliability bolts for steel infrastructure projects, according to each client's needs.",
+    "zh": "我们根据每位客户的需求，进口并分销用于钢结构基础设施项目的高可靠性特殊螺栓。"
+  },
+  "nombre": {
+    "es": "Pernos especiales de alta fiabilidad",
+    "en": "Special high-reliability bolts",
+    "zh": "高可靠性特殊螺栓"
+  },
+  "lead": {
+    "es": "Pernos especiales en Ecuador: Jocecia importa y distribuye pernos de alta fiabilidad, a la forja y de bronce-silicio, para proyectos de infraestructura metálica, según lo que necesita cada cliente.",
+    "en": "Special bolts in Ecuador: Jocecia imports and distributes high-reliability, forged and silicon-bronze bolts for steel infrastructure projects, according to each client's needs.",
+    "zh": "厄瓜多尔特殊螺栓：Jocecia 根据每位客户的需求，进口并分销用于钢结构基础设施项目的高可靠性螺栓、锻造螺栓和硅青铜螺栓。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Pernos de alta fiabilidad",
+      "en": "High-reliability bolts",
+      "zh": "高可靠性螺栓"
+    },
+    "pagina": "pernos-de-alta-fiabilidad"
+  },
+  "fotos": [
+    "/img/wp/2025/02/20220815_145218_013-640-640-500x500.webp",
+    "/img/wp/2025/02/BSilicio-500x500.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h3",
+      "es": "NOSOTROS EVOLUCIONAMOS,",
+      "en": "WE EVOLVE,",
+      "zh": "我们在进步，"
+    },
+    {
+      "tipo": "h3",
+      "es": "SU NEGOCIO TAMBIÉN",
+      "en": "AND SO DOES YOUR BUSINESS",
+      "zh": "您的业务也是"
+    },
+    {
+      "tipo": "p",
+      "es": "Importamos y distribuimos pernos especiales de alta fiabilidad para proyectos de infraestructura metálica, de acuerdo a la necesidad del cliente.",
+      "en": "We import and distribute special high-reliability bolts for steel infrastructure projects, according to each client's needs.",
+      "zh": "我们根据每位客户的需求，进口并分销用于钢结构基础设施项目的高可靠性特殊螺栓。"
+    },
+    {
+      "tipo": "h3",
+      "es": "Pernos a la Forja",
+      "en": "Forged bolts",
+      "zh": "锻造螺栓"
+    },
+    {
+      "tipo": "p",
+      "es": "Especiales<br/>Son elementos de fijación metálicos que se fabrican mediante el proceso de forja, que implica moldear el material mediante la aplicación de calor y presión.",
+      "en": "Special<br/>Metal fasteners made by forging, which shapes the material with heat and pressure.",
+      "zh": "特殊<br/>通过锻造制成的金属紧固件，即在高温和压力下使材料成形。"
+    },
+    {
+      "tipo": "h3",
+      "es": "Pernos Bronce-Silicio",
+      "en": "Silicon-bronze bolts",
+      "zh": "硅青铜螺栓"
+    },
+    {
+      "tipo": "p",
+      "es": "Especiales<br/>Los pernos de bronce-silicio son componentes metálicos fabricados a partir de una aleación que combina cobre (Cu), silicio (Si) y a menudo pequeñas cantidades de otros elementos como manganeso (Mn) y fósforo (P).",
+      "en": "Special<br/>Silicon-bronze bolts are metal parts made from an alloy of copper (Cu), silicon (Si) and often small amounts of other elements such as manganese (Mn) and phosphorus (P).",
+      "zh": "特殊<br/>硅青铜螺栓是由铜（Cu）、硅（Si）以及通常少量锰（Mn）和磷（P）等其他元素组成的合金制成的金属零件。"
+    }
+  ],
+  "relacionados": [
+    "pernos-bronce-silicio",
+    "pernos-a-la-forja"
+  ]
+}

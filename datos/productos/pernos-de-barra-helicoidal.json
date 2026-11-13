@@ -1,0 +1,143 @@
+{
+  "titulo": {
+    "es": "Pernos de barra helicoidal para minería y túneles | Jocecia",
+    "en": "Helical bar bolts for mining and tunnels | Jocecia",
+    "zh": "采矿和隧道用螺纹钢锚杆 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Se producen en los diámetros nominales de 19 mm, 22 mm, 25 mm y 32 mm; y en longitudes de 9 y 12 metros. También se entregan a pedido en otras…",
+    "en": "Helical bar bolts in nominal diameters of 19, 22, 25 and 32 mm and lengths of 9 and 12 meters, for mining and tunnels.",
+    "zh": "螺纹钢锚杆，公称直径 19、22、25 和 32 mm，长度 9 米和 12 米，用于采矿和隧道。"
+  },
+  "nombre": {
+    "es": "Pernos de barra helicoidal",
+    "en": "Helical bar bolts",
+    "zh": "螺纹钢锚杆"
+  },
+  "lead": {
+    "es": "Los pernos de barra helicoidal ASTM A615 Grado 75 refuerzan el macizo rocoso en minería y obra civil. Se entregan en 19, 22, 25 y 32 mm de diámetro, en largos de 9 y 12 m y en paquetes de 1 tonelada.",
+    "en": "ASTM A615 Grade 75 helical bar bolts reinforce the rock mass in mining and civil works. They come in 19, 22, 25 and 32 mm diameters, 9 and 12 m lengths, in 1-tonne bundles.",
+    "zh": "ASTM A615 75 级螺纹钢锚杆用于加固矿山和土木工程中的岩体。直径 19、22、25 和 32 mm，长度 9 m 和 12 m，每捆 1 吨。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Soporte en roca",
+      "en": "Rock support",
+      "zh": "岩石支护"
+    },
+    "pagina": "soporte-en-roca"
+  },
+  "fotos": [
+    "/img/wp/2025/02/Pernos-helicoidales.png"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "Descripción",
+      "en": "Description",
+      "zh": "产品说明"
+    },
+    {
+      "tipo": "p",
+      "es": "Se producen en los diámetros nominales de 19 mm, 22 mm, 25 mm y 32 mm; y en longitudes de 9 y 12 metros. También se entregan a pedido en otras longitudes. Se suministran en paquetes de 1 tonelada. Permiten el control de las inestabilidades subterráneas y superficiales, como elemento de refuerzo. Son aplicadas en proyectos mineros y civiles, por sus ventajas de diseño y funcionalidad en el control de inestabilidades del macizo rocoso.",
+      "en": "Made in nominal diameters of 19 mm, 22 mm, 25 mm and 32 mm, and in lengths of 9 and 12 meters. Other lengths are available to order. Supplied in 1-tonne bundles. As a reinforcing element, they control underground and surface instability. They are used in mining and civil projects for their design advantages and effectiveness in controlling rock mass instability.",
+      "zh": "公称直径 19 mm、22 mm、25 mm 和 32 mm，长度 9 米和 12 米，其他长度可定制。每捆 1 吨供货。作为加固构件，可控制地下和地表的失稳。凭借设计优势和控制岩体失稳的有效性，广泛用于采矿和土木项目。"
+    },
+    {
+      "tipo": "h2",
+      "es": "Tipo",
+      "en": "Type",
+      "zh": "类型"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>BAHE A615-G75, Norma ASTM A615 Grado 75</strong>",
+      "en": "<strong>BAHE A615-G75, ASTM A615 Grade 75</strong>",
+      "zh": "<strong>BAHE A615-G75，ASTM A615 75 级</strong>"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>a)</strong> Placa de sujeción para Barra Helicoidal, PCLAC A36 / PCLAC VOLCÁN A36, Norma ASTM A36/A36M.",
+      "en": "<strong>a)</strong> Bearing plate for helical bar, PCLAC A36 / PCLAC VOLCÁN A36, ASTM A36/A36M.",
+      "zh": "<strong>a)</strong> 螺纹钢锚杆托板，PCLAC A36 / PCLAC VOLCÁN A36，ASTM A36/A36M。"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Diseño Normal: Placa de sujeción con domo semiesférico.",
+          "en": "Standard design: bearing plate with hemispherical dome.",
+          "zh": "标准设计：半球形拱顶托板。"
+        },
+        {
+          "es": "Diseño Volcán: Placa de sujeción con domo de forma de volcán.",
+          "en": "Volcano design: bearing plate with volcano-shaped dome.",
+          "zh": "火山口设计：火山口形拱顶托板。"
+        }
+      ]
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>b) </strong> Tuerca de fijación para Barra Helicoidal, TUERCA ACERADA A194/ TUERCA FUNDIDA A536,<strong> ASTM A536</strong>- Grado 65 - 45 - 12 (Tuerca fabricada de fundición nodular). <strong>ASTM A194</strong> Grado 7 (Tuerca fabricada de acero).",
+      "en": "<strong>b) </strong> Nut for helical bar, STEEL NUT A194 / CAST NUT A536,<strong> ASTM A536</strong>- Grade 65 - 45 - 12 (ductile iron nut). <strong>ASTM A194</strong> Grade 7 (steel nut).",
+      "zh": "<strong>b) </strong> 螺纹钢锚杆螺母，STEEL NUT A194 / CAST NUT A536，<strong> ASTM A536</strong>- 65 - 45 - 12 级（球墨铸铁螺母）。<strong>ASTM A194</strong> 7 级（钢螺母）。"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>c)</strong> Adaptador integral para Barra Helicoidal, SAE J403e - 09 / SAE J404f – 09.",
+      "en": "<strong>c)</strong> Integral adapter for helical bar, SAE J403e - 09 / SAE J404f – 09.",
+      "zh": "<strong>c)</strong> 螺纹钢锚杆一体式连接器，SAE J403e - 09 / SAE J404f – 09。"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>d)</strong> Acople para Barra Helicoidal, SAE J403e - 09 (1045).",
+      "en": "<strong>d)</strong> Coupler for helical bar, SAE J403e - 09 (1045).",
+      "zh": "<strong>d)</strong> 螺纹钢锚杆连接套，SAE J403e - 09 (1045)。"
+    },
+    {
+      "tipo": "h2",
+      "es": "Características",
+      "en": "Features",
+      "zh": "特点"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Se comercializa en los diámetros nominales, respecto a la Barra Helicoidal® de 19mm, 22mm, 25mm y 32mm.",
+          "en": "Sold in the nominal diameters of the Helical Bar®: 19mm, 22mm, 25mm and 32mm.",
+          "zh": "按 Helical Bar® 公称直径供应：19mm、22mm、25mm 和 32mm。"
+        },
+        {
+          "es": "Actúa como base para el posicionamiento de la Tuerca de Fijación, permaneciendo en contacto con el macizo rocoso una vez esté instalado el anclaje de Barra Helicoidal®.",
+          "en": "Acts as the seat for the nut, staying in contact with the rock mass once the Helical Bar® anchor is installed.",
+          "zh": "作为螺母的支座，Helical Bar® 锚杆安装后与岩体保持接触。"
+        },
+        {
+          "es": "Se comercializa en los diámetros nominales de 19mm, 22mm, 25mm y 32mm.",
+          "en": "Sold in nominal diameters of 19mm, 22mm, 25mm and 32mm.",
+          "zh": "公称直径 19mm、22mm、25mm 和 32mm。"
+        },
+        {
+          "es": "Accesorio del perno de Anclaje de Barra Helicoidal®, permite el posicionamiento de la Placa de Sujeción sobre el macizo rocoso.",
+          "en": "Accessory for the Helical Bar® anchor bolt that positions the bearing plate against the rock mass.",
+          "zh": "Helical Bar® 锚杆配件，用于将托板定位并压紧在岩体上。"
+        },
+        {
+          "es": "Accesorio para la instalación del Perno de Anclaje de Barra Helicoidal®, cuando esta es adherida a la roca con cartuchos de resina y/o de cemento. Se provee conforme a los diámetros de la Barra Helicoidal® y las especificaciones del equipo de perforación utilizado. Se cuenta con adaptadores integrales para equipos de perforación tipo Jackleg y Jumbo.",
+          "en": "Accessory for installing the Helical Bar® anchor bolt when it is bonded to the rock with resin and/or cement cartridges. Supplied to match the Helical Bar® diameter and the drilling equipment used. Integral adapters are available for Jackleg and Jumbo drilling rigs.",
+          "zh": "用于以树脂和/或水泥药卷将 Helical Bar® 锚杆粘结在岩石中时的安装配件。按 Helical Bar® 直径和所用钻机供应。提供适用于 Jackleg 和 Jumbo 钻机的一体式连接器。"
+        },
+        {
+          "es": "Accesorio para la instalación del Perno de Anclaje de Barra Helicoidal®, el cual permite la unión de dos Barras Helicoidales, con el objetivo de lograr una mayor longitud de anclaje en el macizo rocoso.",
+          "en": "Accessory for installing the Helical Bar® anchor bolt that joins two helical bars to achieve a longer anchorage in the rock mass.",
+          "zh": "Helical Bar® 锚杆安装配件，用于连接两根螺纹钢锚杆，实现更长的岩体锚固。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "resina-de-anclaje",
+    "soporte-en-roca"
+  ]
+}

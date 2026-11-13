@@ -1,0 +1,156 @@
+{
+  "titulo": {
+    "es": "Pernos de bronce silicio en Ecuador | Jocecia",
+    "en": "Silicon-bronze bolts in Ecuador | Jocecia",
+    "zh": "厄瓜多尔硅青铜螺栓 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Pernos de bronce-silicio: aleación con 1% a 5% de silicio, resistencia a la corrosión, alta resistencia mecánica y al calor. Catálogo PDF. JOCE, Ecuador.",
+    "en": "Silicon-bronze bolts: alloy with 1% to 5% silicon, corrosion resistance, high mechanical strength and heat resistance. PDF catalog. JOCE, Ecuador.",
+    "zh": "硅青铜螺栓：含硅 1% 至 5% 的合金，耐腐蚀、机械强度高、耐高温。PDF 目录。JOCE，厄瓜多尔。"
+  },
+  "nombre": {
+    "es": "Pernos bronce-silicio",
+    "en": "Silicon-bronze bolts",
+    "zh": "硅青铜螺栓"
+  },
+  "lead": {
+    "es": "Los pernos de bronce-silicio están hechos de una aleación con 1 % a 5 % de silicio, que resiste la corrosión del agua dulce, del agua salada y de las soluciones alcalinas, y mantiene una alta resistencia mecánica.",
+    "en": "Silicon-bronze bolts are made of an alloy with 1 % to 5 % silicon that resists corrosion from fresh water, salt water and alkaline solutions while keeping high mechanical strength.",
+    "zh": "硅青铜螺栓由含硅 1% 至 5% 的合金制成，可抵抗淡水、海水和碱性溶液的腐蚀，同时保持很高的机械强度。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Pernos de alta fiabilidad",
+      "en": "High-reliability bolts",
+      "zh": "高可靠性螺栓"
+    },
+    "pagina": "pernos-de-alta-fiabilidad"
+  },
+  "catalogo": {
+    "ancla": "catalogo-pernos-bronce-silicio",
+    "pdf": "/catalogos/pernos-bronce-silicio.pdf",
+    "descarga": "CATALOGO-PERNOS-BRONCE-SILICIO-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/01/WhatsApp-Image-2025-01-28-at-15.31.38-1024x336.jpeg",
+    "/img/wp/2025/02/BSilicio.jpg",
+    "/img/wp/2025/01/WhatsApp-Image-2025-01-28-at-15.40.10.jpeg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "COMPOSICIÓN Y PROPIEDADES",
+      "en": "COMPOSITION AND PROPERTIES",
+      "zh": "成分与性能"
+    },
+    {
+      "tipo": "p",
+      "es": "La aleación de bronce-silicio contiene entre un 1% y un 5% de silicio, lo que le confiere propiedades únicas como:",
+      "en": "Silicon-bronze alloy contains 1% to 5% silicon, which gives it unique properties such as:",
+      "zh": "硅青铜合金含 1% 至 5% 的硅，赋予其以下独特性能："
+    },
+    {
+      "tipo": "ol",
+      "items": [
+        {
+          "es": "<strong>Resistencia a la corrosión</strong>: El silicio mejora la resistencia a la corrosión por agua dulce y salada, así como a otros medios agresivos como soluciones alcalinas.",
+          "en": "<strong>Corrosion resistance</strong>: silicon improves resistance to corrosion from fresh and salt water and from other aggressive media such as alkaline solutions.",
+          "zh": "<strong>耐腐蚀</strong>：硅提高了对淡水、海水以及碱性溶液等其他腐蚀性介质的抵抗力。"
+        },
+        {
+          "es": "<strong>Alta resistencia mecánica</strong>: A pesar de ser un material relativamente ligero, el bronce-silicio es conocido por su resistencia a la tracción y dureza, lo que lo hace adecuado para aplicaciones donde se requieren piezas que soporten cargas pesadas.",
+          "en": "<strong>High mechanical strength</strong>: although relatively light, silicon bronze is known for its tensile strength and hardness, which suits it to parts that carry heavy loads.",
+          "zh": "<strong>高机械强度</strong>：硅青铜重量相对较轻，但以抗拉强度和硬度著称，适合承受重载的零件。"
+        },
+        {
+          "es": "<strong>Buena maquinabilidad</strong>: A diferencia de otros bronces, el bronce-silicio tiene una excelente capacidad para ser maquinado, lo que permite obtener pernos de diversas formas y tamaños con tolerancias estrictas.",
+          "en": "<strong>Good machinability</strong>: unlike other bronzes, silicon bronze machines very well, so bolts can be made in many shapes and sizes with tight tolerances.",
+          "zh": "<strong>可加工性好</strong>：与其他青铜不同，硅青铜非常易于机加工，可制成各种形状和尺寸、公差严格的螺栓。"
+        },
+        {
+          "es": "<strong>Baja fricción y desgaste</strong>: El silicio en la aleación reduce el desgaste y mejora la capacidad de deslizamiento, por lo que se utiliza frecuentemente en aplicaciones que involucren piezas en movimiento.",
+          "en": "<strong>Low friction and wear</strong>: the silicon in the alloy reduces wear and improves sliding, so it is often used in applications with moving parts.",
+          "zh": "<strong>低摩擦、低磨损</strong>：合金中的硅可减少磨损、改善滑动性能，因此常用于有运动部件的场合。"
+        },
+        {
+          "es": "<strong>Resistencia al calor</strong>: El bronce-silicio puede resistir temperaturas elevadas sin perder sus propiedades mecánicas, lo que lo convierte en una opción confiable para aplicaciones en entornos de alta temperatura.",
+          "en": "<strong>Heat resistance</strong>: silicon bronze withstands high temperatures without losing its mechanical properties, making it a reliable choice for high-temperature environments.",
+          "zh": "<strong>耐高温</strong>：硅青铜在高温下仍能保持力学性能，是高温环境中的可靠选择。"
+        }
+      ]
+    },
+    {
+      "tipo": "h2",
+      "es": "¿QUÉ SON PERNOS DE BRONCE-SILICIO?",
+      "en": "WHAT ARE SILICON-BRONZE BOLTS?",
+      "zh": "什么是硅青铜螺栓？"
+    },
+    {
+      "tipo": "p",
+      "es": "Estos pernos se destacan por sus propiedades mecánicas y su resistencia a la corrosión, lo que los hace adecuados para una variedad de aplicaciones en la industria, especialmente en entornos donde la exposición a condiciones extremas es común.",
+      "en": "These bolts stand out for their mechanical properties and corrosion resistance, which suits them to many industrial applications, especially where exposure to extreme conditions is common.",
+      "zh": "这类螺栓以出色的力学性能和耐腐蚀性著称，适用于多种工业用途，尤其是经常处于极端条件的场合。"
+    },
+    {
+      "tipo": "h2",
+      "es": "FABRICACIÓN Y TRATAMIENTO",
+      "en": "MANUFACTURING AND TREATMENT",
+      "zh": "制造与处理"
+    },
+    {
+      "tipo": "p",
+      "es": "Los pernos de bronce-silicio se fabrican mediante fundición o forja, y posteriormente se pueden someter a tratamientos térmicos para mejorar sus propiedades. Algunos tratamientos comunes incluyen el envejecimiento controlado, que incrementa la dureza y la resistencia, así como el recubrimiento con materiales antioxidantes para mejorar aún más su resistencia a la corrosión.",
+      "en": "Silicon-bronze bolts are made by casting or forging and can then be heat treated to improve their properties. Common treatments include controlled aging, which increases hardness and strength, and antioxidant coatings to further improve corrosion resistance.",
+      "zh": "硅青铜螺栓采用铸造或锻造制成，之后可进行热处理以提升性能。常见处理包括可提高硬度和强度的控制时效，以及进一步提升耐腐蚀性的防氧化涂层。"
+    },
+    {
+      "tipo": "p",
+      "es": "En resumen, los pernos de bronce-silicio son componentes de alta resistencia que ofrecen excelentes propiedades mecánicas, de corrosión y de desgaste, lo que los hace imprescindibles en una variedad de industrias que requieren componentes de alto rendimiento en condiciones extremas.",
+      "en": "In short, silicon-bronze bolts are high-strength components with excellent mechanical, corrosion and wear properties, essential in many industries that need high-performance parts in extreme conditions.",
+      "zh": "总之，硅青铜螺栓是具有优异力学、耐腐蚀和耐磨性能的高强度部件，在许多需要在极端条件下使用高性能零件的行业中不可或缺。"
+    },
+    {
+      "tipo": "h4",
+      "es": "Aplicaciones Comunes",
+      "en": "Common applications",
+      "zh": "常见应用"
+    },
+    {
+      "tipo": "p",
+      "es": "Los pernos de bronce-silicio se utilizan en una amplia gama de sectores industriales, tales como:",
+      "en": "Silicon-bronze bolts are used in a wide range of industries, such as:",
+      "zh": "硅青铜螺栓广泛用于多个行业，例如："
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "<strong>Industria naval</strong>: Debido a su resistencia a la corrosión en ambientes marinos, estos pernos son ideales para componentes de maquinaria naval y equipos en contacto con agua salada.",
+          "en": "<strong>Marine</strong>: because they resist corrosion in marine environments, these bolts are ideal for ship machinery and equipment in contact with salt water.",
+          "zh": "<strong>船舶</strong>：由于能抵抗海洋环境腐蚀，这类螺栓非常适合船舶机械及接触海水的设备。"
+        },
+        {
+          "es": "<strong>Automotriz</strong>: En sistemas de frenos, piezas de suspensión y motores, donde se requiere una alta resistencia al desgaste y a la temperatura.",
+          "en": "<strong>Automotive</strong>: in brake systems, suspension parts and engines, where high resistance to wear and temperature is needed.",
+          "zh": "<strong>汽车</strong>：用于制动系统、悬挂部件和发动机等需要高耐磨、耐高温的部位。"
+        },
+        {
+          "es": "<strong>Aeronáutica</strong>: Para piezas sometidas a altas cargas y temperaturas, como en sistemas de dirección y componentes estructurales de aeronaves.",
+          "en": "<strong>Aerospace</strong>: for parts under high loads and temperatures, such as steering systems and aircraft structural components.",
+          "zh": "<strong>航空航天</strong>：用于承受高载荷和高温的零件，如转向系统和飞机结构部件。"
+        },
+        {
+          "es": "<strong>Sistemas eléctricos</strong>: El bronce-silicio también tiene buenas propiedades eléctricas, por lo que se emplea en componentes de conexiones eléctricas y en piezas que requieren conductividad sin perder durabilidad.",
+          "en": "<strong>Electrical systems</strong>: silicon bronze also has good electrical properties, so it is used in electrical connections and parts that need conductivity without losing durability.",
+          "zh": "<strong>电气系统</strong>：硅青铜还具有良好的电气性能，因此用于需要导电性且不失耐久性的电气连接和零件。"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "pernos-a-la-forja",
+    "pernos-de-alta-fiabilidad",
+    "pernos-de-barra-helicoidal"
+  ]
+}

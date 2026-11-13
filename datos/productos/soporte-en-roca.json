@@ -1,0 +1,152 @@
+{
+  "titulo": {
+    "es": "Soporte en roca: resina y pernos de anclaje | Jocecia Ecuador",
+    "en": "Rock support: resin and anchor bolts | Jocecia Ecuador",
+    "zh": "岩石支护：树脂和锚杆 | Jocecia 厄瓜多尔"
+  },
+  "descripcion": {
+    "es": "Resina y pernos para soporte de rocas en minería y obras civiles: pernos de barra helicoidal ASTM A615 Grado 75 y resina de anclaje en cartuchos. JOCE, Ecuador.",
+    "en": "Resin and bolts for rock support in mining and civil works: ASTM A615 Grade 75 helical bar bolts and anchoring resin cartridges. JOCE, Ecuador.",
+    "zh": "采矿和土木工程岩石支护用树脂和锚杆：ASTM A615 75 级螺纹钢锚杆和锚固树脂药卷。JOCE，厄瓜多尔。"
+  },
+  "nombre": {
+    "es": "Resina y pernos para soporte de rocas",
+    "en": "Resin and bolts for rock support",
+    "zh": "岩石支护用树脂和锚杆"
+  },
+  "lead": {
+    "es": "Jocecia ofrece resina y pernos de barra helicoidal para el sostenimiento de túneles y galerías, el refuerzo de pilares en minería y la consolidación de taludes en obras civiles.",
+    "en": "Jocecia offers resin and helical bar bolts for supporting tunnels and galleries, reinforcing mine pillars and stabilizing slopes in civil works.",
+    "zh": "Jocecia 提供树脂和螺纹钢锚杆，用于支护隧道和巷道、加固矿柱以及稳定土木工程中的边坡。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Soporte en roca",
+      "en": "Rock support",
+      "zh": "岩石支护"
+    },
+    "pagina": "soporte-en-roca"
+  },
+  "fotos": [
+    "/img/wp/2025/02/IMG_20180131_095956-1024x768-1.jpg",
+    "/img/wp/2025/02/pernos-expansivos1.jpg",
+    "/img/wp/2021/08/tunnel-4427609_1280-1024x681.jpg",
+    "/img/wp/2021/01/4.2-1024x768.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h2",
+      "es": "Campos de aplicación",
+      "en": "Fields of application",
+      "zh": "应用领域"
+    },
+    {
+      "tipo": "h2",
+      "es": "MINERÍA",
+      "en": "MINING",
+      "zh": "采矿"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Sostenimiento de galerías",
+          "en": "Gallery support",
+          "zh": "巷道支护"
+        },
+        {
+          "es": "Soporte inmediato cuando cesa el corte y relleno en aperturas o perforaciones de rocas.",
+          "en": "Immediate support when cut-and-fill stops in rock openings or drill holes.",
+          "zh": "在岩石开口或钻孔中进行充填采矿时的即时支护。"
+        },
+        {
+          "es": "Refuerzo de pilares, aperturas o perforaciones y pasos de la mina o mineral en bruto.",
+          "en": "Reinforcement of pillars, openings or drill holes, and mine or ore passes.",
+          "zh": "加固矿柱、开口或钻孔，以及溜井或矿石通道。"
+        },
+        {
+          "es": "Soporte permanente de huecos dinamitados, estaciones de trituradoras y vías de tracción.",
+          "en": "Permanent support of blasted openings, crusher stations and haulage ways.",
+          "zh": "爆破开口、破碎站和运输巷道的永久支护。"
+        },
+        {
+          "es": "Calzas para elevar taladros, soportes de roca, engrasadoras y fijación de toda otra maquinaria de minería.",
+          "en": "Shims to raise drills, rock supports, lubricators and fixing of all other mining machinery.",
+          "zh": "用于抬高钻机、岩石支架、注油器以及固定其他各类采矿机械的垫块。"
+        }
+      ]
+    },
+    {
+      "tipo": "h2",
+      "es": "OBRAS CIVILES",
+      "en": "CIVIL WORKS",
+      "zh": "土木工程"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Obras subterráneas.",
+          "en": "Underground works.",
+          "zh": "地下工程。"
+        },
+        {
+          "es": "Sostenimiento de túneles.",
+          "en": "Tunnel support.",
+          "zh": "隧道支护。"
+        },
+        {
+          "es": "Consolidación de taludes.",
+          "en": "Slope stabilization.",
+          "zh": "边坡稳定。"
+        }
+      ]
+    },
+    {
+      "tipo": "h2",
+      "es": "Tipos de anclaje",
+      "en": "Anchor types",
+      "zh": "锚杆类型"
+    },
+    {
+      "tipo": "h3",
+      "es": "Pernos de Barra Helicoidal",
+      "en": "Helical bar bolts",
+      "zh": "螺纹钢锚杆"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>BAHE A615-G75, Norma ASTM A615 Grado 75</strong>",
+      "en": "<strong>BAHE A615-G75, ASTM A615 Grade 75</strong>",
+      "zh": "<strong>BAHE A615-G75，ASTM A615 75 级</strong>"
+    },
+    {
+      "tipo": "h3",
+      "es": "Resina de Anclaje",
+      "en": "Anchoring resin",
+      "zh": "锚固树脂"
+    },
+    {
+      "tipo": "p",
+      "es": "<strong>En Cartuchos</strong>",
+      "en": "<strong>In cartridges</strong>",
+      "zh": "<strong>药卷式</strong>"
+    },
+    {
+      "tipo": "h3",
+      "es": "¿Requieres más información?",
+      "en": "Need more information?",
+      "zh": "需要更多信息？"
+    },
+    {
+      "tipo": "p",
+      "es": "Te asesoramos y te ofrecemos soluciones basadas en la experiencia.",
+      "en": "We advise you and offer solutions based on experience.",
+      "zh": "我们凭借经验为您提供咨询和解决方案。"
+    }
+  ],
+  "relacionados": [
+    "resina-de-anclaje",
+    "pernos-de-barra-helicoidal"
+  ]
+}

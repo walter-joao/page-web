@@ -14,22 +14,22 @@
 <meta content="{{ sitio.marca }}" property="og:site_name"/>
 <meta content="{{ sitio.dominio }}{{ p.ruta }}" property="og:url"/>
 <meta content="{{ p.og_titulo }}" property="og:title"/>
-<meta content="{{ p.og_descripcion or p.descripcion.es }}" property="og:description"/>
-<meta content="{{ p.og_imagen }}" property="og:image"/>
-<meta content="es_EC" property="og:locale"/>
+<meta content="{{ p.get("og_descripcion") or p.descripcion.es }}" property="og:description"/>
+{% if p.get("og_imagen") %}<meta content="{{ p.og_imagen }}" property="og:image"/>
+{% endif %}<meta content="es_EC" property="og:locale"/>
 <meta content="summary_large_image" name="twitter:card"/>
 <meta content="{{ sitio.color_tema }}" name="theme-color"/>
 <meta content="telephone=no" name="format-detection"/>
 <link href="{{ sitio.icono }}" rel="icon"/>
-<script>
+{% block estilo %}{% endblock %}<script>
 /* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
 document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
 </script>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&amp;family=Open+Sans:wght@400..700&amp;display=swap" rel="stylesheet"/>
-{% if p.ld_json %}<script type="application/ld+json">{{ p.ld_json }}</script>
-{% endif %}{% for css in ['comun', 'paginas'] + (p.css_extra or []) %}<link href="/css/{{ css }}.css" rel="stylesheet"/>
+{% if p.get("ld_json") %}<script type="application/ld+json">{{ p.ld_json }}</script>
+{% endif %}{% for css in ['comun', 'paginas'] + (p.get("css_extra") or []) %}<link href="/css/{{ css }}.css" rel="stylesheet"/>
 {% endfor %}<script data-domains="{{ sitio.umami.dominios }}" data-website-id="{{ sitio.umami.id }}" defer="" src="https://cloud.umami.is/script.js"></script>
 {% block head_extra %}{% endblock %}</head>
 <body>
@@ -47,7 +47,7 @@ document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG
 {%- set tel %}<a href="tel:{{ sitio.telefono.enlace }}">{{ sitio.telefono.internacional }}</a> · <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a>{% endset %}
 <footer>
 <div class="wrap">
-<span data-en="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.en }} · {{ tel }}" data-zh="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.zh }} · {{ tel }}">© {{ sitio.razon_social }} · {{ sitio.direccion }} · <a href="tel:{{ sitio.telefono.enlace }}">{{ sitio.telefono.mostrar }}</a> · <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a></span>
+<span data-en="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.en }} · {{ tel | forceescape }}" data-zh="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.zh }} · {{ tel | forceescape }}">© {{ sitio.razon_social }} · {{ sitio.direccion }} · <a href="tel:{{ sitio.telefono.enlace }}">{{ sitio.telefono.mostrar }}</a> · <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a></span>
 <a data-en="Back to home" data-zh="返回首页" href="/">Volver al inicio</a>
 </div>
 </footer>

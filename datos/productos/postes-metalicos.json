@@ -1,0 +1,75 @@
+{
+  "titulo": {
+    "es": "Postes metálicos en Ecuador | Jocecia",
+    "en": "Steel poles in Ecuador | Jocecia",
+    "zh": "厄瓜多尔金属电线杆 | Jocecia"
+  },
+  "descripcion": {
+    "es": "Postes metálicos para iluminación, alumbrado público, sujetadores de cables y anclajes de estructuras. Catálogo en PDF. JOCE Ingeniería y Materiales, Ecuador.",
+    "en": "Steel poles for lighting, street lighting, cable support and structural anchoring. PDF catalog. JOCE Ingeniería y Materiales, Ecuador.",
+    "zh": "用于照明、公共照明、电缆固定和结构锚固的钢制电线杆。PDF 目录。JOCE Ingeniería y Materiales，厄瓜多尔。"
+  },
+  "nombre": {
+    "es": "Postes metálicos",
+    "en": "Steel poles",
+    "zh": "金属电线杆"
+  },
+  "lead": {
+    "es": "Postes metálicos para alumbrado público, iluminación, sujeción de cables y anclaje de estructuras. Descarga el catálogo en PDF o pide tu cotización a Jocecia por WhatsApp.",
+    "en": "Steel poles for street lighting, illumination, cable support and structural anchoring. Download the PDF catalog or ask Jocecia for a quote on WhatsApp.",
+    "zh": "用于公共照明、照明、电缆固定和结构锚固的钢制电线杆。下载 PDF 目录或通过 WhatsApp 向 Jocecia 询价。"
+  },
+  "grupo": {
+    "nombre": {
+      "es": "Infraestructura metálica",
+      "en": "Steel infrastructure",
+      "zh": "钢结构基础设施"
+    },
+    "pagina": "infraestructura-metalica"
+  },
+  "catalogo": {
+    "ancla": "catalogo-postes",
+    "pdf": "/catalogos/postes.pdf",
+    "descarga": "CATALOGO-POSTES-METALICOS-JOCECIA.pdf"
+  },
+  "fotos": [
+    "/img/wp/2025/02/image003.jpg"
+  ],
+  "cuerpo": [
+    {
+      "tipo": "h3",
+      "es": "APLICACIONES COMUNES",
+      "en": "COMMON APPLICATIONS",
+      "zh": "常见应用"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "ILUMINACIÓN",
+          "en": "LIGHTING",
+          "zh": "照明"
+        },
+        {
+          "es": "ALUMBRADO PÚBLICO",
+          "en": "STREET LIGHTING",
+          "zh": "公共照明"
+        },
+        {
+          "es": "SUJETADORES DE CABLES",
+          "en": "CABLE SUPPORT",
+          "zh": "电缆固定"
+        },
+        {
+          "es": "ANCLAJES DE ESTRUCTURAS",
+          "en": "STRUCTURAL ANCHORING",
+          "zh": "结构锚固"
+        }
+      ]
+    }
+  ],
+  "relacionados": [
+    "infraestructura-metalica",
+    "grating-tramex"
+  ]
+}
