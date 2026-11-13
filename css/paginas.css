@@ -1,7 +1,7 @@
 /* Estilos de las páginas interiores: fichas de productos, proyectos y Trabaja con nosotros. Se cargan después de comun.css. */
 :root{padding-top:env(safe-area-inset-top,0px)}body{margin:0}img{max-width:100%}
 /* Manual de marca: párrafos largos justificados en pantallas medianas y grandes */
-@media (min-width:700px){.hero .lead,.quote p,.pillar p,.event p,.job-intro .lead,.pp-lead,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
+@media (min-width:700px){.pillar p,.event p,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
 /* Páginas interiores: fondo oscuro un poco más claro que el de la portada (#05090f). Los demás colores salen de comun.css. */
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#070d17}}
 :root[data-theme="dark"]{--bg:#070d17}

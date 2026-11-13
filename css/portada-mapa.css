@@ -5,7 +5,7 @@
 .sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sat-bg img{object-fit:cover;object-position:62% 25%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
 .sat.in .sat-bg img{transform:none}
-.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.92) 0%,rgba(5,9,15,.72) 26%,rgba(5,9,15,.18) 48%,transparent 60%)}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 88%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.9) 0%,rgba(5,9,15,.7) 24%,rgba(5,9,15,.22) 36%,transparent 43%)}
 .sat-copy .kicker{justify-self:start}
 .sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
 .sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
@@ -27,7 +27,7 @@
 .sat-prov.has{color:#fff;font-weight:700;font-size:.7rem}
 .sat-prov.has::before{content:"";display:inline-block;width:5px;height:5px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(141,181,219,.9);vertical-align:middle}
 .sat.lt{background:var(--bg);color:var(--fg)}
-.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%)}
+.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 88%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.76) 24%,rgba(243,245,248,.24) 36%,transparent 43%)}
 .sat.lt .sat-copy h2{color:var(--fg)}
 .sat.lt .sat-lead{color:var(--muted)}
 /* En pantallas anchas el mapa va de borde a borde; el texto se alinea con el contenido */
@@ -81,7 +81,7 @@
   .sat-chips button{flex:none;height:38px}
   .sat-stage{position:relative;inset:auto;aspect-ratio:1080/1350}
   .sat-bg img{object-position:50% 50%}
-  .sat-shade,.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 12%,transparent 85%,var(--bg) 100%)}
+  .sat-shade,.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 5%,transparent 92%,var(--bg) 100%)}
   .sat-hint{bottom:34px;font-size:.88rem}
   .sat-hint svg{display:none}
   .sat-credit{position:static;padding:8px 20px 0;text-align:right}
@@ -139,4 +139,4 @@ html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB"
 html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}
 html:lang(zh-CN) .kicker{letter-spacing:.08em}
 .pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}
-@media (min-width:700px){.hero .lead,.quote p,.pillar p,.event p,.job-intro .lead,.pp-lead,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
+@media (min-width:700px){.pillar p,.event p,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
