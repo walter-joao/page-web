@@ -1,0 +1,60 @@
+{
+  "nombre": {
+    "es": "Central San Francisco",
+    "en": "San Francisco power plant",
+    "zh": "San Francisco 水电站"
+  },
+  "descripcion": {
+    "es": "Mantenimiento mecánico e hidráulico. en Río Verde. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Mechanical and hydraulic maintenance in Río Verde. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "Río Verde 的机械和液压维护。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Mantenimiento mecánico e hidráulico.",
+    "en": "Mechanical and hydraulic maintenance.",
+    "zh": "机械和液压维护。"
+  },
+  "tipo": {
+    "es": "Hidroeléctrica",
+    "en": "Hydroelectric",
+    "zh": "水电"
+  },
+  "ubicacion": {
+    "es": "Río Verde, Baños, Tungurahua",
+    "en": "Río Verde, Baños, Tungurahua",
+    "zh": "Río Verde，Baños，Tungurahua"
+  },
+  "cliente": {
+    "es": "CELEC EP",
+    "en": "CELEC EP",
+    "zh": "CELEC EP"
+  },
+  "mapa": "obra-sanfco",
+  "fotos": [
+    "/img/wp/2019/11/SF-CELEC-1024x768.jpg",
+    "/img/wp/2025/01/IMG_20240816_092927-769x1024.jpg",
+    "/img/wp/2025/02/DSC00204-1024x768.jpg",
+    "/img/wp/2025/02/P1000605-1024x768.jpg",
+    "/img/wp/2025/02/DSC01168-1024x768.jpg"
+  ],
+  "trabajos": [
+    {
+      "es": "Suministros y materiales para mantenimiento mecánico",
+      "en": "Supplies and materials for mechanical maintenance",
+      "zh": "机械维护用物资和材料"
+    },
+    {
+      "es": "Suministro y montaje de soportería metálica para el skid del sistema de limpieza",
+      "en": "Supply and installation of steel supports for the cleaning system skid",
+      "zh": "清污系统撬座钢支架的供应与安装"
+    }
+  ],
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu"
+  ]
+}

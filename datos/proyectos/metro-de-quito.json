@@ -1,0 +1,135 @@
+{
+  "nombre": {
+    "es": "Metro de Quito",
+    "en": "Quito Metro",
+    "zh": "基多地铁"
+  },
+  "descripcion": {
+    "es": "Montaje y fabricación de escaleras y perfilería metálica. en Quito. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Erection and fabrication of stairs and steel sections in Quito. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "基多楼梯和型钢的安装与制造。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Montaje y fabricación de escaleras y perfilería metálica.",
+    "en": "Erection and fabrication of stairs and steel sections.",
+    "zh": "楼梯和型钢的安装与制造。"
+  },
+  "tipo": {
+    "es": "Transporte público",
+    "en": "Public transport",
+    "zh": "公共交通"
+  },
+  "ubicacion": {
+    "es": "Quito, Pichincha",
+    "en": "Quito, Pichincha",
+    "zh": "基多，Pichincha"
+  },
+  "cliente": {
+    "es": "Metro de Quito",
+    "en": "Metro de Quito",
+    "zh": "Metro de Quito"
+  },
+  "mapa": "obra-metro",
+  "fotos": [
+    "/img/wp/2019/11/Metro-de-Quito-trenes-min-1024x683.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-2-1024x768.jpeg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-3-768x1024.jpeg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-03-at-10.23.10-AM-1024x491.jpeg",
+    "/img/wp/2025/02/IMG_20220309_1103281-1024x461.jpg",
+    "/img/obras/metro-rejillas.webp",
+    "/img/obras/metro-cercha.webp",
+    "/img/obras/metro-plataformas.webp",
+    "/img/obras/metro-plataforma-escape.webp",
+    "/img/obras/metro-rampa.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Escaleras provisionales en la Estación San Francisco",
+      "en": "Temporary stairs at San Francisco station",
+      "zh": "San Francisco 站临时楼梯"
+    },
+    {
+      "es": "Escalera metálica en la parada del Boulevard 24 de Mayo",
+      "en": "Steel stairs at the Boulevard 24 de Mayo stop",
+      "zh": "Boulevard 24 de Mayo 站钢楼梯"
+    },
+    {
+      "es": "Estructura metálica de plenum para Talleres y Cocheras",
+      "en": "Steel plenum structure for the depot and workshops",
+      "zh": "车辆段和维修车间钢制静压箱结构"
+    },
+    {
+      "es": "Perfilería para cierre de hueco de estructura de reacción, Estación Magdalena",
+      "en": "Steel sections to close the reaction-structure opening, Magdalena station",
+      "zh": "Magdalena 站反力结构开口封闭型钢"
+    },
+    {
+      "es": "Perfilería galvanizada y barolada en la Estación Iñaquito",
+      "en": "Galvanized and bent steel sections at Iñaquito station",
+      "zh": "Iñaquito 站镀锌及折弯型钢"
+    },
+    {
+      "es": "Escaleras bajo andén y pasamanos en las estaciones Universidad Central, El Ejido y La Alameda",
+      "en": "Under-platform stairs and handrails at Universidad Central, El Ejido and La Alameda stations",
+      "zh": "Universidad Central、El Ejido 和 La Alameda 站站台下楼梯和扶手"
+    },
+    {
+      "es": "Escaleras bajo andén en las estaciones El Recreo, Cardenal de la Torre y Solanda",
+      "en": "Under-platform stairs at El Recreo, Cardenal de la Torre and Solanda stations",
+      "zh": "El Recreo、Cardenal de la Torre 和 Solanda 站站台下楼梯"
+    },
+    {
+      "es": "Chapas y vierteaguas en zona de cubetos de las estaciones del Centro",
+      "en": "Sheet metal and drip edges in the sump areas of the downtown stations",
+      "zh": "市中心各站集水区的钢板和滴水檐"
+    },
+    {
+      "es": "Montaje de tramex en Talleres y Cocheras",
+      "en": "Grating installation at the depot and workshops",
+      "zh": "车辆段和维修车间格栅板安装"
+    },
+    {
+      "es": "Pendolón para soporte de catenaria en Talleres y Cocheras",
+      "en": "Catenary support pendant at the depot and workshops",
+      "zh": "车辆段和维修车间接触网支撑吊架"
+    },
+    {
+      "es": "Perfilería para eje divisorio de las vías 23 y 24, foso de torno",
+      "en": "Steel sections for the dividing axis of tracks 23 and 24, lathe pit",
+      "zh": "镟轮坑 23 和 24 股道分隔轴型钢"
+    },
+    {
+      "es": "Suministro e instalación de tubos y placas galvanizadas",
+      "en": "Supply and installation of galvanized tubes and plates",
+      "zh": "镀锌钢管和钢板的供应与安装"
+    },
+    {
+      "es": "Perfilería galvanizada para garita de guardia y cuartos de herramientas",
+      "en": "Galvanized steel sections for the guard booth and tool rooms",
+      "zh": "值班亭和工具间镀锌型钢"
+    },
+    {
+      "es": "Fabricación de rejillas metálicas para el Consorcio Línea 1",
+      "en": "Steel gratings for Consorcio Línea 1",
+      "zh": "为 Consorcio Línea 1 制造的钢格栅"
+    },
+    {
+      "es": "Fabricación de cerchas curvas para el Consorcio Línea 1",
+      "en": "Curved arches for Consorcio Línea 1",
+      "zh": "为 Consorcio Línea 1 制造的弧形拱架"
+    },
+    {
+      "es": "Plataformas y escaleras de escape para el Consorcio Metro Quito",
+      "en": "Platforms and escape stairs for Consorcio Metro Quito",
+      "zh": "为 Consorcio Metro Quito 制造的平台和逃生楼梯"
+    }
+  ],
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "central-manduriacu",
+    "central-agoyan"
+  ]
+}

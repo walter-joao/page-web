@@ -1,0 +1,56 @@
+{
+  "nombre": {
+    "es": "Proyecto Colegio Americano",
+    "en": "Colegio Americano project",
+    "zh": "Colegio Americano 项目"
+  },
+  "descripcion": {
+    "es": "Fabricación y montaje de estructuras metálicas. en Puembo. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Fabrication and erection of steel structures in Puembo. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "Puembo 钢结构的制造与安装。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Fabricación y montaje de estructuras metálicas.",
+    "en": "Fabrication and erection of steel structures.",
+    "zh": "钢结构的制造与安装。"
+  },
+  "tipo": {
+    "es": "Educativo",
+    "en": "Education",
+    "zh": "教育"
+  },
+  "ubicacion": {
+    "es": "Puembo, Quito, Pichincha (aprox.)",
+    "en": "Puembo, Quito, Pichincha (approx.)",
+    "zh": "Puembo，基多，Pichincha（大约）"
+  },
+  "mapa": "obra-colegio",
+  "fotos": [
+    "/img/obras/colegio-americano.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Fabricación de estructura metálica",
+      "en": "Steel structure fabrication",
+      "zh": "钢结构制造"
+    },
+    {
+      "es": "Montaje en obra",
+      "en": "On-site erection",
+      "zh": "现场安装"
+    }
+  ],
+  "nota": {
+    "es": "Ubicación aproximada.",
+    "en": "Approximate location.",
+    "zh": "大致位置。"
+  },
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu",
+    "central-agoyan"
+  ]
+}

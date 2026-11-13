@@ -1,0 +1,62 @@
+{
+  "nombre": {
+    "es": "Túnel de Baños",
+    "en": "Baños tunnel",
+    "zh": "Baños 隧道"
+  },
+  "descripcion": {
+    "es": "Colocación de pernos de anclaje para el sostenimiento del túnel. en Baños de Agua Santa. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Installation of anchor bolts for tunnel support in Baños de Agua Santa. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "在 Baños de Agua Santa 安装锚杆以支护隧道。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Colocación de pernos de anclaje para el sostenimiento del túnel.",
+    "en": "Installation of anchor bolts for tunnel support.",
+    "zh": "安装锚杆以支护隧道。"
+  },
+  "tipo": {
+    "es": "Obra vial",
+    "en": "Road works",
+    "zh": "道路工程"
+  },
+  "ubicacion": {
+    "es": "Baños de Agua Santa, Tungurahua (aprox.)",
+    "en": "Baños de Agua Santa, Tungurahua (approx.)",
+    "zh": "Baños de Agua Santa，Tungurahua（大约）"
+  },
+  "mapa": "obra-tunel",
+  "fotos": [
+    "/img/obras/tunel-banos-1.webp",
+    "/img/obras/tunel-banos-2.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Suministro de pernos de anclaje",
+      "en": "Supply of anchor bolts",
+      "zh": "锚杆供应"
+    },
+    {
+      "es": "Colocación de pernos desde plataformas metálicas",
+      "en": "Bolt installation from steel platforms",
+      "zh": "从钢平台上安装锚杆"
+    },
+    {
+      "es": "Trabajo en frente de excavación",
+      "en": "Work at the excavation face",
+      "zh": "掌子面作业"
+    }
+  ],
+  "nota": {
+    "es": "Ubicación aproximada.",
+    "en": "Approximate location.",
+    "zh": "大致位置。"
+  },
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu"
+  ]
+}

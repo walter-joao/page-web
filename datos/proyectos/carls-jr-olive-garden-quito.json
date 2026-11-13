@@ -1,0 +1,56 @@
+{
+  "nombre": {
+    "es": "Carl's Jr. · Olive Garden Quito",
+    "en": "Carl's Jr. · Olive Garden Quito",
+    "zh": "Carl's Jr. · Olive Garden Quito"
+  },
+  "descripcion": {
+    "es": "Armado de un soporte metálico para conservar un árbol en el proyecto. en Quito. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "A steel support built to preserve a tree on the project, in Quito. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "在基多的项目中为保护一棵树而建造的钢支撑。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Armado de un soporte metálico para conservar un árbol en el proyecto.",
+    "en": "A steel support built to preserve a tree on the project.",
+    "zh": "在项目中为保护一棵树而建造的钢支撑。"
+  },
+  "tipo": {
+    "es": "Comercial",
+    "en": "Commercial",
+    "zh": "商业"
+  },
+  "ubicacion": {
+    "es": "Quito, Pichincha (aprox.)",
+    "en": "Quito, Pichincha (approx.)",
+    "zh": "基多，Pichincha（大约）"
+  },
+  "mapa": "obra-carls",
+  "fotos": [
+    "/img/obras/carls-jr-quito.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Diseño y fabricación del soporte",
+      "en": "Design and fabrication of the support",
+      "zh": "支撑的设计与制造"
+    },
+    {
+      "es": "Montaje en sitio",
+      "en": "On-site installation",
+      "zh": "现场安装"
+    }
+  ],
+  "nota": {
+    "es": "Ubicación aproximada.",
+    "en": "Approximate location.",
+    "zh": "大致位置。"
+  },
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "metro-de-quito",
+    "central-manduriacu",
+    "central-agoyan"
+  ]
+}
