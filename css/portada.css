@@ -211,3 +211,4 @@ section{padding-block:clamp(48px,6vw,72px);position:relative}
 .cb .ico{width:16px;height:16px}.cb:hover{border-color:var(--cyan)}
 .cb-wa{background:rgba(37,211,102,.12);border-color:rgba(37,211,102,.4);color:#7fe3a9}.cb-wa:hover{background:rgba(37,211,102,.2);border-color:rgba(37,211,102,.6)}
 @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .btn-wa,:root:not([data-theme="dark"]) .cb-wa{color:#13803f;background:rgba(37,211,102,.1)}}:root[data-theme="light"] .btn-wa,:root[data-theme="light"] .cb-wa{color:#13803f;background:rgba(37,211,102,.1)}
+.btn-call,.cb:not(.cb-wa){background:color-mix(in srgb,var(--accent) 14%,transparent);border-color:color-mix(in srgb,var(--accent) 50%,transparent);color:var(--accent)}.btn-call:hover,.cb:not(.cb-wa):hover{background:color-mix(in srgb,var(--accent) 24%,transparent);border-color:var(--accent)}.btn-call:hover{transform:translateY(-1px)}
