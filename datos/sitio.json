@@ -1,0 +1,23 @@
+{
+  "_LEEME": "Datos del cliente usados por todas las páginas generadas (herramientas/generar_paginas.py). Cambiar aquí y volver a generar.",
+  "dominio": "https://www.jocecia.com",
+  "marca": "JOCE Ingeniería y Materiales",
+  "razon_social": "José Cevallos JOCE Cía. Ltda.",
+  "direccion": "Calle La Florida 2114, Barrio San Sebastián, Cantón Rumiñahui, Sangolquí",
+  "pais": {"es": "Ecuador", "en": "Ecuador", "zh": "厄瓜多尔"},
+  "telefono": {"mostrar": "(02) 233 7445", "internacional": "+593 2 233 7445", "enlace": "+59322337445"},
+  "correo": "compras@jocecia.com",
+  "whatsapp": "593964068392",
+  "logo": "/img/wp/2025/02/LOGO-JOCECIA-1024x530.png",
+  "icono": "/img/wp/2020/04/cropped-icono-270x270.png",
+  "color_tema": "#070d17",
+  "umami": {"id": "4e93816a-d608-46e0-a24f-06889298964a", "dominios": "www.jocecia.com,jocecia.com,d1wirxu5lk9yc9.cloudfront.net"},
+  "menu": [
+    {"href": "/#proyectos", "es": "Proyectos", "en": "Projects", "zh": "项目"},
+    {"href": "/#sectores", "es": "Soluciones", "en": "Solutions", "zh": "解决方案"},
+    {"href": "/#productos", "es": "Productos", "en": "Products", "zh": "产品"},
+    {"href": "/#nosotros", "es": "Nosotros", "en": "About us", "zh": "关于我们"},
+    {"href": "/trabaja-con-nosotros", "es": "Trabaja con nosotros", "en": "Careers", "zh": "加入我们"},
+    {"href": "/#contacto", "es": "Contacto", "en": "Contact", "zh": "联系我们"}
+  ]
+}

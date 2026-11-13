@@ -1,0 +1,55 @@
+{#- Plantilla común de las páginas interiores: <head>, cabecera, pie y scripts.
+    Cada tipo de página (producto.html, proyecto.html, pagina.html) la extiende y llena el bloque "main".
+    Variables: sitio (datos/sitio.json) y p (datos de la página). Ver herramientas/LEEME.md. -#}
+<!DOCTYPE html>
+
+<html data-desc-en="{{ p.descripcion.en }}" data-desc-zh="{{ p.descripcion.zh }}" data-title-en="{{ p.titulo.en }}" data-title-zh="{{ p.titulo.zh }}" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>{{ p.titulo.es }}</title>
+<meta content="{{ p.descripcion.es }}" name="description"/>
+<link href="{{ sitio.dominio }}{{ p.ruta }}" rel="canonical"/>
+<meta content="{{ p.og_tipo }}" property="og:type"/>
+<meta content="{{ sitio.marca }}" property="og:site_name"/>
+<meta content="{{ sitio.dominio }}{{ p.ruta }}" property="og:url"/>
+<meta content="{{ p.og_titulo }}" property="og:title"/>
+<meta content="{{ p.og_descripcion or p.descripcion.es }}" property="og:description"/>
+<meta content="{{ p.og_imagen }}" property="og:image"/>
+<meta content="es_EC" property="og:locale"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="{{ sitio.color_tema }}" name="theme-color"/>
+<meta content="telephone=no" name="format-detection"/>
+<link href="{{ sitio.icono }}" rel="icon"/>
+<script>
+/* Si el optimizador de imágenes de Vercel falla, se usa la foto original */
+document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG'||!i.dataset.o||i.dataset.f)return;i.dataset.f='1';i.removeAttribute('srcset');i.src=i.dataset.o},true);
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400..900&amp;family=Open+Sans:wght@400..700&amp;display=swap" rel="stylesheet"/>
+{% if p.ld_json %}<script type="application/ld+json">{{ p.ld_json }}</script>
+{% endif %}{% for css in ['comun', 'paginas'] + (p.css_extra or []) %}<link href="/css/{{ css }}.css" rel="stylesheet"/>
+{% endfor %}<script data-domains="{{ sitio.umami.dominios }}" data-website-id="{{ sitio.umami.id }}" defer="" src="https://cloud.umami.is/script.js"></script>
+{% block head_extra %}{% endblock %}</head>
+<body>
+<a class="skip" data-en="Skip to content" data-zh="跳到正文" href="#contenido" style="position:absolute;left:-9999px">Saltar al contenido</a>
+<header class="top solid" id="top">
+<div class="wrap">
+<a aria-label="{{ sitio.marca }} – inicio" class="logo" href="/"><img alt="{{ sitio.marca }}" decoding="async" height="42" src="{{ sitio.logo | vimg(384) }}" width="81"/></a>
+<nav aria-label="Secciones" class="main">
+{% for m in sitio.menu %}<a{% if m.href == p.ruta %} aria-current="page"{% endif %} data-en="{{ m.en }}" data-zh="{{ m.zh }}" href="{{ m.href }}">{{ m.es }}</a>{% endfor %}
+</nav>
+<div class="tools"><div aria-label="Idioma / Language" class="pill" role="group"><button aria-pressed="true" id="lang-es" type="button">ES</button><button aria-pressed="false" id="lang-en" type="button">EN</button><button aria-pressed="false" id="lang-zh" lang="zh-CN" type="button">中文</button></div><button aria-label="Cambiar tema claro u oscuro" class="round" id="theme" type="button"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4.5"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg></button></div>
+</div>
+</header>
+{% block main %}{% endblock %}
+{%- set tel %}<a href="tel:{{ sitio.telefono.enlace }}">{{ sitio.telefono.internacional }}</a> · <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a>{% endset %}
+<footer>
+<div class="wrap">
+<span data-en="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.en }} · {{ tel }}" data-zh="© {{ sitio.razon_social }} · {{ sitio.direccion }}, {{ sitio.pais.zh }} · {{ tel }}">© {{ sitio.razon_social }} · {{ sitio.direccion }} · <a href="tel:{{ sitio.telefono.enlace }}">{{ sitio.telefono.mostrar }}</a> · <a href="mailto:{{ sitio.correo }}">{{ sitio.correo }}</a></span>
+<a data-en="Back to home" data-zh="返回首页" href="/">Volver al inicio</a>
+</div>
+</footer>
+<script src="/js/paginas.js"></script>{% block scripts_extra %}{% endblock %}</body>
+</html>
