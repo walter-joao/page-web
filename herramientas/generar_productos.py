@@ -16,6 +16,9 @@ en herramientas/productos.json. El estilo se copia de index.html para que las
 páginas se vean igual que la portada.
 """
 import html
+# Página de cada grupo: la ruta (migas) de una ficha enlaza a su grupo
+GRUPO_SLUG = {"Pernos de alta fiabilidad": "pernos-de-alta-fiabilidad", "Alcantarillas metálicas": "alcantarillas-metalicas",
+              "Infraestructura metálica": "infraestructura-metalica", "Soporte en roca": "soporte-en-roca"}
 import json
 import os
 import re
@@ -355,7 +358,9 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Inicio", "item": DOMINIO + "/"},
             {"@type": "ListItem", "position": 2, "name": "Productos", "item": DOMINIO + "/#productos"},
-            {"@type": "ListItem", "position": 3, "name": nombre, "item": url}]},
+            *([{"@type": "ListItem", "position": 3, "name": p["grupo"], "item": DOMINIO + "/productos/" + GRUPO_SLUG[p["grupo"]]}]
+              if GRUPO_SLUG.get(p["grupo"]) not in (None, p["slug"]) else []),
+            {"@type": "ListItem", "position": 4 if GRUPO_SLUG.get(p["grupo"]) not in (None, p["slug"]) else 3, "name": nombre, "item": url}]},
         {"@type": ["Organization", "LocalBusiness"], "@id": DOMINIO + "/#empresa", "name": "JOCE Ingeniería y Materiales",
          "url": DOMINIO + "/", "telephone": "+593 2 233 7445", "email": "compras@jocecia.com",
          "address": {"@type": "PostalAddress", "streetAddress": "Calle La Florida 2114, Barrio San Sebastián",
@@ -400,7 +405,7 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
 <main id="contenido">
   <section class="pp-hero">
     <div class="wrap">
-      <nav class="crumb" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/#productos">Productos</a> / <span>{grupo}</span></nav>
+      <nav class="crumb" aria-label="Ruta"><a href="/">Inicio</a> / <a href="/#productos">Productos</a> / {grupo_crumb}</nav>
       <h1>{nombre_e}</h1>
       {intro}<p class="grupo">{grupo} · JOCE Ingeniería y Materiales, Sangolquí, Ecuador</p>
       <div class="cta-row">{botones}</div>
@@ -429,7 +434,9 @@ def pagina(p, todos, bloques, imgs, css_base, head_comun):
            ogimg=('<meta property="og:image" content="%s">\n' % html.escape(galeria[0])) if galeria else "",
            head_comun=head_comun, ld=json.dumps(ld, ensure_ascii=False, indent=1), css_base=css_base,
            css_extra=CSS_EXTRA, logo=img_opt("/img/wp/2025/02/LOGO-JOCECIA-1024x530.png", 384),
-           grupo=html.escape(p["grupo"]), botones="".join(botones), galeria=gal_html,
+           grupo=html.escape(p["grupo"]),
+           grupo_crumb=('<a href="/productos/%s">%s</a>' % (GRUPO_SLUG[p["grupo"]], html.escape(p["grupo"]))
+                        if GRUPO_SLUG.get(p["grupo"]) not in (None, p["slug"]) else "<span>%s</span>" % html.escape(p["grupo"])), botones="".join(botones), galeria=gal_html,
            intro=('<p class="pp-lead">%s</p>\n      ' % html.escape(p["intro"])) if p.get("intro") else "",
            cuerpo=cuerpo_html(bloques, nombre), rel=rel_html, script=SCRIPT)
 

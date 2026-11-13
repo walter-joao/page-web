@@ -14,6 +14,9 @@ LINEAS = [
     ("Escaleras", "Escaleras metálicas fijas y provisionales para estaciones y plantas.", "/img/obras/metro-rampa.webp", "/proyectos/metro-de-quito"),
     ("Pasamanos y pasarelas", "Plataformas, pasarelas y barandas de acero con acabado a pedido.", "/img/obras/metro-plataformas.webp", "/proyectos/metro-de-quito"),
     ("Rejillas", "Rejillas metálicas para drenaje, ventilación y pisos técnicos.", "/img/obras/metro-rejillas.webp", "/proyectos/metro-de-quito"),
+]
+# Productos de esta línea que tienen su propia ficha: se enlazan aquí en vez de repetirse como líneas
+FICHAS = [
     ("Pisos metálicos grating y tramex", "Pisos industriales de rejilla electrosoldada.", WP+"2025/02/WhatsApp-Image-2022-05-03-at-10.23.11-AM-768x1024.jpeg", "/productos/grating-tramex"),
     ("Postes", "Postes de acero para alumbrado, cableado y anclaje de estructuras.", WP+"2025/02/image003.jpg", "/productos/postes-metalicos"),
     ("Encofrados", "Encofrados metálicos de acero para moldear y sostener el hormigón.", WP+"2025/02/IMG-20220426-WA0011-1024x576.jpg", "/productos/encofrados"),
@@ -44,6 +47,14 @@ CSS = """
 .il-gal .btn-wa{display:inline-flex;margin-top:20px;padding:12px 20px;border-radius:14px;background:var(--accent);color:#fff;font-weight:700;text-decoration:none}
 .il-mas{margin-top:34px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
 .il-mas small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.il-sub{margin:44px 0 6px;font-family:var(--f-display);font-size:clamp(1.3rem,2.4vw,1.7rem)}
+.il-sub+p{margin:0 0 18px;opacity:.8}
+.il-fichas{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.il-ficha{display:flex;align-items:center;gap:14px;padding:10px 14px 10px 10px;border-radius:16px;background:var(--surface);border:1px solid var(--line);text-decoration:none;color:inherit;transition:border-color .3s,transform .3s}
+.il-ficha:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.il-ficha img{width:64px;height:64px;border-radius:10px;object-fit:cover;flex:none;background:var(--line)}
+.il-ficha b{display:block;font-size:.98rem}
+.il-ficha span{font-size:.82rem;font-weight:700;color:var(--cyan)}
 .il-mas em{font-style:normal;padding:8px 14px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font-size:.92rem}
 """
 def card(t, d, img, href):
@@ -55,8 +66,14 @@ gal = ('<div class="il-gal" id="galpones"><h2>Galpones</h2><p>%s</p><div class="
        '<a class="btn-wa" href="%s" target="_blank" rel="noopener">Cotizar un galpón por WhatsApp</a></div>'
        % (html.escape(LINEAS[0][1]), "".join('<figure><img decoding="async" loading="lazy" src="%s" alt="Galpón metálico – JOCE Ingeniería y Materiales (foto %d)"></figure>' % (vi(u), i + 1) for i, u in enumerate(GALPONES)), WA_GALPON))
 gal = ""  # las fotos de galpones viven en /proyectos/galpon-cadeco
-cuerpo = ('<div class="wrap"><div class="il-grid">%s</div>%s<div class="il-mas"><small>También fabricamos</small>%s</div></div>'
-          % ("".join(card(*l) for l in LINEAS), gal, "".join("<em>%s</em>" % html.escape(t) for t in TAMBIEN)))
+def ficha(t, d, img, href):
+    return ('<a class="il-ficha" href="%s"><img decoding="async" loading="lazy" src="%s" alt="%s – Joce Cia Ltda.">'
+            '<div><b>%s</b><span>Ver ficha ›</span></div></a>') % (href, vi(img, 256), html.escape(t), html.escape(t))
+cuerpo = ('<div class="wrap"><div class="il-grid">%s</div>%s<div class="il-mas"><small>También fabricamos</small>%s</div>'
+          '<h2 class="il-sub">Con ficha propia</h2><p>Estos productos también son parte de la infraestructura metálica de Jocecia y tienen su propia página.</p>'
+          '<div class="il-fichas">%s</div></div>'
+          % ("".join(card(*l) for l in LINEAS), gal, "".join("<em>%s</em>" % html.escape(t) for t in TAMBIEN),
+             "".join(ficha(*l) for l in FICHAS)))
 f = os.path.join(R, "productos/infraestructura-metalica.html")
 s = open(f).read()
 s = re.sub(r'(<section class="pp-body">\s*).*?(\s*</section>)', lambda m: m.group(1) + cuerpo + m.group(2), s, count=1, flags=re.S)
