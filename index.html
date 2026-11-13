@@ -1993,6 +1993,7 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
     ['es','en','zh'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x)});
     try{localStorage.setItem('joce-lang',l)}catch(e){}
   }
+  document.getElementById('lang-es').addEventListener('click',function(){setLang('es')});
   document.getElementById('lang-en').addEventListener('click',function(){setLang('en')});
   document.getElementById('lang-zh').addEventListener('click',function(){setLang('zh')});
 
