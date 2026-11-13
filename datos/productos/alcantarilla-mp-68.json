@@ -5,7 +5,7 @@
     "zh": "TMC Minimultiplate MP 68 涵管 | Jocecia 厄瓜多尔"
   },
   "descripcion": {
-    "es": "Los requerimientos en composición química de la alcantarilla TMC MiniMultiplate SP MP-68 están establecidos conforme a ASTM A929 y se muestran en la…",
+    "es": "Alcantarilla TMC MiniMultiplate SP MP-68 según ASTM A929: composición, propiedades, dimensiones y tablas de estructuras. Jocecia, Ecuador.",
     "en": "Chemical composition requirements of the TMC MiniMultiplate SP MP-68 culvert, made under ASTM A929, with its technical tables.",
     "zh": "按 ASTM A929 生产的 TMC MiniMultiplate SP MP-68 涵管的化学成分要求及技术表格。"
   },
@@ -39,7 +39,7 @@
   "cuerpo": [
     {
       "tipo": "h2",
-      "es": "1.- Composición Química",
+      "es": "1. Composición química",
       "en": "1. Chemical composition",
       "zh": "1. 化学成分"
     },
@@ -55,7 +55,7 @@
     },
     {
       "tipo": "h2",
-      "es": "2.- Propiedades Mecánicas",
+      "es": "2. Propiedades mecánicas",
       "en": "2. Mechanical properties",
       "zh": "2. 力学性能"
     },
@@ -72,7 +72,7 @@
     },
     {
       "tipo": "h2",
-      "es": "3.- Características Dimensionales",
+      "es": "3. Características dimensionales",
       "en": "3. Dimensions",
       "zh": "3. 尺寸"
     },
@@ -89,7 +89,7 @@
     },
     {
       "tipo": "h2",
-      "es": "4.- Dimensiones De La Corruga",
+      "es": "4. Dimensiones de la corruga",
       "en": "4. Corrugation dimensions",
       "zh": "4. 波纹尺寸"
     },
@@ -101,45 +101,34 @@
     },
     {
       "tipo": "p",
-      "es": "- REQUERIMIENTOS PARA LA CORRUGA",
-      "en": "- CORRUGATION REQUIREMENTS",
-      "zh": "- 波纹要求"
+      "es": "<strong>Requerimientos para la corruga:</strong>",
+      "en": "<strong>Corrugation requirements:</strong>",
+      "zh": "<strong>波纹要求：</strong>"
     },
     {
-      "tipo": "p",
-      "es": "o DIMENSIÓN NOMINAL (mm): 68x13",
-      "en": "o NOMINAL SIZE (mm): 68x13",
-      "zh": "o 公称尺寸（mm）：68x13"
-    },
-    {
-      "tipo": "p",
-      "es": "o TOLERANCIA EN PASO (mm): +4.00 /-1.00",
-      "en": "o PITCH TOLERANCE (mm): +4.00 /-1.00",
-      "zh": "o 波距公差（mm）：+4.00 /-1.00"
-    },
-    {
-      "tipo": "p",
-      "es": "o TOLERANCIA EN PROFUNDIDAD (mm) +/- 1.00",
-      "en": "o DEPTH TOLERANCE (mm) +/- 1.00",
-      "zh": "o 波深公差（mm）+/- 1.00"
-    },
-    {
-      "tipo": "p",
-      "es": "o Radio interior (mm):",
-      "en": "o Inside radius (mm):",
-      "zh": "o 内半径（mm）："
-    },
-    {
-      "tipo": "p",
-      "es": "§ Nominal: 17",
-      "en": "§ Nominal: 17",
-      "zh": "§ 公称：17"
-    },
-    {
-      "tipo": "p",
-      "es": "§ Mínimo: 12",
-      "en": "§ Minimum: 12",
-      "zh": "§ 最小：12"
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Dimensión nominal (mm): 68x13",
+          "en": "Nominal size (mm): 68x13",
+          "zh": "公称尺寸（mm）：68x13"
+        },
+        {
+          "es": "Tolerancia en paso (mm): +4.00 /-1.00",
+          "en": "Pitch tolerance (mm): +4.00 /-1.00",
+          "zh": "波距公差（mm）：+4.00 /-1.00"
+        },
+        {
+          "es": "Tolerancia en profundidad (mm): ±1.00",
+          "en": "Depth tolerance (mm): ±1.00",
+          "zh": "波深公差（mm）：±1.00"
+        },
+        {
+          "es": "Radio interior (mm): nominal 17, mínimo 12",
+          "en": "Inside radius (mm): nominal 17, minimum 12",
+          "zh": "内半径（mm）：公称 17，最小 12"
+        }
+      ]
     },
     {
       "tipo": "figura",
@@ -148,13 +137,13 @@
     },
     {
       "tipo": "h2",
-      "es": "5.- Estructuras",
+      "es": "5. Estructuras",
       "en": "5. Structures",
       "zh": "5. 结构"
     },
     {
       "tipo": "p",
-      "es": "Las siguientes tablas muestran las principales propiedades geométricas, estructurales e hidráulicas de las alcantarillas TMC con diámetros comerciales (luz), para el caso de las abovedadas (luz y flecha), considerando que soportan combinación de cargas HS20-44 o HL.93.",
+      "es": "Las siguientes tablas muestran las principales propiedades geométricas, estructurales e hidráulicas de las alcantarillas TMC con diámetros comerciales (luz), para el caso de las abovedadas (luz y flecha), considerando que soportan combinación de cargas HS20-44 o HL-93.",
       "en": "The following tables show the main geometric, structural and hydraulic properties of TMC culverts in commercial diameters (span), and for arch culverts (span and rise), assuming HS20-44 or HL-93 load combinations.",
       "zh": "下表列出了商用直径（跨度）的 TMC 涵管以及拱形涵管（跨度和矢高）的主要几何、结构和水力性能，按 HS20-44 或 HL-93 荷载组合计算。"
     },
@@ -165,8 +154,8 @@
     },
     {
       "tipo": "p",
-      "es": "<strong>SECCIÓN CIRCULAR:<br/> </strong>",
-      "en": "<strong>CIRCULAR SECTION:<br/> </strong>",
+      "es": "<strong>SECCIÓN CIRCULAR:</strong>",
+      "en": "<strong>CIRCULAR SECTION:</strong>",
       "zh": "<strong>圆形截面：<br/> </strong>"
     },
     {
@@ -175,8 +164,8 @@
     },
     {
       "tipo": "p",
-      "es": "<strong>SECCIÓN ABOVEDADA:<br/> </strong>",
-      "en": "<strong>ARCH SECTION:<br/> </strong>",
+      "es": "<strong>SECCIÓN ABOVEDADA:</strong>",
+      "en": "<strong>ARCH SECTION:</strong>",
       "zh": "<strong>拱形截面：<br/> </strong>"
     },
     {
@@ -207,7 +196,7 @@
     },
     {
       "tipo": "h2",
-      "es": "6.- Documentos De Referencia",
+      "es": "6. Documentos de referencia",
       "en": "6. Reference documents",
       "zh": "6. 参考文件"
     },

@@ -5,7 +5,7 @@
     "zh": "厄瓜多尔树脂岩石锚固药卷 | Jocecia"
   },
   "descripcion": {
-    "es": "El cartucho de anclaje en roca con resina es un sistema de fijación utilizado para instalar anclajes en materiales rocosos o de alta resistencia. Este…",
+    "es": "Cartuchos de resina para anclaje en roca: sistema de fijación de pernos en roca y materiales de alta resistencia. Venta en Ecuador.",
     "en": "The resin rock anchor cartridge is a fastening system used to install anchors in rock or other high-strength materials.",
     "zh": "树脂岩石锚固药卷是一种用于在岩石或其他高强度材料中安装锚杆的固定系统。"
   },
@@ -179,10 +179,74 @@
       "zh": "性能："
     },
     {
-      "tipo": "p",
-      "es": "- Gran adherencia a roca, hormigón y acero.<br/>-Gran rapidez de colocación y de fraguado.<br/>-Gran capacidad de anclaje en corto periodo.<br/>-Material tixotrópico.<br/>-Gran resistencia mecánica y química.<br/>-La resina ya curada o procesada es resistente a los ácidos y álcalis entre 2 y 10 de pH.<br/>-No presenta ningún debilitamiento aun estando sumergida en agua.<br/>-Presenta un anclaje indefinido.<br/>-Reduce costos de mano de obra.<br/>-Completamente curada o procesada la resina es más fuerte que la roca y que la mayoría de los otros materiales en los cuales es usada.<br/>-La resina procesada es resistente a la distorsión provocada por calentamiento hasta 100°C.<br/>-La instalación no es afectada y su fuerza no disminuye, siempre que la resina y su envoltura estuvieran a una temperatura de 10 °C en el momento de su instalación.<br/>-El tiempo de solidificación o estado plástico antes de endurecer, está indicado para cada tipo. No se hace referencia a fraguado inicial y final por ser muy breves los periodos entre uno y otro el cual puede variar desde 1 minuto hasta 15 minutos.",
-      "en": "- Strong adhesion to rock, concrete and steel.<br/>- Very fast placement and setting.<br/>- High anchoring capacity in a short time.<br/>- Thixotropic material.<br/>- High mechanical and chemical resistance.<br/>- Cured resin resists acids and alkalis between pH 2 and 10.<br/>- Does not weaken even when submerged in water.<br/>- Provides permanent anchorage.<br/>- Reduces labor costs.<br/>- Fully cured, the resin is stronger than the rock and most other materials it is used in.<br/>- Cured resin resists heat distortion up to 100°C.<br/>- Installation and strength are not affected as long as the resin and its wrapper were at 10 °C at the time of installation.<br/>- The gel time (plastic state before hardening) is given for each type. Initial and final set are not listed because the interval between them is very short, from 1 to 15 minutes.",
-      "zh": "- 与岩石、混凝土和钢材粘结力强。<br/>- 放置和凝固非常快。<br/>- 短时间内达到高锚固力。<br/>- 触变性材料。<br/>- 机械和化学耐受性高。<br/>- 固化后的树脂耐 pH 2 至 10 的酸碱。<br/>- 即使浸没在水中强度也不减弱。<br/>- 提供永久锚固。<br/>- 降低人工成本。<br/>- 完全固化后，树脂强度高于岩石及其所用的大多数材料。<br/>- 固化后的树脂在 100°C 以下不会受热变形。<br/>- 只要安装时树脂及其包装处于 10 °C，安装和强度就不受影响。<br/>- 每种类型均标明凝胶时间（硬化前的塑性状态）。初凝和终凝时间未列出，因为两者间隔很短，为 1 至 15 分钟。"
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Gran adherencia a roca, hormigón y acero.",
+          "en": "Strong adhesion to rock, concrete and steel.",
+          "zh": "与岩石、混凝土和钢材粘结力强。"
+        },
+        {
+          "es": "Gran rapidez de colocación y de fraguado.",
+          "en": "Very fast placement and setting.",
+          "zh": "放置和凝固非常快。"
+        },
+        {
+          "es": "Gran capacidad de anclaje en corto periodo.",
+          "en": "High anchoring capacity in a short time.",
+          "zh": "短时间内达到高锚固力。"
+        },
+        {
+          "es": "Material tixotrópico.",
+          "en": "Thixotropic material.",
+          "zh": "触变性材料。"
+        },
+        {
+          "es": "Gran resistencia mecánica y química.",
+          "en": "High mechanical and chemical resistance.",
+          "zh": "机械和化学耐受性高。"
+        },
+        {
+          "es": "La resina ya curada o procesada es resistente a los ácidos y álcalis entre 2 y 10 de pH.",
+          "en": "Cured resin resists acids and alkalis between pH 2 and 10.",
+          "zh": "固化后的树脂耐 pH 2 至 10 的酸碱。"
+        },
+        {
+          "es": "No presenta ningún debilitamiento aun estando sumergida en agua.",
+          "en": "Does not weaken even when submerged in water.",
+          "zh": "即使浸没在水中强度也不减弱。"
+        },
+        {
+          "es": "Presenta un anclaje indefinido.",
+          "en": "Provides permanent anchorage.",
+          "zh": "提供永久锚固。"
+        },
+        {
+          "es": "Reduce costos de mano de obra.",
+          "en": "Reduces labor costs.",
+          "zh": "降低人工成本。"
+        },
+        {
+          "es": "Completamente curada o procesada la resina es más fuerte que la roca y que la mayoría de los otros materiales en los cuales es usada.",
+          "en": "Fully cured, the resin is stronger than the rock and most other materials it is used in.",
+          "zh": "完全固化后，树脂强度高于岩石及其所用的大多数材料。"
+        },
+        {
+          "es": "La resina procesada es resistente a la distorsión provocada por calentamiento hasta 100°C.",
+          "en": "Cured resin resists heat distortion up to 100°C.",
+          "zh": "固化后的树脂在 100°C 以下不会受热变形。"
+        },
+        {
+          "es": "La instalación no es afectada y su fuerza no disminuye, siempre que la resina y su envoltura estuvieran a una temperatura de 10 °C en el momento de su instalación.",
+          "en": "Installation and strength are not affected as long as the resin and its wrapper were at 10 °C at the time of installation.",
+          "zh": "只要安装时树脂及其包装处于 10 °C，安装和强度就不受影响。"
+        },
+        {
+          "es": "El tiempo de solidificación o estado plástico antes de endurecer, está indicado para cada tipo. No se hace referencia a fraguado inicial y final por ser muy breves los periodos entre uno y otro el cual puede variar desde 1 minuto hasta 15 minutos.",
+          "en": "The gel time (plastic state before hardening) is given for each type. Initial and final set are not listed because the interval between them is very short, from 1 to 15 minutes.",
+          "zh": "每种类型均标明凝胶时间（硬化前的塑性状态）。初凝和终凝时间未列出，因为两者间隔很短，为 1 至 15 分钟。"
+        }
+      ]
     },
     {
       "tipo": "h2",
@@ -203,10 +267,19 @@
       "zh": "包装："
     },
     {
-      "tipo": "p",
-      "es": "-Carga de 25mm x 500mm<br/>-Carga de 40mm x 500mm",
-      "en": "- 25mm x 500mm cartridge<br/>- 40mm x 500mm cartridge",
-      "zh": "- 25mm x 500mm 药卷<br/>- 40mm x 500mm 药卷"
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Carga de 25mm x 500mm",
+          "en": "25mm x 500mm cartridge",
+          "zh": "25mm x 500mm 药卷"
+        },
+        {
+          "es": "Carga de 40mm x 500mm",
+          "en": "40mm x 500mm cartridge",
+          "zh": "40mm x 500mm 药卷"
+        }
+      ]
     },
     {
       "tipo": "h2",
@@ -269,34 +342,34 @@
       "zh": "使用方法："
     },
     {
-      "tipo": "p",
-      "es": "-Efectuar la perforación hasta una profundidad igual al largo del perno, considerando que la parte roscada de éste, quede fuera de la perforación y la punta del perno debe ser cortante, en forma de bisel.",
-      "en": "- Drill to a depth equal to the bolt length, so that the threaded part of the bolt stays outside the hole; the bolt tip should be cut at a bevel.",
-      "zh": "- 钻孔深度等于锚杆长度，使锚杆螺纹部分留在孔外；锚杆端部应切成斜口。"
-    },
-    {
-      "tipo": "p",
-      "es": "-Limpiar la perforación lo mejor posible, preferentemente mediante aire comprimido.",
-      "en": "- Clean the hole as well as possible, preferably with compressed air.",
-      "zh": "- 尽可能将孔清理干净，最好使用压缩空气。"
-    },
-    {
-      "tipo": "p",
-      "es": "-Se insertan los cartuchos de anclaje en la perforación, calculando un exceso de volumen de resina entre un 10 – 20% con el fin de cubrir irregularidades o grietas en la perforación.",
-      "en": "- Insert the anchor cartridges into the hole, allowing 10 – 20% extra resin volume to fill irregularities or cracks in the hole.",
-      "zh": "- 将锚固药卷放入孔中，多留 10 – 20% 的树脂量以填充孔内的不平或裂隙。"
-    },
-    {
-      "tipo": "p",
-      "es": "-Se inserta el perno rotándolo mecánicamente a través de los cartuchos para que los rompa y se produzca la mezcla entre la resina y catalizador. El perno se puede rotar con el mismo equipo con el que se efectuó la perforación.",
-      "en": "- Insert the bolt while rotating it mechanically through the cartridges so it breaks them and mixes the resin and catalyst. The bolt can be rotated with the same rig used for drilling.",
-      "zh": "- 机械旋转锚杆穿过药卷，使药卷破裂并混合树脂和固化剂。可使用钻孔所用的同一台钻机旋转锚杆。"
-    },
-    {
-      "tipo": "p",
-      "es": "-Una vez que el perno llegue al fondo de la perforación, se recomienda seguir rotando por unos 90 – 100 segundos, asegurando tener una buena mezcla de los componentes del cartucho de anclaje.",
-      "en": "- Once the bolt reaches the bottom of the hole, keep rotating for about 90 – 100 seconds to ensure the cartridge components are well mixed.",
-      "zh": "- 锚杆到达孔底后，继续旋转约 90 – 100 秒，确保药卷各组分充分混合。"
+      "tipo": "ol",
+      "items": [
+        {
+          "es": "Efectuar la perforación hasta una profundidad igual al largo del perno, considerando que la parte roscada de éste, quede fuera de la perforación y la punta del perno debe ser cortante, en forma de bisel.",
+          "en": "Drill to a depth equal to the bolt length, so that the threaded part of the bolt stays outside the hole; the bolt tip should be cut at a bevel.",
+          "zh": "钻孔深度等于锚杆长度，使锚杆螺纹部分留在孔外；锚杆端部应切成斜口。"
+        },
+        {
+          "es": "Limpiar la perforación lo mejor posible, preferentemente mediante aire comprimido.",
+          "en": "Clean the hole as well as possible, preferably with compressed air.",
+          "zh": "尽可能将孔清理干净，最好使用压缩空气。"
+        },
+        {
+          "es": "Se insertan los cartuchos de anclaje en la perforación, calculando un exceso de volumen de resina entre un 10 – 20% con el fin de cubrir irregularidades o grietas en la perforación.",
+          "en": "Insert the anchor cartridges into the hole, allowing 10 – 20% extra resin volume to fill irregularities or cracks in the hole.",
+          "zh": "将锚固药卷放入孔中，多留 10 – 20% 的树脂量以填充孔内的不平或裂隙。"
+        },
+        {
+          "es": "Se inserta el perno rotándolo mecánicamente a través de los cartuchos para que los rompa y se produzca la mezcla entre la resina y catalizador. El perno se puede rotar con el mismo equipo con el que se efectuó la perforación.",
+          "en": "Insert the bolt while rotating it mechanically through the cartridges so it breaks them and mixes the resin and catalyst. The bolt can be rotated with the same rig used for drilling.",
+          "zh": "机械旋转锚杆穿过药卷，使药卷破裂并混合树脂和固化剂。可使用钻孔所用的同一台钻机旋转锚杆。"
+        },
+        {
+          "es": "Una vez que el perno llegue al fondo de la perforación, se recomienda seguir rotando por unos 90 – 100 segundos, asegurando tener una buena mezcla de los componentes del cartucho de anclaje.",
+          "en": "Once the bolt reaches the bottom of the hole, keep rotating for about 90 – 100 seconds to ensure the cartridge components are well mixed.",
+          "zh": "锚杆到达孔底后，继续旋转约 90 – 100 秒，确保药卷各组分充分混合。"
+        }
+      ]
     }
   ],
   "relacionados": [

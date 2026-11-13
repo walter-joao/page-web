@@ -58,9 +58,9 @@
     },
     {
       "tipo": "p",
-      "es": "Especiales<br/>Son elementos de fijación metálicos que se fabrican mediante el proceso de forja, que implica moldear el material mediante la aplicación de calor y presión.",
-      "en": "Special<br/>Metal fasteners made by forging, which shapes the material with heat and pressure.",
-      "zh": "特殊<br/>通过锻造制成的金属紧固件，即在高温和压力下使材料成形。"
+      "es": "<strong>Especiales</strong><br/>Son elementos de fijación metálicos que se fabrican mediante el proceso de forja, que implica moldear el material mediante la aplicación de calor y presión.",
+      "en": "<strong>Special</strong><br/>Metal fasteners made by forging, which shapes the material with heat and pressure.",
+      "zh": "<strong>特殊</strong><br/>通过锻造制成的金属紧固件，即在高温和压力下使材料成形。"
     },
     {
       "tipo": "h3",
@@ -70,9 +70,9 @@
     },
     {
       "tipo": "p",
-      "es": "Especiales<br/>Los pernos de bronce-silicio son componentes metálicos fabricados a partir de una aleación que combina cobre (Cu), silicio (Si) y a menudo pequeñas cantidades de otros elementos como manganeso (Mn) y fósforo (P).",
-      "en": "Special<br/>Silicon-bronze bolts are metal parts made from an alloy of copper (Cu), silicon (Si) and often small amounts of other elements such as manganese (Mn) and phosphorus (P).",
-      "zh": "特殊<br/>硅青铜螺栓是由铜（Cu）、硅（Si）以及通常少量锰（Mn）和磷（P）等其他元素组成的合金制成的金属零件。"
+      "es": "<strong>Especiales</strong><br/>Los pernos de bronce-silicio son componentes metálicos fabricados a partir de una aleación que combina cobre (Cu), silicio (Si) y a menudo pequeñas cantidades de otros elementos como manganeso (Mn) y fósforo (P).",
+      "en": "<strong>Special</strong><br/>Silicon-bronze bolts are metal parts made from an alloy of copper (Cu), silicon (Si) and often small amounts of other elements such as manganese (Mn) and phosphorus (P).",
+      "zh": "<strong>特殊</strong><br/>硅青铜螺栓是由铜（Cu）、硅（Si）以及通常少量锰（Mn）和磷（P）等其他元素组成的合金制成的金属零件。"
     }
   ],
   "relacionados": [

@@ -139,7 +139,7 @@
 {%- for e in p.tambien["items"] %}<em data-en="{{ e.en }}" data-zh="{{ e.zh }}">{{ e.es | safe }}</em>{% endfor -%}
 </div><h2 class="il-sub" data-en="{{ p.fichas.titulo.en }}" data-zh="{{ p.fichas.titulo.zh }}">{{ p.fichas.titulo.es | safe }}</h2><p data-en="{{ p.fichas.intro.en }}" data-zh="{{ p.fichas.intro.zh }}">{{ p.fichas.intro.es | safe }}</p><div class="il-fichas">
 {%- for f in p.fichas["items"] -%}
-<a class="il-ficha" href="/productos/{{ f.producto }}"><img alt="{{ f.nombre.es }} – Joce Cia Ltda." decoding="async" loading="lazy" src="{{ foto_src(f.foto, 256) }}"/><div><b data-en="{{ f.nombre.en }}" data-zh="{{ f.nombre.zh }}">{{ f.nombre.es | safe }}</b><span data-en="View product ›" data-zh="查看产品 ›">Ver ficha ›</span></div></a>
+<a class="il-ficha" href="/productos/{{ f.producto }}"><img alt="{{ f.nombre.es }} – {{ sitio.marca }}" decoding="async" loading="lazy" src="{{ foto_src(f.foto, 256) }}"/><div><b data-en="{{ f.nombre.en }}" data-zh="{{ f.nombre.zh }}">{{ f.nombre.es | safe }}</b><span data-en="View product ›" data-zh="查看产品 ›">Ver ficha ›</span></div></a>
 {%- endfor -%}
 </div>
 {%- endmacro %}
