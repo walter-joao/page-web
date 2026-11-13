@@ -1,0 +1,142 @@
+/* Portada (index.html), parte 1: ajustes básicos y mapa satelital de obras. Va ANTES de comun.css (comun.css corrige algunos tamaños de este archivo). */
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}.vh{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}/* Mapa de obras sobre paisaje satelital (render fijo + marcadores HTML calibrados con la misma cámara) */
+.sat{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:clamp(620px,min(92vh,56.25vw),1240px);overflow:hidden;isolation:isolate;background:var(--bg);color:#e8eef6}
+.sat-stage{position:absolute;inset:0}
+.sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.sat-bg img{object-fit:cover;object-position:62% 25%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.sat.in .sat-bg img{transform:none}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.92) 0%,rgba(5,9,15,.72) 26%,rgba(5,9,15,.18) 48%,transparent 60%)}
+.sat-copy .kicker{justify-self:start}
+.sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
+.sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
+.sat-lead{margin:0;color:#c3cfdd;font-size:1.06rem;max-width:40ch}
+.sat-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.sat-chips button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(225,240,255,.28);background:rgba(6,14,26,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font:600 .9rem var(--f-body);cursor:pointer;transition:background .25s,border-color .25s,color .25s,transform .15s}
+.sat-chips button:hover{border-color:rgba(255,255,255,.55)}
+.sat-chips button:active{transform:scale(.97)}
+.sat-chips button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#1b0c02)}
+.sat-chips button[aria-pressed="true"] i{background:currentColor}
+.sat-hint{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);margin:0;display:flex;align-items:center;gap:10px;color:#dfe7f1;font-size:.95rem;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .4s}
+.sat-hint svg{width:20px;height:20px}
+.sat.used .sat-hint{opacity:0}
+.sat-credit{position:absolute;z-index:3;right:12px;bottom:8px;margin:0;font:500 .56rem var(--f-mono);color:rgba(220,230,242,.22);transition:color .3s}.sat-credit:hover{color:rgba(220,230,242,.6)}
+.sat-pins{position:absolute;inset:0;z-index:2}
+.sat-provs{position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .8s .3s}.sat.in .sat-provs{opacity:1}
+.sat-prov{position:absolute;left:0;top:0;white-space:nowrap;font:600 .62rem/1 var(--f-mono);letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);text-shadow:0 1px 3px rgba(0,0,0,.85),0 0 10px rgba(0,0,0,.6)}
+.sat-prov.has{color:#fff;font-weight:700;font-size:.7rem}
+.sat-prov.has::before{content:"";display:inline-block;width:5px;height:5px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(141,181,219,.9);vertical-align:middle}
+.sat.lt{background:var(--bg);color:var(--fg)}
+.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 18%,transparent 80%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.78) 26%,rgba(243,245,248,.2) 48%,transparent 60%)}
+.sat.lt .sat-copy h2{color:var(--fg)}
+.sat.lt .sat-lead{color:var(--muted)}
+/* En pantallas anchas el mapa va de borde a borde; el texto se alinea con el contenido */
+@media (min-width:761px){.sat{height:clamp(560px,min(86vh,50vw),860px)}}
+.sat.lt .sat-chips button{background:rgba(255,255,255,.75);border-color:rgba(13,23,38,.16);color:var(--fg)}
+.sat.lt .sat-chips button:hover{border-color:rgba(13,23,38,.4)}
+.sat.lt .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sat.lt .sat-hint{color:var(--fg);text-shadow:0 1px 8px rgba(255,255,255,.9)}
+.sat.lt .sat-credit{color:rgba(13,23,38,.62)}.sat.lt .sat-credit:hover{color:rgba(13,23,38,.85)}
+.sat.lt .sat-wire line{stroke:rgba(31,79,160,.7)}.sat.lt .sat-wire circle{fill:#1f4fa0}
+.sat.lt .sat-pin .h{box-shadow:0 0 0 2px #fff,0 6px 16px rgba(13,23,38,.35),0 0 18px 4px rgba(13,67,116,.45)}
+.sat.lt .sat-card{box-shadow:0 24px 60px -18px rgba(13,23,38,.35);border:1px solid rgba(13,23,38,.08)}
+.sector .map-link{justify-self:start;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);backdrop-filter:blur(8px);color:#fff;font:600 .8rem var(--f-body);cursor:pointer}
+.sector .map-link:hover{background:rgba(255,255,255,.2)}
+.sector .map-link svg{width:14px;height:14px}
+.sat-pin{position:absolute;left:0;top:0;width:0;height:0;border:0;padding:0;background:none;cursor:pointer;transition:opacity .35s}
+.sat-pin .h{position:absolute;left:0;bottom:2px;width:26px;height:26px;border-radius:50% 50% 50% 0;transform:translate(-50%,0) rotate(-45deg) scale(var(--s,1));background:radial-gradient(circle,#fff 0 24%,var(--accent) 28%);box-shadow:0 0 0 2px rgba(255,255,255,.2),0 0 26px 6px rgba(141,181,219,.65);transition:transform .3s cubic-bezier(.3,1.5,.5,1),box-shadow .25s}
+.sat-pin .h::before{content:"";position:absolute;inset:-9px;border-radius:50%}
+.sat-pin .g{position:absolute;left:0;top:0;width:26px;height:10px;margin:-5px 0 0 -13px;border-radius:50%;background:radial-gradient(rgba(141,181,219,.8),transparent 70%);animation:satglow 2.4s ease-out infinite}
+@keyframes satglow{from{transform:scale(.6);opacity:1}to{transform:scale(2.4);opacity:0}}
+.sat-pin:hover .h,.sat-pin.on .h{--s:1.22;box-shadow:0 0 0 2px #fff,0 0 34px 10px rgba(141,181,219,.85)}
+.sat-pin.off{opacity:.15;pointer-events:none}
+.sat-pin:focus-visible{outline:none}.sat-pin:focus-visible .h{box-shadow:0 0 0 3px var(--cyan)}
+.sat-wire{position:absolute;inset:0;z-index:3;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity .2s}
+.sat-wire.on{opacity:1}
+.sat-wire line{stroke:rgba(255,255,255,.75);stroke-width:1.5}
+.sat-wire circle{fill:#fff}
+.sat-card{position:absolute;z-index:4;left:0;top:0;width:min(330px,26vw);border-radius:20px;overflow:hidden;background:#fff;color:#0d1726;box-shadow:0 30px 70px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(8px) scale(.97);transition:opacity .25s,transform .3s cubic-bezier(.2,.8,.2,1),left .35s cubic-bezier(.2,.8,.2,1),top .35s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.sat-card.open{opacity:1;transform:none;pointer-events:auto}
+.sat-card .ph{position:relative;aspect-ratio:16/10;background:linear-gradient(135deg,#1f4fa0,#0d1726);overflow:hidden}
+.sat-card .ph img{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity .35s}
+.sat-card .ph img.ok{opacity:1}
+.sat-card .badge{position:absolute;top:12px;left:12px;display:inline-flex;gap:6px;align-items:center;padding:6px 10px;border-radius:999px;background:rgba(6,14,26,.7);color:#fff;font:600 .7rem var(--f-mono);letter-spacing:.04em}
+.sat-card .badge i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.sat-card .bd{padding:16px 20px 20px;display:grid;gap:4px}
+.sat-card .tt{display:block;margin:0;font:700 1.35rem/1.15 var(--f-display);letter-spacing:-.02em;color:#0d1726}
+.sat-card .loc{color:#5a6a7e;font-size:.92rem}
+.sat-card .go{justify-self:start;margin-top:12px;display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:12px;border:0;background:var(--accent);color:var(--accent-ink);font:700 .95rem var(--f-body);text-decoration:none;cursor:pointer;transition:transform .15s,box-shadow .2s}
+.sat-card .go:hover{box-shadow:0 10px 26px -8px rgba(13,67,116,.8)}
+.sat-card .go:active{transform:scale(.97)}
+.sat-card .go svg{width:16px;height:16px}
+.sat-card .x{display:none}
+.sat-cl{display:none}
+@media (max-width:760px){
+  .sat-provs{z-index:3}.sat-prov{font-size:.5rem;letter-spacing:.08em}.sat-prov.has{font-size:.56rem;padding:2px 5px;border-radius:4px;background:rgba(6,14,26,.62);text-shadow:none}
+  .sat{height:auto;overflow:visible;background:var(--bg);display:flex;flex-direction:column}
+  .sat-copy{position:relative;order:-1;left:auto;right:auto;top:auto;width:auto;padding:24px 20px 14px;gap:10px}
+  .sat-copy h2{font-size:2rem}
+  .sat-lead{font-size:.95rem}
+  .sat-chips{flex-wrap:nowrap;overflow-x:auto;margin:4px -20px 0;padding:0 20px 4px;scrollbar-width:none}
+  .sat-chips button{flex:none;height:38px}
+  .sat-stage{position:relative;inset:auto;aspect-ratio:1080/1350}
+  .sat-bg img{object-position:50% 50%}
+  .sat-shade,.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 12%,transparent 85%,var(--bg) 100%)}
+  .sat-hint{bottom:34px;font-size:.88rem}
+  .sat-hint svg{display:none}
+  .sat-credit{position:static;padding:8px 20px 0;text-align:right}
+  .sat-card{position:relative;left:auto!important;top:auto!important;width:auto;margin:-24px 16px 0;opacity:1;transform:none;pointer-events:auto;display:grid;grid-template-columns:130px 1fr}
+  .sat-card .ph{aspect-ratio:auto;height:100%;min-height:150px}
+  .sat-card .badge{display:none}
+  .sat-card .bd{padding:14px 16px}
+  .sat-card .tt{font-size:1.12rem}
+  .sat-card .go{padding:9px 14px;font-size:.88rem;margin-top:8px}
+  .sat-pin .h{width:30px;height:30px}
+  /* en celular la ficha sale encima del punto tocado, como un globo */
+  .sat-stage .sat-card{position:absolute;z-index:6;width:min(300px,calc(100% - 24px));margin:0;grid-template-columns:92px 1fr;overflow:visible;border-radius:18px;opacity:0;transform:translateY(10px) scale(.9);transform-origin:var(--ax,50%) 100%;pointer-events:none;transition:opacity .2s,transform .35s cubic-bezier(.2,1.35,.4,1);box-shadow:0 18px 44px -10px rgba(0,0,0,.8)}
+  .sat-stage .sat-card.below{transform-origin:var(--ax,50%) 0}
+  .sat-stage .sat-card.open{opacity:1;transform:none;pointer-events:auto}
+  .sat-stage .sat-card .ph{min-height:0;border-radius:18px 0 0 18px}
+  .sat-stage .sat-card::after{content:"";position:absolute;left:var(--ax,50%);bottom:-6px;width:14px;height:14px;background:#fff;border-radius:2px;transform:translateX(-50%) rotate(45deg)}
+  .sat-stage .sat-card.below::after{bottom:auto;top:-6px}
+  /* obras muy juntas (Quito, Baños): un solo círculo con el número; al tocarlo, lista para elegir */
+  .sat-pins{z-index:4}
+  .sat-pin.cl-in{display:none}
+  .sat-cl{display:block}
+  .sat-cl .n{position:absolute;left:0;top:0;width:36px;height:36px;margin:-18px 0 0 -18px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--accent-ink);font:800 1rem/1 var(--f-body);box-shadow:0 0 0 3px rgba(255,255,255,.92),0 0 26px 6px rgba(141,181,219,.6);transition:transform .3s cubic-bezier(.3,1.5,.5,1)}
+  .sat-cl .n::before{content:"";position:absolute;inset:-10px;border-radius:50%}
+  .sat-cl.on .n{transform:scale(1.15);box-shadow:0 0 0 3px #fff,0 0 34px 10px rgba(141,181,219,.85)}
+  .sat-stage .sat-card.lst{display:block}
+  .sat-card .lh{padding:14px 44px 8px 16px;display:grid;gap:2px}
+  .sat-card .lh b{font:700 1.08rem/1.15 var(--f-display);color:#0d1726}
+  .sat-card .lh span{font-size:.82rem;color:#5a6a7e}
+  .sat-card .ls{list-style:none;margin:0;padding:0 0 6px}
+  .sat-card .ls button{width:100%;min-height:46px;display:flex;align-items:center;gap:10px;padding:8px 16px;border:0;border-top:1px solid #eef1f5;background:none;color:#0d1726;font:600 .95rem/1.2 var(--f-body);text-align:left;cursor:pointer}
+  .sat-card .ls button:active{background:#f3f5f8}
+  .sat-card .ls i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--c)}
+  .sat-card .ls em{margin-left:auto;font-style:normal;color:#9aa6b5;font-size:1.1rem}
+  .sat-card .bk{justify-self:start;margin:0 0 4px;padding:0;border:0;background:none;color:#5a6a7e;font:600 .8rem var(--f-body);cursor:pointer}
+  .sat-stage .sat-card .bd{padding:10px 34px 12px 12px;gap:2px}
+  .sat-stage .sat-card .tt{font-size:1rem}
+  .sat-stage .sat-card .loc{font-size:.8rem}
+  .sat-stage .sat-card .go{padding:7px 12px;font-size:.8rem;margin-top:6px;border-radius:10px}
+  .sat-stage .sat-card .x{display:grid;place-items:center;position:absolute;top:6px;right:6px;width:26px;height:26px;border:0;border-radius:50%;background:rgba(13,23,38,.07);color:#0d1726;font:600 1rem/1 var(--f-body);cursor:pointer}
+}
+@media (prefers-reduced-motion:reduce){.sat-pin .g{animation:none}.sat-bg img,.sat-card{transition:none}}
+
+/* Manual de marca: sobre la foto de portada el botón principal va en blanco con letras azules */
+.hero .btn-accent{background:#fff;color:#0d4374;box-shadow:0 12px 30px -12px rgba(0,0,0,.55)}
+/* Letras blancas sobre fotos: velo más oscuro y sombra suave para que se lean con cualquier foto */
+html .slides::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;background:linear-gradient(90deg,rgba(4,8,15,.7) 0%,rgba(4,8,15,.45) 45%,rgba(4,8,15,.12) 80%),linear-gradient(180deg,rgba(4,8,15,.35) 0%,transparent 22%,transparent 62%,rgba(4,8,15,.8) 100%)}
+html .hero .lead{color:rgba(255,255,255,.95);text-shadow:0 1px 3px rgba(0,0,0,.55)}
+html .hero .kicker,html .hero-foot{text-shadow:0 1px 3px rgba(0,0,0,.5)}
+html .sector::after{background:linear-gradient(180deg,rgba(5,10,20,.2) 0%,rgba(5,10,20,.72) 28%,rgba(5,10,20,.97) 100%)}
+html .project::after{background:linear-gradient(180deg,rgba(5,10,20,.1) 0%,rgba(5,10,20,.5) 45%,rgba(5,10,20,.94) 100%)}
+html .sector .num,html .sector p{color:rgba(255,255,255,.93)}
+html .sector .in,html .project .cap{text-shadow:0 1px 2px rgba(0,0,0,.65)}
+/* Manual de marca: párrafos largos justificados en pantallas medianas y grandes */
+html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;--f-mono:"Montserrat",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif;--f-display:"Montserrat",Arial,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC","Noto Sans CJK SC",sans-serif}
+html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}
+html:lang(zh-CN) .kicker{letter-spacing:.08em}
+.pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}
+@media (min-width:700px){.hero .lead,.quote p,.pillar p,.event p,.job-intro .lead,.pp-lead,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
