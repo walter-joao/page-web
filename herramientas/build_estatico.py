@@ -2,7 +2,7 @@
 Uso: python herramientas/build_estatico.py . _site
 - Copia el repo (sin .git, servidor, herramientas, vercel.json).
 - Genera las fotos de img/wp e img/obras en WebP 256-1920 px dentro de _img/.
-- Reemplaza las URLs /_vercel/image por esas WebP (HTML y funciones JS VI/vimg).
+- Reemplaza las URLs /_vercel/image por esas WebP (HTML, /js/*.js y funciones JS VI/vimg).
 """
 import os,re,shutil,sys,urllib.parse
 from PIL import Image,ImageFile
@@ -39,9 +39,9 @@ VIMG_NEW="function vimg(u,w){return VI2(u,w||640)}function VI2(u,w){if(!/^\\/img
 n=0
 for root,_,fs in os.walk(OUT):
   for f in fs:
-    if not f.endswith('.html'): continue
+    if not f.endswith(('.html','.js')): continue
     p=os.path.join(root,f); s=open(p,encoding='utf-8').read(); o=s
     s=pat.sub(rep,s); s=s.replace(JS_OLD,JS_NEW).replace(VIMG_OLD,VIMG_NEW)
     if '_vercel/image' in s: print('LEFT',p)
     if s!=o: open(p,'w',encoding='utf-8').write(s); n+=1
-print('html changed',n)
+print('html/js changed',n)
