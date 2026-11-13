@@ -401,6 +401,7 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
         <div class="pt-studio" aria-hidden="true"></div>
         <div class="pt-glow" aria-hidden="true"></div>
         <canvas class="pt-gl" id="pt-gl" aria-label="Modelo 3D del producto"></canvas>
+        <div class="pt-shot" id="pt-shot" aria-hidden="true"><img alt="" decoding="async"></div>
         <div class="pt-cap" id="pt-cap"></div>
         <div class="pt-hint" aria-hidden="true"><i></i><span id="pt-hint"></span></div>
         <div class="pt-arrows"><button type="button" id="pt-prev" aria-label="Anterior"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg></button><button type="button" id="pt-next" aria-label="Siguiente"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg></button></div>
@@ -1187,8 +1188,23 @@ const C=[
   es:{k:'Túneles y roca',t:'Resina y pernos para soporte de rocas',d:'Resina y pernos de barra helicoidal para el sostenimiento de túneles y galerías, el refuerzo de pilares en minería y la consolidación de taludes.',v:['Barra helicoidal','Resina en cartuchos'],vs:['pernos-de-barra-helicoidal','resina-de-anclaje'],f:[['Barra helicoidal','BAHE A615-G75, norma ASTM A615 grado 75'],['Usos','Minería · Túneles · Taludes'],['Ya lo usó','Túnel de Baños']]},
   en:{k:'Tunnels & rock',t:'Resin and bolts for rock support',d:'Resin and helical bar bolts to support tunnels and galleries, reinforce mine pillars and stabilize slopes.',v:['Helical bar','Resin cartridges'],f:[['Helical bar','BAHE A615-G75, ASTM A615 grade 75'],['Uses','Mining · Tunnels · Slopes'],['Used at','Baños tunnel']]}},
  {s:'partes-y-piezas-especiales',m:'pieza',bg:'sanfco',
-  es:{k:'Sectores estratégicos',t:'Piezas especiales',d:'Fabricación y reparación de partes y piezas especiales: diseño y prototipado, corte y conformado, soldadura y ensamblaje, y acabados superficiales.',v:['Fabricación','Reparación'],lk:[['Venta de soldadoras','venta-de-soldadoras']],f:[['Corte','Láser, plasma y agua'],['Soldadura','MIG, TIG y por puntos'],['Acabados','Pintura electroestática, galvanizado y anodizado']]},
-  en:{k:'Strategic sectors',t:'Special parts',d:'Manufacturing and repair of special parts: design and prototyping, cutting and forming, welding and assembly, and surface finishing.',v:['Manufacturing','Repair'],lk:[['Welding machines','venta-de-soldadoras']],f:[['Cutting','Laser, plasma and waterjet'],['Welding','MIG, TIG and spot'],['Finishes','Powder coating, galvanizing and anodizing']]}}
+  es:{k:'Sectores estratégicos',t:'Piezas especiales',d:'Fabricación y reparación de partes y piezas especiales: diseño y prototipado, corte y conformado, soldadura y ensamblaje, y acabados superficiales.',v:['Fabricación','Reparación'],f:[['Corte','Láser, plasma y agua'],['Soldadura','MIG, TIG y por puntos'],['Acabados','Pintura electroestática, galvanizado y anodizado']]},
+  en:{k:'Strategic sectors',t:'Special parts',d:'Manufacturing and repair of special parts: design and prototyping, cutting and forming, welding and assembly, and surface finishing.',v:['Manufacturing','Repair'],f:[['Cutting','Laser, plasma and waterjet'],['Welding','MIG, TIG and spot'],['Finishes','Powder coating, galvanizing and anodizing']]}},
+ {s:'venta-de-soldadoras',eq:['rx-520','invertec-v275s','invertec-v350-pro','tomahawk-625','lf-72','linc-405-sa'],
+  es:{k:'Equipos en venta',t:'Soldadoras Lincoln Electric',d:'Venta de soldadoras y equipos de corte Lincoln Electric, además de motosoldadoras reparadas con overhaul.',v:['RX 520','Invertec V275-S','Invertec V350 PRO','Tomahawk 625','LF-72','Linc 405-SA'],
+   vf:[[['Tipo','Motosoldadora reparada con overhaul'],['Corriente','CA y CD, monofásica y trifásica, 220/440 V 60 Hz'],['Salida','55–110 A CD']],
+       [['Entrada','400 V ±15 %, trifásica 50/60 Hz, apta para generador'],['Peso','14,3 kg'],['Procesos','SMAW manual, sinérgico y pulsado']],
+       [['Entrada','400 V ±15 %, trifásica 50/60 Hz, apta para generador'],['Eficiencia','Más de 85 %, 19 W en vacío'],['Procesos','SMAW manual, sinérgico y pulsado']],
+       [['Tipo','Cortadora de plasma'],['Antorcha','Manual de 6,1 m (20 pies)'],['Arranque','Sin alta frecuencia']],
+       [['Tipo','Alimentador de alambre'],['Rodillos','2 rodillos impulsores, cambio sin herramientas'],['Conexión','Pistola de latón a latón']],
+       [['Medidores','Digitales de corriente'],['Ajustes','Hot Start y fuerza de arco'],['Taller','Dos ruedas grandes y tiradores']]],f:[]},
+  en:{k:'Equipment for sale',t:'Lincoln Electric welders',d:'Lincoln Electric welding and cutting equipment, plus engine-driven welders rebuilt with an overhaul.',v:['RX 520','Invertec V275-S','Invertec V350 PRO','Tomahawk 625','LF-72','Linc 405-SA'],
+   vf:[[['Type','Engine-driven welder, overhauled'],['Current','AC and DC, single and three phase, 220/440 V 60 Hz'],['Output','55–110 A DC']],
+       [['Input','400 V ±15 %, three phase 50/60 Hz, generator-ready'],['Weight','14.3 kg'],['Processes','SMAW manual, synergic and pulsed']],
+       [['Input','400 V ±15 %, three phase 50/60 Hz, generator-ready'],['Efficiency','Over 85 %, 19 W idle'],['Processes','SMAW manual, synergic and pulsed']],
+       [['Type','Plasma cutter'],['Torch','Manual, 6.1 m (20 ft)'],['Start','No high frequency']],
+       [['Type','Wire feeder'],['Rolls','2 drive rolls, tool-free change'],['Connection','Brass-to-brass gun']],
+       [['Meters','Digital current'],['Settings','Hot Start and arc force'],['Shop','Two large wheels and handles']]],f:[]}},
 ];
 const UI={es:{t3:'3D',tf:'Foto',drag:'Arrastre para girar · Ctrl + rueda o dos dedos para acercar',dragm:'Arrastre para girar',photo:'Toque la foto para acercarse',wa:'Cotizar por WhatsApp',more:'Ver ficha ›',q:'Hola, quisiera cotizar: '},
           en:{t3:'3D',tf:'Photo',drag:'Drag to rotate · Ctrl + wheel or pinch to zoom',dragm:'Drag to rotate',photo:'Tap the photo to zoom in',wa:'Quote on WhatsApp',more:'View product ›',q:'Hello, I would like a quote for: '}};
@@ -1479,15 +1495,15 @@ gl.addEventListener('wheel',e=>{if(!e.ctrlKey)return;e.preventDefault();touched(
 let idx=0,t0=0,paused=false,started=false;
 const esc=s=>String(s).replace(/[&<]/g,c=>({'&':'&amp;','<':'&lt;'}[c]));
 function drawRail(){const u=ZO(UI);
-  rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}" aria-selected="${i===idx}"><small>${c.m?u.t3:u.tf} · ${esc(ZO(c).k)}</small><span>${esc(ZO(c).t)}</span><i></i></button>`).join('')}
+  rail.innerHTML=C.map((c,i)=>`<button type="button" role="tab" data-i="${i}" aria-selected="${i===idx}"><small>${c.m?u.t3:c.eq?TR("Venta","Sale"):u.tf} · ${esc(ZO(c).k)}</small><span>${esc(ZO(c).t)}</span><i></i></button>`).join('')}
 function fill(i){const c=C[i],t=ZO(c),u=ZO(UI);
   $('pt-k').textContent=t.k;$('pt-n').textContent=(i+1)+' / '+C.length;$('pt-t').textContent=t.t;$('pt-d').textContent=t.d;
   $('pt-v').innerHTML=t.v?t.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join('')+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:''):`<p class="pt-tags">${esc(t.tags)}</p>`+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:'');
-  $('pt-f').innerHTML=t.f.map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
+  $('pt-f').innerHTML=(t.vf?t.vf[vari]:t.f).map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
   $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593964068392?text='+encodeURIComponent(u.q+t.t);
   $('pt-l').textContent=u.more;$('pt-l').href='/productos/'+(c.es.vs?c.es.vs[vari]||c.s:c.s);
   $('pt-cap').textContent='';
-  $('pt-hint').textContent=c.m?(innerWidth<761?u.dragm:u.drag):u.photo}
+  $("pt-hint").textContent=c.m?(innerWidth<761?u.dragm:u.drag):c.eq?TR("Elija un modelo","Pick a model"):u.photo}
 function go(i,user){i=(i+C.length)%C.length;if(user)touched();
   const c=C[i];idx=i;vari=0;
   rail.querySelectorAll('button').forEach((b,j)=>{b.setAttribute('aria-selected',j===i);b.style.removeProperty('--p')});
@@ -1497,6 +1513,7 @@ function go(i,user){i=(i+C.length)%C.length;if(user)touched();
   tour.querySelectorAll('.pt-ph').forEach(p=>{p.classList.toggle('on',!!c.ph&&p.id==='pt-ph-'+c.ph);p.classList.remove('zoom')});
   tour.querySelectorAll('.pt-bg').forEach(p=>p.classList.toggle('on',!c.ph&&!!c.bg&&p.id==='pt-bg-'+c.bg));
   tour.classList.toggle('photo-on',!!c.ph);
+  shot(c,0);
   if(c.m&&R){gl.classList.add('on');setModel(c.m,0);start3D()}else{gl.classList.remove('on');setTimeout(()=>{if(!C[idx].m)stop3D()},600)}
   t0=performance.now()}
 function touched(){paused=true;st.lastUser=performance.now();rail.querySelectorAll('button').forEach(b=>b.style.removeProperty('--p'))}
@@ -1506,7 +1523,10 @@ function tick(){const el=rail.children[idx];
 rail.addEventListener('click',e=>{const b=e.target.closest('button');if(b)go(+b.dataset.i,true)});
 $('pt-prev').onclick=()=>go(idx-1,true);$('pt-next').onclick=()=>go(idx+1,true);
 $('pt-v').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;touched();vari=+b.dataset.v;
-  $('pt-v').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));const vs=C[idx].es.vs;if(vs)$('pt-l').href='/productos/'+vs[vari];if(R)setModel(C[idx].m,vari)});
+  $('pt-v').querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));const vs=C[idx].es.vs;if(vs)$('pt-l').href='/productos/'+vs[vari];
+  if(C[idx].eq){shot(C[idx],vari);$('pt-f').innerHTML=ZO(C[idx]).vf[vari].map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('')}else if(R)setModel(C[idx].m,vari)});
+function shot(c,v){const box=$('pt-shot'),im=box.querySelector('img');box.classList.toggle('on',!!c.eq);if(!c.eq)return;
+  const src='/img/equipos/'+c.eq[v]+'.webp';if(im.getAttribute('src')===src)return;im.classList.add('sw');setTimeout(()=>{im.onload=()=>im.classList.remove('sw');im.src=src;im.alt=ZO(c).v[v];if(im.complete)im.classList.remove('sw')},reduce?0:220)}
 tour.querySelectorAll('.pt-ph').forEach(p=>p.addEventListener('click',e=>{touched();const r=p.getBoundingClientRect(),img=p.querySelector('img');
   if(!p.classList.contains('zoom'))img.style.transformOrigin=((e.clientX-r.left)/r.width*100)+'% '+((e.clientY-r.top)/r.height*100)+'%';p.classList.toggle('zoom')}));
 tour.addEventListener('keydown',e=>{if(e.target.closest('.pt-rail,.pt-arrows')){if(e.key==='ArrowRight')go(idx+1,true);if(e.key==='ArrowLeft')go(idx-1,true)}});
