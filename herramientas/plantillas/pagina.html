@@ -1,0 +1,5 @@
+{#- Páginas sueltas (p. ej. Trabaja con nosotros): el contenido de <main> está en plantillas/contenido/<slug>.html -#}
+{% extends "base.html" %}
+{% block main %}{% include p.contenido %}{% endblock %}
+{% block scripts_extra %}{% for js in p.get("js_extra") or [] %}<script src="/js/{{ js }}.js"></script>
+{% endfor %}{% endblock %}

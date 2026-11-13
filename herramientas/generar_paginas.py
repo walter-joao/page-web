@@ -3,6 +3,7 @@
 Uso:
   python3 herramientas/generar_paginas.py            # escribe productos/*.html, proyectos/*.html, trabaja-con-nosotros.html y sitemap
   python3 herramientas/generar_paginas.py --revisar  # no escribe nada; avisa qué páginas cambiarían (útil antes de subir)
+  python3 herramientas/generar_paginas.py --revisar --diff   # además muestra las líneas que cambiarían
 
 Datos (lo único que se edita a mano):
   datos/sitio.json          dominio, contactos, menú, Umami... (lo usan todas las páginas)
@@ -10,7 +11,7 @@ Datos (lo único que se edita a mano):
 Plantillas: herramientas/plantillas/base.html (cabecera, pie, <head>) + producto.html / proyecto.html / pagina.html.
 Cada texto visible va en los 3 idiomas: {"es": ..., "en": ..., "zh": ...}. Ver herramientas/LEEME.md.
 """
-import glob, json, os, sys, urllib.parse
+import difflib, glob, json, os, sys, urllib.parse
 from bs4 import BeautifulSoup
 from jinja2 import Environment, FileSystemLoader, StrictUndefined
 
@@ -57,6 +58,9 @@ def generar(revisar=False):
         if html != viejo:
             cambios += 1
             print(("cambiaría " if revisar else "escribe ") + destino)
+            if "--diff" in sys.argv and viejo:
+                for linea in list(difflib.unified_diff(viejo.splitlines(), html.splitlines(), lineterm="", n=1))[:60]:
+                    print("   ", linea[:300])
             if not revisar:
                 with open(destino, "w", encoding="utf-8") as f:
                     f.write(html)

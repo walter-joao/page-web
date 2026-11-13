@@ -1,0 +1,20 @@
+{
+  "titulo": {
+    "es": "Trabaja con nosotros | Jocecia Ecuador",
+    "en": "Careers | Jocecia Ecuador",
+    "zh": "加入我们 | Jocecia 厄瓜多尔"
+  },
+  "descripcion": {
+    "es": "Trabaje en JOCE Ingeniería y Materiales: vacantes y base de talento para soldadores, armadores, ingenieros, ventas y administración. Envíe su hoja de vida. Sangolquí, Ecuador.",
+    "en": "Work at JOCE Ingeniería y Materiales: open positions and talent pool for welders, fitters, engineers, sales and administration. Send your résumé. Sangolquí, Ecuador.",
+    "zh": "加入 JOCE Ingeniería y Materiales：焊工、装配工、工程师、销售和行政人员的招聘职位和人才库。投递您的简历。厄瓜多尔 Sangolquí。"
+  },
+  "og_tipo": "website",
+  "og_titulo": "Trabaja con nosotros · JOCE Ingeniería y Materiales",
+  "og_imagen": "/img/wp/2025/02/IMG_20180131_095956-1024x768-1.jpg",
+  "ld_json": null,
+  "contenido": "contenido/trabaja-con-nosotros.html",
+  "js_extra": [
+    "trabaja"
+  ]
+}
