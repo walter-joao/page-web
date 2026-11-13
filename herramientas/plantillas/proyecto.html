@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{#- Página de un proyecto (obra): proyectos/<slug>.html, con los datos de datos/proyectos/<slug>.json.
+    Datos: nombre, descripcion, resumen, tipo, ubicacion?, cliente?, mapa?, fotos, trabajos, nota?, otras_obras
+    (? = opcional). Todo lo demás (título, URL, WhatsApp, textos alternativos, tarjetas, ld+json) se calcula aquí. -#}
+
+{#- Fotos: las de /img/wp/ pasan por el optimizador de Vercel; las demás (/img/obras/*.webp) van tal cual.
+    En og:image y en el ld+json las fotos que no son de /img/wp/ llevan el dominio delante. #}
+{%- set url = sitio.dominio ~ p.ruta %}
+{%- set fotos_abs = [] %}
+{%- for f in p.fotos %}{% set _ = fotos_abs.append(f if f.startswith("/img/wp/") else sitio.dominio ~ f) %}{% endfor %}
+
+{#- ld+json: la obra, la ruta de migas y la empresa (datos de sitio.json) #}
+{%- set partes = sitio.direccion.split(", ") %}
+{%- set ld = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {"@type": "CreativeWork", "name": p.nombre.es, "description": p.descripcion.es, "url": url,
+     "image": fotos_abs[:3], "creator": {"@id": sitio.dominio ~ "/#empresa"}},
+    {"@type": "BreadcrumbList", "itemListElement": [
+      {"@type": "ListItem", "position": 1, "name": "Inicio", "item": sitio.dominio ~ "/"},
+      {"@type": "ListItem", "position": 2, "name": "Proyectos", "item": sitio.dominio ~ "/#proyectos"},
+      {"@type": "ListItem", "position": 3, "name": p.nombre.es, "item": url}]},
+    {"@type": ["Organization", "LocalBusiness"], "@id": sitio.dominio ~ "/#empresa",
+     "name": sitio.marca, "legalName": sitio.razon_social, "url": sitio.dominio ~ "/",
+     "telephone": sitio.telefono.internacional, "email": sitio.correo,
+     "address": {"@type": "PostalAddress", "streetAddress": partes[:2] | join(", "),
+                 "addressLocality": partes[-1], "addressRegion": "Pichincha", "addressCountry": "EC"}}
+  ]
+} %}
+{#- (en las páginas originales "name" y "legalName" de la empresa van en la misma línea) #}
+{%- set ld_txt = ld | tojson_bonito | replace(",\n   \"legalName\"", ", \"legalName\"") %}
+
+{%- set _ = p.update({
+  "titulo": {"es": p.nombre.es ~ " · Proyectos · " ~ sitio.marca,
+             "en": p.nombre.en ~ " · Projects · " ~ sitio.marca,
+             "zh": p.nombre.zh ~ " · 项目 · " ~ sitio.marca},
+  "og_tipo": "article",
+  "og_titulo": p.nombre.es ~ " · " ~ sitio.marca,
+  "og_imagen": fotos_abs[0],
+  "css_extra": ["proyectos"],
+  "ld_json": ("\n" ~ ld_txt ~ "\n") | safe,
+}) %}
+
+{#- Tarjeta de "Otros proyectos": 1.ª foto, tipo y nombre del otro proyecto, en el idioma l #}
+{%- macro tarjeta(o, l) %}<img alt="{{ o.nombre[l] }}" decoding="async" loading="lazy" src="{{ o.fotos[0] | vimg(640) if o.fotos[0].startswith('/img/wp/') else o.fotos[0] }}"/><span><small>{{ o.tipo[l] }}</small>{{ o.nombre[l] }}</span>{% endmacro %}
+
+{#- HTML dentro de un atributo data-en/zh: el apóstrofo va tal cual (como en las páginas originales), el resto se escapa #}
+{%- macro html_attr(h) %}{{ h.replace("&#39;" | safe, "'" | safe) | forceescape }}{% endmacro %}
+
+{%- macro meta(clave, es, en, zh) %}{% set v = p[clave] %}<li data-en="&lt;b&gt;{{ en }}&lt;/b&gt;{{ v.en }}" data-zh="&lt;b&gt;{{ zh }}&lt;/b&gt;{{ v.zh }}"><b>{{ es }}</b>{{ v.es }}</li>{% endmacro %}
+
+{%- block main %}<main id="contenido">
+<section class="pp-hero">
+<div class="wrap">
+<nav aria-label="Ruta" class="crumb"><a data-en="Home" data-zh="首页" href="/">Inicio</a> / <a data-en="Projects" data-zh="项目" href="/#proyectos">Proyectos</a> / <span data-en="{{ p.tipo.en }}" data-zh="{{ p.tipo.zh }}">{{ p.tipo.es }}</span></nav>
+<h1 data-en="{{ p.nombre.en }}" data-zh="{{ p.nombre.zh }}">{{ p.nombre.es }}</h1>
+<p class="pp-lead" data-en="{{ p.resumen.en }}" data-zh="{{ p.resumen.zh }}">{{ p.resumen.es }}</p>
+<ul class="pj-meta">{{ meta("tipo", "Tipo", "Type", "类型") }}{% if p.get("ubicacion") %}{{ meta("ubicacion", "Ubicación", "Location", "地点") }}{% endif %}{% if p.get("cliente") %}{{ meta("cliente", "Cliente", "Client", "客户") }}{% endif %}</ul>
+<div class="cta-row"><a class="btn btn-accent" data-en="Quote a similar project" data-zh="咨询类似项目报价" href="https://wa.me/{{ sitio.whatsapp }}?text={{ ('Hola, vi el proyecto ' ~ p.nombre.es ~ ' en su web y quisiera cotizar algo similar.') | urlencode }}" rel="noopener" target="_blank">Cotizar un proyecto similar</a>
+{%- if p.get("mapa") %}<a class="btn btn-line" data-en="View on the map" data-zh="在地图上查看" href="/#{{ p.mapa }}">Ver en el mapa</a>{% endif -%}
+<a class="btn btn-line" data-en="All projects" data-zh="全部项目" href="/#proyectos">Todos los proyectos</a></div>
+<div class="pj-gal n{{ p.fotos | length }}">
+{%- for f in p.fotos %}
+{%- set grande = f | vimg(1920) if f.startswith("/img/wp/") else f %}
+{%- set alt = p.nombre.es ~ " – " ~ sitio.marca ~ " (foto " ~ loop.index ~ ")" %}
+{%- if loop.first %}<a href="{{ grande }}" rel="noopener" target="_blank"><img alt="{{ alt }}" decoding="async" src="{{ grande }}"/></a>
+{%- else %}<a href="{{ grande }}" rel="noopener" target="_blank"><img alt="{{ alt }}" decoding="async" loading="lazy" src="{{ f | vimg(1080) if f.startswith('/img/wp/') else f }}"/></a>
+{%- endif %}
+{%- endfor %}</div>
+</div>
+</section>
+<section class="pp-body">
+<div class="wrap"><article class="pp-txt" style="max-width:none">
+<h2 data-en="Work done" data-zh="已完成的工作">Trabajos realizados</h2>
+<ul class="pj-list">{% for t in p.trabajos %}<li data-en="{{ t.en }}" data-zh="{{ t.zh }}">{{ t.es }}</li>{% endfor %}</ul>
+{% if p.get("nota") %}<p class="pj-nota" data-en="{{ p.nota.en }}" data-zh="{{ p.nota.zh }}">{{ p.nota.es }}</p>
+{% endif %}</article></div>
+</section>
+<section class="pp-rel">
+<div class="wrap"><h2 data-en="Other projects" data-zh="其他项目">Otros proyectos</h2><div class="pj-cards">
+{%- for slug in p.otras_obras %}{% set o = datos("proyectos/" ~ slug) -%}
+<a data-en="{{ html_attr(tarjeta(o, 'en')) }}" data-zh="{{ html_attr(tarjeta(o, 'zh')) }}" href="/proyectos/{{ slug }}">{{ tarjeta(o, 'es') }}</a>
+{%- endfor %}</div></div>
+</section>
+</main>{% endblock %}

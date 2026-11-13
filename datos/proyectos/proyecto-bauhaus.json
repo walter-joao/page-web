@@ -1,0 +1,56 @@
+{
+  "nombre": {
+    "es": "Proyecto Bauhaus",
+    "en": "Bauhaus project",
+    "zh": "Bauhaus 项目"
+  },
+  "descripcion": {
+    "es": "Estructuras metálicas para un edificio de altura. en Quito. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Steel structures for a high-rise building in Quito. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "基多一栋高层建筑的钢结构。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Estructuras metálicas para un edificio de altura.",
+    "en": "Steel structures for a high-rise building.",
+    "zh": "高层建筑钢结构。"
+  },
+  "tipo": {
+    "es": "Edificación",
+    "en": "Building",
+    "zh": "建筑"
+  },
+  "ubicacion": {
+    "es": "Quito, Pichincha (aprox.)",
+    "en": "Quito, Pichincha (approx.)",
+    "zh": "基多，Pichincha（大约）"
+  },
+  "mapa": "obra-bauhaus",
+  "fotos": [
+    "/img/obras/bauhaus-1.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Fabricación de estructura metálica",
+      "en": "Steel structure fabrication",
+      "zh": "钢结构制造"
+    },
+    {
+      "es": "Montaje en altura",
+      "en": "Erection at height",
+      "zh": "高空安装"
+    }
+  ],
+  "nota": {
+    "es": "Ubicación aproximada.",
+    "en": "Approximate location.",
+    "zh": "大致位置。"
+  },
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu",
+    "central-agoyan"
+  ]
+}

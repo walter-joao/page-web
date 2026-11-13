@@ -1,0 +1,65 @@
+{
+  "nombre": {
+    "es": "Central Manduriacu",
+    "en": "Manduriacu power plant",
+    "zh": "Manduriacu 水电站"
+  },
+  "descripcion": {
+    "es": "Andamiaje, pintura y turbinas. en Río Guayllabamba. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Scaffolding, painting and turbines on the Guayllabamba River. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "Guayllabamba 河上的脚手架、涂装和水轮机工程。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Andamiaje, pintura y turbinas.",
+    "en": "Scaffolding, painting and turbines.",
+    "zh": "脚手架、涂装和水轮机。"
+  },
+  "tipo": {
+    "es": "Hidroeléctrica",
+    "en": "Hydroelectric",
+    "zh": "水电"
+  },
+  "ubicacion": {
+    "es": "Río Guayllabamba, Pichincha / Imbabura",
+    "en": "Guayllabamba River, Pichincha / Imbabura",
+    "zh": "Guayllabamba 河，Pichincha / Imbabura"
+  },
+  "cliente": {
+    "es": "CELEC EP",
+    "en": "CELEC EP",
+    "zh": "CELEC EP"
+  },
+  "mapa": "obra-manduriacu",
+  "fotos": [
+    "/img/wp/2019/11/DESTACADA-CEL.1804.jpg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.36.55-AM-2-576x1024.jpeg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.36.55-AM-1-1024x576.jpeg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.34.46-AM-1-576x1024.jpeg",
+    "/img/wp/2025/02/WhatsApp-Image-2022-05-10-at-8.34.45-AM-576x1024.jpeg"
+  ],
+  "trabajos": [
+    {
+      "es": "Andamios trepantes y deslizantes",
+      "en": "Climbing and sliding scaffolds",
+      "zh": "爬升和滑移脚手架"
+    },
+    {
+      "es": "Pintura de tubería",
+      "en": "Pipe painting",
+      "zh": "管道涂装"
+    },
+    {
+      "es": "Turbinas para planta de aguas residuales",
+      "en": "Turbines for a wastewater plant",
+      "zh": "污水处理厂水轮机"
+    }
+  ],
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-agoyan"
+  ]
+}

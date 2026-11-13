@@ -1,0 +1,58 @@
+{
+  "nombre": {
+    "es": "Galpón industrial Cadeco",
+    "en": "Cadeco industrial warehouse",
+    "zh": "Cadeco 工业厂房"
+  },
+  "descripcion": {
+    "es": "Diseño, montaje y soldadura. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Design, erection and welding. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "设计、安装和焊接。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Diseño, montaje y soldadura.",
+    "en": "Design, erection and welding.",
+    "zh": "设计、安装和焊接。"
+  },
+  "tipo": {
+    "es": "Estructura metálica",
+    "en": "Steel structure",
+    "zh": "钢结构"
+  },
+  "fotos": [
+    "/img/wp/2025/01/22.3.jpg",
+    "/img/wp/2021/08/Galpon4.png",
+    "/img/wp/2021/02/IMG_3333-1024x768.jpg",
+    "/img/wp/2021/08/Galpon3.png"
+  ],
+  "trabajos": [
+    {
+      "es": "Diseño estructural",
+      "en": "Structural design",
+      "zh": "结构设计"
+    },
+    {
+      "es": "Montaje y soldadura de estructura",
+      "en": "Structure erection and welding",
+      "zh": "结构安装和焊接"
+    },
+    {
+      "es": "Montaje y sujeción de techo",
+      "en": "Roof installation and fastening",
+      "zh": "屋面安装与固定"
+    },
+    {
+      "es": "Piso industrial",
+      "en": "Industrial floor",
+      "zh": "工业地坪"
+    }
+  ],
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu"
+  ]
+}

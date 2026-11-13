@@ -1,0 +1,60 @@
+{
+  "nombre": {
+    "es": "Central Agoyán",
+    "en": "Agoyán power plant",
+    "zh": "Agoyán 水电站"
+  },
+  "descripcion": {
+    "es": "Trabajos de reparación e infraestructura. en Baños de Agua Santa. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Repair and infrastructure work in Baños de Agua Santa. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "Baños de Agua Santa 的维修及基础设施工程。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Trabajos de reparación e infraestructura.",
+    "en": "Repair and infrastructure work.",
+    "zh": "维修及基础设施工程。"
+  },
+  "tipo": {
+    "es": "Hidroeléctrica",
+    "en": "Hydroelectric",
+    "zh": "水电"
+  },
+  "ubicacion": {
+    "es": "Baños de Agua Santa, Tungurahua",
+    "en": "Baños de Agua Santa, Tungurahua",
+    "zh": "Baños de Agua Santa，Tungurahua"
+  },
+  "cliente": {
+    "es": "CELEC EP",
+    "en": "CELEC EP",
+    "zh": "CELEC EP"
+  },
+  "mapa": "obra-agoyan",
+  "fotos": [
+    "/img/wp/2021/08/SF-CELEC-2-1-1024x681.jpg",
+    "/img/wp/2025/02/DSC05907-768x1024.jpg",
+    "/img/wp/2025/02/DSC07603-1024x768.jpg",
+    "/img/wp/2025/02/DSC05928-1024x768.jpg",
+    "/img/wp/2025/02/DSC05691-1024x768.jpg"
+  ],
+  "trabajos": [
+    {
+      "es": "Reparaciones en alturas con equipos especiales",
+      "en": "Repairs at height with special equipment",
+      "zh": "使用专用设备进行高空维修"
+    },
+    {
+      "es": "Soldadura de infraestructura metálica",
+      "en": "Welding of steel infrastructure",
+      "zh": "钢结构基础设施焊接"
+    }
+  ],
+  "otras_obras": [
+    "vista-valle-coral-center",
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu"
+  ]
+}

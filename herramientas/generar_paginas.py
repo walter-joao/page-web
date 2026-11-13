@@ -30,6 +30,8 @@ env = Environment(loader=FileSystemLoader("herramientas/plantillas"), undefined=
                   autoescape=True, keep_trailing_newline=True)
 env.filters["vimg"] = vimg
 env.filters["tojson_bonito"] = lambda o: json.dumps(o, ensure_ascii=False, indent=1)
+# datos("proyectos/metro-de-quito") -> contenido de datos/proyectos/metro-de-quito.json (p. ej. tarjetas de "Otros proyectos")
+env.globals["datos"] = lambda ruta: cargar("datos/%s.json" % ruta)
 
 SITIO = cargar("datos/sitio.json")
 # Datos de todos los productos, por slug (las fichas los usan para "Productos relacionados")

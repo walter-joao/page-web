@@ -1,0 +1,59 @@
+{
+  "nombre": {
+    "es": "Vista Valle · Coral Center",
+    "en": "Vista Valle · Coral Center",
+    "zh": "Vista Valle · Coral Center"
+  },
+  "descripcion": {
+    "es": "Armado de estructuras metálicas del centro comercial en el Valle de los Chillos. en Valle de los Chillos. Obra de JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "en": "Erection of the shopping center's steel structures in the Valle de los Chillos. Work by JOCE Ingeniería y Materiales, Sangolquí, Ecuador.",
+    "zh": "Valle de los Chillos 购物中心的钢结构安装。JOCE Ingeniería y Materiales（厄瓜多尔 Sangolquí）承建。"
+  },
+  "resumen": {
+    "es": "Armado de estructuras metálicas del centro comercial en el Valle de los Chillos.",
+    "en": "Erection of the shopping center's steel structures in the Valle de los Chillos.",
+    "zh": "Valle de los Chillos 购物中心的钢结构安装。"
+  },
+  "tipo": {
+    "es": "Centro comercial",
+    "en": "Shopping center",
+    "zh": "购物中心"
+  },
+  "ubicacion": {
+    "es": "Valle de los Chillos, Pichincha",
+    "en": "Valle de los Chillos, Pichincha",
+    "zh": "Valle de los Chillos，Pichincha"
+  },
+  "mapa": "obra-vistavalle",
+  "fotos": [
+    "/img/obras/vista-valle-coral-exterior.webp",
+    "/img/obras/vista-valle-coral-volados.webp",
+    "/img/obras/vista-valle-interior-1.webp",
+    "/img/obras/vista-valle-interior-2.webp"
+  ],
+  "trabajos": [
+    {
+      "es": "Armado de la estructura metálica",
+      "en": "Steel structure erection",
+      "zh": "钢结构安装"
+    },
+    {
+      "es": "Armado de volados en la fachada",
+      "en": "Facade cantilever erection",
+      "zh": "立面悬挑安装"
+    },
+    {
+      "es": "Estructuras metálicas interiores",
+      "en": "Interior steel structures",
+      "zh": "室内钢结构"
+    }
+  ],
+  "otras_obras": [
+    "colegio-americano",
+    "proyecto-bauhaus",
+    "carls-jr-olive-garden-quito",
+    "metro-de-quito",
+    "central-manduriacu",
+    "central-agoyan"
+  ]
+}
