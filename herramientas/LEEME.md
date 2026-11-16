@@ -7,6 +7,7 @@ La web es estática (HTML, CSS y JS, sin servidor). Cada push a `main` publica e
 | Qué | Dónde | ¿Se edita a mano? |
 | --- | --- | --- |
 | Datos del cliente: dominio, teléfono, correo, WhatsApp, menú, Umami | `datos/sitio.json` | Sí |
+| Fotos propias en varios tamaños (portada) | originales en `img/originales/`, lista en `datos/fotos.json`, se generan con `herramientas/fotos.py` | Sí (el original y el JSON) |
 | Cada ficha de producto | `datos/productos/<slug>.json` | Sí |
 | Cada proyecto | `datos/proyectos/<slug>.json` | Sí |
 | Páginas sueltas (Trabaja con nosotros) | `datos/paginas/<slug>.json` + `herramientas/plantillas/contenido/<slug>.html` | Sí |
@@ -42,6 +43,8 @@ Regla: **nunca editar a mano** `productos/*.html`, `proyectos/*.html` ni `trabaj
 - `catalogo`: opcional. Sin catálogo, no se ponen los botones del PDF.
 
 **Agregar un proyecto.** Igual, en `datos/proyectos/`. `otras_obras` es la lista de proyectos que salen como tarjetas al final. `mapa` es el ancla de la obra en el mapa de la portada (`obra-<id>`). Para que salga en el mapa, agregarlo también en `js/portada.js`.
+
+**Agregar o cambiar una foto propia (portada u otras que no vienen del WordPress).** Poner el original, lo más grande posible, en `img/originales/<carpeta>/<nombre>.jpg` (esa carpeta no se publica). Declararlo en `datos/fotos.json` con sus anchos y, si se verá a pantalla completa en celular, `"movil": {"foco": [x, y]}` (el punto de la foto que no se puede cortar, de 0 a 1). Luego `python3 herramientas/fotos.py` genera los WebP con la misma calidad, y `python3 herramientas/fotos.py --html <carpeta>/<nombre>` imprime el `<picture>` para pegar en el HTML. Los WebP generados sí se suben. Las fotos de `img/wp` e `img/obras` no hace falta declararlas: se achican solas al publicar en AWS (y en Vercel con su optimizador).
 
 **Cambiar colores o letras.** Todas las variables (`--brand`, `--accent`, `--bg`, `--f-display`...) están al principio de `css/comun.css`: un bloque para el modo claro y dos para el oscuro. Única excepción: las páginas interiores usan un fondo oscuro `#070d17` en vez del `#05090f` de la portada (al inicio de `css/paginas.css`; diferencia heredada, unificar es decisión de diseño).
 

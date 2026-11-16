@@ -1,15 +1,18 @@
 /* Colores y letras de la marca (manual JOCE): bloque :root de abajo (claro) y los dos bloques siguientes (oscuro).
    Estilos compartidos por todas las páginas (portada, fichas de productos, proyectos y Trabaja con nosotros). */
 /* Layout: portada a pantalla completa con fotos de obra que se alternan; debajo, tarjetas de vidrio, carrusel deslizable de sectores, rejilla bento de productos, mosaico de obras y banda de contacto. Oscuro por defecto, con versión clara. */
+/* Letras de respaldo con las medidas de Montserrat y Open Sans: mientras llegan las de Google el texto ya ocupa su sitio y no salta al cambiar. */
+@font-face{font-family:"Montserrat fb";src:local("Arial");ascent-override:84.95%;descent-override:22.03%;line-gap-override:0%;size-adjust:113.39%}
+@font-face{font-family:"Open Sans fb";src:local("Arial");ascent-override:101.65%;descent-override:27.86%;line-gap-override:0%;size-adjust:105.22%}
 :root{
   --bg:#f3f5f8; --bg-2:#e8ecf2; --surface:#ffffff; --glass:rgba(255,255,255,.72); --fg:#0d1726; --muted:#5a6a7e; --line:rgba(13,23,38,.10);
   --brand:#0d4374; --cyan:#0d4374; --accent:#0d4374; --accent-ink:#ffffff;
   --grad:linear-gradient(100deg,#0d4374 0%,#0d4374 100%);
   --steel-a:#c9d1d9; --steel-b:#eef1f4; --logo-filter:none;
   --shadow:0 20px 50px -20px rgba(13,23,38,.25);
-  --f-display:"Montserrat",Arial,sans-serif;
-  --f-body:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-  --f-mono:"Montserrat",Arial,sans-serif;
+  --f-display:"Montserrat","Montserrat fb",Arial,sans-serif;
+  --f-body:"Open Sans","Open Sans fb",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"Montserrat","Montserrat fb",Arial,sans-serif;
   --radius:22px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){

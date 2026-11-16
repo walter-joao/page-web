@@ -1,6 +1,6 @@
 """Construye la versión estática de la web para S3/CloudFront (sin el optimizador de Vercel).
 Uso: python herramientas/build_estatico.py . _site
-- Copia el repo (sin .git, servidor, herramientas, vercel.json).
+- Copia el repo (sin .git, servidor, herramientas, img/originales, vercel.json).
 - Genera las fotos de img/wp e img/obras en WebP 256-1920 px dentro de _img/.
 - Reemplaza las URLs /_vercel/image por esas WebP (HTML, /js/*.js y funciones JS VI/vimg).
 """
@@ -10,7 +10,7 @@ ImageFile.LOAD_TRUNCATED_IMAGES=True
 SRC=sys.argv[1]; OUT=sys.argv[2]
 SIZES=[256,384,640,1080,1920]
 if os.path.exists(OUT): shutil.rmtree(OUT)
-shutil.copytree(SRC,OUT,ignore=shutil.ignore_patterns('.git','.github','.claude','servidor','datos','vercel.json','.vercelignore','herramientas','_site'))
+shutil.copytree(SRC,OUT,ignore=shutil.ignore_patterns('.git','.github','.claude','servidor','datos','vercel.json','.vercelignore','herramientas','originales','_site'))
 def slug(p):
   p=p.strip('/'); p=p[7:] if p.startswith('img/wp/') else p[4:]  # img/wp/2021/08/x.jpg -> 2021-08-x ; img/obras/x.webp -> obras-x
   return p.replace('/','-').rsplit('.',1)[0]

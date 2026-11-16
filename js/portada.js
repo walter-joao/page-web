@@ -13,7 +13,7 @@
 
   // Cabecera transparente sobre la portada, sólida al bajar
   var top=document.getElementById('top');
-  var lastY=scrollY;
+  var lastY=0;
   function onScroll(){
     var y=scrollY,navOpen=document.getElementById('nav').classList.contains('open');
     top.classList.toggle('solid',y>40);
@@ -30,10 +30,16 @@
     var b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Foto '+(i+1));
     b.addEventListener('click',function(){go(i,true)});dots.appendChild(b);
   });
+  // Solo la primera foto se descarga al abrir la página; cada una de las demás, justo antes de que le toque
+  function cargar(s){
+    s.querySelectorAll('[data-srcset]').forEach(function(e){e.srcset=e.dataset.srcset;e.removeAttribute('data-srcset')});
+    var im=s.querySelector('img[data-src]');if(im){im.src=im.dataset.src;im.removeAttribute('data-src')}
+  }
   function go(i,manual){
     slides.forEach(function(s){s.classList.remove('prev')});
     slides[cur].classList.remove('on');slides[cur].classList.add('prev');dots.children[cur].classList.remove('on');
     cur=(i+slides.length)%slides.length;
+    cargar(slides[cur]);cargar(slides[(cur+1)%slides.length]);
     slides[cur].classList.add('on');
     var d=dots.children[cur];void d.offsetWidth;d.classList.add('on');
     cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
@@ -41,6 +47,7 @@
   }
   function start(){clearInterval(timer);if(!reduce)timer=setInterval(function(){go(cur+1)},6000)}
   dots.children[0].classList.add('on');start();
+  if(slides[1])addEventListener('load',function(){cargar(slides[1])});
 
   // El botón flotante de WhatsApp se oculta en Contacto, donde ya hay uno
   var wa=document.querySelector('.wa'),ct=document.getElementById('contacto');
@@ -260,8 +267,9 @@
         OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();if(mq.matches&&card.classList.contains('open')&&(clk||!vis(OBRAS[cur])))cerrar();else if(!vis(OBRAS[cur])){for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}}});
       var hint=document.querySelector('#sat-hint span'),fineP=matchMedia('(hover:hover) and (pointer:fine)').matches;if(!fineP)hint.removeAttribute('data-i18n');
       function hintTx(){if(!fineP)hint.textContent=TR('Toca un punto para ver la obra','Tap a point to see the project')}hintTx();
-      chipsRender();addEventListener('resize',layout);if(mq.addEventListener)mq.addEventListener('change',function(){mobCard();layout()});
-      var im=$('sat-img');if(!im.complete)im.addEventListener('load',layout);
+      function relayout(){if(listo)layout()}
+      chipsRender();addEventListener('resize',relayout);if(mq.addEventListener)mq.addEventListener('change',function(){mobCard();relayout()});
+      var im=$('sat-img');if(!im.complete)im.addEventListener('load',relayout);
       // versión clara: paisaje con el entorno en papel claro para que Ecuador resalte sobre fondo blanco
       var sec=$('proyectos'),src=$('sat-src'),img=$('sat-img');
       function light(){var t=document.documentElement.dataset.theme;return t?t==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
@@ -270,11 +278,14 @@
       theme();new MutationObserver(theme).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
       var dm=matchMedia('(prefers-color-scheme: dark)');if(dm.addEventListener)dm.addEventListener('change',theme);
       // los sectores con obras ubicadas abren el mapa ya filtrado
-      window.satFilter=function(k){flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();
+      window.satFilter=function(k){iniciar();flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();
         for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}box.scrollIntoView({behavior:'smooth',block:'start'})};
       document.querySelectorAll('.sector .map-link').forEach(function(b){b.addEventListener('click',function(){satFilter(b.dataset.s)})});
-      layout();show(0);mobCard();
-      function fromHash(){var m=/^#obra-([\w-]+)/.exec(location.hash);if(!m)return;for(var i=0;i<OBRAS.length;i++)if(OBRAS[i].id===m[1]){show(i);box.classList.add('used');box.scrollIntoView({block:'start'});break}}
+      // El mapa está más abajo: los puntos se ubican cuando se acerca a la pantalla, no mientras carga la portada
+      mobCard();
+      var listo=false;function iniciar(){if(listo)return;listo=true;layout();show(0)}
+      if('IntersectionObserver' in window&&!/^#obra-/.test(location.hash)){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){io.disconnect();iniciar()}},{rootMargin:'800px 0px'});io.observe(box)}else iniciar();
+      function fromHash(){var m=/^#obra-([\w-]+)/.exec(location.hash);if(!m)return;iniciar();for(var i=0;i<OBRAS.length;i++)if(OBRAS[i].id===m[1]){show(i);box.classList.add('used');box.scrollIntoView({block:'start'});break}}
       fromHash();addEventListener('hashchange',fromHash);
       if('IntersectionObserver' in window){new IntersectionObserver(function(es,ob){es.forEach(function(e){if(e.isIntersecting){box.classList.add('in');ob.disconnect()}})},{threshold:.2}).observe(box)}else box.classList.add('in');
       return function(){chipsRender();hintTx();shown=-1;var op=card.classList.contains('open');if(clk)showCl(clk);else show(cur);if(mq.matches&&!op)cerrar()};
@@ -500,16 +511,19 @@
 
   // Entradas al hacer scroll y contadores
   if('IntersectionObserver' in window&&!reduce){
+    // lo que ya está a la vista al abrir no se anima (salvo los contadores); se decide en el primer aviso del observador
+    // para no medir la página mientras carga
+    var primera=true;
     var io=new IntersectionObserver(function(es){es.forEach(function(e){
-      if(!e.isIntersecting)return;e.target.classList.add('in');io.unobserve(e.target);
-      e.target.querySelectorAll('.count').forEach(function(c){
+      if(!e.isIntersecting)return;io.unobserve(e.target);
+      var cs=e.target.querySelectorAll('.count');if(primera&&!cs.length)return;
+      e.target.classList.add('in');
+      cs.forEach(function(c){
         var to=+c.dataset.to,t0=performance.now();
         (function tick(t){var p=Math.min((t-t0)/1400,1);c.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(tick)})(t0);
       });
-    })},{threshold:.15});
-    document.querySelectorAll('.rv').forEach(function(el){
-      if(el.getBoundingClientRect().top<innerHeight&&!el.querySelector('.count'))return;io.observe(el);
-    });
+    });primera=false},{threshold:.15});
+    document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   }
 
   // Idiomas

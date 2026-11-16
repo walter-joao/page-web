@@ -1,0 +1,11 @@
+{
+  "_ayuda": "Fotos propias que se publican en varios tamaños. El original va en img/originales/<nombre>.<ext> (no se publica). Luego: python3 herramientas/fotos.py. Ver herramientas/LEEME.md.",
+  "calidad": 74,
+  "fotos": {
+    "portada/bauhaus":   {"anchos": [1280, 1600, 2400], "movil": {"foco": [0.5, 0.5]}},
+    "portada/hidro":     {"anchos": [1280, 1600, 2400], "movil": {"foco": [0.5, 0.5]}},
+    "portada/sanfco":    {"anchos": [1280, 1600, 2400], "movil": {"foco": [0.5, 0.5]}},
+    "portada/vial":      {"anchos": [1280, 1600, 2400], "movil": {"foco": [0.5, 0.5]}},
+    "portada/electrica": {"anchos": [1280, 1600, 2400], "movil": {"foco": [0.5, 0.5]}}
+  }
+}
