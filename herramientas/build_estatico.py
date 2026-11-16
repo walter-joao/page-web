@@ -3,8 +3,10 @@ Uso: python herramientas/build_estatico.py . _site
 - Copia el repo (sin .git, servidor, herramientas, img/originales, vercel.json).
 - Genera las fotos de img/wp e img/obras en WebP 256-1920 px dentro de _img/.
 - Reemplaza las URLs /_vercel/image por esas WebP (HTML, /js/*.js y funciones JS VI/vimg).
+- Agrega ?v=<huella> a los /css/*.css y /js/*.js del HTML: el navegador los guarda 30 días, y así baja
+  la versión nueva apenas cambian (sin esto, tras publicar quedaba el JS viejo con el HTML nuevo).
 """
-import os,re,shutil,sys,urllib.parse
+import hashlib,os,re,shutil,sys,urllib.parse
 from PIL import Image,ImageFile
 ImageFile.LOAD_TRUNCATED_IMAGES=True
 SRC=sys.argv[1]; OUT=sys.argv[2]
@@ -45,3 +47,18 @@ for root,_,fs in os.walk(OUT):
     if '_vercel/image' in s: print('LEFT',p)
     if s!=o: open(p,'w',encoding='utf-8').write(s); n+=1
 print('html/js changed',n)
+
+# Huella de cada CSS/JS propio: cambia solo cuando cambia el archivo
+def huella(ruta):
+  try: return hashlib.sha1(open(os.path.join(OUT,ruta.lstrip('/')),'rb').read()).hexdigest()[:10]
+  except OSError: return None
+ref=re.compile(r'((?:href|src)=["\'])(/(?:css|js)/[\w./-]+\.(?:css|js))(["\'])')
+def versionar(m):
+  h=huella(m.group(2)); return f'{m.group(1)}{m.group(2)}?v={h}{m.group(3)}' if h else m.group(0)
+v=0
+for root,_,fs in os.walk(OUT):
+  for f in fs:
+    if not f.endswith('.html'): continue
+    p=os.path.join(root,f); s=open(p,encoding='utf-8').read(); o=ref.sub(versionar,s)
+    if o!=s: open(p,'w',encoding='utf-8').write(o); v+=1
+print('html con versión de css/js',v)
