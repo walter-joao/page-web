@@ -5,7 +5,9 @@
 .sat-bg,.sat-bg img{position:absolute;inset:0;width:100%;height:100%;display:block}
 .sat-bg img{object-fit:cover;object-position:62% 25%;transform:scale(1.04);transition:transform 1.6s cubic-bezier(.2,.8,.2,1)}
 .sat.in .sat-bg img{transform:none}
-.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 88%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.9) 0%,rgba(5,9,15,.7) 24%,rgba(5,9,15,.22) 36%,transparent 43%)}
+/* cuando la foto no llena el ancho, sus bordes se funden con el fondo (nunca tocan al Ecuador) */
+.sat-bg img.edge{-webkit-mask-image:linear-gradient(90deg,transparent,#000 32%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 95%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,transparent,#000 32%,#000 90%,transparent),linear-gradient(180deg,transparent,#000 6%,#000 95%,transparent);mask-composite:intersect}
+.sat-shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,var(--bg) 0%,transparent 5%,transparent 94%,var(--bg) 100%),linear-gradient(90deg,rgba(5,9,15,.9) 0%,rgba(5,9,15,.62) 20%,rgba(5,9,15,.14) 30%,transparent 36%)}
 .sat-copy .kicker{justify-self:start}
 .sat-copy{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));top:clamp(56px,9vh,96px);width:min(500px,38vw);display:grid;gap:14px}
 .sat-copy h2{margin:0;font:700 clamp(2.2rem,4.4vw,4rem)/1 var(--f-display);letter-spacing:-.035em;color:#fff;text-wrap:balance}
@@ -17,7 +19,7 @@
 .sat-chips button i{width:8px;height:8px;border-radius:50%;background:var(--c)}
 .sat-chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink,#1b0c02)}
 .sat-chips button[aria-pressed="true"] i{background:currentColor}
-.sat-hint{position:absolute;z-index:3;left:50%;bottom:28px;transform:translateX(-50%);margin:0;display:flex;align-items:center;gap:10px;color:#dfe7f1;font-size:.95rem;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .4s}
+.sat-hint{position:absolute;z-index:3;left:max(20px,calc((100vw - var(--maxw,1240px))/2 + 20px));bottom:28px;margin:0;display:flex;align-items:center;gap:10px;color:#dfe7f1;font-size:.95rem;white-space:nowrap;text-shadow:0 1px 8px rgba(0,0,0,.6);transition:opacity .4s}
 .sat-hint svg{width:20px;height:20px}
 .sat.used .sat-hint{opacity:0}
 .sat-credit{position:absolute;z-index:3;right:12px;bottom:8px;margin:0;font:500 .56rem var(--f-mono);color:rgba(220,230,242,.22);transition:color .3s}.sat-credit:hover{color:rgba(220,230,242,.6)}
@@ -27,7 +29,7 @@
 .sat-prov.has{color:#fff;font-weight:700;font-size:.7rem}
 .sat-prov.has::before{content:"";display:inline-block;width:5px;height:5px;margin:0 6px 1px 0;border-radius:50%;background:var(--accent);box-shadow:0 0 6px rgba(141,181,219,.9);vertical-align:middle}
 .sat.lt{background:var(--bg);color:var(--fg)}
-.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 7%,transparent 88%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.76) 24%,rgba(243,245,248,.24) 36%,transparent 43%)}
+.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 5%,transparent 94%,var(--bg) 100%),linear-gradient(90deg,rgba(243,245,248,.94) 0%,rgba(243,245,248,.68) 20%,rgba(243,245,248,.16) 30%,transparent 36%)}
 .sat.lt .sat-copy h2{color:var(--fg)}
 .sat.lt .sat-lead{color:var(--muted)}
 /* En pantallas anchas el mapa va de borde a borde; el texto se alinea con el contenido */
@@ -82,7 +84,7 @@
   .sat-stage{position:relative;inset:auto;aspect-ratio:1080/1350}
   .sat-bg img{object-position:50% 50%}
   .sat-shade,.sat.lt .sat-shade{background:linear-gradient(180deg,var(--bg) 0%,transparent 5%,transparent 92%,var(--bg) 100%)}
-  .sat-hint{bottom:34px;font-size:.88rem}
+  .sat-hint{bottom:34px;font-size:.88rem;left:50%;transform:translateX(-50%)}
   .sat-hint svg{display:none}
   .sat-credit{position:static;padding:8px 20px 0;text-align:right}
   .sat-card{position:relative;left:auto!important;top:auto!important;width:auto;margin:-24px 16px 0;opacity:1;transform:none;pointer-events:auto;display:grid;grid-template-columns:130px 1fr}

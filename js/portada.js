@@ -179,7 +179,8 @@
     // ---- Mapa sobre paisaje satelital: fondo fijo + marcadores calibrados con la misma cámara del render ----
     function SAT(){
       var box=$('sat'),pinsEl=$('sat-pins'),card=$('sat-card'),wire=$('sat-wire'),chips=$('sat-chips');
-      var PT={desk:{w:2560,h:1440,ox:.62,oy:.25,p:{metro:[.61157,.2305],manduriacu:[.58144,.18239],agoyan:[.62834,.37104],sanfco:[.63677,.37247],otavalo:[.63202,.18626],esmeraldas:[.51864,.12301],vistavalle:[0.61654,0.23843],colegio:[0.62383,0.22327],bauhaus:[0.61379,0.22579],carls:[0.61314,0.22729],tunel:[0.62443,0.37223]}},
+      var copyEl=document.querySelector('#sat .sat-copy'),imgEl=document.getElementById('sat-img');
+      var PT={desk:{w:2560,h:1440,ox:.62,oy:.25,box:[.40,.89,.07,.95],p:{metro:[.61157,.2305],manduriacu:[.58144,.18239],agoyan:[.62834,.37104],sanfco:[.63677,.37247],otavalo:[.63202,.18626],esmeraldas:[.51864,.12301],vistavalle:[0.61654,0.23843],colegio:[0.62383,0.22327],bauhaus:[0.61379,0.22579],carls:[0.61314,0.22729],tunel:[0.62443,0.37223]}},
               mob:{w:1080,h:1350,ox:.5,oy:.5,p:{metro:[.51264,.29998],manduriacu:[.46258,.24881],agoyan:[.53285,.43262],sanfco:[.54722,.43516],otavalo:[.55419,.25587],esmeraldas:[.35075,.18647],vistavalle:[0.52106,0.30789],colegio:[0.53551,0.29384],bauhaus:[0.51705,0.29561],carls:[0.51575,0.29700],tunel:[0.52591,0.43322]}}};
       // nombres de provincia (misma cámara que el paisaje); las que tienen obras se resaltan
       var PV=[["Azuay",0.5666,0.5805,0.407,0.627],["Bolívar",0.5623,0.4136,0.4116,0.4725],["Cañar",0.5729,0.5116,0.4234,0.5635],["Carchi",0.6572,0.1261,0.677,0.1696],["Cotopaxi",0.5876,0.3186,0.3829,0.3844],["Chimborazo",0.6008,0.4435,0.4763,0.5035],["El Oro",0.5075,0.6648,0.3044,0.6931],["Esmeraldas",0.5424,0.1441,0.3433,0.2086],["Guayas",0.4903,0.4462,0.2841,0.4985],["Imbabura",0.6162,0.1456,0.5489,0.214],["Loja",0.5398,0.7539,0.3542,0.7703],["Los Ríos",0.5252,0.3933,0.3485,0.4497],["Manabí",0.4893,0.2751,0.2892,0.3378],["Morona Santiago",0.6751,0.513,0.6041,0.5615],["Napo",0.6608,0.299,0.657,0.3756],["Pastaza",0.7742,0.4326,0.7885,0.4866],["Tungurahua",0.6015,0.356,0.4851,0.42],["Pichincha",0.5816,0.2644,0.4561,0.3321],["Zamora Chinchipe",0.602,0.7096,0.4622,0.7329],["Sucumbíos",0.7928,0.2273,0.8486,0.2913],["Orellana",0.8363,0.3243,0.9144,0.3851],["Santo Domingo",0.5418,0.2359,0.3362,0.3023],["Santa Elena",0.4446,0.476,0.2021,0.5259]];
@@ -199,6 +200,13 @@
         b.addEventListener('click',function(e){e.preventDefault();clearTimeout(hov);fijo=true;show(i);box.classList.add('used')})});
       function vis(o){return flt==='all'||o.s===flt}
       function layout(){var c=mq.matches?PT.mob:PT.desk,W=pinsEl.clientWidth,H=pinsEl.clientHeight,PW=c===PT.mob?PV.map(function(p){return p.el.offsetWidth}):[],s=Math.max(W/c.w,H/c.h),x0=(W-c.w*s)*c.ox,y0=(H-c.h*s)*c.oy;
+        // escritorio: el Ecuador entero siempre a la vista (en pantallas anchas la foto ya no se recorta abajo)
+        if(c===PT.desk){var B=c.box,pT=.05,pB=.08,sc=s,ew,cx,cr=copyEl.getBoundingClientRect(),tr=cr.right-pinsEl.getBoundingClientRect().left;
+          s=Math.min(sc,H*(1-pT-pB)/((B[3]-B[2])*c.h));ew=(B[1]-B[0])*c.w*s;
+          cx=Math.min(Math.max(W*.62,tr+32+ew/2),W-ew/2-16);x0=cx-s*c.w*(B[0]+B[1])/2;y0=H*pT-s*c.h*B[2];
+          if(c.w*s>=W)x0=Math.min(0,Math.max(W-c.w*s,x0));if(c.h*s>=H)y0=Math.min(0,Math.max(H-c.h*s,y0));
+          imgEl.style.cssText='width:'+c.w*s+'px;height:'+c.h*s+'px;left:'+x0+'px;top:'+y0+'px;right:auto;bottom:auto;object-fit:fill';
+          imgEl.classList.toggle('edge',c.w*s<W-1||c.h*s<H-1)}else{imgEl.style.cssText='';imgEl.classList.remove('edge')}
         var base=OBRAS.map(function(o){var p=c.p[o.id];return[x0+p[0]*c.w*s,y0+p[1]*c.h*s]}),mob=c===PT.mob,M=mob?40:26,un=[];
         // celular: las obras visibles de una misma ciudad forman un solo círculo; escritorio: cada obra su punto
         for(var k in CL)CL[k].m=[];
