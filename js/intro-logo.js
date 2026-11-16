@@ -1,16 +1,21 @@
 /* Intro de la portada: una chispa de soldadura recorre el logo, lo deja al rojo vivo, se enfría a blanco y desaparece.
    La página se ve detrás todo el tiempo (velo oscuro suave).
-   Sale solo en la primera visita (clave joce-intro en localStorage), no sale con enlaces directos (#...) ni con
-   "reducir movimiento", y cualquier toque, tecla, rueda o desplazamiento la salta. Estilos: .intro en css/portada.css. */
+   Sale una vez por visita (clave joce-intro en sessionStorage: vuelve al abrir la web otro día o en otra pestaña,
+   no al recargar ni al regresar a la portada). No sale con enlaces directos (#...) ni con "reducir movimiento".
+   Con ?intro en la dirección sale siempre (para mostrarla). Cualquier toque, tecla o rueda la salta. Estilos: .intro en css/portada.css. */
 (function () {
   var LOGO = '/img/wp/2025/02/LOGO-JOCECIA-1024x530.png';
   var LENTO = 2.5; /* factor de tiempo: el usuario eligió la versión en cámara lenta (~7 s en total) */
   var CLAVE = 'joce-intro';
   var reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  try { if (localStorage.getItem(CLAVE)) return; } catch (e) {}
-  if (reducir || location.hash || !document.body.animate) return;
-  try { localStorage.setItem(CLAVE, '1'); } catch (e) {}
+  var forzar = /[?&]intro\b/.test(location.search);
+  if (reducir || !document.body.animate) return;
+  if (!forzar) {
+    try { if (sessionStorage.getItem(CLAVE)) return; } catch (e) {}
+    if (location.hash) return;
+  }
+  try { sessionStorage.setItem(CLAVE, '1'); } catch (e) {}
 
   /* ---- piezas ---- */
   var raiz = document.createElement('div');
