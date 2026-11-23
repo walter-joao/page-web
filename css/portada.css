@@ -216,7 +216,7 @@ section{padding-block:clamp(48px,6vw,72px);position:relative}
 /* Intro del logo (js/intro-logo.js): chispa de soldadura sobre la página, solo en la primera visita */
 .intro{position:fixed;inset:0;z-index:100;display:grid;place-items:center;cursor:pointer}
 .intro-velo{position:absolute;inset:0;background:rgba(6,16,30,.6);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px);opacity:0}
-.intro-logo{position:relative;width:min(560px,66vw);aspect-ratio:1024/530;opacity:0}
+.intro-logo{position:relative;width:min(560px,66vw);aspect-ratio:1463/624;opacity:0}
 .intro-logo>*{position:absolute;inset:0;width:100%;height:100%}
 .intro-base{filter:brightness(0) invert(1);opacity:.1}
 .intro-metal,.intro-brillo{-webkit-mask:var(--logo) center/100% 100% no-repeat;mask:var(--logo) center/100% 100% no-repeat}

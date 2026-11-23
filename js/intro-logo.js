@@ -4,7 +4,7 @@
    no al recargar ni al regresar a la portada). No sale con enlaces directos (#...) ni con "reducir movimiento".
    Con ?intro en la dirección sale siempre (para mostrarla). Cualquier toque, tecla o rueda la salta. Estilos: .intro en css/portada.css. */
 (function () {
-  var LOGO = '/img/wp/2025/02/LOGO-JOCECIA-1024x530.png';
+  var LOGO = '/img/logo-joce.svg';
   var LENTO = 2.5; /* factor de tiempo: el usuario eligió la versión en cámara lenta (~7 s en total) */
   var CLAVE = 'joce-intro';
   var reducir = matchMedia('(prefers-reduced-motion: reduce)').matches;

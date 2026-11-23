@@ -36,7 +36,7 @@ document.addEventListener('error',function(e){var i=e.target;if(i.tagName!=='IMG
 <a class="skip" data-en="Skip to content" data-zh="跳到正文" href="#contenido" style="position:absolute;left:-9999px">Saltar al contenido</a>
 <header class="top solid" id="top">
 <div class="wrap">
-<a aria-label="{{ sitio.marca }} – inicio" class="logo" href="/"><img alt="{{ sitio.marca }}" decoding="async" height="42" src="{{ sitio.logo | vimg(384) }}" width="81"/></a>
+<a aria-label="{{ sitio.marca }} – inicio" class="logo" href="/"><img alt="{{ sitio.marca }}" decoding="async" height="42" src="{{ sitio.logo_web }}" width="99"/></a>
 <nav aria-label="Secciones" class="main">
 {% for m in sitio.menu %}<a{% if m.href == p.ruta %} aria-current="page"{% endif %} data-en="{{ m.en }}" data-zh="{{ m.zh }}" href="{{ m.href }}">{{ m.es }}</a>{% endfor %}
 </nav>
