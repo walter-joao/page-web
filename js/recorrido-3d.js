@@ -139,7 +139,7 @@ function barHelical(){const g=new THREE.Group(),r=.085,L=2.4,mat=mats.steel;
   g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),n*2,.022,6,false),mat)));
   const pl=sh(new THREE.Mesh(new THREE.CylinderGeometry(.34,.3,.06,4),mats.steelL));pl.rotation.y=Math.PI/4;pl.position.y=L*.78;g.add(pl);
   const dome=sh(new THREE.Mesh(new THREE.SphereGeometry(.13,20,10,0,Math.PI*2,0,Math.PI/2),mats.steelL));dome.position.y=L*.78+.03;g.add(dome);
-  const nut=sh(new THREE.Mesh(new THREE.CylinderGeometry(r*1.9,r*1.9,r*1.6,6),mat));nut.position.y=L*.78+.18;g.add(nut);
+  const nut=hexNut(r*1.9,r*1.6,mat);nut.position.y=L*.78+.18;g.add(nut);
   return g}
 function corr(R0,L,P,A,phi){const pts=[],n=Math.round(L/P*14);
   for(let i=0;i<=n;i++){const y=-L/2+L*i/n;pts.push(new THREE.Vector2(R0+A*Math.sin(y/P*Math.PI*2),y))}
@@ -184,7 +184,7 @@ function buildPoste(v){const g=new THREE.Group(),Hh=4.6;
   for(let i=0;i<4;i++){const a=i*Math.PI/2+Math.PI/4;
     const gu=sh(new THREE.Mesh(new THREE.BoxGeometry(.012,.22,.16),mats.galvD));gu.position.set(Math.cos(a)*.2,.15,Math.sin(a)*.2);gu.rotation.y=-a;g.add(gu);
     const b=sh(new THREE.Mesh(new THREE.CylinderGeometry(.02,.02,.14,10),mats.steel));b.position.set(Math.cos(a+Math.PI/4)*.24,.1,Math.sin(a+Math.PI/4)*.24);g.add(b);
-    const n=sh(new THREE.Mesh(new THREE.CylinderGeometry(.035,.035,.03,6),mats.steel));n.position.copy(b.position);n.position.y=.07;g.add(n)}
+    const n=hexNut(.035,.03,mats.steel);n.position.copy(b.position);n.position.y=.07;g.add(n)}
   if(v===0){const arm=new THREE.QuadraticBezierCurve3(new THREE.Vector3(0,Hh-.25,0),new THREE.Vector3(0,Hh+.3,0),new THREE.Vector3(1.2,Hh+.35,0));
     g.add(sh(new THREE.Mesh(new THREE.TubeGeometry(arm,40,.035,10,false),mats.galv)));
     const lum=sh(new THREE.Mesh(new THREE.BoxGeometry(.55,.08,.22),mats.galvD));lum.position.set(1.35,Hh+.33,0);g.add(lum);
