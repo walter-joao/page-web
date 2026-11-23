@@ -460,7 +460,12 @@
       layout();msg.textContent='';goPage(cvWant,false);
     });
   }
+  // Título del catálogo en el idioma actual (se usa al cambiar de idioma con el visor abierto)
+  var CVT={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']};
+  function cvTit(k){return k==='alcantarillas'?null:TR('Catálogo · ','Catalog · ')+(CVT[k]?TR(CVT[k][0],CVT[k][1]):k)}
+  var cvSrc='';
   function cvLoad(url,title,n){
+    cvSrc=url;
     cv.classList.toggle('solo',url!==PDF);
     url=CATU(url);
     cvTitle.textContent=title||TR(cvTitle0,'Metal culvert catalog');
@@ -482,8 +487,9 @@
   // Abrir el catálogo interactivo desde otra página: /#catalogo-<archivo> (p. ej. desde las fichas de producto)
   (function(){function fromHash(){var m=/^#catalogo-([a-z0-9-]+)$/.exec(location.hash);if(!m)return;
     try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
-    if(m[1]==='alcantarillas')openCv(1);else{var T={'postes':['Postes metálicos','Steel poles'],'grating-tramex':['Grating y tramex','Grating'],'pernos-bronce-silicio':['Pernos bronce-silicio','Silicon-bronze bolts'],'resina-de-anclaje':['Resina de anclaje','Anchoring resin'],'accesorios-para-tuberia':['Accesorios para tubería','Pipe fittings']}[m[1]];openCv(1,'/catalogos/'+m[1]+'.pdf',TR('Catálogo · ','Catalog · ')+(T?TR(T[0],T[1]):m[1]))}}
-    setTimeout(fromHash,0);addEventListener('hashchange',fromHash)})();
+    if(m[1]==='alcantarillas')openCv(1);else openCv(1,'/catalogos/'+m[1]+'.pdf',cvTit(m[1]))}
+    // Si el idioma guardado es chino, esperar a que cargue antes de abrir (si no, se abría el PDF en español)
+    setTimeout(function(){var z;try{z=localStorage.getItem('joce-lang')==='zh'}catch(e){}if(z&&!window.ZHOK)loadZH(fromHash);else fromHash()},0);addEventListener('hashchange',fromHash)})();
   document.getElementById('cvprev').addEventListener('click',function(){if(cvCur>1)goPage(cvCur-1,true)});
   document.getElementById('cvnext').addEventListener('click',function(){if(cvDoc&&cvCur<cvDoc.numPages)goPage(cvCur+1,true)});
   function zoom(f){var keep=cvCur;cvZoom=Math.min(3,Math.max(.5,cvZoom*f));layout();goPage(keep,false)}
@@ -594,6 +600,8 @@
     root.lang=l==='zh'?'zh-CN':l;
     cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
     if(typeof MO==='function')MO();
+    // Visor de catálogos abierto: volver a cargar el PDF y el título en el nuevo idioma
+    if(cvSrc){var k=(/([a-z0-9-]+)\.pdf$/.exec(cvSrc)||[])[1];if(cv.hidden)cvTitle.textContent=TR(cvTitle0,'Metal culvert catalog');else if(CATU(cvSrc)!==cvUrl)cvLoad(cvSrc,cvTit(k),cvCur)}
     ['es','en','zh'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x)});
     try{localStorage.setItem('joce-lang',l)}catch(e){}
   }
