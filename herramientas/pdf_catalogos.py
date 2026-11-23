@@ -5,8 +5,8 @@ Uso:  python3 herramientas/pdf_catalogos.py          (modifica los 18 PDF en su 
 
 Hace, sin cambiar el diseño:
 1) Metadatos: título, descripción (la frase de la portada del PDF), palabras clave, autor e idioma (/Lang).
-2) Contactos: deja solo el correo de ventas y su celular. CONTACTOS dice qué texto reemplazar o borrar.
-3) Código QR de WhatsApp de la última página: lo vuelve a dibujar con el número de WHATSAPP.
+2) Contactos: ventas6@ pasa a ventas@ (compras se queda igual). CONTACTOS dice qué texto reemplazar o borrar.
+3) Código QR de WhatsApp de la última página: si WHATSAPP tiene un número, lo vuelve a dibujar con ese número.
 Se puede correr varias veces: si ya está todo al día, no toca nada.
 Requiere: pymupdf, segno, opencv-python-headless (para leer los QR y comprobarlos).
 """
@@ -18,8 +18,9 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
 FUENTE = "herramientas/fuentes/OpenSans-400.ttf"
 AUTOR = "JOCE Ingeniería y Materiales (Joce Cía. Ltda.)"
-WHATSAPP = "593958849799"  # el celular que queda junto a ventas@jocecia.com
-CONTACTOS = {"ventas6@jocecia.com": "ventas@jocecia.com", "compras@jocecia.com": None, "+593 96 406 8392": None}
+WHATSAPP = None  # número del QR de WhatsApp (p. ej. "593958849799"); None = dejar el QR como está (hoy abre el 096 406 8392 de compras)
+# texto viejo -> texto nuevo (None = borrarlo). Compras se queda con compras@jocecia.com y +593 96 406 8392 (usuario, 2026-11-23).
+CONTACTOS = {"ventas6@jocecia.com": "ventas@jocecia.com"}
 
 NOMBRES = {  # nombre del catálogo por idioma
     "accesorios-para-tuberia": ("Catálogo de accesorios para tubería", "Pipe fittings catalog", "管道配件目录"),
@@ -93,6 +94,8 @@ def leer_qr(pag, rect):
 
 def qr_whatsapp(doc):
     """El QR de WhatsApp de la última página: si no apunta a WHATSAPP, lo tapa y lo dibuja de nuevo."""
+    if not WHATSAPP:
+        return 0
     pag = doc[-1]
     destino = "https://wa.me/" + WHATSAPP
     for d in pag.get_drawings():
