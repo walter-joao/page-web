@@ -10,8 +10,8 @@ section{padding-block:96px;position:relative}
 
 
 .pp-hero{padding:132px 0 40px;background:var(--bg-2)}
-.pp-hero .crumb{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.pp-hero .crumb a{color:var(--cyan);text-decoration:none}
+.pp-hero .crumb,.tj-hero .crumb{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pp-hero .crumb a,.tj-hero .crumb a{color:var(--cyan);text-decoration:none}
 .pp-hero h1{font-size:clamp(2.2rem,5.6vw,4rem);font-weight:800;font-stretch:110%;margin:14px 0 10px;max-width:22ch}
 .pp-hero .pp-lead{font-size:clamp(1.08rem,1.6vw,1.28rem);line-height:1.55;max-width:62ch;margin:0 0 14px;color:var(--fg)}
 .pp-hero .grupo{color:var(--muted);margin:0 0 22px}
