@@ -589,6 +589,8 @@
   };
   var nodes=document.querySelectorAll('[data-i18n],[data-i18n-html]'),es={};
   nodes.forEach(function(el){es[el.dataset.i18n||el.dataset.i18nHtml]=el.innerHTML});
+  var AL={'Siguiente':['Next','下一个'],'Anterior':['Previous','上一个'],'Cerrar':['Close','关闭'],'Ver la planta en Google Maps':['See the plant on Google Maps','在谷歌地图上查看工厂'],'Sectores':['Sectors','行业'],'Secciones':['Sections','栏目'],'Recorrido de productos':['Product tour','产品浏览'],'Páginas':['Pages','页面'],'Página siguiente':['Next page','下一页'],'Página anterior':['Previous page','上一页'],'Proyecto':['Project','项目'],'Portada':['Home','首页'],'Modelo 3D del producto':['3D product model','产品 3D 模型'],'Menú':['Menu','菜单'],'Fotos de portada':['Cover photos','封面照片'],'Filtrar por sector':['Filter by sector','按行业筛选'],'Cambiar tema claro u oscuro':['Switch light or dark theme','切换浅色或深色主题'],'Años':['Years','年份'],'Aplicaciones':['Applications','应用'],'Alejar':['Zoom out','缩小'],'Acercar':['Zoom in','放大'],'Abrir en pestaña nueva':['Open in new tab','在新标签页中打开'],'Descargar':['Download','下载'],'Llamar al ':['Call ','拨打 '],'Foto ':['Photo ','照片 ']},ALP=['Llamar al ','Foto '];
+  function alk(o){if(AL.hasOwnProperty(o)&&ALP.indexOf(o)<0)return o;for(var i=0;i<ALP.length;i++)if(o.indexOf(ALP[i])===0)return ALP[i];return null}
   function setLang(l){
     if(l==='zh'&&!window.ZHOK){loadZH(function(){setLang('zh')});return}
     lang=l;
@@ -600,6 +602,9 @@
     root.lang=l==='zh'?'zh-CN':l;
     cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
     if(typeof MO==='function')MO();
+    // Nombres para lectores de pantalla (aria-label) en el idioma elegido
+    document.querySelectorAll('[aria-label]').forEach(function(e){var o=e.dataset.ariaEs;if(o==null){o=e.getAttribute('aria-label');if(!alk(o))return;e.dataset.ariaEs=o}
+      var k=alk(o),v=l==='es'?o:AL[k][l==='en'?0:1]+(ALP.indexOf(k)>=0?o.slice(k.length):'');e.setAttribute('aria-label',v)});
     // Visor de catálogos abierto: volver a cargar el PDF y el título en el nuevo idioma
     if(cvSrc){var k=(/([a-z0-9-]+)\.pdf$/.exec(cvSrc)||[])[1];if(cv.hidden)cvTitle.textContent=TR(cvTitle0,'Metal culvert catalog');else if(CATU(cvSrc)!==cvUrl)cvLoad(cvSrc,cvTit(k),cvCur)}
     ['es','en','zh'].forEach(function(x){document.getElementById('lang-'+x).setAttribute('aria-pressed',l===x)});
@@ -625,6 +630,7 @@
     fx();new MutationObserver(fx).observe(R,{attributes:true,attributeFilter:['data-theme']});if(dm.addEventListener)dm.addEventListener('change',fx)})();
   var menu=document.getElementById('menu'),nav=document.getElementById('nav');
   menu.addEventListener('click',function(){var o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});
+  addEventListener('keydown',function(e){if(e.key==='Escape'&&nav.classList.contains('open')){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.focus()}});
   nav.addEventListener('click',function(e){var l=e.target.closest('a');if(l){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');if(document.activeElement)document.activeElement.blur()}});
 
   try{

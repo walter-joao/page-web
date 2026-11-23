@@ -7,7 +7,8 @@
          en:{req:'Please fill in the highlighted fields.',mail:'Please check your email address.',cv:'Attach your résumé as PDF or Word.',big:'The file is larger than 5 MB.',chk:'Please accept the data processing terms.',sending:'Sending…',ok:'Thank you! We received your application and will contact you if your profile is a fit.',fail:'Could not send. Please try again or message us on WhatsApp.',demo:'For now, please send your résumé to talentohumano@jocecia.com',pick:'Choose file'},
          zh:{req:'请填写标出的字段。',mail:'请检查电子邮箱地址。',cv:'请以 PDF 或 Word 格式附上简历。',big:'文件超过 5 MB。',chk:'请同意个人数据处理条款。',sending:'正在发送…',ok:'谢谢！我们已收到您的申请，如您的背景合适，我们会与您联系。',fail:'发送失败。请重试或通过 WhatsApp 联系我们。',demo:'目前请将简历发送至 talentohumano@jocecia.com',pick:'选择文件'}};
   function t(k){var l=(document.documentElement.lang||'es').slice(0,2);return (T[l]||T.es)[k]}
-  function say(k,cls){msg.textContent=t(k);msg.className='job-msg'+(cls?' '+cls:'')}
+  var last=null;
+  function say(k,cls){last=k;msg.textContent=t(k);msg.className='job-msg'+(cls?' '+cls:'')}
   function showFile(){var x=cv.files&&cv.files[0];drop.classList.toggle('has',!!x);fileL.textContent=x?x.name:t('pick');drop.classList.remove('bad')}
   cv.addEventListener('change',showFile);
   ['dragenter','dragover'].forEach(function(e){drop.addEventListener(e,function(ev){ev.preventDefault();drop.classList.add('over')})});
@@ -36,7 +37,6 @@
       .catch(function(){say('fail','err')})
       .then(function(){btn.removeAttribute('aria-busy')});
   });
-  document.getElementById('lang-es').addEventListener('click',function(){setTimeout(showFile)});
-  document.getElementById('lang-en').addEventListener('click',function(){setTimeout(showFile)});
-  document.getElementById('lang-zh').addEventListener('click',function(){setTimeout(showFile)});
+  // Al cambiar de idioma, el nombre del archivo y el último mensaje (error, enviando, etc.) se traducen también
+  new MutationObserver(function(){showFile();if(last)msg.textContent=t(last)}).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});
 })();
