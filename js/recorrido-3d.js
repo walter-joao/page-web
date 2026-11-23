@@ -90,8 +90,13 @@ function threadOn(g,r,y0,y1,mat){
 }
 // Pernos según las fotos originales: cabeza hexagonal ancha con tuerca y arandela; los de acero forjado en negro
 function hexNut(r,h,mat){const g=new THREE.Group();
-  const n=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,h,6),mat));g.add(n);
-  [-1,1].forEach(s=>{const c=sh(new THREE.Mesh(new THREE.CylinderGeometry(s>0?r*.86:r*.97,s>0?r*.97:r*.86,h*.12,24),mat));c.position.y=s*h*.5;g.add(c)});
+  // Tuerca de verdad: hexágono con agujero central y bordes biselados (antes llevaba discos redondos que la hacían ver como un disco)
+  const sp=new THREE.Shape(),bv=Math.min(r*.07,h*.12);
+  for(let i=0;i<6;i++){const a=i/6*Math.PI*2+Math.PI/6,x=Math.cos(a)*(r-bv),y=Math.sin(a)*(r-bv);i?sp.lineTo(x,y):sp.moveTo(x,y)}
+  sp.closePath();const ho=new THREE.Path();ho.absarc(0,0,r*.47,0,Math.PI*2,true);sp.holes.push(ho);
+  const geo=new THREE.ExtrudeGeometry(sp,{depth:h-2*bv,bevelEnabled:true,bevelThickness:bv,bevelSize:bv,bevelSegments:2,curveSegments:24});
+  geo.rotateX(-Math.PI/2);geo.translate(0,-(h-2*bv)/2,0);geo.computeVertexNormals();
+  g.add(sh(new THREE.Mesh(geo,mat)));
   return g}
 function boltHex(mat,len,o){o=o||{};const g=new THREE.Group(),r=.11;
   const sk=sh(new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,24),mat));sk.position.y=len/2;g.add(sk);
