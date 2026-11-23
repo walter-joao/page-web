@@ -100,7 +100,7 @@
     document.getElementById('pdf').innerHTML=(t.f||[]).map(function(x){return '<li>'+x+'</li>'}).join('');
     document.getElementById('pds').innerHTML=p.img.map(function(u){return '<div class="corr'+(p.contain?' white':'')+'"><img '+IMG(u,1080)+' alt="" loading="lazy"></div>'}).join('');
     document.querySelectorAll('#pds img').forEach(function(i){i.addEventListener('error',function(){i.remove()})});
-    document.getElementById('pdwa').href='https://wa.me/593964068392?text='+encodeURIComponent((TR('Hola, quisiera cotizar: ','Hello, I would like a quote for: '))+t.t);
+    document.getElementById('pdwa').href='https://wa.me/593994806884?text='+encodeURIComponent((TR('Hola, quisiera cotizar: ','Hello, I would like a quote for: '))+t.t);
     var hr=document.getElementById('pdhero');hr.hidden=!p.hero;if(p.hero){cambiarFoto(hr.querySelector('img'),VI(p.hero.img,1080),p.hero.img);hr.querySelector('b').textContent=ZO(p.hero)}
     var L=JL(),SB=p.subs||[],AD=t.adv||[];
     document.getElementById('pdsec').innerHTML=secHtml(t.sec);

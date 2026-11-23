@@ -345,7 +345,7 @@ function fill(i){const c=C[i],t=ZO(c),u=ZO(UI);
   $('pt-k').textContent=t.k;$('pt-n').textContent=(i+1)+' / '+C.length;$('pt-t').textContent=t.t;$('pt-d').textContent=t.d;
   $('pt-v').innerHTML=t.v?t.v.map((v,j)=>`<button type="button" data-v="${j}" aria-pressed="${j===vari}">${esc(v)}</button>`).join('')+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:''):`<p class="pt-tags">${esc(t.tags)}</p>`+(t.lk?`<p class="pt-lk"><span>${TR('También','Also')}</span>${t.lk.map(([a,b])=>`<a href="/productos/${b}">${esc(a)} ›</a>`).join('')}</p>`:'');
   $('pt-f').innerHTML=(t.vf?t.vf[vari]:t.f).map(([a,b])=>`<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join('');
-  $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593964068392?text='+encodeURIComponent(u.q+t.t);
+  $('pt-wa').textContent=u.wa;$('pt-wa').href='https://wa.me/593994806884?text='+encodeURIComponent(u.q+t.t);
   $('pt-l').textContent=u.more;$('pt-l').href='/productos/'+(c.es.vs?c.es.vs[vari]||c.s:c.s);
   $('pt-cap').textContent='';
   $("pt-hint").textContent=c.m?(innerWidth<761?u.dragm:u.drag):c.eq?TR("Elija un modelo","Pick a model"):u.photo}
