@@ -55,3 +55,6 @@ html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB"
 .tj-form .job-intro h2{font-size:clamp(1.6rem,4vw,2.4rem);margin:0}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tj-link{color:#8DB5DB}}
 :root[data-theme="dark"] .tj-link{color:#8DB5DB}
+
+/* Datos del PDF debajo de los botones de la ficha: formato, idioma y peso */
+.dl-meta{margin-top:10px;font-family:var(--f-mono);font-size:.78rem;color:var(--muted)}

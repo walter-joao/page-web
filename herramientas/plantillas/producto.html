@@ -95,6 +95,8 @@
 <div class="cta-row"><a class="btn btn-accent" data-en="Quote on WhatsApp" data-zh="通过 WhatsApp 询价" href="https://wa.me/{{ sitio.whatsapp }}?text={{ wa }}" rel="noopener" target="_blank">Cotizar por WhatsApp</a>
 {%- if p.get("catalogo") %}<a class="btn btn-line" data-en="View catalog" data-zh="查看目录" href="/#{{ p.catalogo.ancla }}">Ver catálogo</a><a class="btn btn-line" data-en="Download PDF" data-zh="下载 PDF" download="{{ p.catalogo.descarga }}" href="{{ p.catalogo.pdf }}" rel="noopener" target="_blank">Descargar PDF</a>{% endif -%}
 <a class="btn btn-line" data-en="Contact" data-zh="联系我们" href="/#contacto">Contacto</a></div>
+{%- if p.get("catalogo") %}
+<p class="dl-meta" data-en="Catalog: PDF · English · {{ p.catalogo.pdf | peso_pdf('en') }}" data-zh="目录：PDF · 中文 · {{ p.catalogo.pdf | peso_pdf('zh') }}">Catálogo: PDF · Español · {{ p.catalogo.pdf | peso_pdf }}</p>{% endif %}
 {% if p.fotos %}<div class="pp-gal">
 {%- for f in p.fotos %}<figure><img alt="{{ nombre }} – {{ sitio.marca }} (foto {{ loop.index }})" data-o="{{ f }}" decoding="async"{% if not loop.first %} loading="lazy"{% endif %} sizes="(max-width: 700px) 100vw, 33vw" src="{{ f | vimg(640) }}" srcset="{{ srcset(f) }}"/></figure>{% endfor -%}
 </div>

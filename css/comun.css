@@ -76,13 +76,16 @@ nav.main a:hover{background:rgba(255,255,255,.1);color:#fff}
 .tools{display:flex;gap:8px;align-items:center}
 .pill{display:flex;padding:3px;border-radius:999px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06)}
 .top.solid .pill{border-color:var(--line);background:transparent}
-.pill button{font:inherit;font-family:var(--f-mono);font-size:.74rem;padding:6px 10px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.8);cursor:pointer}
+.pill button{font:inherit;font-family:var(--f-mono);font-size:.74rem;padding:0 10px;min-height:38px;min-width:38px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.8);cursor:pointer}
 .top.solid .pill button{color:var(--muted)}
 .pill button[aria-pressed=true]{background:#fff;color:#0d1726}
 .top.solid .pill button[aria-pressed=true]{background:var(--fg);color:var(--bg)}
-.round{width:40px;height:40px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;cursor:pointer}
+.round{width:44px;height:44px;border-radius:999px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.06);color:#fff;cursor:pointer}
 .top.solid .round{border-color:var(--line);color:var(--fg);background:transparent}
 .round svg{width:18px;height:18px}
+/* Saltar al contenido: oculto hasta que se llega con el teclado */
+.skip{position:absolute;left:-9999px;top:12px;z-index:300;padding:12px 18px;border-radius:999px;background:var(--fg);color:var(--bg);font-weight:600;text-decoration:none}
+.skip:focus{left:16px}
 .menu-btn{display:none}
 
 .dd{position:relative;display:flex;align-items:center}
@@ -551,3 +554,5 @@ footer a{color:var(--muted)}
 .mo-n{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font:700 12px var(--f-mono);background:var(--c);color:#06101c}
 @media (prefers-reduced-motion:reduce){.mo-pin .halo{animation:none}}
 .hero h1 .grad{background:linear-gradient(100deg,#8db5db,#8db5db);-webkit-background-clip:text;background-clip:text}
+/* Celulares angostos (≤400 px): logo y separaciones un poco menores para que quepan idiomas, tema y menú de 44 px */
+@media (max-width:400px){.logo img{height:42px}.tools{gap:6px}.pill button{padding:0 7px;min-width:34px}}

@@ -29,6 +29,15 @@ def cargar(ruta):
 env = Environment(loader=FileSystemLoader("herramientas/plantillas"), undefined=StrictUndefined,
                   autoescape=True, keep_trailing_newline=True)
 env.filters["vimg"] = vimg
+def peso_pdf(pdf, idioma="es"):
+    """Peso real del PDF del catálogo en ese idioma, p. ej. '0,9 MB' (en: '0.9 MB'). /catalogos/x.pdf -> catalogos/<en|zh>/x.pdf"""
+    ruta = pdf.lstrip("/")
+    if idioma != "es":
+        ruta = ruta.replace("catalogos/", "catalogos/%s/" % idioma, 1)
+    mb = "%.1f MB" % (os.path.getsize(ruta) / 1e6)
+    return mb if idioma == "en" else mb.replace(".", ",") if idioma == "es" else mb
+
+env.filters["peso_pdf"] = peso_pdf
 env.filters["tojson_bonito"] = lambda o: json.dumps(o, ensure_ascii=False, indent=1)
 # datos("proyectos/metro-de-quito") -> contenido de datos/proyectos/metro-de-quito.json (p. ej. tarjetas de "Otros proyectos")
 env.globals["datos"] = lambda ruta: cargar("datos/%s.json" % ruta)

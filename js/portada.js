@@ -534,7 +534,7 @@
 
   // Idiomas
   var EN={
-    "nav.sectors":"Solutions","nav.products":"Products","mm.s0":"Metal floors","mm.s1":"Poles","mm.s2":"Grates","mm.s3":"Plates","mm.s4":"Tunnel arches","mm.s5":"Formwork","mm.s6":"Energy dissipators","mm.s7":"Pipe fittings","mm.s8":"Steel structures","mm.s9":"Anchor bolts","mm.s10":"Anchor plates","mm.s11":"Industrial sheds","mm.s12":"Stairs","mm.s13":"Handrails and walkways","mm.s14":"Special orders","mm.c0":"Metal infrastructure","mm.c1":"High-reliability special bolts","mm.c2":"Metal culverts","mm.c3":"Grating \u2013 Tramex","mm.c4":"Formwork","mm.c5":"Pipe fittings","mm.c6":"Rock support","mm.c7":"Parts manufacturing and repair","mm.c8":"Welding machines","mm.infra":"Metal infrastructure","mm.all":"All products","nav.culverts":"Culverts","nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
+    "skip":"Skip to content","nav.sectors":"Solutions","nav.products":"Products","mm.s0":"Metal floors","mm.s1":"Poles","mm.s2":"Grates","mm.s3":"Plates","mm.s4":"Tunnel arches","mm.s5":"Formwork","mm.s6":"Energy dissipators","mm.s7":"Pipe fittings","mm.s8":"Steel structures","mm.s9":"Anchor bolts","mm.s10":"Anchor plates","mm.s11":"Industrial sheds","mm.s12":"Stairs","mm.s13":"Handrails and walkways","mm.s14":"Special orders","mm.c0":"Metal infrastructure","mm.c1":"High-reliability special bolts","mm.c2":"Metal culverts","mm.c3":"Grating \u2013 Tramex","mm.c4":"Formwork","mm.c5":"Pipe fittings","mm.c6":"Rock support","mm.c7":"Parts manufacturing and repair","mm.c8":"Welding machines","mm.infra":"Metal infrastructure","mm.all":"All products","nav.culverts":"Culverts","nav.projects":"Projects","nav.about":"About","nav.contact":"Contact",
     "hero.k":"Engineering & materials · Ecuador","hero.title":"Experience and <span class=\"grad\">quality</span><span class=\"vh\">: steel infrastructure, bolts and culverts in Ecuador</span>",
     "hero.lead":"Engineering, consulting, manufacturing and import of steel structures, bolts, culverts and grating for hydropower, mining, cement, power utilities and road works. More than 25 years of experience taking part in the country's landmark engineering projects.",
     "cta.start":"Start a project","cta.projects":"See our work","hero.now":"Now showing",
@@ -600,6 +600,9 @@
       if(l==='es'||el.dataset.i18nHtml)el.innerHTML=v;else el.textContent=v;
     });
     root.lang=l==='zh'?'zh-CN':l;
+    // Título de la pestaña y descripción en el idioma elegido (datos en <html data-title-en …>)
+    var dm=document.querySelector('meta[name="description"]'),rd=root.dataset;if(!rd.titleEs){rd.titleEs=document.title;rd.descEs=dm?dm.content:''}
+    document.title=l==='es'?rd.titleEs:l==='en'?rd.titleEn:rd.titleZh;if(dm)dm.content=l==='es'?rd.descEs:l==='en'?rd.descEn:rd.descZh;
     cap.textContent=TR(slides[cur].dataset.cap,slides[cur].dataset.capEn);
     if(typeof MO==='function')MO();
     // Nombres para lectores de pantalla (aria-label) en el idioma elegido
