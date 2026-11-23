@@ -1,4 +1,4 @@
-/* Responsabilidad social: carrusel por años (de 2021 en adelante). La foto del año activo llena el fondo,
+/* Responsabilidad social: carrusel por años (2020 a 2023; arranca en el año de data-inicio). La foto del año activo llena el fondo,
    a la derecha van las tarjetas de los demás años y avanza solo cada 7 s (se detiene al pasar el mouse,
    al tocar, fuera de pantalla o con "reducir movimiento"). Sin JS se ve como lista. */
 (function(){
@@ -42,5 +42,7 @@
   sec.addEventListener('focusin',function(){quieto=true});sec.addEventListener('focusout',function(){quieto=false});
   new IntersectionObserver(function(e){visible=e[0].isIntersecting}).observe(sec);
   if(reduce)bar.parentNode.hidden=true;
+  // Año con el que arranca (data-inicio en la sección)
+  its.forEach(function(it,i){if(it.querySelector('time').textContent===sec.dataset.inicio)cur=i});
   pintar();raf=requestAnimationFrame(tick);
 })();
