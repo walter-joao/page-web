@@ -6,7 +6,7 @@
  */
 
 // ===== Configuración =====
-const DESTINO   = 'CAMBIAR@jocecia.com';        // correo que recibe las postulaciones
+const DESTINO   = 'talentohumano@jocecia.com';        // correo que recibe las postulaciones
 const REMITENTE = 'no-reply@jocecia.com';       // debe ser una cuenta/dominio del mismo servidor
 const ORIGENES  = [                             // webs que pueden usar este formulario
   'https://www.jocecia.com',

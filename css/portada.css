@@ -203,7 +203,7 @@ section{padding-block:clamp(48px,6vw,72px);position:relative}
 .btn-wa:hover{background:rgba(37,211,102,.22);transform:translateY(-1px)}
 @keyframes wa-brillo{0%,55%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
 @media (prefers-reduced-motion:reduce){.btn-wa::after{animation:none;opacity:0}}
-.cmails{display:grid;gap:8px;margin-top:6px}.cmails small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.cmails{display:grid;gap:8px;margin-top:6px}.cmails .mails{gap:16px}.cmails .mails span{margin-bottom:4px}.cmails small{font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
 .crows{list-style:none;margin:4px 0 0;padding:0;display:grid}
 .crows li{display:flex;align-items:center;justify-content:space-between;gap:8px 10px;flex-wrap:wrap;padding:10px 0;border-top:1px solid var(--line)}.crows li:first-child{border-top:0;padding-top:4px}
 .crows .num{color:var(--fg);font-weight:700;font-size:1.05rem;text-decoration:none;white-space:nowrap}.crows .num:hover{color:var(--cyan)}
