@@ -8,6 +8,7 @@ La web es estática (HTML, CSS y JS, sin servidor). Cada push a `main` publica e
 | --- | --- | --- |
 | Datos del cliente: dominio, teléfono, correo, WhatsApp, menú, Umami | `datos/sitio.json` | Sí |
 | Fotos propias en varios tamaños (portada) | originales en `img/originales/`, lista en `datos/fotos.json`, se generan con `herramientas/fotos.py` | Sí (el original y el JSON) |
+| Catálogos PDF (es, en, zh): título, descripción, palabras clave e idioma para Google; contactos y QR de WhatsApp | `catalogos/`, `catalogos/en/`, `catalogos/zh/`; se ajustan con `herramientas/pdf_catalogos.py` (los textos están arriba en ese archivo) | No, correr el script |
 | Cada ficha de producto | `datos/productos/<slug>.json` | Sí |
 | Cada proyecto | `datos/proyectos/<slug>.json` | Sí |
 | Páginas sueltas (Trabaja con nosotros) | `datos/paginas/<slug>.json` + `herramientas/plantillas/contenido/<slug>.html` | Sí |
