@@ -417,6 +417,11 @@ a.tile{color:inherit;text-decoration:none}
 .cpill,.cinfo .cpill{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 20px;border-radius:999px;border:1px solid color-mix(in srgb,var(--cyan) 45%,var(--line));background:color-mix(in srgb,var(--cyan) 10%,transparent);color:var(--cyan);font-weight:700;font-size:.92rem;text-decoration:none;transition:border-color .2s,background .2s}
 .cpill:hover{border-color:var(--cyan);background:color-mix(in srgb,var(--cyan) 18%,transparent)}
 .cblk .social{margin-top:0}
+/* Síganos debajo de los correos (columna izquierda) */
+.csoc{display:grid;gap:10px;justify-items:start}
+.csoc small{font-size:.95rem;color:var(--muted)}
+.csoc .social{display:flex;flex-wrap:wrap;gap:10px}
+.csoc .social a{min-height:44px;border-color:color-mix(in srgb,var(--cyan) 45%,var(--line));background:color-mix(in srgb,var(--cyan) 10%,transparent);color:var(--cyan);text-decoration:none}
 .cblk .social a{min-height:44px;border-color:color-mix(in srgb,var(--cyan) 45%,var(--line));background:color-mix(in srgb,var(--cyan) 10%,transparent);color:var(--cyan)}
 @media (max-width:860px){.cta-band{grid-template-columns:1fr;gap:28px}.cinfo{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:24px}}
 
