@@ -1,0 +1,25 @@
+# public_html/.htaccess de jocecia.com (cPanel). Lanzamiento 2026-11.
+# La web vive en https://www.jocecia.com (AWS). Aquí solo quedan el correo y postular.php.
+# Todo lo demás que llegue a jocecia.com (sin www) se manda a www con 301.
+RewriteEngine On
+# No tocar: validación de certificados y el formulario de Trabaja con nosotros
+RewriteRule ^\.well-known/ - [L]
+RewriteRule ^postular\.php$ - [L]
+# Cosas que ya estaban y no son la web: no se tocan
+RewriteRule ^(oilpower|correo|cgi-bin)(/|$) - [L]
+RewriteRule ^google[0-9a-f]+\.html$ - [L]
+# Páginas del sitio viejo (antes de WordPress)
+RewriteRule ^empresa\.html$ https://www.jocecia.com/#nosotros [R=301,L,NE]
+RewriteRule ^contactenos\.html$ https://www.jocecia.com/#contacto [R=301,L,NE]
+RewriteRule ^servicios\.html$ https://www.jocecia.com/#sectores [R=301,L,NE]
+RewriteRule ^clientes\.html$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^galeria\.html$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^galeriainfo\.html$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^galeriainfo2\.html$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^accesorios\.html$ https://www.jocecia.com/productos/accesorios-para-tuberias [R=301,L,NE]
+RewriteRule ^suministros\.html$ https://www.jocecia.com/#productos [R=301,L,NE]
+RewriteRule ^herramientas\.html$ https://www.jocecia.com/#productos [R=301,L,NE]
+RewriteRule ^logistica\.html$ https://www.jocecia.com/#nosotros [R=301,L,NE]
+RewriteRule ^old_index\.html$ https://www.jocecia.com/ [R=301,L,NE]
+# Todo lo demás: misma ruta en www (las páginas nuevas existen allí con la misma URL)
+RewriteRule ^(.*)$ https://www.jocecia.com/$1 [R=301,L,NE]

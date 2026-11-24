@@ -1,0 +1,33 @@
+# BEGIN Redirección a la web nueva (lanzamiento 2026-11)
+# Va ARRIBA de todo en public_html/portal/.htaccess. Manda las páginas de WordPress a la web nueva.
+# /portal/wp-admin (con sus archivos) sigue funcionando por si hace falta entrar al WordPress viejo.
+RewriteEngine On
+RewriteRule ^(wp-admin|wp-login\.php|wp-includes|wp-content/(themes|plugins)) - [L]
+RewriteRule ^wp-content/uploads/(.*)$ https://www.jocecia.com/img/wp/$1 [R=301,L,NE]
+RewriteRule ^about/?$ https://www.jocecia.com/#nosotros [R=301,L,NE]
+RewriteRule ^contact/?$ https://www.jocecia.com/#contacto [R=301,L,NE]
+RewriteRule ^productos-postes/?$ https://www.jocecia.com/productos/postes-metalicos [R=301,L,NE]
+RewriteRule ^venta-de-maquinaria/?$ https://www.jocecia.com/productos/venta-de-soldadoras [R=301,L,NE]
+RewriteRule ^pernos-bronce-silicio/?$ https://www.jocecia.com/productos/pernos-bronce-silicio [R=301,L,NE]
+RewriteRule ^pernos-a-la-forja/?$ https://www.jocecia.com/productos/pernos-a-la-forja [R=301,L,NE]
+RewriteRule ^fabricacion-de-partes-y-piezas/?$ https://www.jocecia.com/productos/partes-y-piezas-especiales [R=301,L,NE]
+RewriteRule ^encofrados/?$ https://www.jocecia.com/productos/encofrados [R=301,L,NE]
+RewriteRule ^grating-2/?$ https://www.jocecia.com/productos/grating-tramex [R=301,L,NE]
+RewriteRule ^accesorios-para-tuberias/?$ https://www.jocecia.com/productos/accesorios-para-tuberias [R=301,L,NE]
+RewriteRule ^perno-de-barra-helicoidal/?$ https://www.jocecia.com/productos/pernos-de-barra-helicoidal [R=301,L,NE]
+RewriteRule ^pernos-rocas/?$ https://www.jocecia.com/productos/soporte-en-roca [R=301,L,NE]
+RewriteRule ^alcantarilla-tmc-minimultiplate-sp-mp-68/?$ https://www.jocecia.com/productos/alcantarilla-mp-68 [R=301,L,NE]
+RewriteRule ^alcantarilla-multiplate-sp-mp-152-mp-152-s/?$ https://www.jocecia.com/productos/alcantarilla-mp-152 [R=301,L,NE]
+RewriteRule ^resina-de-anclaje/?$ https://www.jocecia.com/productos/resina-de-anclaje [R=301,L,NE]
+RewriteRule ^productos-infraestructura-metalica/?$ https://www.jocecia.com/productos/infraestructura-metalica [R=301,L,NE]
+RewriteRule ^productos-alcantarillas-metalicas/?$ https://www.jocecia.com/productos/alcantarillas-metalicas [R=301,L,NE]
+RewriteRule ^productos/productos-pernos/?$ https://www.jocecia.com/productos/pernos-de-alta-fiabilidad [R=301,L,NE]
+RewriteRule ^project/central-hidroelectirca-san-francisco/?$ https://www.jocecia.com/proyectos/central-san-francisco [R=301,L,NE]
+RewriteRule ^project/central-hidroelectrica-manduriacu/?$ https://www.jocecia.com/proyectos/central-manduriacu [R=301,L,NE]
+RewriteRule ^project/galpon-industrial-cadeco/?$ https://www.jocecia.com/proyectos/galpon-cadeco [R=301,L,NE]
+RewriteRule ^project/hidroelectrica-agoyan/?$ https://www.jocecia.com/proyectos/central-agoyan [R=301,L,NE]
+RewriteRule ^project/metro-de-quito/?$ https://www.jocecia.com/proyectos/metro-de-quito [R=301,L,NE]
+RewriteRule ^project/proyecto-residencial-funival/?$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^portfolio-category/destacados/?$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^(.*)$ https://www.jocecia.com/ [R=301,L]
+# END Redirección a la web nueva

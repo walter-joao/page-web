@@ -7,11 +7,12 @@
 
 // ===== Configuración =====
 const DESTINO   = 'talentohumano@jocecia.com';        // correo que recibe las postulaciones
-const REMITENTE = 'no-reply@jocecia.com';       // debe ser una cuenta/dominio del mismo servidor
+const REMITENTE = 'talentohumano@jocecia.com';  // cuenta que existe en el mismo servidor (así no cae en spam)
 const ORIGENES  = [                             // webs que pueden usar este formulario
   'https://www.jocecia.com',
   'https://jocecia.com',
   'https://jocecia-web.vercel.app',
+  'https://d1wirxu5lk9yc9.cloudfront.net',     // dirección de prueba de AWS
 ];
 const MAX_BYTES = 5 * 1024 * 1024;              // 5 MB
 const MAX_POR_HORA = 5;                         // envíos por IP por hora
@@ -82,7 +83,7 @@ $filas = [
   'Nombre'    => $nombre,
   'Correo'    => $correo,
   'Teléfono'  => $telefono,
-  'Idioma web'=> $idioma === 'en' ? 'Inglés' : 'Español',
+  'Idioma web'=> ['en' => 'Inglés', 'zh' => 'Chino'][substr($idioma, 0, 2)] ?? 'Español',
   'Fecha'     => date('Y-m-d H:i'),
 ];
 $html = '<div style="font-family:Arial,sans-serif;font-size:14px;color:#0d1726">'

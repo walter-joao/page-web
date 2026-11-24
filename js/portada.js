@@ -585,7 +585,7 @@
     "job.name":"Full name","job.phone":"Phone / WhatsApp","job.mail":"Email","job.area":"Area you are applying to","job.role":"Position","job.opt":"(optional)",
     "job.a0":"Choose an area","job.a1":"Plant production (welding, fitting, painting)","job.a2":"On-site assembly and installation","job.a3":"Engineering and projects","job.a4":"Sales and customer service","job.a5":"Administration and finance","job.a6":"Warehouse and logistics","job.a7":"Other area / open application",
     "job.cv":"Résumé (PDF or Word, max. 5 MB)","job.pick":"Choose file","job.msg":"Tell us about your experience","job.ok":"I authorize José Cevallos JOCE Cía. Ltda. to process my personal data only for this hiring process.","job.send":"Send application","nav.jobs":"Careers","ct.jobs":"Careers","ct.jobsl":"Send us your résumé here",
-    "tagline":"Engineering & Materials","footer.demo":"Redesign demo, not the official site"
+    "tagline":"Engineering & Materials"
   };
   var nodes=document.querySelectorAll('[data-i18n],[data-i18n-html]'),es={};
   nodes.forEach(function(el){es[el.dataset.i18n||el.dataset.i18nHtml]=el.innerHTML});

@@ -1,16 +1,55 @@
 // CloudFront Function (runtime cloudfront-js-2.0), evento "Solicitud del visor".
 // Hace lo que hacía vercel.json: URLs sin .html y las redirecciones de proyectos.
+// También manda las direcciones de la web vieja (WordPress en /portal/) a su página nueva,
+// con 301 para que Google pase el posicionamiento. La misma tabla está en
+// servidor/htaccess-raiz.txt para quien entre por jocecia.com (sin www).
 var REDIR = {
   '/proyectos/proyecto-funival': '/#proyectos',
   '/proyectos/funvivalt-monserrat': '/#proyectos'
 };
+var PORTAL = {
+  '': '/',
+  '/about': '/#nosotros',
+  '/contact': '/#contacto',
+  '/productos-postes': '/productos/postes-metalicos',
+  '/venta-de-maquinaria': '/productos/venta-de-soldadoras',
+  '/pernos-bronce-silicio': '/productos/pernos-bronce-silicio',
+  '/pernos-a-la-forja': '/productos/pernos-a-la-forja',
+  '/fabricacion-de-partes-y-piezas': '/productos/partes-y-piezas-especiales',
+  '/encofrados': '/productos/encofrados',
+  '/grating-2': '/productos/grating-tramex',
+  '/accesorios-para-tuberias': '/productos/accesorios-para-tuberias',
+  '/perno-de-barra-helicoidal': '/productos/pernos-de-barra-helicoidal',
+  '/pernos-rocas': '/productos/soporte-en-roca',
+  '/alcantarilla-tmc-minimultiplate-sp-mp-68': '/productos/alcantarilla-mp-68',
+  '/alcantarilla-multiplate-sp-mp-152-mp-152-s': '/productos/alcantarilla-mp-152',
+  '/resina-de-anclaje': '/productos/resina-de-anclaje',
+  '/productos-infraestructura-metalica': '/productos/infraestructura-metalica',
+  '/productos-alcantarillas-metalicas': '/productos/alcantarillas-metalicas',
+  '/productos/productos-pernos': '/productos/pernos-de-alta-fiabilidad',
+  '/project/central-hidroelectirca-san-francisco': '/proyectos/central-san-francisco',
+  '/project/central-hidroelectrica-manduriacu': '/proyectos/central-manduriacu',
+  '/project/galpon-industrial-cadeco': '/proyectos/galpon-cadeco',
+  '/project/hidroelectrica-agoyan': '/proyectos/central-agoyan',
+  '/project/metro-de-quito': '/proyectos/metro-de-quito',
+  '/project/proyecto-residencial-funival': '/#proyectos',
+  '/portfolio-category/destacados': '/#proyectos'
+};
+function mover(dest, code) {
+  return { statusCode: code, statusDescription: code === 301 ? 'Moved Permanently' : 'Found',
+           headers: { location: { value: dest } } };
+}
 function handler(event) {
   var req = event.request;
   var uri = req.uri;
-  var dest = REDIR[uri.replace(/\/$/, '')];
-  if (dest) {
-    return { statusCode: 302, statusDescription: 'Found', headers: { location: { value: dest } } };
+  var sin = uri.replace(/\/+$/, '');
+  if (sin === '/portal' || sin.indexOf('/portal/') === 0) {
+    var resto = sin.slice(7);
+    if (resto.indexOf('/wp-content/uploads/') === 0) return mover('/img/wp/' + resto.slice(20), 301);
+    return mover(PORTAL[resto] || '/', 301);   // cualquier otra página vieja va a la portada
   }
+  var dest = REDIR[sin];
+  if (dest) return mover(dest, 302);
   if (uri.endsWith('/')) {
     req.uri = uri + 'index.html';
   } else if (uri.lastIndexOf('.') <= uri.lastIndexOf('/')) {
