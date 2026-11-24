@@ -33,7 +33,7 @@
     btn.setAttribute('aria-busy','true');say('sending');
     var fd=new FormData(f);fd.append('idioma',document.documentElement.lang);
     fetch(url,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok)throw 0})})
-      .then(function(){f.reset();showFile();say('ok','ok')})
+      .then(function(){try{if(window.umami)umami.track('Postulación enviada',{area:fd.get('area')})}catch(e){}f.reset();showFile();say('ok','ok')})
       .catch(function(){say('fail','err')})
       .then(function(){btn.removeAttribute('aria-busy')});
   });
