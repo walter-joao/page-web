@@ -42,6 +42,15 @@ function mover(dest, code) {
 function handler(event) {
   var req = event.request;
   var uri = req.uri;
+  // La dirección técnica de CloudFront no debe aparecer en Google como copia: salta a www
+  var host = req.headers.host ? req.headers.host.value : '';
+  if (host.indexOf('.cloudfront.net') > 0) {
+    var qs = Object.keys(req.querystring).map(function (k) {
+      var v = req.querystring[k];
+      return v.value ? k + '=' + v.value : k;
+    }).join('&');
+    return mover('https://www.jocecia.com' + uri + (qs ? '?' + qs : ''), 301);
+  }
   var sin = uri.replace(/\/+$/, '');
   if (sin === '/portal' || sin.indexOf('/portal/') === 0) {
     var resto = sin.slice(7);

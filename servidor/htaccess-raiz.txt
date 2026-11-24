@@ -2,6 +2,9 @@
 # La web vive en https://www.jocecia.com (AWS). Aquí solo quedan el correo y postular.php.
 # Todo lo demás que llegue a jocecia.com (sin www) se manda a www con 301.
 RewriteEngine On
+# Mientras el DNS se actualiza, quien todavía llegue aquí por www ve la web vieja (evita un bucle)
+RewriteCond %{HTTP_HOST} ^www\. [NC]
+RewriteRule ^ - [S=17]
 # No tocar: validación de certificados y el formulario de Trabaja con nosotros
 RewriteRule ^\.well-known/ - [L]
 RewriteRule ^postular\.php$ - [L]
