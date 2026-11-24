@@ -27,6 +27,10 @@ section{padding-block:96px;position:relative}
 .pp-txt ul,.pp-txt ol{padding-left:1.2em}
 .pp-txt li{margin:6px 0}
 .pp-txt strong{font-weight:700;opacity:1}
+.pp-spec{width:100%;border-collapse:collapse;margin:14px 0 8px;font-size:.95rem}
+.pp-spec th,.pp-spec td{padding:10px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.pp-spec th{width:42%;font-weight:600;color:var(--muted)}
+.pp-spec td{color:var(--fg)}
 .pp-rel{padding:24px 0 72px}
 .pp-rel h2{font-size:clamp(1.5rem,3vw,2.1rem);margin-bottom:18px}
 .pp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}

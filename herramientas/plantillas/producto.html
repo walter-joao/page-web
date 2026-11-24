@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {#- Ficha de producto: /productos/<slug>. Datos en datos/productos/<slug>.json (ver herramientas/LEEME.md).
     Campos: titulo, descripcion, nombre, lead (textos {es,en,zh}); grupo {nombre, pagina}; catalogo (opcional);
-    fotos (rutas); cuerpo (bloques h2/h3/h4/p/ul/ol/figura); relacionados (slugs de otros productos).
+    fotos (rutas); cuerpo (bloques h2/h3/h4/p/ul/ol/figura/tabla); relacionados (slugs de otros productos).
     Solo infraestructura-metalica: estilo, lineas, tambien, fichas.
     Todo lo demás (URLs de fotos, alt, WhatsApp, og:*, JSON-LD, contactos) se calcula aquí con p y sitio. -#}
 
@@ -126,6 +126,8 @@
 <{{ b.tipo }}>{% for i in b["items"] %}<li data-en="{{ i.en }}" data-zh="{{ i.zh }}">{{ i.es | safe }}</li>{% endfor %}</{{ b.tipo }}>
 {%- elif b.tipo == "figura" -%}
 <figure class="pp-fig"><a href="{{ b.foto }}" rel="noopener" target="_blank"><img alt="{{ b.get('alt') or p.nombre.es }}" data-o="{{ b.foto }}" decoding="async" loading="lazy" sizes="(max-width: 800px) 100vw, 760px" src="{{ b.foto | vimg(640) }}" srcset="{{ srcset(b.foto) }}"/></a></figure>
+{%- elif b.tipo == "tabla" -%}
+<table class="pp-spec"><tbody>{% for f in b.filas %}<tr><th data-en="{{ f.k.en }}" data-zh="{{ f.k.zh }}" scope="row">{{ f.k.es | safe }}</th><td data-en="{{ f.v.en }}" data-zh="{{ f.v.zh }}">{{ f.v.es | safe }}</td></tr>{% endfor %}</tbody></table>
 {%- else -%}
 {{ fallo_tipo_de_bloque_desconocido[b.tipo] }}
 {%- endif -%}

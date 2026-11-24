@@ -66,6 +66,446 @@
           "zh": "结构锚固"
         }
       ]
+    },
+    {
+      "tipo": "h2",
+      "es": "Ficha técnica (del catálogo)",
+      "en": "Technical data (from the catalog)",
+      "zh": "技术参数（摘自目录）"
+    },
+    {
+      "tipo": "h3",
+      "es": "Postes cónicos circulares para alumbrado",
+      "en": "Round tapered lighting poles",
+      "zh": "圆锥形照明杆"
+    },
+    {
+      "tipo": "p",
+      "es": "Joce Cía. Ltda. se especializa en la manufactura de postes cónicos circulares fabricados en una sola sección de acero y unidos longitudinalmente mediante soldadura por arco sumergido (SAW). Para soldaduras complementarias se emplea GMAW. Para alturas mayores se hacen diseños específicos.",
+      "en": "Joce Cía. Ltda. specializes in round tapered poles made from a single steel section joined lengthwise by submerged arc welding (SAW). GMAW is used for supplementary welds. Taller poles are custom designed.",
+      "zh": "Joce Cía. Ltda. 专业生产圆锥形电线杆，由单块钢板经埋弧焊（SAW）纵向焊接而成，辅助焊缝采用 GMAW。更高的电线杆可定制设计。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Acero",
+            "en": "Steel",
+            "zh": "钢材"
+          },
+          "v": {
+            "es": "ASTM A36 y ASTM A572",
+            "en": "ASTM A36 and ASTM A572",
+            "zh": "ASTM A36 和 ASTM A572"
+          }
+        },
+        {
+          "k": {
+            "es": "Soldadura",
+            "en": "Welding",
+            "zh": "焊接"
+          },
+          "v": {
+            "es": "SAW longitudinal + GMAW",
+            "en": "Longitudinal SAW + GMAW",
+            "zh": "纵向 SAW + GMAW"
+          }
+        },
+        {
+          "k": {
+            "es": "Espesores",
+            "en": "Thicknesses",
+            "zh": "厚度"
+          },
+          "v": {
+            "es": "3, 4, 5 y 6 mm",
+            "en": "3, 4, 5 and 6 mm",
+            "zh": "3、4、5 和 6 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Altura",
+            "en": "Height",
+            "zh": "高度"
+          },
+          "v": {
+            "es": "2 a 12 m en una sola pieza",
+            "en": "2 to 12 m in a single piece",
+            "zh": "2 至 12 m 整根"
+          }
+        },
+        {
+          "k": {
+            "es": "Ø exterior en punta",
+            "en": "Ø outside at top",
+            "zh": "顶部外径 Ø"
+          },
+          "v": {
+            "es": "60 a 114 mm",
+            "en": "60 to 114 mm",
+            "zh": "60 至 114 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Ø exterior máx. en base",
+            "en": "Max. Ø outside at base",
+            "zh": "底部最大外径 Ø"
+          },
+          "v": {
+            "es": "258 mm",
+            "en": "258 mm",
+            "zh": "258 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Conicidad estándar",
+            "en": "Standard taper",
+            "zh": "标准锥度"
+          },
+          "v": {
+            "es": "12 mm por metro",
+            "en": "12 mm per meter",
+            "zh": "每米 12 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Acabado",
+            "en": "Finish",
+            "zh": "表面处理"
+          },
+          "v": {
+            "es": "Galvanizado en caliente ASTM A123 + pintura electrostática",
+            "en": "Hot-dip galvanized ASTM A123 + electrostatic paint",
+            "zh": "热浸镀锌 ASTM A123 + 静电喷涂"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "p",
+      "es": "Modelos de poste cónico: PCR (poste cónico redondo), PCR-BS, PCR-BCS y BCD (barolado curvo). Todos los modelos incluyen su respectiva compuerta de registro.",
+      "en": "Tapered pole models: PCR (round tapered pole), PCR-BS, PCR-BCS and BCD (curved bent arm). All models include their access door.",
+      "zh": "锥形杆型号：PCR（圆锥形电线杆）、PCR-BS、PCR-BCS 和 BCD（弧形折弯臂）。所有型号均带检修门。"
+    },
+    {
+      "tipo": "h3",
+      "es": "Postes tubulares",
+      "en": "Tubular poles",
+      "zh": "管形电线杆"
+    },
+    {
+      "tipo": "p",
+      "es": "Joce Cía. Ltda. fabrica postes tubulares en una, dos y tres secciones según la especificación, empleando tubería de acero unida transversalmente mediante placas con soldadura GMAW.",
+      "en": "Joce Cía. Ltda. makes tubular poles in one, two or three sections to specification, using steel pipe joined crosswise with plates and GMAW welding.",
+      "zh": "Joce Cía. Ltda. 按规格生产一节、两节或三节管形电线杆，采用钢管，以法兰板和 GMAW 焊接横向连接。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Acero",
+            "en": "Steel",
+            "zh": "钢材"
+          },
+          "v": {
+            "es": "ASTM A36",
+            "en": "ASTM A36",
+            "zh": "ASTM A36"
+          }
+        },
+        {
+          "k": {
+            "es": "Secciones",
+            "en": "Sections",
+            "zh": "截面"
+          },
+          "v": {
+            "es": "1, 2 o 3",
+            "en": "1, 2 or 3",
+            "zh": "1、2 或 3"
+          }
+        },
+        {
+          "k": {
+            "es": "Espesores",
+            "en": "Thicknesses",
+            "zh": "厚度"
+          },
+          "v": {
+            "es": "3, 4 y 5 mm",
+            "en": "3, 4 and 5 mm",
+            "zh": "3、4 和 5 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Altura",
+            "en": "Height",
+            "zh": "高度"
+          },
+          "v": {
+            "es": "2 a 12 m",
+            "en": "2 to 12 m",
+            "zh": "2 至 12 m"
+          }
+        },
+        {
+          "k": {
+            "es": "Diámetros",
+            "en": "Diameters",
+            "zh": "直径"
+          },
+          "v": {
+            "es": "2\" a 6\", mayores según especificación",
+            "en": "2\" to 6\" or larger",
+            "zh": "2\" 至 6\" 或更大"
+          }
+        },
+        {
+          "k": {
+            "es": "Unión",
+            "en": "Joint",
+            "zh": "连接"
+          },
+          "v": {
+            "es": "Placas con soldadura GMAW",
+            "en": "Plates with GMAW welding",
+            "zh": "法兰板 + GMAW 焊接"
+          }
+        },
+        {
+          "k": {
+            "es": "Acabado",
+            "en": "Finish",
+            "zh": "表面处理"
+          },
+          "v": {
+            "es": "Galvanizado en caliente ASTM A123 + pintura electrostática",
+            "en": "Hot-dip galvanized ASTM A123 + electrostatic paint",
+            "zh": "热浸镀锌 ASTM A123 + 静电喷涂"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Postes poligonales",
+      "en": "Polygonal poles",
+      "zh": "多边形电线杆"
+    },
+    {
+      "tipo": "p",
+      "es": "Joce Cía. Ltda. fabrica postes poligonales de 8 y 12 lados en una sola sección de acero hasta 12 metros, y en dos secciones unidas mediante encastre a la mitad hasta 24 metros. Se unen longitudinalmente con soldadura por arco sumergido (SAW); para soldaduras complementarias se emplea GMAW.",
+      "en": "Joce Cía. Ltda. makes 8- and 12-sided polygonal poles in a single steel section up to 12 meters, and in two sections joined by a slip joint up to 24 meters. They are joined lengthwise by submerged arc welding (SAW); GMAW is used for supplementary welds.",
+      "zh": "Joce Cía. Ltda. 生产 8 边和 12 边多边形电线杆，单节最高 12 米，两节插接式最高 24 米。纵向采用埋弧焊（SAW）焊接；辅助焊缝采用 GMAW。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Acero",
+            "en": "Steel",
+            "zh": "钢材"
+          },
+          "v": {
+            "es": "ASTM A36 y ASTM A572",
+            "en": "ASTM A36 and ASTM A572",
+            "zh": "ASTM A36 和 ASTM A572"
+          }
+        },
+        {
+          "k": {
+            "es": "Sección",
+            "en": "Section",
+            "zh": "截面"
+          },
+          "v": {
+            "es": "Poligonal de 8 o 12 lados",
+            "en": "8- or 12-sided polygon",
+            "zh": "8 边或 12 边多边形"
+          }
+        },
+        {
+          "k": {
+            "es": "Altura",
+            "en": "Height",
+            "zh": "高度"
+          },
+          "v": {
+            "es": "Hasta 12 m en una sección; hasta 24 m en dos",
+            "en": "Up to 12 m in one section; up to 24 m in two",
+            "zh": "单节最高 12 m；两节最高 24 m"
+          }
+        },
+        {
+          "k": {
+            "es": "Unión de secciones",
+            "en": "Section joint",
+            "zh": "分节连接"
+          },
+          "v": {
+            "es": "Encastre a la mitad",
+            "en": "Slip joint",
+            "zh": "插接"
+          }
+        },
+        {
+          "k": {
+            "es": "Soldadura",
+            "en": "Welding",
+            "zh": "焊接"
+          },
+          "v": {
+            "es": "SAW longitudinal + GMAW",
+            "en": "Longitudinal SAW + GMAW",
+            "zh": "纵向 SAW + GMAW"
+          }
+        },
+        {
+          "k": {
+            "es": "Espesores",
+            "en": "Thicknesses",
+            "zh": "厚度"
+          },
+          "v": {
+            "es": "4, 5 y 6 mm",
+            "en": "4, 5 and 6 mm",
+            "zh": "4、5 和 6 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Ø circunscrito en punta",
+            "en": "Circumscribed Ø at top",
+            "zh": "顶部外接圆 Ø"
+          },
+          "v": {
+            "es": "100 a 200 mm",
+            "en": "100 to 200 mm",
+            "zh": "100 至 200 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Ø circunscrito máx. en base",
+            "en": "Max. circumscribed Ø at base",
+            "zh": "底部最大外接圆 Ø"
+          },
+          "v": {
+            "es": "350 mm",
+            "en": "350 mm",
+            "zh": "350 mm"
+          }
+        },
+        {
+          "k": {
+            "es": "Acabado",
+            "en": "Finish",
+            "zh": "表面处理"
+          },
+          "v": {
+            "es": "Galvanizado en caliente ASTM A123 + pintura electrostática",
+            "en": "Hot-dip galvanized ASTM A123 + electrostatic paint",
+            "zh": "热浸镀锌 ASTM A123 + 静电喷涂"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Canastillas de anclaje para cimentación",
+      "en": "Foundation anchor bolt cages",
+      "zh": "基础锚固地脚螺栓笼"
+    },
+    {
+      "tipo": "p",
+      "es": "Joce Cía. Ltda. fabrica canastillas de anclaje con varillas roscadas, de 3 hasta 24 pernos. Si se requiere, las varillas se unen mediante estribos de varilla corrugada de 8 mm de diámetro en acero AS42.",
+      "en": "Joce Cía. Ltda. makes anchor bolt cages with threaded rods, from 3 to 24 bolts. If required, the rods are tied with 8 mm diameter AS42 steel rebar stirrups.",
+      "zh": "Joce Cía. Ltda. 用螺纹杆制作地脚螺栓笼，每笼 3 至 24 根螺栓。如有需要，螺杆用直径 8 mm 的 AS42 钢筋箍筋绑扎。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Pernos por canastilla",
+            "en": "Bolts per cage",
+            "zh": "每笼螺栓数"
+          },
+          "v": {
+            "es": "3 a 24",
+            "en": "3 to 24",
+            "zh": "3 至 24"
+          }
+        },
+        {
+          "k": {
+            "es": "Diámetros",
+            "en": "Diameters",
+            "zh": "直径"
+          },
+          "v": {
+            "es": "5/8\", 18 mm, 7/8\", 1\" y 1 1/4\"",
+            "en": "5/8\", 18 mm, 7/8\", 1\" and 1 1/4\"",
+            "zh": "5/8\"、18 mm、7/8\"、1\" 和 1 1/4\""
+          }
+        },
+        {
+          "k": {
+            "es": "Acero",
+            "en": "Steel",
+            "zh": "钢材"
+          },
+          "v": {
+            "es": "ASTM A36 · AISI 1018",
+            "en": "ASTM A36 · AISI 1018",
+            "zh": "ASTM A36 · AISI 1018"
+          }
+        },
+        {
+          "k": {
+            "es": "Estribos",
+            "en": "Stirrups",
+            "zh": "箍筋"
+          },
+          "v": {
+            "es": "Varilla corrugada Ø 8 mm, AS42",
+            "en": "Rebar Ø 8 mm, AS42",
+            "zh": "钢筋 Ø 8 mm，AS42"
+          }
+        },
+        {
+          "k": {
+            "es": "Galvanizado electrolítico",
+            "en": "Electro-galvanized",
+            "zh": "电镀锌"
+          },
+          "v": {
+            "es": "ASTM B633",
+            "en": "ASTM B633",
+            "zh": "ASTM B633"
+          }
+        },
+        {
+          "k": {
+            "es": "Galvanizado en caliente",
+            "en": "Hot-dip galvanized",
+            "zh": "热浸镀锌"
+          },
+          "v": {
+            "es": "ASTM A153",
+            "en": "ASTM A153",
+            "zh": "ASTM A153"
+          }
+        }
+      ]
     }
   ],
   "relacionados": [
