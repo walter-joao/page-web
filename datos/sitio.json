@@ -12,7 +12,7 @@
   "logo_web": "/img/logo-joce.svg",
   "icono": "/img/wp/2020/04/cropped-icono-270x270.png",
   "color_tema": "#070d17",
-  "umami": {"id": "4e93816a-d608-46e0-a24f-06889298964a", "dominios": "www.jocecia.com,jocecia.com,d1wirxu5lk9yc9.cloudfront.net"},
+  "umami": {"id": "4e93816a-d608-46e0-a24f-06889298964a", "dominios": "www.jocecia.com,jocecia.com"},
   "menu": [
     {"href": "/#proyectos", "es": "Proyectos", "en": "Projects", "zh": "项目"},
     {"href": "/#sectores", "es": "Soluciones", "en": "Solutions", "zh": "解决方案"},

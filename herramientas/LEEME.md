@@ -1,6 +1,6 @@
 # Cómo está armada la web y cómo cambiarla
 
-La web es estática (HTML, CSS y JS, sin servidor). Cada push a `main` publica en Vercel y en AWS (S3 + CloudFront, ver `.github/workflows/deploy-aws.yml`).
+La web es estática (HTML, CSS y JS, sin servidor). Cada push a `main` publica en AWS (S3 + CloudFront, ver `.github/workflows/deploy-aws.yml`), que es lo que sirve www.jocecia.com. Desde el 2026-11-24 Vercel ya no despliega (`"git": {"deploymentEnabled": false}` en `vercel.json`); jocecia-web.vercel.app queda congelado como demo.
 
 ## Mapa de archivos
 
@@ -55,7 +55,7 @@ Regla: **nunca editar a mano** `productos/*.html`, `proyectos/*.html` ni `trabaj
 
 1. `python3 herramientas/generar_paginas.py --revisar` debe decir `archivos con cambios: 0`.
 2. Probar la versión AWS en local: `python3 herramientas/build_estatico.py . _site` y servir `_site`.
-3. Pedir el OK y subir todo en un solo push (Vercel gratis limita los despliegues).
+3. Pedir el OK y subir todo en un solo push (cada push publica en AWS).
 
 ## Usar esta base para otro cliente
 
