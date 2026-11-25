@@ -33,7 +33,17 @@ var PORTAL = {
   '/project/hidroelectrica-agoyan': '/proyectos/central-agoyan',
   '/project/metro-de-quito': '/proyectos/metro-de-quito',
   '/project/proyecto-residencial-funival': '/#proyectos',
-  '/portfolio-category/destacados': '/#proyectos'
+  '/portfolio-category/destacados': '/#proyectos',
+  // Páginas ocultas con visitas en Google (no hay ficha propia todavía): a la ficha más cercana
+  '/laton-y-bronce': '/productos/pernos-bronce-silicio',
+  '/tuercas-estandares-y-especiales': '/productos/pernos-bronce-silicio',
+  // Catálogos PDF viejos -> catálogos nuevos (no están en /img/wp)
+  '/wp-content/uploads/2025/01/PERNOS-SILICIO.pdf': '/catalogos/pernos-bronce-silicio.pdf',
+  '/wp-content/uploads/2025/01/CATOLOGO-ALCANTARILLA_compressed.pdf': '/catalogos/alcantarillas.pdf',
+  '/wp-content/uploads/2025/01/ACCESORIOS-PARA-TUBERIA.pdf': '/catalogos/accesorios-para-tuberia.pdf',
+  '/wp-content/uploads/2025/01/JOCE-CIA-LTDA-CATALOGO-POSTES.pdf': '/catalogos/postes.pdf',
+  '/wp-content/uploads/2025/01/JOCE-CIA-LTDA-GRAITING-TRAMEX.pdf': '/catalogos/grating-tramex.pdf',
+  '/wp-content/uploads/2025/01/RESINA-DE-ANCLAJE.pdf': '/catalogos/resina-de-anclaje.pdf'
 };
 function mover(dest, code) {
   return { statusCode: code, statusDescription: code === 301 ? 'Moved Permanently' : 'Found',
@@ -54,6 +64,7 @@ function handler(event) {
   var sin = uri.replace(/\/+$/, '');
   if (sin === '/portal' || sin.indexOf('/portal/') === 0) {
     var resto = sin.slice(7);
+    if (PORTAL[resto]) return mover(PORTAL[resto], 301);
     if (resto.indexOf('/wp-content/uploads/') === 0) return mover('/img/wp/' + resto.slice(20), 301);
     return mover(PORTAL[resto] || '/', 301);   // cualquier otra página vieja va a la portada
   }

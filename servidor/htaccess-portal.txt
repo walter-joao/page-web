@@ -4,7 +4,7 @@
 RewriteEngine On
 # Mientras el DNS se actualiza, quien todavía llegue aquí por www ve la web vieja (evita un bucle)
 RewriteCond %{HTTP_HOST} ^www\. [NC]
-RewriteRule ^ - [S=28]
+RewriteRule ^ - [S=30]
 RewriteRule ^(wp-admin|wp-login\.php|wp-includes|wp-content/(themes|plugins)) - [L]
 RewriteRule ^wp-content/uploads/(.*)$ https://www.jocecia.com/img/wp/$1 [R=301,L,NE]
 RewriteRule ^about/?$ https://www.jocecia.com/#nosotros [R=301,L,NE]
@@ -32,5 +32,7 @@ RewriteRule ^project/hidroelectrica-agoyan/?$ https://www.jocecia.com/proyectos/
 RewriteRule ^project/metro-de-quito/?$ https://www.jocecia.com/proyectos/metro-de-quito [R=301,L,NE]
 RewriteRule ^project/proyecto-residencial-funival/?$ https://www.jocecia.com/#proyectos [R=301,L,NE]
 RewriteRule ^portfolio-category/destacados/?$ https://www.jocecia.com/#proyectos [R=301,L,NE]
+RewriteRule ^laton-y-bronce/?$ https://www.jocecia.com/productos/pernos-bronce-silicio [R=301,L,NE]
+RewriteRule ^tuercas-estandares-y-especiales/?$ https://www.jocecia.com/productos/pernos-bronce-silicio [R=301,L,NE]
 RewriteRule ^(.*)$ https://www.jocecia.com/ [R=301,L]
 # END Redirección a la web nueva
