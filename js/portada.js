@@ -280,7 +280,7 @@
       // los sectores con obras ubicadas abren el mapa ya filtrado
       window.satFilter=function(k){iniciar();flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();
         for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}box.scrollIntoView({behavior:'smooth',block:'start'})};
-      document.querySelectorAll('.sector .map-link').forEach(function(b){b.addEventListener('click',function(){satFilter(b.dataset.s)})});
+      document.querySelectorAll('.vs .map-link').forEach(function(b){b.addEventListener('click',function(){satFilter(b.dataset.s)})});
       // El mapa está más abajo: los puntos se ubican cuando se acerca a la pantalla, no mientras carga la portada
       mobCard();
       var listo=false;function iniciar(){if(listo)return;listo=true;layout();show(0)}
@@ -509,11 +509,55 @@
     });
   });
 
-  // Carrusel de sectores
-  var rail=document.getElementById('rail');
-  function step(){var c=rail.querySelector('.sector');return c?c.getBoundingClientRect().width+18:320}
-  document.getElementById('prev').addEventListener('click',function(){rail.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'})});
-  document.getElementById('next').addEventListener('click',function(){rail.scrollBy({left:step(),behavior:reduce?'auto':'smooth'})});
+  // Vitrina de sectores (#vit): un sector a la vez en una tarjeta de vidrio, fondo con su foto desenfocada,
+  // miniaturas que se arman con las fotos de cada <article class="vs"> y avance solo (la barrita de la miniatura
+  // activa es una animación CSS; al terminar pasa al siguiente, así pausar es solo pausar la animación).
+  (function(){
+    var vit=document.getElementById('vit');if(!vit)return;
+    var slides=[].slice.call(vit.querySelectorAll('.vs')),bar=document.getElementById('vit-thumbs'),bg=vit.querySelectorAll('.vit-bg img'),cur=-1,capa=0,n=slides.length;
+    // la variante del srcset más cercana a w px (sirve igual con /_vercel/image que con las WebP de AWS)
+    function src(img,w){
+      var c=(img.getAttribute('srcset')||'').split(',').map(function(x){x=x.trim().split(/\s+/);return {u:x[0],w:parseInt(x[1],10)||0}}).filter(function(x){return x.u});
+      c.sort(function(a,b){return Math.abs(a.w-w)-Math.abs(b.w-w)});return c.length?c[0].u:img.src}
+    slides.forEach(function(s,i){
+      var img=s.querySelector('img'),h=s.querySelector('h3'),b=document.createElement('button');
+      b.type='button';b.className='vit-th';b.id='vt'+(i+1);b.setAttribute('role','tab');b.setAttribute('aria-controls',s.id);
+      b.innerHTML='<i><img alt="" decoding="async" loading="lazy" src="'+src(img,256)+'"></i><span data-i18n="'+h.dataset.i18n+'">'+h.textContent+'</span><b class="vit-p"></b>';
+      b.addEventListener('click',function(){go(i)});bar.appendChild(b);
+      s.setAttribute('role','tabpanel');s.setAttribute('aria-labelledby',b.id);
+      s.querySelector('.num').dataset.of=(n<10?'0':'')+n;
+    });
+    var th=bar.children;
+    function go(i){
+      i=(i+n)%n;
+      for(var k=0;k<n;k++){var on=k===i;slides[k].classList.toggle('on',on);slides[k].inert=!on;th[k].classList.toggle('on',on);th[k].setAttribute('aria-selected',on);th[k].tabIndex=on?0:-1}
+      // reinicia la barrita aunque se vuelva a la misma miniatura
+      var p=th[i].querySelector('.vit-p');p.style.animation='none';void p.offsetWidth;p.style.animation='';
+      if(i!==cur){capa=1-capa;bg[capa].src=src(slides[i].querySelector('img'),640);bg[capa].classList.add('on');bg[1-capa].classList.remove('on')}
+      bar.scrollTo({left:th[i].offsetLeft-(bar.clientWidth-th[i].offsetWidth)/2,behavior:cur<0||reduce?'auto':'smooth'});
+      cur=i;
+    }
+    document.getElementById('prev').addEventListener('click',function(){go(cur-1)});
+    document.getElementById('next').addEventListener('click',function(){go(cur+1)});
+    bar.addEventListener('keydown',function(e){
+      var d={ArrowRight:1,ArrowLeft:-1}[e.key];if(!d)return;e.preventDefault();go(cur+d);th[cur].focus();
+    });
+    bar.addEventListener('animationend',function(e){if(e.animationName==='vit-prog')go(cur+1)});
+    // deslizar con el dedo
+    var x0=null,box=vit.querySelector('.vit-slides');
+    box.addEventListener('pointerdown',function(e){x0=e.clientX});
+    box.addEventListener('pointerup',function(e){if(x0===null)return;var dx=e.clientX-x0;x0=null;if(Math.abs(dx)>50)go(cur+(dx<0?1:-1))});
+    // avance solo: nunca con "reducir movimiento"; en pausa con el cursor o el foco encima, o fuera de pantalla
+    function hold(){vit.classList.toggle('hold',vit.matches(':hover')||vit.contains(document.activeElement)||!vit._vis)}
+    if(!reduce){
+      vit.classList.add('play');vit._vis=false;
+      ['mouseenter','mouseleave','focusin','focusout'].forEach(function(ev){vit.addEventListener(ev,function(){setTimeout(hold)})});
+      if('IntersectionObserver' in window)new IntersectionObserver(function(es){vit._vis=es[0].isIntersecting;hold()},{threshold:.35}).observe(vit);
+      else vit._vis=true;
+      hold();
+    }
+    go(0);
+  })();
 
   // Entradas al hacer scroll y contadores
   if('IntersectionObserver' in window&&!reduce){
@@ -542,7 +586,7 @@
     "pl1.t":"Quality","pl1.d":"High standards in every process: materials to AASHTO and ASTM, traceable from plant to site.",
     "pl2.t":"Personalized service","pl2.d":"Engineering and consulting tailored to each client, with our own Sangolquí plant for special parts and custom structures.",
     "pl3.t":"Innovation and continuous improvement","pl3.d":"We plan every order around the project schedule and improve every process, project after project.",
-    "sec.k":"Solutions by sector","sec.t":"Where the work <span class=\"grad\">demands more</span>","sec.swipe":"Swipe to explore",
+    "sec.k":"Solutions by sector","sec.t":"Where the work <span class=\"grad\">demands more</span>",
     "s1.t":"Hydropower plants","s1.d":"Climbing formwork, tunnel arches, rock anchoring and inclined penstocks.",
     "s2.t":"Mining","s2.d":"Anchor bolts, tunnel arches and steel screens.",
     "s3.t":"Cement industry","s3.d":"Drilling platforms, bollards and circular, conical and slip formwork.",
