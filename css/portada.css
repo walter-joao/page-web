@@ -329,3 +329,7 @@ section{padding-block:clamp(48px,6vw,72px);position:relative}
 }
 @media (max-width:560px){.vit-arr{display:none}.vit-thumbs{justify-content:flex-start}}
 @media (prefers-reduced-motion:reduce){.vs .in>*,.vs .corr img,.vs .corr::before,.vs .corr::after,.vit-bg img,.vit-th{transition:none!important}}
+
+/* Nosotros con la vitrina del método: la misión queda sola a todo el ancho */
+.about.solo{grid-template-columns:1fr;margin-top:28px}
+.vit-k{display:block;margin-bottom:clamp(8px,1.4vw,16px)}
