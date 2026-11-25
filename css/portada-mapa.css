@@ -137,3 +137,32 @@ html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;let
 html:lang(zh-CN) .kicker{letter-spacing:.08em}
 .pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}
 @media (min-width:700px){.pillar p,.event p,.pp-txt p,.pp-txt li{text-align:justify;-webkit-hyphens:auto;hyphens:auto}}
+
+/* Boceto: sectores como selector del mapa (reemplaza los chips) */
+.sat.con-sectores .sat-chips{display:none}
+.sat-sec{display:grid;gap:12px;margin-top:6px}
+.sat-sec-th{display:flex;flex-wrap:wrap;gap:8px}
+.sat-sec-th button{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 4px;border-radius:999px;border:1px solid rgba(225,240,255,.28);background:rgba(6,14,26,.45);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;font:600 .84rem var(--f-body);cursor:pointer;transition:background .25s,border-color .25s,color .25s}
+.sat-sec-th button i{width:32px;height:32px;border-radius:50%;overflow:hidden;flex:0 0 auto;background:var(--accent)}
+.sat-sec-th button i img{width:100%;height:100%;object-fit:cover;display:block}
+.sat-sec-th button i.all{width:10px;height:10px;margin-left:10px}
+.sat-sec-th button.on{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sat-sec-in{display:none;padding:16px 18px;border-radius:18px;background:rgba(6,14,26,.55);border:1px solid rgba(225,240,255,.2);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);color:#fff}
+.sat-sec.abierto .sat-sec-in{display:grid;gap:8px;justify-items:start;animation:sat-sec-in .4s cubic-bezier(.2,.8,.2,1)}
+.sat-sec-in b{font:700 1.25rem var(--f-display)}
+.sat-sec-in p{color:#c3cfdd;font-size:.95rem}
+.sat-sec-in small{color:#ffd28a;font-size:.84rem}
+.sat-sec-in .btn{height:42px;margin-top:4px}
+@keyframes sat-sec-in{from{opacity:0;transform:translateY(8px)}}
+.sat.lt .sat-sec-th button{background:rgba(255,255,255,.75);border-color:rgba(13,23,38,.12);color:var(--fg)}
+.sat.lt .sat-sec-th button.on{background:var(--accent);color:var(--accent-ink)}
+.sat.lt .sat-sec-in{background:rgba(255,255,255,.82);border-color:rgba(13,23,38,.1);color:var(--fg)}
+.sat.lt .sat-sec-in p{color:var(--muted)}.sat.lt .sat-sec-in small{color:#9a5b00}
+.sat-card.vacia{opacity:0!important;pointer-events:none}
+@media (max-width:760px){.sat-sec-th{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none}.sat-sec-th button{flex:0 0 auto}}
+@media (min-width:761px){
+  .sat.con-sectores .sat-copy h2{font-size:clamp(2rem,3.4vw,3.2rem)}
+  .sat.con-sectores .sat-hint{display:none}
+  .sat-sec-th{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:40px}
+  .sat-sec-th::-webkit-scrollbar{display:none}.sat-sec-th button{flex:0 0 auto}
+}

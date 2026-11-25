@@ -280,6 +280,9 @@
       // los sectores con obras ubicadas abren el mapa ya filtrado
       window.satFilter=function(k){iniciar();flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();
         for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);break}box.scrollIntoView({behavior:'smooth',block:'start'})};
+      // filtra sin mover la página (lo usa el selector de sectores); con un sector sin obras el mapa queda vacío
+      window.satFiltro=function(k){iniciar();flt=k;chipsRender();OBRAS.forEach(function(o){o.satEl.classList.toggle('off',!vis(o))});layout();
+        var hay=false;for(var i=0;i<OBRAS.length;i++)if(vis(OBRAS[i])){show(i);hay=true;break}card.classList.toggle('vacia',!hay);if(!hay)wire.classList.remove('on');return hay};
       document.querySelectorAll('.vs .map-link').forEach(function(b){b.addEventListener('click',function(){satFilter(b.dataset.s)})});
       // El mapa está más abajo: los puntos se ubican cuando se acerca a la pantalla, no mientras carga la portada
       mobCard();
@@ -562,6 +565,36 @@
     vit.vitIr=go;
   }
   document.querySelectorAll('.vit').forEach(vitrina);
+
+  // Sectores dentro del mapa: las 8 diapositivas pasan a ser el selector del mapa (en lugar de los chips).
+  // Cada sector filtra las obras de su categoría; los que aún no tienen obras ubicadas dejan el mapa vacío con un aviso.
+  (function(){
+    var sat=document.getElementById('sat'),sec=document.getElementById('sectores');if(!sat||!sec||!window.satFiltro)return;
+    var MAP={vs1:'hidro',vs5:'trans',vs6:'edif'},copy=sat.querySelector('.sat-copy'),box=document.createElement('div');
+    box.className='sat-sec';box.innerHTML='<div class="sat-sec-in" aria-live="polite"></div><div class="sat-sec-th" role="tablist" aria-label="Sectores"></div>';
+    var cuerpo=box.firstChild,fila=box.lastChild;
+    var todas=document.createElement('button');todas.type='button';todas.className='on';todas.innerHTML='<i class="all"></i><span>'+TR('Todas','All')+'</span>';fila.appendChild(todas);
+    var arts=[].slice.call(sec.querySelectorAll('.vs'));
+    arts.forEach(function(a){
+      var b=document.createElement('button');b.type='button';b.innerHTML='<i>'+a.querySelector('.vit-th, img').outerHTML+'</i><span>'+a.querySelector('h3').textContent+'</span>';
+      var th=document.getElementById(a.id+'-th');if(th)b.querySelector('i').innerHTML=th.querySelector('i').innerHTML;
+      b.addEventListener('click',function(){elegir(b,a)});fila.appendChild(b);
+    });
+    todas.addEventListener('click',function(){elegir(todas,null)});
+    function elegir(b,a){
+      [].forEach.call(fila.children,function(x){x.classList.toggle('on',x===b)});
+      if(!a){cuerpo.innerHTML='';box.classList.remove('abierto');satFiltro('all');return}
+      var hay=satFiltro(MAP[a.id]||'ninguno'),m=a.querySelector('.more');
+      cuerpo.innerHTML='<b>'+a.querySelector('h3').textContent+'</b><p>'+a.querySelector('p').textContent+'</p>'+
+        (hay?'':'<small>'+TR('Obras de este sector: por publicar.','Projects in this sector: coming soon.')+'</small>')+
+        '<button type="button" class="btn btn-accent">'+m.textContent+'</button>';
+      cuerpo.querySelector('button').addEventListener('click',function(){m.click()});
+      box.classList.add('abierto');
+    }
+    copy.appendChild(box);sat.classList.add('con-sectores');
+    // la sección aparte ya no se muestra (sus "Ver todo" siguen funcionando desde el mapa)
+    sec.hidden=true;
+  })();
 
   // Entradas al hacer scroll y contadores
   if('IntersectionObserver' in window&&!reduce){
