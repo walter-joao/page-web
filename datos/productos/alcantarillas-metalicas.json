@@ -74,6 +74,147 @@
       "es": "Alcantarilla Multiplate SP MP 152-MP 152.S",
       "en": "Multiplate SP MP 152-MP 152.S culvert",
       "zh": "Multiplate SP MP 152-MP 152.S 涵管"
+    },
+    {
+      "tipo": "h2",
+      "es": "Ficha técnica (del catálogo)",
+      "en": "Technical data (from the catalog)",
+      "zh": "技术参数（摘自目录）"
+    },
+    {
+      "tipo": "p",
+      "es": "Estructuras de acero corrugado y galvanizado MiniMultiplate SP MP-68 y Multiplate SP MP-152 / MP-152 S para drenaje y obras viales. Norma ASTM A929, cargas HS20-44 · HL-93.",
+      "en": "Corrugated, galvanized steel structures MiniMultiplate SP MP-68 and Multiplate SP MP-152 / MP-152 S for drainage and road works. ASTM A929, loads HS20-44 · HL-93.",
+      "zh": "MiniMultiplate SP MP‑68 和 Multiplate SP MP‑152 / MP‑152 S 镀锌波纹钢结构，用于排水和道路工程。ASTM A929，荷载 HS20‑44 ・ HL‑93。"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Modelos",
+        "en": "Models",
+        "zh": "型号"
+      },
+      "cols": [
+        {
+          "es": "",
+          "en": "",
+          "zh": ""
+        },
+        {
+          "es": "MP-68",
+          "en": "MP-68",
+          "zh": "MP-68"
+        },
+        {
+          "es": "MP-152 / 152 S",
+          "en": "MP-152 / 152 S",
+          "zh": "MP-152 / 152 S"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "Modelo",
+            "en": "Model",
+            "zh": "型号"
+          },
+          {
+            "es": "MiniMultiplate SP",
+            "en": "MiniMultiplate SP",
+            "zh": "MiniMultiplate SP"
+          },
+          {
+            "es": "Multiplate SP",
+            "en": "Multiplate SP",
+            "zh": "Multiplate SP"
+          }
+        ],
+        [
+          {
+            "es": "Corruga",
+            "en": "Corrugation",
+            "zh": "波纹"
+          },
+          {
+            "es": "68 × 13 mm",
+            "en": "68 × 13 mm",
+            "zh": "68 × 13 mm"
+          },
+          {
+            "es": "152 × 51 mm",
+            "en": "152 × 51 mm",
+            "zh": "152 × 51 mm"
+          }
+        ],
+        [
+          {
+            "es": "Luces",
+            "en": "Spans",
+            "zh": "跨度"
+          },
+          {
+            "es": "Hasta 1,80 m",
+            "en": "Up to 1.80 m",
+            "zh": "最大 1.80 m"
+          },
+          {
+            "es": "Hasta 16 m",
+            "en": "Up to 16 m",
+            "zh": "最大 16 m"
+          }
+        ],
+        [
+          {
+            "es": "Espesores",
+            "en": "Thicknesses",
+            "zh": "厚度"
+          },
+          {
+            "es": "e = 1,8 a 3,5 mm",
+            "en": "e = 1.8 to 3.5 mm",
+            "zh": "e = 1.8 至 3.5 mm"
+          },
+          {
+            "es": "e = 2,5 a 8,0 mm",
+            "en": "e = 2.5 to 8.0 mm",
+            "zh": "e = 2.5 至 8.0 mm"
+          }
+        ],
+        [
+          {
+            "es": "Longitud efectiva",
+            "en": "Effective length",
+            "zh": "有效长度"
+          },
+          {
+            "es": "L = 0,81 m",
+            "en": "L = 0.81 m",
+            "zh": "L = 0.81 m"
+          },
+          {
+            "es": "L = 4', 6' y 8'",
+            "en": "L = 4', 6' and 8'",
+            "zh": "L = 4'、6' 和 8'"
+          }
+        ],
+        [
+          {
+            "es": "Usos",
+            "en": "Uses",
+            "zh": "用途"
+          },
+          {
+            "es": "Uso general como drenaje de aguas superficiales. Hasta 1,80 m de luz o diámetro.",
+            "en": "General use as surface-water drainage. Up to 1.80 m span or diameter.",
+            "zh": "一般用于地表排水。最大 1.80 m 跨度或直径。"
+          },
+          {
+            "es": "Drenaje de pequeñas quebradas y pasos peatonales; conducción de grandes caudales y pasos vehiculares y ferroviarios.",
+            "en": "Draining small streams and pedestrian underpasses; carrying large flows and vehicle and rail underpasses.",
+            "zh": "小溪排水和人行地下通道；大流量输水以及车行和铁路地下通道。"
+          }
+        ]
+      ]
     }
   ],
   "relacionados": [

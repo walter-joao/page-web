@@ -68,9 +68,50 @@
       "zh": "Multiplate SP MP-152 结构的化学成分要求符合 ASTM A929，见表 1。"
     },
     {
-      "tipo": "figura",
-      "foto": "/img/wp/2021/08/Tabla_2.1.png",
-      "alt": "Tabla_2.1"
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tabla 7 · Composición química por análisis de colada",
+        "en": "Table 7 · Chemical composition by heat analysis",
+        "zh": "表 7 ・ 熔炼分析化学成分"
+      },
+      "cols": [
+        {
+          "es": "Elemento",
+          "en": "Element",
+          "zh": "元素"
+        },
+        {
+          "es": "Composición, %",
+          "en": "Composition, %",
+          "zh": "成分，%"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "Azufre, máx.",
+            "en": "Sulfur, max.",
+            "zh": "硫，最大"
+          },
+          {
+            "es": "0,05",
+            "en": "0.05",
+            "zh": "0.05"
+          }
+        ],
+        [
+          {
+            "es": "Suma de carbono, manganeso, fósforo, azufre y silicio, máx.",
+            "en": "Sum of carbon, manganese, phosphorus, sulfur and silicon, max.",
+            "zh": "碳、锰、磷、硫和硅总和，最大"
+          },
+          {
+            "es": "0,75",
+            "en": "0.75",
+            "zh": "0.75"
+          }
+        ]
+      ]
     },
     {
       "tipo": "h2",
@@ -85,9 +126,48 @@
       "zh": "波纹成形前，基材的力学性能见表 2。"
     },
     {
-      "tipo": "figura",
-      "foto": "/img/wp/2021/08/Tabla_2.2.png",
-      "alt": "Tabla_2.2"
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tabla 8 · Propiedades mecánicas",
+        "en": "Table 8 · Mechanical properties",
+        "zh": "表 8 ・ 力学性能"
+      },
+      "cols": [
+        {
+          "es": "Límite elástico, mín. (MPa)",
+          "en": "Yield strength, min. (MPa)",
+          "zh": "屈服强度，最小（MPa）"
+        },
+        {
+          "es": "Resistencia a la tracción, mín. (MPa)",
+          "en": "Tensile strength, min. (MPa)",
+          "zh": "抗拉强度，最小（MPa）"
+        },
+        {
+          "es": "Elongación en 50 mm, % mín.",
+          "en": "Elongation in 50 mm, % min.",
+          "zh": "50 mm 伸长率，% 最小"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "190",
+            "en": "190",
+            "zh": "190"
+          },
+          {
+            "es": "290",
+            "en": "290",
+            "zh": "290"
+          },
+          {
+            "es": "25",
+            "en": "25",
+            "zh": "25"
+          }
+        ]
+      ]
     },
     {
       "tipo": "h2",
@@ -108,9 +188,224 @@
       "zh": "如需特定厚度，请咨询我们的技术团队（公称厚度不含镀锌层）。组成 Multiplate SP MP-152 结构的波纹钢板公称尺寸见下表。"
     },
     {
-      "tipo": "figura",
-      "foto": "/img/wp/2021/08/Tabla_2.3.png",
-      "alt": "Tabla_2.3"
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tabla 9 · Dimensiones nominales de planchas (N = 0,2438 m)",
+        "en": "Table 9 · Nominal plate dimensions (N = 0.2438 m)",
+        "zh": "表 9 ・ 钢板公称尺寸（N = 0.2438 m）"
+      },
+      "cols": [
+        {
+          "es": "Ancho",
+          "en": "Width",
+          "zh": "宽度"
+        },
+        {
+          "es": "Ancho total (mm)",
+          "en": "Total width (mm)",
+          "zh": "总宽度（mm）"
+        },
+        {
+          "es": "Ancho neto (mm)",
+          "en": "Net width (mm)",
+          "zh": "净宽（mm）"
+        },
+        {
+          "es": "Longitud neta 4' (mm)",
+          "en": "Net length 4' (mm)",
+          "zh": "净长 4'（mm）"
+        },
+        {
+          "es": "Longitud neta 6' (mm)",
+          "en": "Net length 6' (mm)",
+          "zh": "净长 6'（mm）"
+        },
+        {
+          "es": "Longitud neta 8' (mm)",
+          "en": "Net length 8' (mm)",
+          "zh": "净长 8'（mm）"
+        },
+        {
+          "es": "N.º espacios",
+          "en": "No. spaces",
+          "zh": "间距数量"
+        },
+        {
+          "es": "N.º agujeros",
+          "en": "No. holes",
+          "zh": "孔数量"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "9 PI",
+            "en": "9 PI",
+            "zh": "9 英尺"
+          },
+          {
+            "es": "854",
+            "en": "854",
+            "zh": "854"
+          },
+          {
+            "es": "731",
+            "en": "731",
+            "zh": "731"
+          },
+          {
+            "es": "1219,2",
+            "en": "1219.2",
+            "zh": "1219.2"
+          },
+          {
+            "es": "1828,8",
+            "en": "1828.8",
+            "zh": "1828.8"
+          },
+          {
+            "es": "2438,4",
+            "en": "2438.4",
+            "zh": "2438.4"
+          },
+          {
+            "es": "3N",
+            "en": "3N",
+            "zh": "3N"
+          },
+          {
+            "es": "4",
+            "en": "4",
+            "zh": "4"
+          }
+        ],
+        [
+          {
+            "es": "15 PI",
+            "en": "15 PI",
+            "zh": "15 英尺"
+          },
+          {
+            "es": "1339",
+            "en": "1339",
+            "zh": "1339"
+          },
+          {
+            "es": "1219",
+            "en": "1219",
+            "zh": "1219"
+          },
+          {
+            "es": "1219,2",
+            "en": "1219.2",
+            "zh": "1219.2"
+          },
+          {
+            "es": "1828,8",
+            "en": "1828.8",
+            "zh": "1828.8"
+          },
+          {
+            "es": "2438,4",
+            "en": "2438.4",
+            "zh": "2438.4"
+          },
+          {
+            "es": "5N",
+            "en": "5N",
+            "zh": "5N"
+          },
+          {
+            "es": "6",
+            "en": "6",
+            "zh": "6"
+          }
+        ],
+        [
+          {
+            "es": "18 PI",
+            "en": "18 PI",
+            "zh": "18 英尺"
+          },
+          {
+            "es": "1587",
+            "en": "1587",
+            "zh": "1587"
+          },
+          {
+            "es": "1463",
+            "en": "1463",
+            "zh": "1463"
+          },
+          {
+            "es": "1219,2",
+            "en": "1219.2",
+            "zh": "1219.2"
+          },
+          {
+            "es": "1828,8",
+            "en": "1828.8",
+            "zh": "1828.8"
+          },
+          {
+            "es": "2438,4",
+            "en": "2438.4",
+            "zh": "2438.4"
+          },
+          {
+            "es": "6N",
+            "en": "6N",
+            "zh": "6N"
+          },
+          {
+            "es": "7",
+            "en": "7",
+            "zh": "7"
+          }
+        ],
+        [
+          {
+            "es": "21 PI",
+            "en": "21 PI",
+            "zh": "21 英尺"
+          },
+          {
+            "es": "1825",
+            "en": "1825",
+            "zh": "1825"
+          },
+          {
+            "es": "1706",
+            "en": "1706",
+            "zh": "1706"
+          },
+          {
+            "es": "1219,2",
+            "en": "1219.2",
+            "zh": "1219.2"
+          },
+          {
+            "es": "1828,8",
+            "en": "1828.8",
+            "zh": "1828.8"
+          },
+          {
+            "es": "2438,4",
+            "en": "2438.4",
+            "zh": "2438.4"
+          },
+          {
+            "es": "7N",
+            "en": "7N",
+            "zh": "7N"
+          },
+          {
+            "es": "8",
+            "en": "8",
+            "zh": "8"
+          }
+        ]
+      ]
     },
     {
       "tipo": "h2",
@@ -167,6 +462,118 @@
       "alt": "Tabla_2.6_2"
     },
     {
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tabla 10 · Pernos por espesor",
+        "en": "Table 10 · Bolts by thickness",
+        "zh": "表 10 ・ 各厚度对应螺栓"
+      },
+      "cols": [
+        {
+          "es": "Diámetro",
+          "en": "Diameter",
+          "zh": "直径"
+        },
+        {
+          "es": "Longitud (A)",
+          "en": "Length (A)",
+          "zh": "长度（A）"
+        },
+        {
+          "es": "Espesor de plancha",
+          "en": "Plate thickness",
+          "zh": "板厚"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "1 1/4\"",
+            "en": "1 1/4\"",
+            "zh": "1 1/4\""
+          },
+          {
+            "es": "2,5 a 3,3 mm",
+            "en": "2.5 to 3.3 mm",
+            "zh": "2.5 至 3.3 mm"
+          }
+        ],
+        [
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "1 1/2\"",
+            "en": "1 1/2\"",
+            "zh": "1 1/2\""
+          },
+          {
+            "es": "2,5 a 8,0 mm",
+            "en": "2.5 to 8.0 mm",
+            "zh": "2.5 至 8.0 mm"
+          }
+        ],
+        [
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "1 3/4\"",
+            "en": "1 3/4\"",
+            "zh": "1 3/4\""
+          },
+          {
+            "es": "3,3 a 8,0 mm",
+            "en": "3.3 to 8.0 mm",
+            "zh": "3.3 至 8.0 mm"
+          }
+        ],
+        [
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "3\"",
+            "en": "3\"",
+            "zh": "3\""
+          },
+          {
+            "es": "Canal de arranque",
+            "en": "Base channel",
+            "zh": "基础槽钢"
+          }
+        ],
+        [
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "6\"",
+            "en": "6\"",
+            "zh": "6\""
+          },
+          {
+            "es": "Conexión de cabezal",
+            "en": "Headwall connection",
+            "zh": "端墙连接"
+          }
+        ]
+      ]
+    },
+    {
       "tipo": "h2",
       "es": "7. Pernos y tuercas",
       "en": "7. Bolts and nuts",
@@ -179,9 +586,116 @@
       "zh": "用于连接 Multiplate SP 钢板的螺栓和螺母符合 ASTM A761。"
     },
     {
-      "tipo": "figura",
-      "foto": "/img/wp/2021/08/Tabla_2.7.png",
-      "alt": "Tabla_2.7"
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tabla 11 · Requisitos para pernos y tuercas (ASTM A761)",
+        "en": "Table 11 · Bolt and nut requirements (ASTM A761)",
+        "zh": "表 11 ・ 螺栓和螺母要求（ASTM A761）"
+      },
+      "cols": [
+        {
+          "es": "Característica",
+          "en": "Characteristic",
+          "zh": "特性"
+        },
+        {
+          "es": "Pernos",
+          "en": "Bolts",
+          "zh": "螺栓"
+        },
+        {
+          "es": "Tuercas",
+          "en": "Nuts",
+          "zh": "螺母"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "Dimensiones generales",
+            "en": "General dimensions",
+            "zh": "一般尺寸"
+          },
+          {
+            "es": "ANSI B18.2.1 Heavy Hex",
+            "en": "ANSI B18.2.1 Heavy Hex",
+            "zh": "ANSI B18.2.1 Heavy Hex"
+          },
+          {
+            "es": "ANSI B18.2.2 Heavy Hex",
+            "en": "ANSI B18.2.2 Heavy Hex",
+            "zh": "ANSI B18.2.2 Heavy Hex"
+          }
+        ],
+        [
+          {
+            "es": "Costuras longitudinales y circunferenciales",
+            "en": "Longitudinal and circumferential seams",
+            "zh": "纵向和环向接缝"
+          },
+          {
+            "es": "ASTM A449",
+            "en": "ASTM A449",
+            "zh": "ASTM A449"
+          },
+          {
+            "es": "ASTM A563 Grado C",
+            "en": "ASTM A563 Grade C",
+            "zh": "ASTM A563 C 级"
+          }
+        ],
+        [
+          {
+            "es": "Anclaje de estructuras al concreto",
+            "en": "Anchoring structures to concrete",
+            "zh": "结构与混凝土锚固"
+          },
+          {
+            "es": "ASTM A307",
+            "en": "ASTM A307",
+            "zh": "ASTM A307"
+          },
+          {
+            "es": "ASTM A563 Grado A",
+            "en": "ASTM A563 Grade A",
+            "zh": "ASTM A563 A 级"
+          }
+        ],
+        [
+          {
+            "es": "Recubrimiento de zinc",
+            "en": "Zinc coating",
+            "zh": "镀锌层"
+          },
+          {
+            "es": "ASTM A153",
+            "en": "ASTM A153",
+            "zh": "ASTM A153"
+          },
+          {
+            "es": "ASTM A153",
+            "en": "ASTM A153",
+            "zh": "ASTM A153"
+          }
+        ],
+        [
+          {
+            "es": "Diámetro nominal",
+            "en": "Nominal diameter",
+            "zh": "公称直径"
+          },
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          },
+          {
+            "es": "3/4\"",
+            "en": "3/4\"",
+            "zh": "3/4\""
+          }
+        ]
+      ]
     },
     {
       "tipo": "h2",

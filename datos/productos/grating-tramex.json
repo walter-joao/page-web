@@ -102,6 +102,147 @@
           "zh": "<strong>安装简便</strong>：我们的钢地板和钢格板安装快速简便，缩短安装时间、降低成本。"
         }
       ]
+    },
+    {
+      "tipo": "h2",
+      "es": "Ficha técnica (del catálogo)",
+      "en": "Technical data (from the catalog)",
+      "zh": "技术参数（摘自目录）"
+    },
+    {
+      "tipo": "h3",
+      "es": "Tramex: rejilla electrosoldada",
+      "en": "Welded grating: electro-welded grating",
+      "zh": "焊接钢格板：电焊钢格板"
+    },
+    {
+      "tipo": "p",
+      "es": "Es uno de los productos industriales más utilizados por su robustez estructural, y muy extendido para el montaje de pisos. Esta rejilla electrosoldada consiste en una estructura metálica formada por platinas de acero galvanizado en caliente, colocadas perpendicularmente a los soportes de la rejilla.",
+      "en": "One of the most widely used industrial products thanks to its structural strength, and very common for building floors. This electro-welded grating is a steel structure made of hot-dip galvanized steel bars placed perpendicular to the grating supports.",
+      "zh": "凭借结构强度成为应用最广泛的工业产品之一，在建筑地板中非常常见。这种电焊钢格板是由热浸镀锌扁钢垂直于格板支撑排列而成的钢结构。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Fabricación",
+            "en": "Manufacturing",
+            "zh": "制造"
+          },
+          "v": {
+            "es": "Electrosoldada",
+            "en": "Electro-welded",
+            "zh": "电焊"
+          }
+        },
+        {
+          "k": {
+            "es": "Material",
+            "en": "Material",
+            "zh": "材料"
+          },
+          "v": {
+            "es": "Platinas de acero galvanizado en caliente",
+            "en": "Hot-dip galvanized steel bars",
+            "zh": "热浸镀锌扁钢"
+          }
+        },
+        {
+          "k": {
+            "es": "Acabado final",
+            "en": "Finish",
+            "zh": "表面处理"
+          },
+          "v": {
+            "es": "Galvanizado en caliente · Pintado",
+            "en": "Hot-dip galvanized · Painted",
+            "zh": "热浸镀锌 · 涂漆"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Grating: rejilla electroforjada",
+      "en": "Grating: electro-forged grating",
+      "zh": "钢格板：电锻钢格板"
+    },
+    {
+      "tipo": "p",
+      "es": "Piso industrial tipo rejilla de acero galvanizado, para uso inmediato, de alta capacidad de carga y gran resistencia. Consiste en una estructura de acero fabricada con técnica de electroforja entre una platina portante (dentada) y una varilla entorchada que sujeta las platinas, formando una rejilla extremadamente fuerte y resistente.",
+      "en": "Galvanized steel grating floor, ready to use, with high load capacity and great strength. A steel structure made by electro-forging a (serrated) bearing bar to a twisted cross rod that holds the bars together, forming an extremely strong, durable grid.",
+      "zh": "镀锌钢格板地板，即装即用，承载能力高，强度大。由（齿形）承载扁钢与扭绞横杆电锻焊接而成的钢结构，横杆将扁钢固定在一起，形成极其坚固耐用的网格。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Fabricación",
+            "en": "Manufacturing",
+            "zh": "制造"
+          },
+          "v": {
+            "es": "Electroforjada",
+            "en": "Electro-forged",
+            "zh": "电锻"
+          }
+        },
+        {
+          "k": {
+            "es": "Acabado final",
+            "en": "Finish",
+            "zh": "表面处理"
+          },
+          "v": {
+            "es": "Galvanizado en caliente · Pintado",
+            "en": "Hot-dip galvanized · Painted",
+            "zh": "热浸镀锌 · 涂漆"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Proyectos ejecutados",
+      "en": "Completed projects",
+      "zh": "已完成项目"
+    },
+    {
+      "tipo": "ul",
+      "items": [
+        {
+          "es": "Descarga e instalación de rejillas en subestación eléctrica.",
+          "en": "Unloading and installing grating at an electrical substation.",
+          "zh": "在变电站卸货并安装钢格板。"
+        },
+        {
+          "es": "Plataformas y canales.",
+          "en": "Platforms and channels.",
+          "zh": "平台和沟槽。"
+        },
+        {
+          "es": "Rejillas de cubierta para canal, con marco.",
+          "en": "Framed channel cover grating.",
+          "zh": "带框沟盖钢格板。"
+        },
+        {
+          "es": "Pasarela de grating en talleres ferroviarios.",
+          "en": "Grating walkway at railway workshops.",
+          "zh": "铁路车间的钢格板走道。"
+        },
+        {
+          "es": "Pasarelas y fosos.",
+          "en": "Walkways and pits.",
+          "zh": "走道和地坑。"
+        },
+        {
+          "es": "Control de calidad: medición del espesor de galvanizado en obra.",
+          "en": "Quality control: on-site galvanizing thickness measurement.",
+          "zh": "质量控制：现场测量镀锌层厚度。"
+        }
+      ]
     }
   ],
   "relacionados": [

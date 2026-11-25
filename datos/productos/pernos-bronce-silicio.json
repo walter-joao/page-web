@@ -146,6 +146,479 @@
           "zh": "<strong>电气系统</strong>：硅青铜还具有良好的电气性能，因此用于需要导电性且不失耐久性的电气连接和零件。"
         }
       ]
+    },
+    {
+      "tipo": "h2",
+      "es": "Ficha técnica (del catálogo)",
+      "en": "Technical data (from the catalog)",
+      "zh": "技术参数（摘自目录）"
+    },
+    {
+      "tipo": "h3",
+      "es": "Bronce silicio · ASTM aleación 651",
+      "en": "Silicon bronze · ASTM alloy 651",
+      "zh": "硅青铜 ・ ASTM 合金 651"
+    },
+    {
+      "tipo": "p",
+      "es": "Aleación de cobre con silicio, zinc, hierro, manganeso y plomo. El silicio le asegura dureza, resistencia y conductividad óptimas. Tiene propiedades mecánicas comparables a las de los aceros de medio carbono y una resistencia a la corrosión similar a la del cobre.",
+      "en": "Copper alloy with silicon, zinc, iron, manganese and lead. Silicon gives it optimal hardness, strength and conductivity. Its mechanical properties are comparable to medium-carbon steels and its corrosion resistance is similar to copper.",
+      "zh": "含硅、锌、铁、锰和铅的铜合金。硅赋予其理想的硬度、强度和导电性。其力学性能与中碳钢相当，耐腐蚀性与铜相近。"
+    },
+    {
+      "tipo": "p",
+      "es": "Usos: conductores eléctricos, tanques, recipientes de presión, construcciones marítimas y conductos hidráulicos a presión; conectores eléctricos, líneas telefónicas y plantas petroleras. Las industrias que más lo emplean son la eléctrica, la naval y la de telecomunicaciones.",
+      "en": "Uses: electrical conductors, tanks, pressure vessels, marine construction and pressurized hydraulic lines; electrical connectors, telephone lines and oil plants. It is used most in the electrical, marine and telecommunications industries.",
+      "zh": "用途：导电体、储罐、压力容器、海洋工程和承压液压管路；电气连接件、电话线路和石油装置。主要用于电气、船舶和电信行业。"
+    },
+    {
+      "tipo": "tabla",
+      "filas": [
+        {
+          "k": {
+            "es": "Norma",
+            "en": "Standard",
+            "zh": "标准"
+          },
+          "v": {
+            "es": "ASTM B99",
+            "en": "ASTM B99",
+            "zh": "ASTM B99"
+          }
+        },
+        {
+          "k": {
+            "es": "Aleación",
+            "en": "Alloy",
+            "zh": "合金"
+          },
+          "v": {
+            "es": "C-651",
+            "en": "C-651",
+            "zh": "C-651"
+          }
+        },
+        {
+          "k": {
+            "es": "Temple",
+            "en": "Temper",
+            "zh": "状态"
+          },
+          "v": {
+            "es": "Medio duro",
+            "en": "Half hard",
+            "zh": "半硬"
+          }
+        },
+        {
+          "k": {
+            "es": "Tracción",
+            "en": "Tensile",
+            "zh": "抗拉"
+          },
+          "v": {
+            "es": "75 – 95 ksi (≈ 517–655 MPa)",
+            "en": "75 – 95 ksi (≈ 517–655 MPa)",
+            "zh": "75 – 95 ksi（≈ 517–655 MPa）"
+          }
+        },
+        {
+          "k": {
+            "es": "Uso principal",
+            "en": "Main use",
+            "zh": "主要用途"
+          },
+          "v": {
+            "es": "Conducción eléctrica",
+            "en": "Electrical conduction",
+            "zh": "导电"
+          }
+        },
+        {
+          "k": {
+            "es": "Productos",
+            "en": "Products",
+            "zh": "产品"
+          },
+          "v": {
+            "es": "Tornillo, tuerca, arandela, varilla",
+            "en": "Bolt, nut, washer, rod",
+            "zh": "螺栓、螺母、垫圈、螺杆"
+          }
+        }
+      ]
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Composición química · bronce silicio",
+        "en": "Chemical composition · silicon bronze",
+        "zh": "化学成分 ・ 硅青铜"
+      },
+      "cols": [
+        {
+          "es": "Elemento",
+          "en": "Element",
+          "zh": "元素"
+        },
+        {
+          "es": "%",
+          "en": "%",
+          "zh": "%"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "Cobre",
+            "en": "Copper",
+            "zh": "铜"
+          },
+          {
+            "es": "Resto",
+            "en": "Balance",
+            "zh": "余量"
+          }
+        ],
+        [
+          {
+            "es": "Silicio",
+            "en": "Silicon",
+            "zh": "硅"
+          },
+          {
+            "es": "0,8 – 2,0",
+            "en": "0.8 – 2.0",
+            "zh": "0.8 – 2.0"
+          }
+        ],
+        [
+          {
+            "es": "Zinc",
+            "en": "Zinc",
+            "zh": "锌"
+          },
+          {
+            "es": "1,5",
+            "en": "1.5",
+            "zh": "1.5"
+          }
+        ],
+        [
+          {
+            "es": "Hierro",
+            "en": "Iron",
+            "zh": "铁"
+          },
+          {
+            "es": "0,8",
+            "en": "0.8",
+            "zh": "0.8"
+          }
+        ],
+        [
+          {
+            "es": "Manganeso",
+            "en": "Manganese",
+            "zh": "锰"
+          },
+          {
+            "es": "0,7",
+            "en": "0.7",
+            "zh": "0.7"
+          }
+        ],
+        [
+          {
+            "es": "Plomo",
+            "en": "Lead",
+            "zh": "铅"
+          },
+          {
+            "es": "0,05",
+            "en": "0.05",
+            "zh": "0.05"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Latón · ASTM B134, aleación B260",
+      "en": "Brass · ASTM B134, alloy B260",
+      "zh": "黄铜 ・ ASTM B134，合金 B260"
+    },
+    {
+      "tipo": "p",
+      "es": "Es el latón que empleamos en la fabricación de nuestros productos. Es una mezcla de cobre, plomo, hierro y zinc. Cuando el zinc supera el 18 %, el metal se vuelve más claro y dorado. Es más duro que el cobre puro. Fundido no es viscoso, por lo que se adapta perfectamente a moldes detallados. La adición de un 2–3 % de plomo y hierro mejora su resistencia a la corrosión y permite conexiones herméticas a prueba de fugas.",
+      "en": "This is the brass we use to make our products. It is a mix of copper, lead, iron and zinc. When zinc exceeds 18 %, the metal becomes lighter and more golden. It is harder than pure copper. When molten it is not viscous, so it fills detailed molds perfectly. Adding 2–3 % lead and iron improves its corrosion resistance and allows tight, leak-proof connections.",
+      "zh": "这是我们用于制造产品的黄铜，由铜、铅、铁和锌混合而成。锌含量超过 18 % 时，金属更轻、颜色更金黄。它比纯铜更硬。熔融时不黏稠，能完美填充精细模具。加入 2–3 % 的铅和铁可提高耐腐蚀性，实现紧密、不渗漏的连接。"
+    },
+    {
+      "tipo": "p",
+      "es": "Usos: accesorios de tuberías de agua potable, calefacción y distribución de gas; tubos condensadores e intercambiadores de calor en plantas de energía a vapor.",
+      "en": "Uses: fittings for pipes carrying drinking water, heating and gas distribution; condenser tubes and heat exchangers in steam power plants.",
+      "zh": "用途：管道配件，用于输送饮用水、供暖和燃气输配；蒸汽电站的冷凝管和换热器。"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Composición química · latón",
+        "en": "Chemical composition · brass",
+        "zh": "化学成分 ・ 黄铜"
+      },
+      "cols": [
+        {
+          "es": "Elemento",
+          "en": "Element",
+          "zh": "元素"
+        },
+        {
+          "es": "%",
+          "en": "%",
+          "zh": "%"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "Cobre",
+            "en": "Copper",
+            "zh": "铜"
+          },
+          {
+            "es": "68,5 – 71,5",
+            "en": "68.5 – 71.5",
+            "zh": "68.5 – 71.5"
+          }
+        ],
+        [
+          {
+            "es": "Plomo",
+            "en": "Lead",
+            "zh": "铅"
+          },
+          {
+            "es": "0,07",
+            "en": "0.07",
+            "zh": "0.07"
+          }
+        ],
+        [
+          {
+            "es": "Hierro",
+            "en": "Iron",
+            "zh": "铁"
+          },
+          {
+            "es": "0,05",
+            "en": "0.05",
+            "zh": "0.05"
+          }
+        ],
+        [
+          {
+            "es": "Zinc",
+            "en": "Zinc",
+            "zh": "锌"
+          },
+          {
+            "es": "Resto",
+            "en": "Balance",
+            "zh": "余量"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "h3",
+      "es": "Tornillos, tuercas, arandelas y varillas",
+      "en": "Bolts, nuts, washers and rods",
+      "zh": "螺栓、螺母、垫圈和螺杆"
+    },
+    {
+      "tipo": "p",
+      "es": "Por las propiedades de las aleaciones que manejamos, la mayoría de nuestros productos se fabrican en bronce y en latón. Para que tengan un empleo óptimo, recomendamos utilizar el mismo tipo de aleación en todo el conjunto (tornillo, tuerca y arandela). Materiales disponibles: latón, bronce e inoxidable.",
+      "en": "Because of the properties of the alloys we use, most of our products are made in bronze and brass. For best results, we recommend using the same alloy throughout the assembly (bolt, nut and washer). Available materials: brass, bronze and stainless.",
+      "zh": "由于所用合金的特性，我们的大部分产品采用青铜和黄铜制造。为获得最佳效果，建议整套组件（螺栓、螺母和垫圈）使用同一种合金。可选材料：黄铜、青铜、不锈钢。"
+    },
+    {
+      "tipo": "h4",
+      "es": "Tornillos · sistema inglés y métrico · norma ANSI B18.2.1",
+      "en": "Bolts · imperial and metric · ANSI B18.2.1 standard",
+      "zh": "螺栓 ・ 英制和公制 ・ ANSI B18.2.1 标准"
+    },
+    {
+      "tipo": "p",
+      "es": "La cabeza más solicitada es la hexagonal, aunque también fabricamos otras formas (redonda, cilíndrica) y sistemas de apriete (hexagonal, cuadrado, ranura, Phillips, Allen).",
+      "en": "Hex is the most requested head, but we also make other shapes (round, cheese) and drive types (hex, square, slotted, Phillips, Allen).",
+      "zh": "六角头需求最多，但我们也生产其他形状（圆头、圆柱头）和驱动类型（六角、方头、一字槽、Phillips、Allen）。"
+    },
+    {
+      "tipo": "tabla",
+      "titulo": {
+        "es": "Tornillos · medidas disponibles",
+        "en": "Bolts · available sizes",
+        "zh": "螺栓 ・ 可选规格"
+      },
+      "cols": [
+        {
+          "es": "Diámetro (pulg)",
+          "en": "Diameter (in)",
+          "zh": "直径（英寸）"
+        },
+        {
+          "es": "Hilos por pulg",
+          "en": "Threads per in",
+          "zh": "每英寸牙数"
+        },
+        {
+          "es": "Norma",
+          "en": "Standard",
+          "zh": "标准"
+        },
+        {
+          "es": "Largos disponibles (pulg)",
+          "en": "Available lengths (in)",
+          "zh": "可选长度（英寸）"
+        }
+      ],
+      "filas": [
+        [
+          {
+            "es": "1/4",
+            "en": "1/4",
+            "zh": "1/4"
+          },
+          {
+            "es": "20",
+            "en": "20",
+            "zh": "20"
+          },
+          {
+            "es": "B18.2.1",
+            "en": "B18.2.1",
+            "zh": "B18.2.1"
+          },
+          {
+            "es": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "en": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "zh": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4"
+          }
+        ],
+        [
+          {
+            "es": "5/16",
+            "en": "5/16",
+            "zh": "5/16"
+          },
+          {
+            "es": "18",
+            "en": "18",
+            "zh": "18"
+          },
+          {
+            "es": "B18.2.1",
+            "en": "B18.2.1",
+            "zh": "B18.2.1"
+          },
+          {
+            "es": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "en": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "zh": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4"
+          }
+        ],
+        [
+          {
+            "es": "3/8",
+            "en": "3/8",
+            "zh": "3/8"
+          },
+          {
+            "es": "16",
+            "en": "16",
+            "zh": "16"
+          },
+          {
+            "es": "B18.2.1",
+            "en": "B18.2.1",
+            "zh": "B18.2.1"
+          },
+          {
+            "es": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "en": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "zh": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4"
+          }
+        ],
+        [
+          {
+            "es": "1/2",
+            "en": "1/2",
+            "zh": "1/2"
+          },
+          {
+            "es": "13",
+            "en": "13",
+            "zh": "13"
+          },
+          {
+            "es": "B18.2.1",
+            "en": "B18.2.1",
+            "zh": "B18.2.1"
+          },
+          {
+            "es": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "en": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "zh": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4"
+          }
+        ],
+        [
+          {
+            "es": "5/8",
+            "en": "5/8",
+            "zh": "5/8"
+          },
+          {
+            "es": "11",
+            "en": "11",
+            "zh": "11"
+          },
+          {
+            "es": "B18.2.1",
+            "en": "B18.2.1",
+            "zh": "B18.2.1"
+          },
+          {
+            "es": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "en": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4",
+            "zh": "1/2 · 3/4 · 1 · 1 1/4 · 1 1/2 · 2 · 2 1/2 · 3 · 3 1/2 · 4"
+          }
+        ]
+      ]
+    },
+    {
+      "tipo": "h4",
+      "es": "Tuercas · norma ANSI B18.2.2",
+      "en": "Nuts · ANSI B18.2.2 standard",
+      "zh": "螺母 ・ ANSI B18.2.2 标准"
+    },
+    {
+      "tipo": "p",
+      "es": "Tipos: hexagonal, cuadrada, castillo, mariposa, gota y normal. Medidas disponibles en hexagonal y cuadrada: #5-40, #8-32, #10-24, #10-32, 1/4, 5/16, 3/8, 1/2, 5/8, 3/4, 7/8 y 1.",
+      "en": "Types: hex, square, castle, wing, acorn and standard. Sizes available in hex and square: #5-40, #8-32, #10-24, #10-32, 1/4, 5/16, 3/8, 1/2, 5/8, 3/4, 7/8 and 1.",
+      "zh": "类型：六角、方螺母、开槽螺母、蝶形、盖形螺母、标准。六角和方螺母可选规格：#5-40、#8-32、#10-24、#10-32、1/4、5/16、3/8、1/2、5/8、3/4、7/8 和 1。"
+    },
+    {
+      "tipo": "h4",
+      "es": "Arandelas · norma ANSI B18.21.1",
+      "en": "Washers · ANSI B18.21.1 standard",
+      "zh": "垫圈 ・ ANSI B18.21.1 标准"
+    },
+    {
+      "tipo": "p",
+      "es": "Tipos: redonda (plana), de presión, diente interno, diente externo y empaque. Medidas disponibles en diente interno: 1/4, 5/16, 3/8, 7/16, 1/2, 9/16, 5/8 y 3/4.",
+      "en": "Types: round (flat), split lock, internal tooth, external tooth and gasket. Sizes available in internal tooth: 1/4, 5/16, 3/8, 7/16, 1/2, 9/16, 5/8 and 3/4.",
+      "zh": "类型：圆形（平垫）、弹簧垫圈、内齿、外齿、密封垫。内齿可选规格：1/4、5/16、3/8、7/16、1/2、9/16、5/8 和 3/4。"
     }
   ],
   "relacionados": [

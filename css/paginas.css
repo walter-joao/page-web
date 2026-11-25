@@ -37,7 +37,7 @@ section{padding-block:96px;position:relative}
 .pp-cards a{display:block;padding:20px 22px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-weight:700}
 .pp-cards a small{display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;margin-bottom:6px}
 .pp-fig{margin:16px 0}.pp-fig img{border-radius:10px;background:#fff;max-width:100%;height:auto}
-.pp-tabla{overflow-x:auto;margin:16px 0}.pp-tabla table{border-collapse:collapse;font-size:.92rem}.pp-tabla td,.pp-tabla th{border:1px solid var(--line);padding:6px 10px;text-align:left}
+.pp-tabla{overflow-x:auto;margin:16px 0}.pp-tabla caption{text-align:left;font-weight:600;padding:0 0 8px;color:var(--muted)}.pp-tabla table{border-collapse:collapse;font-size:.92rem}.pp-tabla td,.pp-tabla th{border:1px solid var(--line);padding:6px 10px;text-align:left}
 .pp-cards a:hover{border-color:var(--cyan)}
 .top .wrap{min-height:76px}
 html:lang(zh-CN){--f-body:"Open Sans",system-ui,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",sans-serif;--f-mono:"Montserrat",Arial,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;--f-display:"Montserrat",Arial,"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}html:lang(zh-CN) h1,html:lang(zh-CN) h2,html:lang(zh-CN) h3{line-height:1.25;letter-spacing:0}.pill button{white-space:nowrap}@media (max-width:380px){.pill button{padding:6px 8px}}

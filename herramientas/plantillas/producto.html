@@ -126,6 +126,8 @@
 <{{ b.tipo }}>{% for i in b["items"] %}<li data-en="{{ i.en }}" data-zh="{{ i.zh }}">{{ i.es | safe }}</li>{% endfor %}</{{ b.tipo }}>
 {%- elif b.tipo == "figura" -%}
 <figure class="pp-fig"><a href="{{ b.foto }}" rel="noopener" target="_blank"><img alt="{{ b.get('alt') or p.nombre.es }}" data-o="{{ b.foto }}" decoding="async" loading="lazy" sizes="(max-width: 800px) 100vw, 760px" src="{{ b.foto | vimg(640) }}" srcset="{{ srcset(b.foto) }}"/></a></figure>
+{%- elif b.tipo == "tabla" and b.get("cols") -%}
+<div class="pp-tabla"><table>{% if b.get("titulo") %}<caption data-en="{{ b.titulo.en }}" data-zh="{{ b.titulo.zh }}">{{ b.titulo.es | safe }}</caption>{% endif %}<thead><tr>{% for c in b.cols %}<th data-en="{{ c.en }}" data-zh="{{ c.zh }}" scope="col">{{ c.es | safe }}</th>{% endfor %}</tr></thead><tbody>{% for f in b.filas %}<tr>{% for c in f %}<td data-en="{{ c.en }}" data-zh="{{ c.zh }}">{{ c.es | safe }}</td>{% endfor %}</tr>{% endfor %}</tbody></table></div>
 {%- elif b.tipo == "tabla" -%}
 <table class="pp-spec"><tbody>{% for f in b.filas %}<tr><th data-en="{{ f.k.en }}" data-zh="{{ f.k.zh }}" scope="row">{{ f.k.es | safe }}</th><td data-en="{{ f.v.en }}" data-zh="{{ f.v.zh }}">{{ f.v.es | safe }}</td></tr>{% endfor %}</tbody></table>
 {%- else -%}
