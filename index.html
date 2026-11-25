@@ -371,7 +371,7 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
       </div>
       <!-- Vitrina de sectores: foto de fondo desenfocada, tarjeta de vidrio con el sector activo y fila de miniaturas.
            Cada sector es un <article class="vs">; js/portada.js arma las miniaturas a partir de sus fotos. -->
-      <div class="vit" id="vit" role="region" aria-roledescription="carrusel" aria-label="Sectores">
+      <div class="vit" id="vit-sectores" role="region" aria-roledescription="carrusel" aria-label="Sectores">
         <div class="vit-bg" aria-hidden="true"><img alt="" decoding="async" loading="lazy"><img alt="" decoding="async" loading="lazy"></div>
         <div class="vit-card">
           <div class="vit-slides">
@@ -385,9 +385,9 @@ addEventListener('load',function(){irA();if(!location.hash||!window.ResizeObserv
         <article class="vs" id="vs8"><div class="corr"><img decoding="async" src="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Flam-e1739981950225.jpg&amp;w=1080&amp;q=75" srcset="/_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Flam-e1739981950225.jpg&amp;w=384&amp;q=75 384w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Flam-e1739981950225.jpg&amp;w=640&amp;q=75 640w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Flam-e1739981950225.jpg&amp;w=1080&amp;q=75 1080w, /_vercel/image?url=%2Fimg%2Fwp%2F2025%2F02%2Flam-e1739981950225.jpg&amp;w=1920&amp;q=75 1920w" sizes="(max-width: 760px) 300px, 480px" data-o="/img/wp/2025/02/lam-e1739981950225.jpg" alt="Pedidos especiales: trabajos de JOCE en Ecuador" loading="lazy"></div><div class="in"><span class="num">08</span><h3 data-i18n="s8.t">Pedidos especiales</h3><p data-i18n="s8.d">Piezas a medida, como escaleras de acceso para aviones.</p><button type="button" class="btn btn-accent more" data-prod="sec8"><span data-i18n="more.all">Ver todo</span> ›</button></div></article>
           </div>
           <div class="vit-nav">
-            <button type="button" class="vit-arr" id="prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
-            <div class="vit-thumbs" id="vit-thumbs" role="tablist" aria-label="Sectores"></div>
-            <button type="button" class="vit-arr" id="next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
+            <button type="button" class="vit-arr prev" aria-label="Anterior"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+            <div class="vit-thumbs" role="tablist" aria-label="Sectores"></div>
+            <button type="button" class="vit-arr next" aria-label="Siguiente"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M9 6l6 6-6 6"/></svg></button>
           </div>
         </div>
       </div>
