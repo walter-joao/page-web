@@ -57,6 +57,11 @@ function handler(event) {
     if (resto.indexOf('/wp-content/uploads/') === 0) return mover('/img/wp/' + resto.slice(20), 301);
     return mover(PORTAL[resto] || '/', 301);   // cualquier otra página vieja va a la portada
   }
+  // una sola dirección por página (Google marcaba /index.html como copia de la portada):
+  // /x.html -> /x y /carpeta/index.html -> /carpeta/
+  if (/\.html$/.test(uri) && uri !== '/404.html') return mover(uri.replace(/(index)?\.html$/, ''), 301);
+  // la carpeta de catálogos no tiene página propia: a la sección de productos
+  if (sin === '/catalogos' || sin === '/catalogos/en' || sin === '/catalogos/zh') return mover('/#productos', 301);
   var dest = REDIR[sin];
   if (dest) return mover(dest, 302);
   if (uri.endsWith('/')) {
