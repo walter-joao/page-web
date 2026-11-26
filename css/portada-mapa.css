@@ -159,10 +159,28 @@ html:lang(zh-CN) .kicker{letter-spacing:.08em}
 .sat.lt .sat-sec-in{background:rgba(255,255,255,.82);border-color:rgba(13,23,38,.1);color:var(--fg)}
 .sat.lt .sat-sec-in p{color:var(--muted)}.sat.lt .sat-sec-in small{color:#9a5b00}
 .sat-card.vacia{opacity:0!important;pointer-events:none}
-@media (max-width:760px){.sat-sec-th{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px;padding:0 20px 4px;scrollbar-width:none}.sat-sec-th button{flex:0 0 auto}}
+
 @media (min-width:761px){
   .sat.con-sectores .sat-copy h2{font-size:clamp(2rem,3.4vw,3.2rem)}
   .sat.con-sectores .sat-hint{display:none}
-  .sat-sec-th{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:40px}
-  .sat-sec-th::-webkit-scrollbar{display:none}.sat-sec-th button{flex:0 0 auto}
 }
+
+/* fila de sectores deslizable: flechas solo hacia donde hay más, bordes que se desvanecen, arrastre con el mouse */
+.sat-sec-fila{position:relative;display:flex;align-items:center;min-width:0}
+.sat-sec-th{flex:1;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;scroll-behavior:auto;cursor:grab;padding:2px 0;
+  --fa:#000;--fb:#000;-webkit-mask-image:linear-gradient(90deg,var(--fa),#000 48px,#000 calc(100% - 48px),var(--fb));mask-image:linear-gradient(90deg,var(--fa),#000 48px,#000 calc(100% - 48px),var(--fb))}
+.sat-sec-th::-webkit-scrollbar{display:none}
+.sat-sec-th button{flex:0 0 auto}
+.sat-sec-th.arrastra{cursor:grabbing;user-select:none}.sat-sec-th.arrastra button{pointer-events:none}
+.sat-sec-fila:not(.ini) .sat-sec-th{--fa:transparent}
+.sat-sec-fila:not(.fin) .sat-sec-th{--fb:transparent}
+.sat-sec-ar{position:absolute;z-index:2;top:50%;width:36px;height:36px;margin-top:-18px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(225,240,255,.35);background:rgba(6,14,26,.8);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:#fff;cursor:pointer;transition:opacity .25s,transform .25s;box-shadow:0 6px 18px -6px rgba(0,0,0,.7)}
+.sat-sec-ar svg{width:16px;height:16px}
+.sat-sec-ar.prev{left:-4px}.sat-sec-ar.next{right:-4px}.sat-sec-ar.next svg{transform:scaleX(-1)}
+.sat-sec-ar:hover{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.sat-sec-fila.ini .sat-sec-ar.prev,.sat-sec-fila.fin .sat-sec-ar.next{opacity:0;pointer-events:none;transform:scale(.8)}
+.sat-sec-fila:not(.fin) .sat-sec-ar.next{animation:sat-sec-pulso 2.4s ease-in-out 3}
+@keyframes sat-sec-pulso{50%{transform:translateX(4px)}}
+.sat.lt .sat-sec-ar{background:rgba(255,255,255,.92);border-color:rgba(13,23,38,.15);color:var(--fg)}
+@media (max-width:760px){.sat-sec-fila{margin:0 -20px}.sat-sec-th{padding:2px 20px 4px}.sat-sec-ar.prev{left:8px}.sat-sec-ar.next{right:8px}}
+@media (prefers-reduced-motion:reduce){.sat-sec-fila .sat-sec-ar{animation:none}}

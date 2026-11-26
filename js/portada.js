@@ -571,8 +571,9 @@
   (function(){
     var sat=document.getElementById('sat'),sec=document.getElementById('sectores');if(!sat||!sec||!window.satFiltro)return;
     var MAP={vs1:'hidro',vs5:'trans',vs6:'edif'},copy=sat.querySelector('.sat-copy'),box=document.createElement('div');
-    box.className='sat-sec';box.innerHTML='<div class="sat-sec-in" aria-live="polite"></div><div class="sat-sec-th" role="tablist" aria-label="Sectores"></div>';
-    var cuerpo=box.firstChild,fila=box.lastChild;
+    box.className='sat-sec';var AR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M15 6l-6 6 6 6"/></svg>';
+    box.innerHTML='<div class="sat-sec-in" aria-live="polite"></div><div class="sat-sec-fila ini"><button type="button" class="sat-sec-ar prev" aria-label="Anterior">'+AR+'</button><div class="sat-sec-th" role="tablist" aria-label="Sectores"></div><button type="button" class="sat-sec-ar next" aria-label="Siguiente">'+AR+'</button></div>';
+    var cuerpo=box.firstChild,marco=box.lastChild,fila=marco.querySelector('.sat-sec-th');
     var todas=document.createElement('button');todas.type='button';todas.className='on';todas.innerHTML='<i class="all"></i><span>'+TR('Todas','All')+'</span>';fila.appendChild(todas);
     var arts=[].slice.call(sec.querySelectorAll('.vs'));
     arts.forEach(function(a){
@@ -583,6 +584,7 @@
     todas.addEventListener('click',function(){elegir(todas,null)});
     function elegir(b,a){
       [].forEach.call(fila.children,function(x){x.classList.toggle('on',x===b)});
+      fila.scrollTo({left:b.offsetLeft-(fila.clientWidth-b.offsetWidth)/2,behavior:reduce?'auto':'smooth'});
       if(!a){cuerpo.innerHTML='';box.classList.remove('abierto');satFiltro('all');return}
       var hay=satFiltro(MAP[a.id]||'ninguno'),m=a.querySelector('.more');
       cuerpo.innerHTML='<b>'+a.querySelector('h3').textContent+'</b><p>'+a.querySelector('p').textContent+'</p>'+
@@ -592,6 +594,19 @@
       box.classList.add('abierto');
     }
     copy.appendChild(box);sat.classList.add('con-sectores');
+    // que se note que la fila se desliza: flechas que aparecen solo si hay más a ese lado, arrastre con el mouse
+    // y un pequeño vaivén la primera vez que se ve
+    function bordes(){var x=fila.scrollLeft,max=fila.scrollWidth-fila.clientWidth;marco.classList.toggle('ini',x<=2);marco.classList.toggle('fin',x>=max-2);marco.classList.toggle('corta',max<=2)}
+    fila.addEventListener('scroll',bordes,{passive:true});addEventListener('resize',bordes);bordes();
+    marco.querySelector('.prev').addEventListener('click',function(){fila.scrollBy({left:-fila.clientWidth*.7,behavior:'smooth'})});
+    marco.querySelector('.next').addEventListener('click',function(){fila.scrollBy({left:fila.clientWidth*.7,behavior:'smooth'})});
+    var dx0=null,sx0=0,movio=false;
+    fila.addEventListener('pointerdown',function(e){if(e.pointerType!=='mouse')return;dx0=e.clientX;sx0=fila.scrollLeft;movio=false});
+    addEventListener('pointermove',function(e){if(dx0===null)return;var d=e.clientX-dx0;if(Math.abs(d)>5){movio=true;fila.classList.add('arrastra')}if(movio)fila.scrollLeft=sx0-d});
+    addEventListener('pointerup',function(){dx0=null;setTimeout(function(){fila.classList.remove('arrastra')})});
+    fila.addEventListener('click',function(e){if(movio){e.stopPropagation();e.preventDefault();movio=false}},true);
+    if(!reduce&&'IntersectionObserver' in window){var ob=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;ob.disconnect();
+      if(fila.scrollWidth-fila.clientWidth<=2)return;setTimeout(function(){fila.scrollTo({left:90,behavior:'smooth'});setTimeout(function(){fila.scrollTo({left:0,behavior:'smooth'})},700)},600)},{threshold:.8});ob.observe(fila)}
     // la sección aparte ya no se muestra (sus "Ver todo" siguen funcionando desde el mapa)
     sec.hidden=true;
   })();
