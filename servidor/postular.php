@@ -11,11 +11,14 @@ const REMITENTE = 'talentohumano@jocecia.com';  // cuenta que existe en el mismo
 const ORIGENES  = [                             // webs que pueden usar este formulario
   'https://www.jocecia.com',
   'https://jocecia.com',
-  'https://jocecia-web.vercel.app',
-  'https://d1wirxu5lk9yc9.cloudfront.net',     // dirección de prueba de AWS
 ];
 const MAX_BYTES = 5 * 1024 * 1024;              // 5 MB
 const MAX_POR_HORA = 5;                         // envíos por IP por hora
+// Captcha Cloudflare Turnstile: la clave SECRETA vive FUERA de public_html (nunca en el repo, que es público).
+// Ese archivo contiene solo:  <?php return 'clave-secreta-de-turnstile';
+// Si el archivo no existe, no se pide captcha (para poder subir este PHP antes que la web nueva).
+const TURNSTILE_SECRETO = __DIR__ . '/../turnstile-secreto.php';
+const TURNSTILE_DOMINIOS = ['www.jocecia.com', 'jocecia.com'];
 // =========================
 
 header('Content-Type: application/json; charset=utf-8');
@@ -38,8 +41,26 @@ function limpio(string $k, int $max = 200): string {
   return mb_substr($v, 0, $max);
 }
 
+function captcha_ok(string $secreto, string $pase, string $ip): bool {
+  $datos = http_build_query(['secret' => $secreto, 'response' => $pase, 'remoteip' => $ip]);
+  $url = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+  if (function_exists('curl_init')) {
+    $c = curl_init($url);
+    curl_setopt_array($c, [CURLOPT_POST => true, CURLOPT_POSTFIELDS => $datos, CURLOPT_RETURNTRANSFER => true,
+      CURLOPT_TIMEOUT => 10, CURLOPT_HTTPHEADER => ['Content-Type: application/x-www-form-urlencoded']]);
+    $r = curl_exec($c);
+    curl_close($c);
+  } else {
+    $r = @file_get_contents($url, false, stream_context_create(['http' => ['method' => 'POST', 'timeout' => 10,
+      'header' => "Content-Type: application/x-www-form-urlencoded\r\n", 'content' => $datos]]));
+  }
+  $j = json_decode((string)$r, true);
+  return is_array($j) && ($j['success'] ?? false) === true
+    && in_array($j['hostname'] ?? '', TURNSTILE_DOMINIOS, true);   // el pase debe venir de nuestra web
+}
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') salir(405, 'metodo');
-if ($origen && !in_array($origen, ORIGENES, true)) salir(403, 'origen');
+if (!in_array($origen, ORIGENES, true)) salir(403, 'origen');   // sin Origin o de otra web: fuera
 if (!empty($_POST['web'])) salir(200);                // trampa para bots: fingimos éxito
 
 // Límite simple por IP
@@ -59,6 +80,13 @@ $idioma   = limpio('idioma', 5);
 
 if (!$nombre || !$telefono || !$area || !filter_var($correo, FILTER_VALIDATE_EMAIL)) salir(422, 'datos');
 if (($_POST['acepto'] ?? '') !== 'si') salir(422, 'consentimiento');
+
+// Captcha: Cloudflare confirma que quien envía es una persona (cada pase sirve una sola vez)
+if (is_file(TURNSTILE_SECRETO)) {
+  $secreto = trim((string)(include TURNSTILE_SECRETO));
+  $pase = (string)($_POST['cf-turnstile-response'] ?? '');
+  if (!$secreto || !$pase || strlen($pase) > 2048 || !captcha_ok($secreto, $pase, $ip)) salir(422, 'captcha');
+}
 
 $cv = $_FILES['cv'] ?? null;
 if (!$cv || $cv['error'] !== UPLOAD_ERR_OK || !is_uploaded_file($cv['tmp_name'])) salir(422, 'archivo');

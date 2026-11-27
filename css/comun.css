@@ -449,6 +449,7 @@ a.tile{color:inherit;text-decoration:none}
 .chk{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--muted)}
 .chk input{width:18px;height:18px;margin-top:3px;flex:none;accent-color:var(--accent)}
 .job-act{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px}
+.job-captcha{margin:0 0 14px;min-height:0}.job-captcha:empty{display:none}
 .job-msg{margin:0;font-size:.92rem;font-weight:600}
 .job-msg.err{color:#e5484d}
 .job-msg.ok{color:#2f9e5b}

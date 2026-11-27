@@ -33,7 +33,7 @@
 <li><div><b data-en="We get in touch" data-zh="我们会联系您">Le contactamos</b><span data-en="Your application goes straight to the company's inbox." data-zh="您的申请将直接发送到公司邮箱。">Su postulación llega directo al correo de la empresa.</span></div></li>
 </ol>
 </div>
-<form class="job-form rv" data-endpoint="https://jocecia.com/postular.php" enctype="multipart/form-data" id="jobform" novalidate="">
+<form class="job-form rv" data-endpoint="https://jocecia.com/postular.php" data-turnstile="{{ sitio.turnstile_site_key }}" enctype="multipart/form-data" id="jobform" novalidate="">
 <div class="f2">
 <label class="fld"><span data-en="Full name" data-zh="姓名">Nombres y apellidos</span><input autocomplete="name" maxlength="120" name="nombre" required="" type="text"/></label>
 <label class="fld"><span data-en="Phone / WhatsApp" data-zh="电话 / WhatsApp">Teléfono / WhatsApp</span><input autocomplete="tel" inputmode="tel" maxlength="30" name="telefono" required="" type="tel"/></label>
@@ -59,6 +59,8 @@
 <label class="fld"><span><span data-en="Tell us about your experience" data-zh="介绍一下您的经验">Cuéntenos de su experiencia</span> <i data-en="(optional)" data-zh="（选填）">(opcional)</i></span><textarea maxlength="1500" name="mensaje" rows="3"></textarea></label>
 <label aria-hidden="true" class="hp">Web<input autocomplete="off" name="web" tabindex="-1" type="text"/></label>
 <label class="chk"><input name="acepto" required="" type="checkbox" value="si"/><span data-en="I authorize José Cevallos JOCE Cía. Ltda. to process my personal data only for this hiring process." data-zh="我授权 José Cevallos JOCE Cía. Ltda. 仅为本次招聘处理我的个人数据。">Autorizo a José Cevallos JOCE Cía. Ltda. a tratar mis datos personales solo para este proceso de selección.</span></label>
+{#- Captcha invisible (Cloudflare Turnstile): js/trabaja.js lo dibuja aquí si hay site key en datos/sitio.json -#}
+<div class="job-captcha" id="jobcaptcha"></div>
 <div class="job-act">
 <button class="btn btn-accent" id="jobsend" type="submit"><span data-en="Send application" data-zh="提交申请">Enviar postulación</span><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
 <p aria-live="polite" class="job-msg" id="jobmsg" role="status"></p>
