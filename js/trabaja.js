@@ -48,7 +48,7 @@
     btn.setAttribute('aria-busy','true');say('sending');
     var fd=new FormData(f);fd.append('idioma',document.documentElement.lang);
     fetch(url,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return {}}).then(function(j){if(!r.ok||!j.ok)throw (j.error||0)})})
-      .then(function(){try{if(window.umami)umami.track('Postulación enviada',{area:fd.get('area')})}catch(e){}f.reset();showFile();say('ok','ok')})
+      .then(function(){try{if(window.registrarEvento)registrarEvento('Postulación enviada',{area:fd.get('area')});else if(window.umami)umami.track('Postulación enviada',{area:fd.get('area')})}catch(e){}f.reset();showFile();say('ok','ok')})
       .catch(function(e){say(e==='captcha'?'captcha':'fail','err')})
       .then(function(){btn.removeAttribute('aria-busy');if(window.turnstile&&wid!==null)turnstile.reset(wid)});  // cada pase del captcha sirve una sola vez
   });
