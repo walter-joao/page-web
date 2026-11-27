@@ -1,6 +1,6 @@
 """Construye la versión estática de la web para S3/CloudFront (sin el optimizador de Vercel).
 Uso: python herramientas/build_estatico.py . _site
-- Copia el repo (sin .git, servidor, herramientas, img/originales, vercel.json).
+- Copia el repo sin lo de NO_PUBLICAR (código interno, .gitignore, bocetos, demos de ventas).
 - Genera las fotos de img/wp e img/obras en WebP 256-1920 px dentro de _img/.
 - Reemplaza las URLs /_vercel/image por esas WebP (HTML, /js/*.js y funciones JS VI/vimg).
 - Agrega ?v=<huella> a los /css/*.css y /js/*.js del HTML: el navegador los guarda 30 días, y así baja
@@ -12,7 +12,11 @@ ImageFile.LOAD_TRUNCATED_IMAGES=True
 SRC=sys.argv[1]; OUT=sys.argv[2]
 SIZES=[256,384,640,1080,1920]
 if os.path.exists(OUT): shutil.rmtree(OUT)
-shutil.copytree(SRC,OUT,ignore=shutil.ignore_patterns('.git','.github','.claude','servidor','datos','vercel.json','.vercelignore','herramientas','originales','_site'))
+# Fuera de la web pública: código y datos internos, y muestras que no son de Jocecia (bocetos, demo de animación con
+# sus fotos img/animacion, simulador de celular). Al no estar en _site, el "s3 sync --delete" las borra del bucket.
+NO_PUBLICAR=('.git','.github','.claude','.gitignore','.vercelignore','vercel.json','servidor','datos','herramientas',
+             'originales','_site','__pycache__','bocetos','animacion.html','animacion','celular.html')
+shutil.copytree(SRC,OUT,ignore=shutil.ignore_patterns(*NO_PUBLICAR))
 def slug(p):
   p=p.strip('/'); p=p[7:] if p.startswith('img/wp/') else p[4:]  # img/wp/2021/08/x.jpg -> 2021-08-x ; img/obras/x.webp -> obras-x
   return p.replace('/','-').rsplit('.',1)[0]
