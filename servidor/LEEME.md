@@ -25,7 +25,10 @@ Esta carpeta no se publica en Vercel (ver `.vercelignore`).
 Frena a los robots que mandan formularios basura. Es gratis y no necesita que el dominio esté en Cloudflare.
 
 1. Crear el sitio en https://dash.cloudflare.com → Turnstile → *Add widget*. Dominios: `www.jocecia.com`
-   y `jocecia.com`. Modo: *Invisible* (o *Managed* si se prefiere que a veces muestre una casilla).
+   y `jocecia.com`. Modo: *Managed*. `js/trabaja.js` lo dibuja con `appearance: 'interaction-only'`, así que no se ve nada
+   salvo que Cloudflare dude y pida un clic. (El modo *Invisible* obliga a citar el Turnstile Privacy
+   Addendum de Cloudflare en una política de privacidad, que la web no tiene.)
+   Widget creado el 2026-11-27 en la cuenta Cloudflare del desarrollador, nombre "Jocecia".
 2. Cloudflare entrega dos claves:
    - **Site key (pública)** → va en `datos/sitio.json`, campo `turnstile_site_key`. Luego
      `python3 herramientas/generar_paginas.py` y subir a main.

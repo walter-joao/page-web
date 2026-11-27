@@ -14,7 +14,7 @@
   var KEY=f.dataset.turnstile,cap=document.getElementById('jobcaptcha'),wid=null;
   function capLoad(){
     if(!KEY||!cap||window.__tsLoad)return;window.__tsLoad=1;
-    window.__tsListo=function(){wid=turnstile.render(cap,{sitekey:KEY,language:(document.documentElement.lang||'es').slice(0,2),'refresh-expired':'auto'})};
+    window.__tsListo=function(){wid=turnstile.render(cap,{sitekey:KEY,language:(document.documentElement.lang||'es').slice(0,2),'refresh-expired':'auto',appearance:'interaction-only'})};
     var s=document.createElement('script');s.src='https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=__tsListo';s.async=true;s.defer=true;document.head.appendChild(s);
   }
   if(KEY){

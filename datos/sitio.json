@@ -13,7 +13,7 @@
   "icono": "/img/wp/2020/04/cropped-icono-270x270.png",
   "color_tema": "#070d17",
   "_turnstile_LEEME": "Clave PÚBLICA (site key) del captcha Cloudflare Turnstile del formulario Trabaja con nosotros. Pegarla aquí y volver a generar. Vacía = sin captcha. La clave SECRETA nunca va aquí: ver servidor/LEEME.md.",
-  "turnstile_site_key": "",
+  "turnstile_site_key": "0x4AAAAAAGWKXqbIHvioNd1T",
   "umami": {"id": "4e93816a-d608-46e0-a24f-06889298964a", "dominios": "www.jocecia.com,jocecia.com"},
   "menu": [
     {"href": "/#proyectos", "es": "Proyectos", "en": "Projects", "zh": "项目"},
